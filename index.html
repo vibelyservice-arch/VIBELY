@@ -62,15 +62,15 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
     .glass-card {
-      background: rgba(18, 18, 28, 0.65);
+      background: rgba(18, 18, 28, 0.70);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
     .glass-panel {
-      background: rgba(14, 14, 22, 0.95);
+      background: rgba(14, 14, 22, 0.96);
       backdrop-filter: blur(24px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.12);
     }
     .text-glow {
       text-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
@@ -78,7 +78,7 @@
   </style>
 </head>
 
-<body class="min-h-screen pb-24 selection:bg-purple-600 selection:text-white overflow-x-hidden">
+<body class="min-h-screen pb-28 selection:bg-purple-600 selection:text-white overflow-x-hidden">
 
   <!-- LUXURY AMBIENT BACKGROUND GLOWS -->
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
@@ -102,7 +102,7 @@
           </svg>
         </div>
       </div>
-      <div class="absolute -inset-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-3xl blur-xl opacity-35 animate-pulse -z-10"></div>
+      <div class="absolute -inset-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl blur-xl opacity-35 animate-pulse -z-10"></div>
     </div>
 
     <h2 class="text-3xl font-black tracking-[0.25em] uppercase bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
@@ -113,28 +113,47 @@
     </p>
   </div>
 
-  <!-- TOP APP NAVIGATION BAR -->
+  <!-- TOP APP BAR -->
   <header class="sticky top-0 z-40 w-full glass-nav px-3 py-2.5 sm:px-8 flex items-center justify-between">
-    <!-- Brand Logo -->
-    <div class="flex items-center gap-2 cursor-pointer" onclick="scrollToTop()">
-      <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-purple-600 via-pink-500 to-indigo-500 p-[1px] flex items-center justify-center">
-        <div class="w-full h-full bg-[#0a0a0f] rounded-xl flex items-center justify-center">
-          <span class="text-xs font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">V</span>
+    <!-- Menu & Stealth Admin Trigger Logo -->
+    <div class="flex items-center gap-2.5">
+      <button onclick="toggleSideDrawer()" class="p-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white transition">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+
+      <!-- Stealth Admin Trigger: Triple-tap the logo -->
+      <div class="flex items-center gap-2 cursor-pointer select-none" onclick="handleLogoTaps()">
+        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-purple-600 via-pink-500 to-indigo-500 p-[1px] flex items-center justify-center">
+          <div class="w-full h-full bg-[#0a0a0f] rounded-xl flex items-center justify-center">
+            <span class="text-xs font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">V</span>
+          </div>
         </div>
-      </div>
-      <div>
-        <span class="text-sm sm:text-base font-black tracking-wider text-white block leading-tight">VIBELY</span>
-        <span class="text-[7px] sm:text-[8px] uppercase tracking-widest text-purple-400 font-bold block">Global Platform</span>
+        <div>
+          <span class="text-sm sm:text-base font-black tracking-wider text-white block leading-tight">VIBELY</span>
+          <span id="header-mode-tag" class="text-[7px] sm:text-[8px] uppercase tracking-widest text-emerald-400 font-bold block">
+            Free Social Engine
+          </span>
+        </div>
       </div>
     </div>
 
-    <!-- Multi-Currency Engine Selector -->
+    <!-- Center/Right Controls -->
     <div class="flex items-center gap-2">
+      <!-- Live Coin Stash Button -->
+      <button 
+        onclick="openCoinStore()"
+        class="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold text-xs hover:bg-amber-500/20 active:scale-95 transition"
+      >
+        <span>🪙</span>
+        <span id="top-coin-counter">250</span>
+      </button>
+
+      <!-- 30+ Currency Selector -->
       <div class="relative">
         <select 
           id="global-currency-select"
           onchange="changeGlobalCurrency(this.value)"
-          class="appearance-none bg-black/80 border border-purple-500/40 text-purple-300 font-black text-[11px] sm:text-xs py-1.5 pl-2.5 pr-6 rounded-xl focus:outline-none focus:border-purple-400 cursor-pointer shadow-inner"
+          class="appearance-none bg-black/80 border border-purple-500/40 text-purple-300 font-black text-[11px] sm:text-xs py-1.5 pl-2.5 pr-6 rounded-xl focus:outline-none focus:border-purple-400 cursor-pointer"
         >
           <optgroup label="⭐ Flagship Anchors">
             <option value="GHS" selected>🇬🇭 GHS (₵)</option>
@@ -187,556 +206,716 @@
         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-1.5 text-purple-400 text-[10px]">▼</div>
       </div>
 
-      <!-- Free vs Pro CTAs -->
+      <!-- State Switcher -->
       <button 
-        onclick="openModal('social')"
-        class="hidden sm:inline-flex text-xs font-bold px-3 py-1.5 rounded-xl bg-white/10 text-zinc-300 hover:text-white border border-white/10 transition"
+        id="btn-portal-switch"
+        onclick="togglePlatformExperience()"
+        class="text-[11px] sm:text-xs font-black px-3 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg active:scale-95 transition"
       >
-        Join Free Social
-      </button>
-
-      <button 
-        onclick="openModal('affiliate')"
-        class="text-[11px] sm:text-xs font-black px-3 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-600/30 active:scale-95 transition"
-      >
-        Get Pro Pass
+        Switch to Pro Portal →
       </button>
     </div>
   </header>
 
-  <!-- MAIN CONTAINER -->
-  <main class="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 pt-8 space-y-16">
+  <!-- PUBLIC USER DRAWER (ZERO ADMIN BUTTONS VISIBLE TO REGULAR USERS) -->
+  <div 
+    id="side-drawer" 
+    class="fixed inset-0 z-50 bg-black/75 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300"
+    onclick="toggleSideDrawer()"
+  >
+    <div 
+      class="glass-panel w-72 sm:w-80 h-full p-6 flex flex-col justify-between transform -translate-x-full transition-all duration-300"
+      onclick="event.stopPropagation()"
+      id="drawer-container"
+    >
+      <div>
+        <div class="flex items-center justify-between pb-5 border-b border-zinc-800">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-600 flex items-center justify-center text-white font-black text-xs">
+              VP
+            </div>
+            <div>
+              <h4 class="text-xs font-bold text-white leading-tight">Vibely Hub</h4>
+              <p class="text-[10px] text-zinc-400">ID: VIB-90218</p>
+            </div>
+          </div>
+          <button onclick="toggleSideDrawer()" class="text-zinc-500 hover:text-white font-bold p-1">✕</button>
+        </div>
 
-    <!-- HERO SECTION: THE DUAL UNIVERSE -->
-    <section class="text-center pt-4 pb-4">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-[11px] font-semibold text-zinc-300 mb-6 border border-white/10">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span>The Two-Sided Platform: Free Global Social Network + Pro 50/50 Earning Academy</span>
+        <nav class="mt-6 space-y-1 text-xs font-semibold">
+          <a href="#" onclick="toggleSideDrawer(); scrollToTop();" class="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300 hover:text-white transition">
+            <span>🌐 Global Discovery Deck</span>
+            <span class="text-emerald-400 text-[10px] font-bold">Free</span>
+          </a>
+          <a href="#" onclick="toggleSideDrawer(); togglePlatformExperience();" class="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300 hover:text-white transition">
+            <span>💼 Pro Affiliate Suite</span>
+            <span class="text-purple-400 text-[10px] font-bold">50/50</span>
+          </a>
+          <a href="#" onclick="toggleSideDrawer(); openCoinStore();" class="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300 hover:text-white transition">
+            <span>🪙 Refill Vibely Coins</span>
+            <span class="text-amber-400 text-[10px] font-bold">Vault</span>
+          </a>
+          <a href="mailto:vibelydesk@gmail.com" class="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300 hover:text-white transition">
+            <span>💬 Official Support Desk</span>
+            <span class="text-zinc-500">›</span>
+          </a>
+        </nav>
       </div>
 
-      <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-[1.1] mb-5 text-glow">
-        Meet People Worldwide. <br />
+      <div class="pt-4 border-t border-zinc-800 text-[11px] text-zinc-500">
+        Platform: <span class="text-zinc-400">Vibely Global v2.6</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- EXPERIENCE 1: THE FREE GLOBAL SOCIAL HUB ("BETTER THAN TINDER") -->
+  <!-- ============================================================== -->
+  <div id="experience-social" class="relative z-10 w-full max-w-4xl mx-auto px-4 pt-6 space-y-12">
+    
+    <div class="text-center max-w-xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-wider mb-3">
+        <span>⚡ 100% Free • Global Friend &amp; Creator Discovery</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+        Match Worldwide. <br />
         <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-300 bg-clip-text text-transparent">
-          Earn 50% Revenue Share.
+          Chat, Collaborate, Send Coins.
         </span>
       </h1>
-
-      <p class="max-w-xl mx-auto text-sm sm:text-base text-zinc-400 mb-8 leading-relaxed">
-        Join our free social hub to meet creators across 120+ nations, collaborate in open rooms, and gift Vibely Coins. Unlock the Pro Academy pass to start earning 50% weekly payouts on all marketplace digital assets.
+      <p class="text-xs sm:text-sm text-zinc-400 mt-2">
+        Swipe through creators, discover skill matches, and build friendships across 120+ nations with zero paywalls.
       </p>
+    </div>
 
-      <!-- Dual Core Buttons -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-md mx-auto">
-        <a 
-          href="#free-social"
-          class="w-full sm:w-auto py-3.5 px-6 rounded-2xl font-bold text-xs bg-white/10 hover:bg-white/15 border border-white/10 text-white active:scale-95 transition flex items-center justify-center gap-2"
-        >
-          <span>💬 Free Social &amp; Chat Hub</span>
-          <span class="text-[9px] uppercase font-black px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400">100% Free</span>
-        </a>
-
-        <a 
-          href="#pro-academy"
-          class="w-full sm:w-auto py-3.5 px-6 rounded-2xl font-black text-xs bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 text-white shadow-xl shadow-purple-600/30 active:scale-95 transition flex items-center justify-center gap-2"
-        >
-          <span>🔥 Unlock Pro Pass (<span data-price-ghs="95">₵ 95 GHS</span>)</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- ============================================== -->
-    <!-- PILLAR 1: FREE GLOBAL SOCIAL CONNECTION HUB    -->
-    <!-- ============================================== -->
-    <section id="free-social" class="space-y-6">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-        <div>
-          <div class="inline-flex items-center gap-1.5 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-1">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-            Pillar 1 • Completely Free
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
-            Connect &amp; Chat With People Globally
-          </h2>
-          <p class="text-xs sm:text-sm text-zinc-400 mt-1 max-w-xl">
-            Build global friendships across Africa, Europe, the Americas, and Asia. Share skills, network in free community rooms, and send Vibely Coins. Zero registration fee required to join the social hub.
-          </p>
-        </div>
-
-        <button 
-          onclick="openModal('social')"
-          class="px-4 py-2.5 rounded-xl bg-white text-black font-black text-xs hover:bg-zinc-200 active:scale-95 transition shrink-0 shadow-lg"
-        >
-          Create Free Social Profile →
-        </button>
-      </div>
-
-      <!-- Live Interactive Creator Directory -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <!-- TINDER-STYLE DISCOVERY DECK COMPONENT -->
+    <div class="w-full max-w-md mx-auto">
+      <div class="glass-panel rounded-3xl p-6 border border-white/10 shadow-2xl relative overflow-hidden" id="match-card-container">
         
-        <!-- Social Card 1 -->
-        <div class="glass-card p-5 rounded-2xl border border-white/5 flex flex-col justify-between hover:border-emerald-500/30 transition">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <div class="flex items-center gap-2.5">
-                <div class="w-10 h-10 rounded-xl bg-purple-500/20 border border-purple-500/30 flex items-center justify-center font-black text-purple-300 text-xs">
-                  🇬🇭 KM
-                </div>
-                <div>
-                  <h4 class="text-sm font-bold text-white flex items-center gap-1">
-                    Kwame Mensah <span class="w-1.5 h-1.5 rounded-full bg-emerald-400" title="Online now"></span>
-                  </h4>
-                  <p class="text-[10px] text-zinc-400">Accra, Ghana • Content Creator</p>
-                </div>
-              </div>
-            </div>
-            <p class="text-xs text-zinc-300 leading-relaxed mb-4">
-              "Building short-form video pipelines. Connect with me in the free video lounge to discuss organic TikTok algorithms!"
-            </p>
-          </div>
-          <div class="pt-3 border-t border-white/5 flex items-center justify-between text-xs">
-            <button onclick="tipUser('Kwame Mensah')" class="text-amber-400 hover:text-amber-300 font-bold active:scale-95 transition">
-              🪙 Tip 10 Coins
-            </button>
-            <button onclick="openChat('Kwame Mensah')" class="text-purple-400 font-bold hover:text-purple-300">
-              Chat Free →
-            </button>
-          </div>
-        </div>
-
-        <!-- Social Card 2 -->
-        <div class="glass-card p-5 rounded-2xl border border-white/5 flex flex-col justify-between hover:border-pink-500/30 transition">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <div class="flex items-center gap-2.5">
-                <div class="w-10 h-10 rounded-xl bg-pink-500/20 border border-pink-500/30 flex items-center justify-center font-black text-pink-300 text-xs">
-                  🇳🇬 AO
-                </div>
-                <div>
-                  <h4 class="text-sm font-bold text-white flex items-center gap-1">
-                    Adrienne Okon <span class="w-1.5 h-1.5 rounded-full bg-emerald-400" title="Online now"></span>
-                  </h4>
-                  <p class="text-[10px] text-zinc-400">Lagos, Nigeria • E-Com Specialist</p>
-                </div>
-              </div>
-            </div>
-            <p class="text-xs text-zinc-300 leading-relaxed mb-4">
-              "Looking to meet international partners to scale e-commerce funnels. Always down for creative brainstorm sessions."
-            </p>
-          </div>
-          <div class="pt-3 border-t border-white/5 flex items-center justify-between text-xs">
-            <button onclick="tipUser('Adrienne Okon')" class="text-amber-400 hover:text-amber-300 font-bold active:scale-95 transition">
-              🪙 Tip 10 Coins
-            </button>
-            <button onclick="openChat('Adrienne Okon')" class="text-purple-400 font-bold hover:text-purple-300">
-              Chat Free →
-            </button>
-          </div>
-        </div>
-
-        <!-- Social Card 3 -->
-        <div class="glass-card p-5 rounded-2xl border border-white/5 flex flex-col justify-between hover:border-indigo-500/30 transition">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <div class="flex items-center gap-2.5">
-                <div class="w-10 h-10 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center font-black text-indigo-300 text-xs">
-                  🇬🇧 DA
-                </div>
-                <div>
-                  <h4 class="text-sm font-bold text-white flex items-center gap-1">
-                    David Adams <span class="w-1.5 h-1.5 rounded-full bg-emerald-400" title="Online now"></span>
-                  </h4>
-                  <p class="text-[10px] text-zinc-400">London, UK • Digital Promoter</p>
-                </div>
-              </div>
-            </div>
-            <p class="text-xs text-zinc-300 leading-relaxed mb-4">
-              "Networking with peers from Africa, North America, and Europe. Let's build collaborative affiliate campaigns!"
-            </p>
-          </div>
-          <div class="pt-3 border-t border-white/5 flex items-center justify-between text-xs">
-            <button onclick="tipUser('David Adams')" class="text-amber-400 hover:text-amber-300 font-bold active:scale-95 transition">
-              🪙 Tip 10 Coins
-            </button>
-            <button onclick="openChat('David Adams')" class="text-purple-400 font-bold hover:text-purple-300">
-              Chat Free →
-            </button>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- FREE COMMUNITY ROOMS BANNER -->
-      <div class="glass-panel p-5 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 border border-emerald-500/20">
-        <div class="flex items-center gap-3">
-          <span class="text-2xl">🌍</span>
-          <div>
-            <h4 class="text-sm font-bold text-white">Join 24/7 Global Community Lounges (100% Free)</h4>
-            <p class="text-xs text-zinc-400">Open spaces for AI video enthusiasts, e-commerce builders, and making friends worldwide.</p>
-          </div>
-        </div>
-        <button onclick="openModal('social')" class="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20 transition shrink-0">
-          Enter Community Lounges →
-        </button>
-      </div>
-    </section>
-
-    <!-- ============================================== -->
-    <!-- PILLAR 2: PRO AFFILIATE ACADEMY & MARKETPLACE   -->
-    <!-- ============================================== -->
-    <section id="pro-academy" class="space-y-6">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-        <div>
-          <div class="inline-flex items-center gap-1.5 text-purple-400 text-xs font-bold uppercase tracking-wider mb-1">
-            <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
-            Pillar 2 • Monetization Engine
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
-            High-Income Academy &amp; 50/50 Affiliate Split
-          </h2>
-          <p class="text-xs sm:text-sm text-zinc-400 mt-1 max-w-xl">
-            Upgrade to the Pro Pass (<span data-price-ghs="95">₵ 95 GHS</span>) to unlock the exclusive affiliate dashboard, high-income masterclasses, custom promoter links, and Friday settlements.
-          </p>
-        </div>
-
-        <button 
-          onclick="toggleDashboardPreview()"
-          class="px-4 py-2.5 rounded-xl bg-purple-500/20 border border-purple-500/30 text-purple-300 font-bold text-xs hover:bg-purple-500/30 active:scale-95 transition shrink-0"
-        >
-          👁️ Inside Dashboard Preview
-        </button>
-      </div>
-
-      <!-- INTERACTIVE INSIDE LOOK SIMULATION (COLLAPSIBLE) -->
-      <div id="dashboard-preview-box" class="hidden glass-panel p-6 rounded-3xl border border-purple-500/40 relative overflow-hidden transition-all duration-500">
-        <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
+        <div class="flex items-center justify-between mb-4">
           <div class="flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-            <span class="text-xs font-black uppercase tracking-wider text-white">Live Affiliate Portal Preview (Members Only)</span>
+            <span class="text-xs font-bold text-emerald-300" id="card-location">🇳🇬 Lagos, Nigeria</span>
           </div>
-          <button onclick="toggleDashboardPreview()" class="text-zinc-400 hover:text-white text-xs font-bold">✕ Close Preview</button>
+          <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-purple-500/15 text-purple-300 border border-purple-500/30" id="card-synergy">
+            96% Skill Synergy
+          </span>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
-          <div class="glass-card p-4 rounded-2xl">
-            <span class="text-[10px] uppercase font-bold text-zinc-400 block mb-1">Available For Friday Payout</span>
-            <span class="text-2xl font-black text-white" data-price-ghs="1365">₵ 1,365.00 GHS</span>
-            <span class="text-[10px] text-emerald-400 font-semibold block mt-0.5">Disburses to MoMo / Bank Saturday</span>
+        <div class="relative w-full h-56 rounded-2xl bg-gradient-to-br from-purple-900/40 via-zinc-900 to-pink-900/40 border border-white/10 flex flex-col justify-end p-5 overflow-hidden mb-5">
+          <div class="absolute top-4 left-4 w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center text-xl font-black text-white" id="card-avatar">
+            AO
           </div>
-          <div class="glass-card p-4 rounded-2xl">
-            <span class="text-[10px] uppercase font-bold text-zinc-400 block mb-1">Your 50% Split Commission</span>
-            <span class="text-2xl font-black text-purple-400"><span data-price-ghs="47.5">₵ 47.50 GHS</span> / sale</span>
-            <span class="text-[10px] text-zinc-400 font-semibold block mt-0.5">Automated webhook split</span>
-          </div>
-          <div class="glass-card p-4 rounded-2xl">
-            <span class="text-[10px] uppercase font-bold text-zinc-400 block mb-1">Private Affiliates Lounge</span>
-            <span class="text-xs font-bold text-emerald-400 flex items-center gap-1 mt-2">
-              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-              Unlocked with Pro Pass
-            </span>
+          <div class="relative z-10">
+            <h3 class="text-xl font-black text-white flex items-center gap-2" id="card-name">
+              Adrienne Okon, 23
+            </h3>
+            <p class="text-xs text-purple-300 font-semibold mt-0.5" id="card-headline">
+              E-Commerce &amp; TikTok Dropshipper
+            </p>
           </div>
         </div>
 
-        <div class="text-center pt-2">
+        <p class="text-xs text-zinc-300 leading-relaxed mb-4" id="card-bio">
+          "Looking for content creators to team up on global stores. Love sharing viral ad templates and brainstorming 24/7!"
+        </p>
+
+        <div class="p-3 rounded-2xl bg-black/50 border border-white/5 flex items-center justify-between mb-6">
+          <div class="flex items-center gap-2.5">
+            <button onclick="playVoiceVibe()" class="w-8 h-8 rounded-xl bg-purple-600 flex items-center justify-center text-white text-xs hover:bg-purple-500 transition">
+              ▶
+            </button>
+            <div>
+              <span class="text-[10px] uppercase font-bold text-zinc-400 block">Voice Vibe Audio Intro</span>
+              <span class="text-xs font-bold text-white">0:15 sec clip</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-1">
+            <span class="w-1 h-3 bg-purple-400 rounded-full animate-pulse"></span>
+            <span class="w-1 h-6 bg-pink-400 rounded-full animate-pulse"></span>
+            <span class="w-1 h-4 bg-indigo-400 rounded-full animate-pulse"></span>
+            <span class="w-1 h-2 bg-purple-400 rounded-full animate-pulse"></span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-center gap-4">
           <button 
-            onclick="openModal('affiliate')"
-            class="py-3 px-8 rounded-xl font-black text-xs bg-white text-black hover:bg-zinc-200 active:scale-95 transition shadow-lg"
+            onclick="nextProfile(false)"
+            class="w-14 h-14 rounded-2xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-red-400 text-xl font-black flex items-center justify-center active:scale-90 transition shadow-lg"
           >
-            Unlock Your Pro Affiliate Account Now (<span data-price-ghs="95">₵ 95 GHS</span>)
+            ✕
+          </button>
+          <button 
+            onclick="superVibeMatch()"
+            class="px-5 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-black text-xs flex flex-col items-center justify-center hover:bg-amber-500/20 active:scale-95 transition shadow-lg"
+          >
+            <span>⚡ SUPER VIBE</span>
+            <span class="text-[9px] text-amber-400/80">🪙 15 Coins</span>
+          </button>
+          <button 
+            onclick="nextProfile(true)"
+            class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-600 text-white text-xl font-black flex items-center justify-center active:scale-90 transition shadow-lg shadow-purple-600/30"
+          >
+            ♥
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ACTIVE MATCHES & OPEN CHATS TRAY -->
+    <div class="glass-panel rounded-3xl p-5 sm:p-6 border border-white/10">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-sm font-black text-white flex items-center gap-2">
+          <span>💬</span> Your Active Matches &amp; Direct Chats
+        </h3>
+        <span class="text-[10px] font-bold text-emerald-400 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+          3 Connected
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div onclick="openDirectChat('Adrienne Okon', '🇳🇬 Lagos')" class="p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/40 cursor-pointer flex items-center justify-between transition">
+          <div class="flex items-center gap-2.5">
+            <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-300 font-bold flex items-center justify-center text-xs">AO</div>
+            <div>
+              <h4 class="text-xs font-bold text-white">Adrienne Okon</h4>
+              <p class="text-[10px] text-emerald-400">● Matched! Tap to chat</p>
+            </div>
+          </div>
+          <span class="text-zinc-500 text-xs">›</span>
+        </div>
+
+        <div onclick="openDirectChat('Kwame Mensah', '🇬🇭 Accra')" class="p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/40 cursor-pointer flex items-center justify-between transition">
+          <div class="flex items-center gap-2.5">
+            <div class="w-10 h-10 rounded-xl bg-pink-500/20 text-pink-300 font-bold flex items-center justify-center text-xs">KM</div>
+            <div>
+              <h4 class="text-xs font-bold text-white">Kwame Mensah</h4>
+              <p class="text-[10px] text-emerald-400">● Online now</p>
+            </div>
+          </div>
+          <span class="text-zinc-500 text-xs">›</span>
+        </div>
+
+        <div onclick="openDirectChat('David Adams', '🇬🇧 London')" class="p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/40 cursor-pointer flex items-center justify-between transition">
+          <div class="flex items-center gap-2.5">
+            <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-300 font-bold flex items-center justify-center text-xs">DA</div>
+            <div>
+              <h4 class="text-xs font-bold text-white">David Adams</h4>
+              <p class="text-[10px] text-zinc-400">Active 1h ago</p>
+            </div>
+          </div>
+          <span class="text-zinc-500 text-xs">›</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM UPSELL TO PRO AFFILIATE -->
+    <div class="rounded-3xl p-6 bg-gradient-to-r from-purple-950/70 via-zinc-950 to-indigo-950/70 border border-purple-500/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <span class="text-[9px] uppercase font-black px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
+          Want To Earn Together?
+        </span>
+        <h4 class="text-base font-black text-white mt-1">Upgrade to the Pro Affiliate &amp; Academy Pass</h4>
+        <p class="text-xs text-zinc-400">Access masterclasses, earn 50% weekly MoMo/bank commissions, and team up with your new friends.</p>
+      </div>
+      <button 
+        onclick="togglePlatformExperience()"
+        class="py-3 px-6 rounded-xl font-black text-xs bg-white text-black hover:bg-zinc-200 transition shadow-lg shrink-0"
+      >
+        Enter Pro Affiliate Portal →
+      </button>
+    </div>
+
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- EXPERIENCE 2: THE UNLOCKED PRO AFFILIATE EXECUTIVE SUITE       -->
+  <!-- ============================================================== -->
+  <div id="experience-pro" class="hidden relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 pt-6 space-y-8">
+    
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-white/10">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-black uppercase tracking-wider text-purple-400 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20">
+            Pro Partner Workspace
+          </span>
+          <span class="text-xs font-bold text-emerald-400 flex items-center gap-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            Lifetime Access Active
+          </span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-black text-white mt-1">
+          Affiliate Command Center
+        </h1>
+      </div>
+
+      <div class="flex items-center gap-2.5">
+        <button onclick="copyPromoterLink()" class="py-2.5 px-4 rounded-xl text-xs font-bold bg-white/10 border border-white/10 text-white hover:bg-white/20 active:scale-95 transition">
+          🔗 Copy Bio Link
+        </button>
+      </div>
+    </div>
+
+    <!-- PRO WALLET & SETTLEMENT ENGINE -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      
+      <!-- Primary Wallet Card -->
+      <div class="sm:col-span-2 rounded-3xl p-6 sm:p-7 bg-gradient-to-br from-indigo-950 via-purple-950 to-zinc-950 border border-purple-500/30 shadow-2xl relative overflow-hidden flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-[11px] uppercase font-black tracking-widest text-purple-300 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            Available For Friday Settlement
+          </span>
+          <span class="text-[10px] uppercase font-bold px-2.5 py-0.5 rounded-full bg-white/10 text-zinc-300 border border-white/10">
+            Escrow Cleared
+          </span>
+        </div>
+
+        <div class="my-4">
+          <div class="text-4xl sm:text-5xl font-black text-white tracking-tight" data-price-ghs="1365">
+            ₵ 1,365.00 GHS
+          </div>
+          <p class="text-xs text-purple-300/80 mt-1 font-semibold">
+            Automated 50/50 commissions • 24h Friday withdrawal window opens 00:00 GMT
+          </p>
+        </div>
+
+        <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+          <span class="text-xs text-zinc-400">MoMo / Bank Transfer verified</span>
+          <button 
+            onclick="initiatePayoutRequest()"
+            class="py-3 px-6 rounded-xl font-black text-xs bg-white text-black hover:bg-zinc-200 active:scale-95 transition shadow-lg"
+          >
+            Request Payout Now →
           </button>
         </div>
       </div>
 
-      <!-- PRODUCT CATALOG CARDS -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-        <!-- 1-YEAR MEMBERSHIP PASS -->
-        <div class="glass-panel p-6 rounded-3xl border border-purple-500/30 sm:col-span-2 relative overflow-hidden">
-          <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-            <span class="text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white">
-              ★ Flagship Pass
-            </span>
-            <span class="text-xs font-bold text-emerald-400 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-              50% Split: <span data-price-ghs="47.5">₵ 47.50 GHS</span>
-            </span>
+      <!-- Milestone Card -->
+      <div class="glass-card p-6 rounded-3xl border border-white/10 flex flex-col justify-between">
+        <div>
+          <span class="text-[10px] uppercase font-bold text-amber-400 block mb-1">Affiliate Milestone</span>
+          <h4 class="text-lg font-black text-white">Bronze Excellence</h4>
+          <p class="text-xs text-zinc-400 mt-1">Next award tier unlocks the physical plaque + bonus cash pool.</p>
+          
+          <div class="w-full bg-black/60 rounded-full h-2 border border-white/5 overflow-hidden my-4">
+            <div class="bg-gradient-to-r from-purple-500 to-amber-400 h-2 rounded-full w-[28%]"></div>
           </div>
-          <h3 class="text-xl font-black text-white">1-Year Vibely Membership Pass</h3>
-          <p class="text-xs text-zinc-300 mt-1 leading-relaxed max-w-xl">
-            VIP passport unlocking the full academy curriculum, 50% affiliate license, exclusive Affiliates-Only Community Lounge, and weekly Friday cash payouts.
-          </p>
-          <div class="pt-5 mt-5 border-t border-white/10 flex items-center justify-between">
-            <div>
-              <span class="text-[10px] uppercase font-bold text-zinc-500 block">Registration Price</span>
-              <span class="text-2xl font-black text-white" data-price-ghs="95">₵ 95.00 GHS</span>
+          <div class="flex justify-between text-[11px] font-bold text-zinc-400">
+            <span>Progress: 28%</span>
+            <span class="text-amber-400" data-price-ghs="10000">Target: ₵ 10,000 GHS</span>
+          </div>
+        </div>
+
+        <button onclick="alert('Immutable ledger entries synced with Supabase.')" class="w-full mt-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs font-bold text-zinc-300 hover:text-white transition">
+          View Ledger Audit
+        </button>
+      </div>
+
+    </div>
+
+    <!-- PRO MARKETPLACE CATALOG -->
+    <div class="space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-lg font-black text-white">Vibely Academy Digital Asset Vault</h3>
+          <p class="text-xs text-zinc-400">Share direct purchase links. Your 50% commission credits immediately upon buyer checkout.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        
+        <!-- Pass -->
+        <div class="glass-panel p-5 rounded-2xl border border-purple-500/30 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[10px] font-bold text-purple-400 px-2 py-0.5 rounded-md bg-purple-500/10">Flagship</span>
+              <span class="text-xs font-bold text-emerald-400">Your 50%: <span data-price-ghs="47.5">₵ 47.50 GHS</span></span>
             </div>
-            <button 
-              onclick="initiateOrder('1-Year Membership Pass', 95)"
-              class="py-3 px-6 rounded-xl font-black text-xs bg-white text-black hover:bg-zinc-200 transition shadow-lg"
-            >
-              Get Instant Access
+            <h4 class="text-base font-bold text-white">1-Year Vibely Membership Pass</h4>
+            <p class="text-xs text-zinc-400 mt-1">Full academy + private mastermind + affiliate license.</p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
+            <span class="text-lg font-black text-white" data-price-ghs="95">₵ 95.00 GHS</span>
+            <button onclick="copyProductLink('1-Year Membership Pass')" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-white text-black hover:bg-zinc-200 transition">
+              Copy 50% Link
             </button>
           </div>
         </div>
 
         <!-- UMM -->
-        <div class="glass-card p-5 rounded-2xl flex flex-col justify-between border border-purple-500/20">
+        <div class="glass-card p-5 rounded-2xl border border-white/5 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-2">
-              <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-purple-500/10 text-purple-400">Masterclass</span>
-              <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="47.5">₵ 47.50 GHS</span></span>
+              <span class="text-[10px] font-bold text-pink-400 px-2 py-0.5 rounded-md bg-pink-500/10">Masterclass</span>
+              <span class="text-xs font-bold text-emerald-400">Your 50%: <span data-price-ghs="47.5">₵ 47.50 GHS</span></span>
             </div>
             <h4 class="text-base font-bold text-white">The Ultra Money Machine (U.M.M)</h4>
-            <p class="text-xs text-zinc-400 mt-1">High-ticket client acquisition, digital asset packaging, and service arbitrage.</p>
+            <p class="text-xs text-zinc-400 mt-1">High-ticket client acquisition &amp; monetization system.</p>
           </div>
           <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
             <span class="text-lg font-black text-white" data-price-ghs="95">₵ 95.00 GHS</span>
-            <button onclick="initiateOrder('Ultra Money Machine (U.M.M)', 95)" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-purple-600 hover:bg-purple-500 text-white transition shadow-lg">
-              Enroll Now
+            <button onclick="copyProductLink('Ultra Money Machine (U.M.M)')" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-white text-black hover:bg-zinc-200 transition">
+              Copy 50% Link
             </button>
           </div>
         </div>
 
-        <!-- AI VIDEO MASTERY -->
-        <div class="glass-card p-5 rounded-2xl flex flex-col justify-between">
+        <!-- AI Video -->
+        <div class="glass-card p-5 rounded-2xl border border-white/5 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-2">
-              <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-pink-500/10 text-pink-400">AI &amp; Media</span>
-              <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="52.5">₵ 52.50 GHS</span></span>
+              <span class="text-[10px] font-bold text-indigo-400 px-2 py-0.5 rounded-md bg-indigo-500/10">AI &amp; Media</span>
+              <span class="text-xs font-bold text-emerald-400">Your 50%: <span data-price-ghs="52.5">₵ 52.50 GHS</span></span>
             </div>
             <h4 class="text-base font-bold text-white">AI Video Mastery &amp; Monetization</h4>
-            <p class="text-xs text-zinc-400 mt-1">Automated scripting, AI voice engines, and CapCut workflows for faceless viral channels.</p>
+            <p class="text-xs text-zinc-400 mt-1">Faceless TikTok workflows, viral hooks, and auto-scripting.</p>
           </div>
           <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
             <span class="text-lg font-black text-white" data-price-ghs="105">₵ 105.00 GHS</span>
-            <button onclick="initiateOrder('AI Video Mastery', 105)" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-zinc-800 hover:bg-zinc-700 text-white transition">
-              Enroll Now
+            <button onclick="copyProductLink('AI Video Mastery')" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-white text-black hover:bg-zinc-200 transition">
+              Copy 50% Link
             </button>
           </div>
         </div>
 
-        <!-- GLOBAL DROPSHIPPING -->
-        <div class="glass-card p-5 rounded-2xl flex flex-col justify-between">
+        <!-- Dropshipping -->
+        <div class="glass-card p-5 rounded-2xl border border-white/5 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-2">
-              <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-400">E-Commerce</span>
-              <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="57.5">₵ 57.50 GHS</span></span>
+              <span class="text-[10px] font-bold text-teal-400 px-2 py-0.5 rounded-md bg-teal-500/10">E-Commerce</span>
+              <span class="text-xs font-bold text-emerald-400">Your 50%: <span data-price-ghs="57.5">₵ 57.50 GHS</span></span>
             </div>
             <h4 class="text-base font-bold text-white">Global Dropshipping Blueprint</h4>
-            <p class="text-xs text-zinc-400 mt-1">Sourcing trusted suppliers and building organic, high-converting TikTok and WhatsApp funnels.</p>
+            <p class="text-xs text-zinc-400 mt-1">Cross-border physical supply chains &amp; supplier vetting.</p>
           </div>
           <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
             <span class="text-lg font-black text-white" data-price-ghs="115">₵ 115.00 GHS</span>
-            <button onclick="initiateOrder('Global Dropshipping', 115)" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-zinc-800 hover:bg-zinc-700 text-white transition">
-              Enroll Now
-            </button>
-          </div>
-        </div>
-
-        <!-- SNAPSELL & DAY TRADING -->
-        <div class="glass-card p-5 rounded-2xl flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-400">Trading</span>
-              <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="62.5">₵ 62.50 GHS</span></span>
-            </div>
-            <h4 class="text-base font-bold text-white">SnapSell &amp; Day Trading Roadmap</h4>
-            <p class="text-xs text-zinc-400 mt-1">Digital flipping systems combined with risk-managed technical chart execution.</p>
-          </div>
-          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
-            <span class="text-lg font-black text-white" data-price-ghs="125">₵ 125.00 GHS</span>
-            <button onclick="initiateOrder('SnapSell & Day Trading', 125)" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-zinc-800 hover:bg-zinc-700 text-white transition">
-              Enroll Now
-            </button>
-          </div>
-        </div>
-
-        <!-- EXISTING MEMBER RENEWAL (45 GHS) -->
-        <div class="glass-card p-5 rounded-2xl flex flex-col justify-between sm:col-span-2">
-          <div>
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-zinc-800 text-zinc-300">Member Renewal</span>
-              <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="22.5">₵ 22.50 GHS</span></span>
-            </div>
-            <h4 class="text-base font-bold text-white">Existing Member Pass Renewal</h4>
-            <p class="text-xs text-zinc-400 mt-1">Special loyalty extension rate for existing active members.</p>
-          </div>
-          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
-            <span class="text-lg font-black text-white" data-price-ghs="45">₵ 45.00 GHS</span>
-            <button onclick="initiateOrder('Existing Member Renewal', 45)" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-zinc-800 hover:bg-zinc-700 text-white transition">
-              Extend Pass
+            <button onclick="copyProductLink('Global Dropshipping')" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-white text-black hover:bg-zinc-200 transition">
+              Copy 50% Link
             </button>
           </div>
         </div>
 
       </div>
-    </section>
+    </div>
 
-    <!-- ============================================== -->
-    <!-- COMPETITIONS & CONTESTS PAVILION               -->
-    <!-- ============================================== -->
-    <section class="space-y-6">
-      <div>
-        <div class="inline-flex items-center gap-1.5 text-amber-400 text-xs font-bold uppercase tracking-wider mb-1">
-          <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
-          Official Competitions Arena
+    <!-- PRIVATE AFFILIATES-ONLY MASTERMIND LOUNGE -->
+    <div class="glass-panel p-6 rounded-3xl border border-purple-500/20">
+      <div class="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
+        <div>
+          <h4 class="text-sm font-black text-white flex items-center gap-2">
+            <span>🔒</span> Affiliates-Only Mastermind Room
+          </h4>
+          <p class="text-[11px] text-zinc-400">Closed network. Only verified Pro pass holders are permitted here.</p>
         </div>
-        <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
-          Vibely Grand Challenges &amp; Cash Pools
-        </h2>
-        <p class="text-xs text-zinc-400 mt-1">
-          Compete in performance sprints or showcase your creativity in the video challenge. All winnings disburse directly to your MoMo or bank account.
-        </p>
+        <span class="text-[10px] font-bold text-purple-400 px-2.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/30">
+          Members Lounge
+        </span>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        
-        <!-- CONTEST 1: 200-SALE MONTHLY SPRINT -->
-        <div class="rounded-3xl p-6 sm:p-7 bg-gradient-to-br from-amber-950/50 via-zinc-950 to-purple-950/50 border border-amber-500/30 flex flex-col justify-between relative overflow-hidden">
-          <div>
-            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[10px] font-black uppercase tracking-wider mb-3">
-              🏆 Contest 1: Performance Sprint
-            </div>
-            <h3 class="text-xl sm:text-2xl font-black text-white">The 200-Sale Monthly Sprint</h3>
-            <p class="text-xs text-zinc-300 mt-2 leading-relaxed">
-              Generate 200 sales in a single calendar month on any individual marketplace product. Unlocks the Grand Champion Cash Pool on top of your 50% commission!
-            </p>
-            <div class="mt-4 p-3 rounded-xl bg-black/40 border border-white/5">
-              <span class="text-[10px] uppercase font-bold text-zinc-400 block">Grand Champion Prize</span>
-              <span class="text-2xl font-black text-amber-300" data-price-ghs="10000">₵ 10,000 GHS</span>
-            </div>
+      <div class="space-y-3">
+        <div class="p-3 rounded-2xl bg-white/5 border border-white/5 text-xs">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-bold text-purple-300">Admin Alpha Alert (vibelyservice@gmail.com)</span>
+            <span class="text-zinc-500 text-[10px]">Today 14:00 GMT</span>
           </div>
-          <div class="pt-5 mt-5 border-t border-white/10">
-            <button 
-              onclick="openModal('sprint-reg')"
-              class="w-full py-3 rounded-xl font-black text-xs bg-amber-400 hover:bg-amber-300 text-black active:scale-95 transition shadow-lg"
-            >
-              Register For 200-Sale Sprint →
-            </button>
-          </div>
-        </div>
-
-        <!-- CONTEST 2: VIRAL PROMOTIONAL VIDEO CHALLENGE -->
-        <div class="rounded-3xl p-6 sm:p-7 bg-gradient-to-br from-pink-950/50 via-zinc-950 to-indigo-950/50 border border-pink-500/30 flex flex-col justify-between relative overflow-hidden">
-          <div>
-            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pink-500/10 border border-pink-500/20 text-pink-400 text-[10px] font-black uppercase tracking-wider mb-3">
-              🎬 Contest 2: Viral Creator Challenge
-            </div>
-            <h3 class="text-xl sm:text-2xl font-black text-white">Promotional Video Grand Award</h3>
-            <p class="text-xs text-zinc-300 mt-2 leading-relaxed">
-              Post a creative video about Vibely on TikTok, Instagram, YouTube, or X. The video with the highest combined views, likes, and comments wins cash!
-            </p>
-            <div class="mt-4 p-3 rounded-xl bg-black/40 border border-white/5">
-              <span class="text-[10px] uppercase font-bold text-zinc-400 block">Grand Creator Award</span>
-              <span class="text-2xl font-black text-pink-300" data-price-ghs="5000">₵ 5,000 GHS</span>
-            </div>
-          </div>
-          <div class="pt-5 mt-5 border-t border-white/10">
-            <button 
-              onclick="openModal('video-entry')"
-              class="w-full py-3 rounded-xl font-black text-xs bg-gradient-to-r from-pink-600 to-purple-600 text-white active:scale-95 transition shadow-lg"
-            >
-              Submit Your Video Entry →
-            </button>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- LIVE CONTESTANT ROSTER (VIDEO CHALLENGE ENTRANTS) -->
-      <div class="glass-panel p-5 sm:p-6 rounded-3xl border border-white/10">
-        <div class="flex items-center justify-between mb-4">
-          <div>
-            <h4 class="text-sm font-black text-white flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              Live Video Challenge Entrants Roster
-            </h4>
-            <p class="text-[11px] text-zinc-400">Admin manually audits views, likes, and comments before contacting winners personally.</p>
-          </div>
-          <span class="text-[10px] font-bold text-purple-400 px-2 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20">
-            Audit Queue
-          </span>
-        </div>
-
-        <div id="entrants-list" class="space-y-2 text-xs">
-          <div class="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5">
-            <div class="flex items-center gap-3">
-              <span class="font-black text-purple-400">#1</span>
-              <div>
-                <span class="font-bold text-white">Kwame Vibe</span>
-                <span class="text-zinc-500 ml-2">TikTok: @kwame_vibely</span>
-              </div>
-            </div>
-            <span class="text-emerald-400 font-bold text-[11px]">Under Admin Review</span>
-          </div>
-
-          <div class="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5">
-            <div class="flex items-center gap-3">
-              <span class="font-black text-purple-400">#2</span>
-              <div>
-                <span class="font-bold text-white">Zara Daniels</span>
-                <span class="text-zinc-500 ml-2">Instagram: @zarabuilds</span>
-              </div>
-            </div>
-            <span class="text-emerald-400 font-bold text-[11px]">Under Admin Review</span>
-          </div>
+          <p class="text-zinc-300 leading-relaxed">
+            "Affiliates targeting Kenya and Nigeria: UMM conversions are up 40% with the new AI video hooks. Access promo assets in module 3."
+          </p>
         </div>
       </div>
-    </section>
+    </div>
 
-  </main>
+  </div>
 
-  <!-- ============================================== -->
-  <!-- MODAL ENGINE: SOCIAL / AFFILIATE / CONTESTS    -->
-  <!-- ============================================== -->
+  <!-- ============================================================== -->
+  <!-- MODAL: 1-ON-1 DIRECT CHAT WINDOW                               -->
+  <!-- ============================================================== -->
   <div 
-    id="global-modal" 
+    id="chat-modal" 
     class="fixed inset-0 z-50 bg-black/80 backdrop-blur-xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
   >
-    <div class="glass-panel w-full max-w-md rounded-3xl p-6 sm:p-7 border border-white/15 relative shadow-2xl">
-      <button onclick="closeModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
+    <div class="glass-panel w-full max-w-lg h-[520px] rounded-3xl p-5 border border-white/15 flex flex-col justify-between shadow-2xl relative">
+      <div class="flex items-center justify-between pb-3 border-b border-zinc-800">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-purple-600 flex items-center justify-center font-bold text-white text-xs" id="chat-modal-avatar">
+            AO
+          </div>
+          <div>
+            <h4 class="text-xs font-bold text-white" id="chat-modal-name">Adrienne Okon</h4>
+            <p class="text-[10px] text-emerald-400">● Active Friend Match</p>
+          </div>
+        </div>
 
-      <div class="mb-5">
-        <span id="modal-tag" class="text-[10px] uppercase font-bold tracking-widest text-purple-400 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20">
-          Vibely Registration
-        </span>
-        <h3 id="modal-heading" class="text-xl font-black text-white mt-2">Join Vibely</h3>
-        <p id="modal-subtext" class="text-xs text-zinc-400 mt-1">Complete details below.</p>
+        <div class="flex items-center gap-2">
+          <button 
+            onclick="tipCurrentChat(10)" 
+            class="px-2.5 py-1 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold text-[11px] hover:bg-amber-500/20 active:scale-95 transition"
+          >
+            🪙 Tip 10 Coins
+          </button>
+          <button onclick="closeChatModal()" class="text-zinc-400 hover:text-white font-bold p-1">✕</button>
+        </div>
       </div>
 
-      <form id="modal-form" onsubmit="handleModalSubmit(event)" class="space-y-3.5">
-        <div id="field-name">
-          <label class="block text-[11px] uppercase tracking-wider font-semibold text-zinc-300 mb-1">Full Name</label>
-          <input type="text" required id="input-name" placeholder="e.g. Samuel Darko" class="w-full px-4 py-3 rounded-xl bg-black/60 border border-zinc-800 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500 transition" />
+      <div class="flex-1 overflow-y-auto py-4 space-y-3 text-xs" id="chat-messages-container">
+        <div class="p-3 rounded-2xl bg-white/5 border border-white/5 max-w-[80%] text-zinc-300">
+          Hey there! Saw your profile on the discovery feed. What kind of projects are you building?
         </div>
-
-        <div id="field-email">
-          <label class="block text-[11px] uppercase tracking-wider font-semibold text-zinc-300 mb-1">Email Address</label>
-          <input type="email" required id="input-email" placeholder="name@example.com" class="w-full px-4 py-3 rounded-xl bg-black/60 border border-zinc-800 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500 transition" />
+        <div class="p-3 rounded-2xl bg-purple-600/30 border border-purple-500/30 max-w-[80%] ml-auto text-white">
+          Great connecting with you! Working on scaling organic video funnels on TikTok.
         </div>
+      </div>
 
-        <div id="field-phone">
-          <label class="block text-[11px] uppercase tracking-wider font-semibold text-zinc-300 mb-1">WhatsApp / Phone Number</label>
-          <input type="tel" required id="input-phone" placeholder="+233 XX XXX XXXX" class="w-full px-4 py-3 rounded-xl bg-black/60 border border-zinc-800 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500 transition" />
-        </div>
-
-        <!-- Custom Fields for Video Challenge -->
-        <div id="field-social" class="hidden">
-          <label class="block text-[11px] uppercase tracking-wider font-semibold text-zinc-300 mb-1">Platform &amp; Your Username</label>
-          <input type="text" id="input-handle" placeholder="e.g. TikTok @fiyero_creator" class="w-full px-4 py-3 rounded-xl bg-black/60 border border-zinc-800 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500 transition" />
-        </div>
-
-        <div id="field-videolink" class="hidden">
-          <label class="block text-[11px] uppercase tracking-wider font-semibold text-zinc-300 mb-1">Video Direct Link</label>
-          <input type="url" id="input-link" placeholder="https://tiktok.com/@.../video/..." class="w-full px-4 py-3 rounded-xl bg-black/60 border border-zinc-800 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500 transition" />
-        </div>
-
-        <button 
-          type="submit" 
-          id="modal-btn"
-          class="w-full py-4 mt-2 rounded-xl font-black text-xs bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 text-white shadow-xl shadow-purple-600/30 active:scale-95 transition"
-        >
-          Confirm &amp; Proceed
+      <form onsubmit="handleSendChatMessage(event)" class="pt-3 border-t border-zinc-800 flex items-center gap-2">
+        <input 
+          type="text" 
+          id="chat-input-text" 
+          placeholder="Type your message..." 
+          class="flex-1 px-4 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500" 
+        />
+        <button type="submit" class="px-4 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs active:scale-95 transition">
+          Send
         </button>
       </form>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: VIBELY COINS STASH REFILL STORE                         -->
+  <!-- ============================================================== -->
+  <div 
+    id="coin-store-modal" 
+    class="fixed inset-0 z-50 bg-black/80 backdrop-blur-xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
+  >
+    <div class="glass-panel w-full max-w-md rounded-3xl p-6 border border-amber-500/30 shadow-2xl relative">
+      <button onclick="closeCoinStore()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
+
+      <div class="text-center mb-6">
+        <span class="text-3xl">🪙</span>
+        <h3 class="text-lg font-black text-white mt-1">Refill Vibely Coins</h3>
+        <p class="text-xs text-zinc-400">Coins are used for social gifts, Super Vibes, and peer recognition.</p>
+      </div>
+
+      <div class="space-y-3">
+        <div class="p-4 rounded-2xl bg-black/40 border border-white/10 flex items-center justify-between">
+          <div>
+            <span class="text-sm font-black text-white">100 Vibely Coins</span>
+            <span class="text-xs text-zinc-400 block">Starter Pack</span>
+          </div>
+          <button onclick="purchaseCoins(100, 15)" class="py-2 px-4 rounded-xl text-xs font-bold bg-amber-500/20 border border-amber-500/40 text-amber-300 hover:bg-amber-500/30 transition">
+            ₵ 15 GHS
+          </button>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-black/40 border border-amber-500/30 flex items-center justify-between">
+          <div>
+            <span class="text-sm font-black text-white">500 Vibely Coins</span>
+            <span class="text-xs text-amber-400 block">★ Most Popular</span>
+          </div>
+          <button onclick="purchaseCoins(500, 50)" class="py-2 px-4 rounded-xl text-xs font-black bg-amber-400 hover:bg-amber-300 text-black transition">
+            ₵ 50 GHS
+          </button>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-black/40 border border-white/10 flex items-center justify-between">
+          <div>
+            <span class="text-sm font-black text-white">2,500 Vibely Coins</span>
+            <span class="text-xs text-zinc-400 block">VIP Vault</span>
+          </div>
+          <button onclick="purchaseCoins(2500, 200)" class="py-2 px-4 rounded-xl text-xs font-bold bg-amber-500/20 border border-amber-500/40 text-amber-300 hover:bg-amber-500/30 transition">
+            ₵ 200 GHS
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: SUPER ADMIN COMMAND CENTER (RESTRICTED TO ROOT)         -->
+  <!-- ============================================================== -->
+  <div 
+    id="admin-modal" 
+    class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl flex items-center justify-center p-3 sm:p-5 opacity-0 pointer-events-none transition-all duration-300 overflow-y-auto"
+  >
+    <div class="glass-panel w-full max-w-3xl rounded-3xl p-6 sm:p-8 border border-red-500/40 shadow-2xl relative my-auto">
+      
+      <!-- Admin Top Nav -->
+      <div class="flex items-center justify-between pb-4 border-b border-red-500/20 mb-6">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-red-600/20 border border-red-500/40 flex items-center justify-center text-red-400 font-black text-sm">
+            🛡️
+          </div>
+          <div>
+            <h3 class="text-base sm:text-lg font-black text-white flex items-center gap-2">
+              Super Admin Command Center
+              <span class="text-[9px] uppercase px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 font-extrabold border border-red-500/30">Root</span>
+            </h3>
+            <p class="text-[10px] text-zinc-400">Authorized: vibelyservice@gmail.com • Dual Engine Control (Chat &amp; Affiliate)</p>
+          </div>
+        </div>
+        <button onclick="closeAdminModal()" class="text-zinc-400 hover:text-white text-lg font-bold p-1">✕</button>
+      </div>
+
+      <!-- Admin Tab Switcher -->
+      <div class="flex items-center gap-2 mb-6 border-b border-white/5 pb-3 overflow-x-auto no-scrollbar">
+        <button onclick="switchAdminTab('bans')" id="adm-tab-bans" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-red-500/20 text-red-300 border border-red-500/30 transition">
+          🚫 Universal Ban Desk
+        </button>
+        <button onclick="switchAdminTab('chatmod')" id="adm-tab-chatmod" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white transition">
+          💬 Social Chat Moderation
+        </button>
+        <button onclick="switchAdminTab('payouts')" id="adm-tab-payouts" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white transition">
+          💳 Friday Payout Queue
+        </button>
+        <button onclick="switchAdminTab('contests')" id="adm-tab-contests" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white transition">
+          🎬 Video Contest Audit
+        </button>
+      </div>
+
+      <!-- TAB 1: UNIVERSAL BAN DESK (BANS FROM BOTH CHAT AND AFFILIATE) -->
+      <div id="adm-view-bans" class="space-y-4">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-zinc-300">Universal Member Control (Chat + Affiliate + Wallets)</span>
+          <span class="text-[10px] text-zinc-500">Instant Supabase trigger</span>
+        </div>
+
+        <div class="space-y-2.5">
+          <!-- Member 1 -->
+          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-between gap-3 text-xs" id="user-row-1">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-300 font-bold flex items-center justify-center text-xs">KM</div>
+              <div>
+                <h5 class="font-bold text-white">Kwame Mensah <span class="text-zinc-500 font-normal">(kwame@example.com)</span></h5>
+                <p class="text-[10px] text-zinc-400">ID: VIB-8821 • Chat: <span class="text-emerald-400 font-bold" id="user-chat-1">Allowed</span> • Affiliate: <span class="text-emerald-400 font-bold" id="user-aff-1">Active</span></p>
+              </div>
+            </div>
+            <button 
+              onclick="toggleBanUser(1, 'Kwame Mensah')" 
+              id="btn-ban-1"
+              class="px-3 py-1.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 font-bold text-[11px] hover:bg-red-500/20 transition"
+            >
+              Ban User Completely
+            </button>
+          </div>
+
+          <!-- Member 2 -->
+          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-between gap-3 text-xs" id="user-row-2">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-pink-500/20 text-pink-300 font-bold flex items-center justify-center text-xs">AO</div>
+              <div>
+                <h5 class="font-bold text-white">Adrienne Okon <span class="text-zinc-500 font-normal">(adrienne@example.com)</span></h5>
+                <p class="text-[10px] text-zinc-400">ID: VIB-9021 • Chat: <span class="text-emerald-400 font-bold" id="user-chat-2">Allowed</span> • Affiliate: <span class="text-emerald-400 font-bold" id="user-aff-2">Active</span></p>
+              </div>
+            </div>
+            <button 
+              onclick="toggleBanUser(2, 'Adrienne Okon')" 
+              id="btn-ban-2"
+              class="px-3 py-1.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 font-bold text-[11px] hover:bg-red-500/20 transition"
+            >
+              Ban User Completely
+            </button>
+          </div>
+
+          <!-- Member 3 (Flagged) -->
+          <div class="p-3.5 rounded-2xl bg-black/40 border border-red-500/20 flex items-center justify-between gap-3 text-xs" id="user-row-3">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-zinc-800 text-zinc-400 font-bold flex items-center justify-center text-xs">FX</div>
+              <div>
+                <h5 class="font-bold text-white">Felix X. <span class="text-red-400 font-normal">(suspicious_bot@mail.com)</span></h5>
+                <p class="text-[10px] text-zinc-400">ID: VIB-1102 • Chat: <span class="text-red-400 font-bold" id="user-chat-3">Banned</span> • Affiliate: <span class="text-red-400 font-bold" id="user-aff-3">Frozen</span></p>
+              </div>
+            </div>
+            <button 
+              onclick="toggleBanUser(3, 'Felix X.')" 
+              id="btn-ban-3"
+              class="px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-[11px] hover:bg-emerald-500/20 transition"
+            >
+              Unban User
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: SOCIAL CHAT MODERATION & COIN AUDIT -->
+      <div id="adm-view-chatmod" class="space-y-4 hidden">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-zinc-300">Live Global Chat Rooms &amp; Coin Gifting Ledger</span>
+          <button onclick="alert('Chat logs audited. Zero safety violations.')" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] font-bold text-zinc-400">
+            Purge Spam
+          </button>
+        </div>
+
+        <div class="space-y-2 text-xs">
+          <div class="p-3 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-between">
+            <div>
+              <span class="font-bold text-white">Room: Global Lounge #1</span>
+              <p class="text-[11px] text-zinc-400 mt-0.5">Kwame Mensah tipped 10 Coins to Adrienne Okon</p>
+            </div>
+            <span class="text-amber-400 font-bold text-[11px]">🪙 Verified Gifting</span>
+          </div>
+          <div class="p-3 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-between">
+            <div>
+              <span class="font-bold text-white">Room: AI Video Mastery Lounge</span>
+              <p class="text-[11px] text-zinc-400 mt-0.5">David Adams: "Masterclass module 2 dropped new CapCut presets"</p>
+            </div>
+            <span class="text-emerald-400 font-bold text-[11px]">● Clean Message</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: FRIDAY PAYOUT SETTLEMENT QUEUE -->
+      <div id="adm-view-payouts" class="space-y-4 hidden">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-xs font-bold text-white block">Friday Settlement Batch Queue</span>
+            <span class="text-[10px] text-zinc-400">Total in queue: ₵ 4,165.00 GHS (Saturday morning MoMo/Bank disbursement)</span>
+          </div>
+          <button onclick="approveBatchPayouts()" class="py-2 px-4 rounded-xl bg-emerald-500 text-black font-black text-xs hover:bg-emerald-400 transition shadow-lg">
+            ✓ Disburse Batch
+          </button>
+        </div>
+
+        <div class="space-y-2 text-xs" id="payout-queue-list">
+          <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between">
+            <div>
+              <span class="font-bold text-white">David Adams</span>
+              <span class="text-[11px] text-zinc-400 block">MTN MoMo: 0534671381 • Ref: VIB-WTH-9021</span>
+            </div>
+            <span class="font-black text-emerald-400">₵ 1,365.00 GHS</span>
+          </div>
+          <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between">
+            <div>
+              <span class="font-bold text-white">Kwame Mensah</span>
+              <span class="text-[11px] text-zinc-400 block">Telecel Cash: 0200000000 • Ref: VIB-WTH-8840</span>
+            </div>
+            <span class="font-black text-emerald-400">₵ 2,800.00 GHS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: PROMOTIONAL VIDEO CONTEST AUDIT -->
+      <div id="adm-view-contests" class="space-y-4 hidden">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-white">Contest 2 Manual Verification Console</span>
+          <span class="text-[10px] text-pink-400">Prize: ₵ 5,000 GHS ($1,500 USD)</span>
+        </div>
+
+        <div class="space-y-2.5 text-xs">
+          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <span class="font-bold text-white">Kwame Vibe (@kwame_vibely)</span>
+              <p class="text-[11px] text-zinc-400 mt-0.5">Video: https://tiktok.com/@kwame_vibely/video/99120 • Metric: 48.2k Views, 3.4k Likes</p>
+            </div>
+            <button onclick="awardContestWinner('Kwame Vibe', 5000)" class="py-1.5 px-3.5 rounded-xl bg-pink-500/20 border border-pink-500/40 text-pink-300 font-bold text-xs hover:bg-pink-500/30 transition shrink-0">
+              🏆 Award ₵ 5,000 GHS Prize
+            </button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -745,7 +924,7 @@
     <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
       <div>
         <p class="font-bold text-zinc-400">© 2026 Vibely HQ • Powered by Geestablish</p>
-        <p class="text-[11px] text-zinc-600 mt-0.5">Scale target: 20,000+ members • Verified 50/50 dual platform</p>
+        <p class="text-[11px] text-zinc-600 mt-0.5">Scale target: 20,000+ members • Universal dual social &amp; affiliate ecosystem</p>
       </div>
       <div class="flex items-center gap-4 text-[11px]">
         <a href="mailto:vibelydesk@gmail.com" class="hover:text-zinc-300 transition">vibelydesk@gmail.com</a>
@@ -755,33 +934,62 @@
     </div>
   </footer>
 
-  <!-- PLATFORM LOGIC & 30+ GLOBAL CURRENCY ENGINE SCRIPT -->
+  <!-- ============================================================== -->
+  <!-- JAVASCRIPT PLATFORM LOGIC & ENGINE                             -->
+  <!-- ============================================================== -->
   <script>
-    let activeModalMode = 'social';
+    let isProPortal = false;
     let userCoins = 250;
-    let entrantCount = 2;
+    let activeChatTarget = 'Adrienne Okon';
+    let logoTapCounter = 0;
+    let logoTapTimer = null;
 
-    // 30+ GLOBAL CURRENCY DEFINITIONS ANCHORED TO VIBELY STRATEGIC RATE (95 GHS = $29 USD)
+    // Mock Creator Discovery Profiles
+    const creatorProfiles = [
+      {
+        name: "Adrienne Okon, 23",
+        location: "🇳🇬 Lagos, Nigeria",
+        headline: "E-Commerce & TikTok Dropshipper",
+        bio: "Looking for content creators to team up on global stores. Love sharing viral ad templates and brainstorming 24/7!",
+        synergy: "96% Skill Synergy",
+        avatar: "AO"
+      },
+      {
+        name: "Kwame Mensah, 25",
+        location: "🇬🇭 Accra, Ghana",
+        headline: "AI Video Specialist & Animator",
+        bio: "Automating faceless channel funnels using CapCut and AI voice models. Let's connect and build automated campaigns together.",
+        synergy: "94% Skill Synergy",
+        avatar: "KM"
+      },
+      {
+        name: "David Adams, 27",
+        location: "🇬🇧 London, United Kingdom",
+        headline: "High-Ticket Affiliate Promoter",
+        bio: "Scaling cross-border offers with paid and organic traffic. Passionate about sharing daily alpha in the private mastermind.",
+        synergy: "91% Skill Synergy",
+        avatar: "DA"
+      }
+    ];
+
+    let currentCardIndex = 0;
+
+    // 30+ Global Currency Database (95 GHS = $29 USD)
     const currencyDatabase = {
-      // Anchors
       GHS: { symbol: '₵', code: 'GHS', rate: 1.0, decimals: 2 },
-      USD: { symbol: '$', code: 'USD', rate: 0.3053, decimals: 2 },    // 95 GHS = $29.00 USD
+      USD: { symbol: '$', code: 'USD', rate: 0.3053, decimals: 2 },
       EUR: { symbol: '€', code: 'EUR', rate: 0.2810, decimals: 2 },
       GBP: { symbol: '£', code: 'GBP', rate: 0.2440, decimals: 2 },
-      
-      // Africa
-      NGN: { symbol: '₦', code: 'NGN', rate: 152.63, decimals: 0 },   // 95 GHS = 14,500 NGN
-      KES: { symbol: 'KSh', code: 'KES', rate: 39.47, decimals: 0 },   // 95 GHS = 3,750 KES
+      NGN: { symbol: '₦', code: 'NGN', rate: 152.63, decimals: 0 },
+      KES: { symbol: 'KSh', code: 'KES', rate: 39.47, decimals: 0 },
       ZAR: { symbol: 'R', code: 'ZAR', rate: 5.45, decimals: 0 },
-      XOF: { symbol: 'Fr', code: 'XOF', rate: 184.21, decimals: 0 },  // 95 GHS = 17,500 CFA
+      XOF: { symbol: 'Fr', code: 'XOF', rate: 184.21, decimals: 0 },
       EGP: { symbol: 'E£', code: 'EGP', rate: 14.80, decimals: 0 },
       UGX: { symbol: 'USh', code: 'UGX', rate: 1120.0, decimals: 0 },
       TZS: { symbol: 'TSh', code: 'TZS', rate: 820.0, decimals: 0 },
       RWF: { symbol: 'RF', code: 'RWF', rate: 420.0, decimals: 0 },
       MAD: { symbol: 'DH', code: 'MAD', rate: 3.05, decimals: 2 },
       ZMW: { symbol: 'ZK', code: 'ZMW', rate: 8.20, decimals: 0 },
-
-      // Asia & Pacific
       INR: { symbol: '₹', code: 'INR', rate: 25.50, decimals: 0 },
       PKR: { symbol: '₨', code: 'PKR', rate: 85.00, decimals: 0 },
       BDT: { symbol: '৳', code: 'BDT', rate: 36.50, decimals: 0 },
@@ -795,16 +1003,12 @@
       SGD: { symbol: 'S$', code: 'SGD', rate: 0.41, decimals: 2 },
       AUD: { symbol: 'A$', code: 'AUD', rate: 0.465, decimals: 2 },
       NZD: { symbol: 'NZ$', code: 'NZD', rate: 0.510, decimals: 2 },
-
-      // Americas
       CAD: { symbol: 'CA$', code: 'CAD', rate: 0.415, decimals: 2 },
       BRL: { symbol: 'R$', code: 'BRL', rate: 1.75, decimals: 2 },
       MXN: { symbol: 'MX$', code: 'MXN', rate: 5.80, decimals: 2 },
       COP: { symbol: 'COL$', code: 'COP', rate: 1250.0, decimals: 0 },
       CLP: { symbol: 'CLP$', code: 'CLP', rate: 285.0, decimals: 0 },
       ARS: { symbol: '$', code: 'ARS', rate: 310.0, decimals: 0 },
-
-      // Middle East
       AED: { symbol: 'AED', code: 'AED', rate: 1.12, decimals: 2 },
       SAR: { symbol: 'SAR', code: 'SAR', rate: 1.14, decimals: 2 },
       QAR: { symbol: 'QAR', code: 'QAR', rate: 1.11, decimals: 2 },
@@ -820,7 +1024,6 @@
       return `${cur.symbol} ${formatted} ${cur.code}`;
     }
 
-    // AUTOMATIC IN-PLACE RE-RENDER OF EVERY PRICE TAG ON SITE
     function changeGlobalCurrency(curKey) {
       const elements = document.querySelectorAll('[data-price-ghs]');
       elements.forEach(el => {
@@ -830,11 +1033,11 @@
     }
 
     // Synthesized Audio Chime
-    function playChime() {
+    function playChime(type) {
       try {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
         const ctx = new AudioCtx();
-        const chord = [523.25, 659.25, 783.99, 1046.50];
+        const chord = type === 'match' ? [659.25, 880.00, 1046.50] : [523.25, 659.25, 783.99, 1046.50];
         const now = ctx.currentTime;
         chord.forEach((freq, idx) => {
           const osc = ctx.createOscillator();
@@ -843,17 +1046,17 @@
           osc.frequency.setValueAtTime(freq, now + idx * 0.08);
           gain.gain.setValueAtTime(0.001, now + idx * 0.08);
           gain.gain.exponentialRampToValueAtTime(0.18, now + idx * 0.08 + 0.04);
-          gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.08 + 1.6);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.08 + 1.4);
           osc.connect(gain);
           gain.connect(ctx.destination);
           osc.start(now + idx * 0.08);
-          osc.stop(now + idx * 0.08 + 1.8);
+          osc.stop(now + idx * 0.08 + 1.6);
         });
       } catch (err) {}
     }
 
     function enterVibely() {
-      playChime();
+      playChime('chime');
       const splash = document.getElementById('splash-screen');
       splash.style.opacity = '0';
       splash.style.pointerEvents = 'none';
@@ -864,109 +1067,228 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function toggleDashboardPreview() {
-      const box = document.getElementById('dashboard-preview-box');
-      box.classList.toggle('hidden');
+    function toggleSideDrawer() {
+      const drawer = document.getElementById('side-drawer');
+      const panel = document.getElementById('drawer-container');
+      if (drawer.classList.contains('opacity-0')) {
+        drawer.classList.remove('opacity-0', 'pointer-events-none');
+        panel.classList.remove('-translate-x-full');
+      } else {
+        drawer.classList.add('opacity-0', 'pointer-events-none');
+        panel.classList.add('-translate-x-full');
+      }
     }
 
-    function tipUser(name) {
-      if (userCoins < 10) {
-        alert("You need more Vibely Coins! Top up inside the app.");
+    function togglePlatformExperience() {
+      isProPortal = !isProPortal;
+      const socialExp = document.getElementById('experience-social');
+      const proExp = document.getElementById('experience-pro');
+      const switchBtn = document.getElementById('btn-portal-switch');
+      const modeTag = document.getElementById('header-mode-tag');
+
+      if (isProPortal) {
+        socialExp.classList.add('hidden');
+        proExp.classList.remove('hidden');
+        switchBtn.innerText = '← Switch to Free Social';
+        switchBtn.className = 'text-[11px] sm:text-xs font-black px-3 py-1.5 rounded-xl bg-white/10 border border-white/20 text-white transition';
+        modeTag.innerText = 'Pro Executive Portal';
+        modeTag.className = 'text-[7px] sm:text-[8px] uppercase tracking-widest text-purple-400 font-bold block';
+      } else {
+        proExp.classList.add('hidden');
+        socialExp.classList.remove('hidden');
+        switchBtn.innerText = 'Switch to Pro Portal →';
+        switchBtn.className = 'text-[11px] sm:text-xs font-black px-3 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg transition';
+        modeTag.innerText = 'Free Social Engine';
+        modeTag.className = 'text-[7px] sm:text-[8px] uppercase tracking-widest text-emerald-400 font-bold block';
+      }
+      scrollToTop();
+    }
+
+    function nextProfile(isMatch) {
+      if (isMatch) {
+        playChime('match');
+        alert(`Boom! It's a Vibe!\nYou connected with ${creatorProfiles[currentCardIndex].name}. Direct chat unlocked!`);
+      }
+      currentCardIndex = (currentCardIndex + 1) % creatorProfiles.length;
+      const p = creatorProfiles[currentCardIndex];
+      document.getElementById('card-name').innerText = p.name;
+      document.getElementById('card-location').innerText = p.location;
+      document.getElementById('card-headline').innerText = p.headline;
+      document.getElementById('card-bio').innerText = `"${p.bio}"`;
+      document.getElementById('card-synergy').innerText = p.synergy;
+      document.getElementById('card-avatar').innerText = p.avatar;
+    }
+
+    function superVibeMatch() {
+      if (userCoins < 15) {
+        alert("You need 15 Vibely Coins for a Super Vibe! Tap your coin stash to refill.");
         return;
       }
-      userCoins -= 10;
-      alert(`Boom! Sent 10 Vibely Coins to ${name}!`);
+      userCoins -= 15;
+      document.getElementById('top-coin-counter').innerText = userCoins;
+      playChime('match');
+      alert(`⚡ SUPER VIBE SENT!\nYou tipped 15 Coins to ${creatorProfiles[currentCardIndex].name}. Priority match confirmed!`);
+      nextProfile(false);
     }
 
-    function openChat(name) {
-      alert(`Opening Free Direct Chat Room with ${name}...\nJoin the free social hub to message peers worldwide 24/7!`);
+    function playVoiceVibe() {
+      playChime('match');
+      alert("Playing 15-second Voice Vibe audio clip...");
     }
 
-    // Universal Modal Router
-    function openModal(mode) {
-      activeModalMode = mode;
-      const modal = document.getElementById('global-modal');
-      const tag = document.getElementById('modal-tag');
-      const heading = document.getElementById('modal-heading');
-      const subtext = document.getElementById('modal-subtext');
-      const btn = document.getElementById('modal-btn');
-      const socialField = document.getElementById('field-social');
-      const videoField = document.getElementById('field-videolink');
-
-      socialField.classList.add('hidden');
-      videoField.classList.add('hidden');
-
-      if (mode === 'social') {
-        tag.innerText = 'Pillar 1: Social Hub';
-        heading.innerText = 'Join Free Global Social Hub';
-        subtext.innerText = 'Make friends, chat in lounges, and build your international network for free.';
-        btn.innerText = 'Create Free Social Account';
-      } else if (mode === 'affiliate') {
-        tag.innerText = 'Pillar 2: Pro Affiliate Pass';
-        heading.innerText = 'Unlock Pro Affiliate & Academy Pass';
-        subtext.innerText = 'Registration: 95 GHS ($29 USD). Unlocks 50% commission license and private lounge.';
-        btn.innerText = 'Proceed to Paystack Payment (95 GHS)';
-      } else if (mode === 'sprint-reg') {
-        tag.innerText = 'Contest 1 Registration';
-        heading.innerText = 'Register For 200-Sale Monthly Sprint';
-        subtext.innerText = 'Input your details to track your monthly sales toward the 10,000 GHS ($3,000 USD) prize.';
-        btn.innerText = 'Enroll in 200 Sprint Pool';
-      } else if (mode === 'video-entry') {
-        tag.innerText = 'Contest 2 Submission';
-        heading.innerText = 'Submit Promotional Video Entry';
-        subtext.innerText = 'Win 5,000 GHS ($1,500 USD)! Admin manually audits views, likes & comments.';
-        btn.innerText = 'Submit Entry For Audit';
-        socialField.classList.remove('hidden');
-        videoField.classList.remove('hidden');
-      }
-
-      modal.classList.remove('opacity-0', 'pointer-events-none');
+    function openDirectChat(name, loc) {
+      activeChatTarget = name;
+      document.getElementById('chat-modal-name').innerText = name;
+      document.getElementById('chat-modal-avatar').innerText = name.split(' ').map(n=>n[0]).join('');
+      document.getElementById('chat-modal').classList.remove('opacity-0', 'pointer-events-none');
     }
 
-    function closeModal() {
-      document.getElementById('global-modal').classList.add('opacity-0', 'pointer-events-none');
+    function closeChatModal() {
+      document.getElementById('chat-modal').classList.add('opacity-0', 'pointer-events-none');
     }
 
-    function initiateOrder(prodName, ghsPrice) {
-      const curKey = document.getElementById('global-currency-select').value;
-      const converted = formatAmount(ghsPrice, curKey);
-      alert(`Initializing Paystack Secure Checkout:\nProduct: ${prodName}\nPrice: ₵ ${ghsPrice} GHS (≈ ${converted})\nConnecting to payment gateway...`);
-    }
-
-    function handleModalSubmit(e) {
+    function handleSendChatMessage(e) {
       e.preventDefault();
-      const name = document.getElementById('input-name').value;
-      const email = document.getElementById('input-email').value;
+      const input = document.getElementById('chat-input-text');
+      const text = input.value.trim();
+      if (!text) return;
 
-      if (activeModalMode === 'video-entry') {
-        const handle = document.getElementById('input-handle').value || '@creator';
-        entrantCount++;
-        
-        const roster = document.getElementById('entrants-list');
-        const newEntry = document.createElement('div');
-        newEntry.className = 'flex items-center justify-between p-3 rounded-xl bg-white/5 border border-purple-500/20';
-        newEntry.innerHTML = `
-          <div class="flex items-center gap-3">
-            <span class="font-black text-purple-400">#${entrantCount}</span>
-            <div>
-              <span class="font-bold text-white">${name}</span>
-              <span class="text-zinc-500 ml-2">${handle}</span>
-            </div>
-          </div>
-          <span class="text-purple-400 font-bold text-[11px]">Added to Audit Queue</span>
-        `;
-        roster.prepend(newEntry);
+      const container = document.getElementById('chat-messages-container');
+      const bubble = document.createElement('div');
+      bubble.className = 'p-3 rounded-2xl bg-purple-600 text-white max-w-[80%] ml-auto text-xs';
+      bubble.innerText = text;
+      container.appendChild(bubble);
+      input.value = '';
+      container.scrollTop = container.scrollHeight;
+    }
 
-        alert(`Submission Confirmed, ${name}!\nYour video has been added as #${entrantCount} to the live audit queue. The Root Admin (vibelyservice@gmail.com) will review your views, likes & comments, and reach out to you personally!`);
-      } else if (activeModalMode === 'sprint-reg') {
-        alert(`Success, ${name}! You are registered for this month's 200-Sale Sprint. Sales tied to your promoter ID are now tracked toward the 10,000 GHS ($3,000 USD) prize!`);
-      } else if (activeModalMode === 'social') {
-        alert(`Welcome to the Free Vibely Social Hub, ${name}! Your free social passport is activated.`);
-      } else {
-        alert(`Redirecting ${name} (${email}) to Paystack for 95 GHS Pro Pass activation...`);
+    function tipCurrentChat(coins) {
+      if (userCoins < coins) {
+        alert("Insufficient Vibely Coins! Refill your coin stash.");
+        return;
       }
+      userCoins -= coins;
+      document.getElementById('top-coin-counter').innerText = userCoins;
+      const container = document.getElementById('chat-messages-container');
+      const tipNotice = document.createElement('div');
+      tipNotice.className = 'p-2.5 rounded-xl bg-amber-500/20 border border-amber-500/30 text-amber-300 font-bold text-center text-[11px] my-2';
+      tipNotice.innerText = `🪙 You tipped ${coins} Vibely Coins to ${activeChatTarget}!`;
+      container.appendChild(tipNotice);
+      container.scrollTop = container.scrollHeight;
+    }
 
-      closeModal();
+    function openCoinStore() {
+      document.getElementById('coin-store-modal').classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function closeCoinStore() {
+      document.getElementById('coin-store-modal').classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function purchaseCoins(amount, priceGhs) {
+      userCoins += amount;
+      document.getElementById('top-coin-counter').innerText = userCoins;
+      closeCoinStore();
+      alert(`Payment of ₵ ${priceGhs} GHS verified!\n${amount} Vibely Coins loaded into your stash.`);
+    }
+
+    function copyPromoterLink() {
+      const link = window.location.origin + '?ref=VIB-90218';
+      navigator.clipboard.writeText(link).then(() => {
+        alert('Your 50% Bio Link has been copied to clipboard:\n' + link);
+      });
+    }
+
+    function copyProductLink(prod) {
+      const link = window.location.origin + '?item=' + encodeURIComponent(prod) + '&ref=VIB-90218';
+      navigator.clipboard.writeText(link).then(() => {
+        alert(`50% Commission Link copied for ${prod}:\n${link}`);
+      });
+    }
+
+    function initiatePayoutRequest() {
+      alert("Payout Request Logged!\nAmount: GHS 1,365.00\nSettlement Window: Friday 24-Hour Payout Queue.\nFunds dispatch directly to your verified MoMo / Bank account Saturday morning.");
+    }
+
+    // ==========================================================
+    // STEALTH ROOT ADMIN ENGINE: TRIPLE-TAP TRIGGER
+    // ==========================================================
+    function handleLogoTaps() {
+      logoTapCounter++;
+      clearTimeout(logoTapTimer);
+      logoTapTimer = setTimeout(() => {
+        logoTapCounter = 0;
+      }, 1200);
+
+      // Triggered strictly on 3 rapid taps
+      if (logoTapCounter >= 3) {
+        logoTapCounter = 0;
+        const email = prompt("🛡️ Root Security: Enter Master Admin Email:");
+        if (email && email.trim().toLowerCase() === 'vibelyservice@gmail.com') {
+          openAdminModal();
+        } else {
+          alert("Unauthorized: Device access signature not recognized.");
+        }
+      } else if (logoTapCounter === 1) {
+        scrollToTop();
+      }
+    }
+
+    function openAdminModal() {
+      document.getElementById('admin-modal').classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function closeAdminModal() {
+      document.getElementById('admin-modal').classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function switchAdminTab(tabName) {
+      const tabs = ['bans', 'chatmod', 'payouts', 'contests'];
+      tabs.forEach(t => {
+        document.getElementById(`adm-view-${t}`).classList.add('hidden');
+        document.getElementById(`adm-tab-${t}`).className = 'px-3.5 py-1.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white transition';
+      });
+
+      document.getElementById(`adm-view-${tabName}`).classList.remove('hidden');
+      document.getElementById(`adm-tab-${tabName}`).className = 'px-3.5 py-1.5 rounded-xl text-xs font-bold bg-red-500/20 text-red-300 border border-red-500/30 transition';
+    }
+
+    // Universal Account Ban (Simultaneously bans Chat access + freezes Affiliate earnings)
+    function toggleBanUser(userId, userName) {
+      const chatEl = document.getElementById(`user-chat-${userId}`);
+      const affEl = document.getElementById(`user-aff-${userId}`);
+      const btnEl = document.getElementById(`btn-ban-${userId}`);
+
+      if (chatEl.innerText === 'Allowed') {
+        chatEl.innerText = 'Banned';
+        chatEl.className = 'text-red-400 font-bold';
+        affEl.innerText = 'Frozen';
+        affEl.className = 'text-red-400 font-bold';
+        btnEl.innerText = 'Unban User';
+        btnEl.className = 'px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-[11px] hover:bg-emerald-500/20 transition';
+        alert(`UNIVERSAL BAN ENFORCED: ${userName}\n• Direct chat and social discovery permanently locked.\n• Affiliate promoter link deactivated.\n• Payouts and wallet balances frozen.`);
+      } else {
+        chatEl.innerText = 'Allowed';
+        chatEl.className = 'text-emerald-400 font-bold';
+        affEl.innerText = 'Active';
+        affEl.className = 'text-emerald-400 font-bold';
+        btnEl.innerText = 'Ban User Completely';
+        btnEl.className = 'px-3 py-1.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 font-bold text-[11px] hover:bg-red-500/20 transition';
+        alert(`UNIVERSAL UNBAN: ${userName} restored to full active status across Chat and Affiliate.`);
+      }
+    }
+
+    function approveBatchPayouts() {
+      document.getElementById('payout-queue-list').innerHTML = `
+        <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-center font-bold text-xs">
+          ✓ All pending Friday withdrawals approved! Batch reference signed. Settlement disbursements en route to MoMo & Bank endpoints.
+        </div>
+      `;
+      alert("Friday Batch Settlement Authorized by vibelyservice@gmail.com!\nDisbursements dispatched to partner accounts.");
+    }
+
+    function awardContestWinner(winnerName, amountGhs) {
+      alert(`CONTEST PRIZE DISBURSED!\nWinner: ${winnerName}\nAward: ₵ ${amountGhs} GHS\nNotice dispatched from vibelydesk@gmail.com.`);
     }
   </script>
 </body>
