@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Vibely — Global Social Network & High-Income Skill Academy</title>
+  <title>Vibely — Global Social Network & Affiliate Marketing Academy</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -19,7 +19,8 @@
               teal: '#14b8a6',
               amber: '#f59e0b',
               dark: '#07070a',
-              card: '#12121a'
+              surface: '#0d0d14',
+              card: '#141420'
             }
           },
           animation: {
@@ -28,8 +29,8 @@
           },
           keyframes: {
             glow: {
-              '0%, 100%': { opacity: '0.18', transform: 'scale(1)' },
-              '50%': { opacity: '0.35', transform: 'scale(1.15)' }
+              '0%, 100%': { opacity: '0.15', transform: 'scale(1)' },
+              '50%': { opacity: '0.3', transform: 'scale(1.15)' }
             },
             float: {
               '0%, 100%': { transform: 'translateY(0px)' },
@@ -56,29 +57,28 @@
       color: #f4f4f5;
     }
     .glass-nav {
-      background: rgba(12, 12, 18, 0.90);
+      background: rgba(13, 13, 20, 0.90);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
     .glass-card {
-      background: rgba(18, 18, 28, 0.70);
+      background: rgba(20, 20, 32, 0.70);
       backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.07);
     }
     .glass-panel {
-      background: rgba(14, 14, 22, 0.96);
+      background: rgba(15, 15, 24, 0.96);
       backdrop-filter: blur(24px);
       border: 1px solid rgba(255, 255, 255, 0.12);
     }
-    .text-glow {
-      text-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
-    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .text-glow { text-shadow: 0 0 25px rgba(168, 85, 247, 0.4); }
   </style>
 </head>
 
-<body class="min-h-screen pb-28 selection:bg-purple-600 selection:text-white overflow-x-hidden">
+<body class="min-h-screen pb-24 selection:bg-purple-600 selection:text-white overflow-x-hidden">
 
   <!-- LUXURY AMBIENT BACKGROUND GLOWS -->
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
@@ -97,32 +97,20 @@
     <div class="relative mb-6 animate-float">
       <div class="w-20 h-20 rounded-3xl bg-gradient-to-tr from-purple-600 via-pink-500 to-indigo-600 p-[1.5px] shadow-2xl shadow-purple-600/40">
         <div class="w-full h-full bg-[#0a0a0f] rounded-3xl flex items-center justify-center">
-          <svg class="w-9 h-9 text-white fill-current translate-x-0.5" viewBox="0 0 24 24">
-            <path d="M8 5v14l11-7z" />
-          </svg>
+          <svg class="w-9 h-9 text-white fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
         </div>
       </div>
       <div class="absolute -inset-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl blur-xl opacity-35 animate-pulse -z-10"></div>
     </div>
-
-    <h2 class="text-3xl font-black tracking-[0.25em] uppercase bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
-      VIBELY
-    </h2>
-    <p class="text-[10px] uppercase tracking-[0.3em] text-purple-400 mt-2 font-bold px-3 py-1 rounded-full border border-purple-500/20 bg-purple-500/10">
-      Tap Screen To Enter Experience
-    </p>
+    <h2 class="text-3xl font-black tracking-[0.25em] uppercase bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">VIBELY</h2>
+    <p class="text-[10px] uppercase tracking-[0.3em] text-purple-400 mt-2 font-bold px-3 py-1 rounded-full border border-purple-500/20 bg-purple-500/10">Tap Screen To Enter Experience</p>
   </div>
 
-  <!-- TOP APP BAR -->
+  <!-- TOP APP NAVIGATION BAR -->
   <header class="sticky top-0 z-40 w-full glass-nav px-3 py-2.5 sm:px-8 flex items-center justify-between">
-    <!-- Menu & Stealth Admin Trigger Logo -->
+    <!-- Brand Logo & Stealth Trigger -->
     <div class="flex items-center gap-2.5">
-      <button onclick="toggleSideDrawer()" class="p-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white transition">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-      </button>
-
-      <!-- Stealth Admin Trigger: Triple-tap the logo -->
-      <div class="flex items-center gap-2 cursor-pointer select-none" onclick="handleLogoTaps()">
+      <div class="flex items-center gap-2 cursor-pointer select-none" onclick="handleStealthLogoTaps()">
         <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-purple-600 via-pink-500 to-indigo-500 p-[1px] flex items-center justify-center">
           <div class="w-full h-full bg-[#0a0a0f] rounded-xl flex items-center justify-center">
             <span class="text-xs font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">V</span>
@@ -130,25 +118,23 @@
         </div>
         <div>
           <span class="text-sm sm:text-base font-black tracking-wider text-white block leading-tight">VIBELY</span>
-          <span id="header-mode-tag" class="text-[7px] sm:text-[8px] uppercase tracking-widest text-emerald-400 font-bold block">
-            Free Social Engine
-          </span>
+          <span id="header-platform-tag" class="text-[7px] sm:text-[8px] uppercase tracking-widest text-emerald-400 font-bold block">HQ Portal</span>
         </div>
       </div>
     </div>
 
-    <!-- Center/Right Controls -->
+    <!-- Center/Right: Coins Stash & 30+ Currency Selector -->
     <div class="flex items-center gap-2">
-      <!-- Live Coin Stash Button -->
+      <!-- Coins Stash Button -->
       <button 
-        onclick="openCoinStore()"
+        onclick="openCoinStoreModal()"
         class="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold text-xs hover:bg-amber-500/20 active:scale-95 transition"
       >
         <span>🪙</span>
-        <span id="top-coin-counter">250</span>
+        <span id="header-coin-counter">250</span>
       </button>
 
-      <!-- 30+ Currency Selector -->
+      <!-- 30+ Global Currency Engine -->
       <div class="relative">
         <select 
           id="global-currency-select"
@@ -192,7 +178,7 @@
             <option value="CAD">🇨🇦 CAD (CA$)</option>
             <option value="BRL">🇧🇷 BRL (R$)</option>
             <option value="MXN">🇲🇽 MXN (MX$)</option>
-            <option value="COP">🇨🇴 COP (COL$)</option>
+            <option value="COP">🇨🇴 COL (COL$)</option>
             <option value="CLP">🇨🇱 CLP (CLP$)</option>
             <option value="ARS">🇦🇷 ARS ($)</option>
           </optgroup>
@@ -206,128 +192,140 @@
         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-1.5 text-purple-400 text-[10px]">▼</div>
       </div>
 
-      <!-- State Switcher -->
-      <button 
-        id="btn-portal-switch"
-        onclick="togglePlatformExperience()"
-        class="text-[11px] sm:text-xs font-black px-3 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg active:scale-95 transition"
-      >
-        Switch to Pro Portal →
+      <!-- Quick Route to Home -->
+      <button onclick="routeTo('landing')" class="p-1.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white transition">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
       </button>
     </div>
   </header>
 
-  <!-- PUBLIC USER DRAWER (ZERO ADMIN BUTTONS VISIBLE TO REGULAR USERS) -->
-  <div 
-    id="side-drawer" 
-    class="fixed inset-0 z-50 bg-black/75 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300"
-    onclick="toggleSideDrawer()"
-  >
-    <div 
-      class="glass-panel w-72 sm:w-80 h-full p-6 flex flex-col justify-between transform -translate-x-full transition-all duration-300"
-      onclick="event.stopPropagation()"
-      id="drawer-container"
-    >
-      <div>
-        <div class="flex items-center justify-between pb-5 border-b border-zinc-800">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-600 flex items-center justify-center text-white font-black text-xs">
-              VP
-            </div>
-            <div>
-              <h4 class="text-xs font-bold text-white leading-tight">Vibely Hub</h4>
-              <p class="text-[10px] text-zinc-400">ID: VIB-90218</p>
-            </div>
+  <!-- ============================================================== -->
+  <!-- VIEW 1: LUXURY PUBLIC LANDING PAGE (THE FRONT DOOR)            -->
+  <!-- ============================================================== -->
+  <div id="view-landing" class="relative z-10 w-full max-w-5xl mx-auto px-4 pt-10 space-y-16">
+    <div class="text-center max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-[11px] font-semibold text-zinc-300 mb-6 border border-white/10">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>The Dual Platform: Free Global Social Connection + 50/50 Affiliate Marketing</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight leading-[1.1] mb-5 text-glow">
+        Connect With People Globally. <br />
+        <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-300 bg-clip-text text-transparent">
+          Monetize Skills on Autopilot.
+        </span>
+      </h1>
+
+      <p class="max-w-xl mx-auto text-sm sm:text-base text-zinc-400 mb-8 leading-relaxed">
+        Make vetted friends worldwide across 120+ nations in our free social hub. When ready to scale income, unlock our high-income masterclasses and automated 50% weekly affiliate revenue share.
+      </p>
+
+      <!-- Dual Gateway Action Stack -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto text-left">
+        <!-- Gateway Card 1: Free Social -->
+        <div class="glass-card p-6 rounded-3xl border border-emerald-500/20 flex flex-col justify-between hover:border-emerald-500/40 transition">
+          <div>
+            <span class="text-[10px] uppercase font-black px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              Pillar 1 • 100% Free
+            </span>
+            <h3 class="text-xl font-black text-white mt-2">Global Social &amp; Chat Hub</h3>
+            <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
+              Match with creators, explore skill synergies, exchange 15-second voice notes, and send Vibely Coins.
+            </p>
           </div>
-          <button onclick="toggleSideDrawer()" class="text-zinc-500 hover:text-white font-bold p-1">✕</button>
+          <button 
+            onclick="handleEnterSocialGateway()" 
+            class="mt-6 w-full py-3.5 rounded-2xl bg-white text-black font-black text-xs hover:bg-zinc-200 active:scale-95 transition shadow-lg text-center"
+          >
+            Enter Free Social Hub →
+          </button>
         </div>
 
-        <nav class="mt-6 space-y-1 text-xs font-semibold">
-          <a href="#" onclick="toggleSideDrawer(); scrollToTop();" class="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300 hover:text-white transition">
-            <span>🌐 Global Discovery Deck</span>
-            <span class="text-emerald-400 text-[10px] font-bold">Free</span>
-          </a>
-          <a href="#" onclick="toggleSideDrawer(); togglePlatformExperience();" class="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300 hover:text-white transition">
-            <span>💼 Pro Affiliate Suite</span>
-            <span class="text-purple-400 text-[10px] font-bold">50/50</span>
-          </a>
-          <a href="#" onclick="toggleSideDrawer(); openCoinStore();" class="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300 hover:text-white transition">
-            <span>🪙 Refill Vibely Coins</span>
-            <span class="text-amber-400 text-[10px] font-bold">Vault</span>
-          </a>
-          <a href="mailto:vibelydesk@gmail.com" class="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300 hover:text-white transition">
-            <span>💬 Official Support Desk</span>
-            <span class="text-zinc-500">›</span>
-          </a>
-        </nav>
+        <!-- Gateway Card 2: Affiliate Marketing -->
+        <div class="glass-card p-6 rounded-3xl border border-purple-500/30 flex flex-col justify-between hover:border-purple-500/50 transition">
+          <div>
+            <span class="text-[10px] uppercase font-black px-2.5 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">
+              Pillar 2 • 50/50 Split
+            </span>
+            <h3 class="text-xl font-black text-white mt-2">Affiliate Marketing Desk</h3>
+            <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
+              Unlock the 4-core Academy, 50% weekly MoMo payouts, milestone certificates, and the closed mastermind.
+            </p>
+          </div>
+          <button 
+            onclick="handleEnterAffiliateGateway()" 
+            class="mt-6 w-full py-3.5 rounded-2xl bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 text-white font-black text-xs active:scale-95 transition shadow-xl shadow-purple-600/30 text-center"
+          >
+            Enter Affiliate Marketing (<span data-price-ghs="95">₵ 95 GHS</span>) →
+          </button>
+        </div>
       </div>
+    </div>
 
-      <div class="pt-4 border-t border-zinc-800 text-[11px] text-zinc-500">
-        Platform: <span class="text-zinc-400">Vibely Global v2.6</span>
+    <!-- Official Competitions Banner -->
+    <div class="rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-amber-950/50 via-zinc-950 to-purple-950/50 border border-amber-500/30 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="max-w-xl">
+        <span class="text-[10px] font-black uppercase tracking-widest text-amber-400 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 mb-3 inline-block">
+          🏆 Dual Cash Competitions Active
+        </span>
+        <h3 class="text-2xl font-black text-white">200-Sale Monthly Sprint &amp; Viral Video Award</h3>
+        <p class="text-xs text-zinc-300 mt-1.5 leading-relaxed">
+          Hit 200 sales in a calendar month to claim the <strong class="text-amber-300" data-price-ghs="10000">₵ 10,000 GHS</strong> cash pool. Or submit your TikTok/IG promotional video to win <strong class="text-pink-300" data-price-ghs="5000">₵ 5,000 GHS</strong> in the creator challenge!
+        </p>
       </div>
+      <button onclick="handleEnterAffiliateGateway()" class="py-3 px-6 rounded-xl bg-amber-400 text-black font-black text-xs hover:bg-amber-300 transition shadow-lg shrink-0">
+        Join Competitions →
+      </button>
     </div>
   </div>
 
   <!-- ============================================================== -->
-  <!-- EXPERIENCE 1: THE FREE GLOBAL SOCIAL HUB ("BETTER THAN TINDER") -->
+  <!-- VIEW 2: FREE GLOBAL SOCIAL HUB (INSIDE - GATED)                -->
   <!-- ============================================================== -->
-  <div id="experience-social" class="relative z-10 w-full max-w-4xl mx-auto px-4 pt-6 space-y-12">
-    
-    <div class="text-center max-w-xl mx-auto">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-wider mb-3">
-        <span>⚡ 100% Free • Global Friend &amp; Creator Discovery</span>
+  <div id="view-social" class="hidden relative z-10 w-full max-w-4xl mx-auto px-4 pt-6 space-y-10">
+    <div class="flex items-center justify-between pb-4 border-b border-white/10">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
+          Global Creator Deck <span class="text-xs text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">● 20,419 Online</span>
+        </h2>
+        <p class="text-xs text-zinc-400">Match by skill, send 15s voice vibes, and collaborate globally</p>
       </div>
-      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
-        Match Worldwide. <br />
-        <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-300 bg-clip-text text-transparent">
-          Chat, Collaborate, Send Coins.
-        </span>
-      </h1>
-      <p class="text-xs sm:text-sm text-zinc-400 mt-2">
-        Swipe through creators, discover skill matches, and build friendships across 120+ nations with zero paywalls.
-      </p>
+      <button onclick="openVoiceRecordModal()" class="py-2 px-3 rounded-xl bg-purple-600/30 border border-purple-500/40 text-purple-300 text-xs font-bold hover:bg-purple-600/40 transition">
+        🎙️ Update Voice Vibe
+      </button>
     </div>
 
-    <!-- TINDER-STYLE DISCOVERY DECK COMPONENT -->
+    <!-- TINDER-STYLE DISCOVERY CARD -->
     <div class="w-full max-w-md mx-auto">
-      <div class="glass-panel rounded-3xl p-6 border border-white/10 shadow-2xl relative overflow-hidden" id="match-card-container">
-        
+      <div class="glass-panel rounded-3xl p-6 border border-white/10 shadow-2xl relative overflow-hidden" id="social-card-box">
         <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-            <span class="text-xs font-bold text-emerald-300" id="card-location">🇳🇬 Lagos, Nigeria</span>
-          </div>
-          <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-purple-500/15 text-purple-300 border border-purple-500/30" id="card-synergy">
+          <span class="text-xs font-bold text-emerald-300" id="card-user-location">🇳🇬 Lagos, Nigeria</span>
+          <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30" id="card-user-synergy">
             96% Skill Synergy
           </span>
         </div>
 
         <div class="relative w-full h-56 rounded-2xl bg-gradient-to-br from-purple-900/40 via-zinc-900 to-pink-900/40 border border-white/10 flex flex-col justify-end p-5 overflow-hidden mb-5">
-          <div class="absolute top-4 left-4 w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center text-xl font-black text-white" id="card-avatar">
+          <div class="absolute top-4 left-4 w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center text-xl font-black text-white" id="card-user-avatar">
             AO
           </div>
-          <div class="relative z-10">
-            <h3 class="text-xl font-black text-white flex items-center gap-2" id="card-name">
-              Adrienne Okon, 23
-            </h3>
-            <p class="text-xs text-purple-300 font-semibold mt-0.5" id="card-headline">
-              E-Commerce &amp; TikTok Dropshipper
-            </p>
+          <div>
+            <h3 class="text-xl font-black text-white flex items-center gap-2" id="card-user-name">Adrienne Okon, 23</h3>
+            <p class="text-xs text-purple-300 font-semibold" id="card-user-headline">E-Commerce &amp; TikTok Dropshipper</p>
           </div>
         </div>
 
-        <p class="text-xs text-zinc-300 leading-relaxed mb-4" id="card-bio">
+        <p class="text-xs text-zinc-300 leading-relaxed mb-4" id="card-user-bio">
           "Looking for content creators to team up on global stores. Love sharing viral ad templates and brainstorming 24/7!"
         </p>
 
+        <!-- Voice Vibe Waveform -->
         <div class="p-3 rounded-2xl bg-black/50 border border-white/5 flex items-center justify-between mb-6">
           <div class="flex items-center gap-2.5">
-            <button onclick="playVoiceVibe()" class="w-8 h-8 rounded-xl bg-purple-600 flex items-center justify-center text-white text-xs hover:bg-purple-500 transition">
-              ▶
-            </button>
+            <button onclick="playVoiceClip()" class="w-8 h-8 rounded-xl bg-purple-600 flex items-center justify-center text-white text-xs hover:bg-purple-500 transition">▶</button>
             <div>
-              <span class="text-[10px] uppercase font-bold text-zinc-400 block">Voice Vibe Audio Intro</span>
-              <span class="text-xs font-bold text-white">0:15 sec clip</span>
+              <span class="text-[10px] uppercase font-bold text-zinc-400 block">Voice Vibe Intro</span>
+              <span class="text-xs font-bold text-white">0:15 sec audio</span>
             </div>
           </div>
           <div class="flex items-center gap-1">
@@ -338,131 +336,131 @@
           </div>
         </div>
 
+        <!-- Action Controls -->
         <div class="flex items-center justify-center gap-4">
-          <button 
-            onclick="nextProfile(false)"
-            class="w-14 h-14 rounded-2xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-red-400 text-xl font-black flex items-center justify-center active:scale-90 transition shadow-lg"
-          >
-            ✕
-          </button>
-          <button 
-            onclick="superVibeMatch()"
-            class="px-5 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-black text-xs flex flex-col items-center justify-center hover:bg-amber-500/20 active:scale-95 transition shadow-lg"
-          >
+          <button onclick="cycleSocialCard(false)" class="w-14 h-14 rounded-2xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-red-400 text-xl font-black flex items-center justify-center active:scale-90 transition">✕</button>
+          <button onclick="superVibeMatch()" class="px-5 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-black text-xs flex flex-col items-center justify-center active:scale-95 transition">
             <span>⚡ SUPER VIBE</span>
             <span class="text-[9px] text-amber-400/80">🪙 15 Coins</span>
           </button>
-          <button 
-            onclick="nextProfile(true)"
-            class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-600 text-white text-xl font-black flex items-center justify-center active:scale-90 transition shadow-lg shadow-purple-600/30"
-          >
-            ♥
-          </button>
+          <button onclick="cycleSocialCard(true)" class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-600 text-white text-xl font-black flex items-center justify-center active:scale-90 transition shadow-lg shadow-purple-600/30">♥</button>
         </div>
-
       </div>
     </div>
 
-    <!-- ACTIVE MATCHES & OPEN CHATS TRAY -->
-    <div class="glass-panel rounded-3xl p-5 sm:p-6 border border-white/10">
+    <!-- Active Connections & Direct Chat Tray -->
+    <div class="glass-panel rounded-3xl p-5 border border-white/10">
       <div class="flex items-center justify-between mb-4">
-        <h3 class="text-sm font-black text-white flex items-center gap-2">
-          <span>💬</span> Your Active Matches &amp; Direct Chats
-        </h3>
-        <span class="text-[10px] font-bold text-emerald-400 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-          3 Connected
-        </span>
+        <h4 class="text-xs font-black uppercase tracking-wider text-white">Your Matched Friends &amp; Direct Chats</h4>
+        <span class="text-[10px] text-emerald-400 font-bold">3 Connections</span>
       </div>
-
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-        <div onclick="openDirectChat('Adrienne Okon', '🇳🇬 Lagos')" class="p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/40 cursor-pointer flex items-center justify-between transition">
+        <div onclick="openDirectChatModal('Adrienne Okon', 'AO')" class="p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 cursor-pointer flex items-center justify-between transition">
           <div class="flex items-center gap-2.5">
-            <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-300 font-bold flex items-center justify-center text-xs">AO</div>
+            <div class="w-9 h-9 rounded-xl bg-purple-500/20 text-purple-300 font-bold flex items-center justify-center text-xs">AO</div>
             <div>
-              <h4 class="text-xs font-bold text-white">Adrienne Okon</h4>
-              <p class="text-[10px] text-emerald-400">● Matched! Tap to chat</p>
+              <span class="text-xs font-bold text-white block">Adrienne Okon</span>
+              <span class="text-[10px] text-emerald-400">● Matched! Tap to chat</span>
             </div>
           </div>
           <span class="text-zinc-500 text-xs">›</span>
         </div>
-
-        <div onclick="openDirectChat('Kwame Mensah', '🇬🇭 Accra')" class="p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/40 cursor-pointer flex items-center justify-between transition">
+        <div onclick="openDirectChatModal('Kwame Mensah', 'KM')" class="p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 cursor-pointer flex items-center justify-between transition">
           <div class="flex items-center gap-2.5">
-            <div class="w-10 h-10 rounded-xl bg-pink-500/20 text-pink-300 font-bold flex items-center justify-center text-xs">KM</div>
+            <div class="w-9 h-9 rounded-xl bg-pink-500/20 text-pink-300 font-bold flex items-center justify-center text-xs">KM</div>
             <div>
-              <h4 class="text-xs font-bold text-white">Kwame Mensah</h4>
-              <p class="text-[10px] text-emerald-400">● Online now</p>
+              <span class="text-xs font-bold text-white block">Kwame Mensah</span>
+              <span class="text-[10px] text-emerald-400">● Online now</span>
             </div>
           </div>
           <span class="text-zinc-500 text-xs">›</span>
         </div>
-
-        <div onclick="openDirectChat('David Adams', '🇬🇧 London')" class="p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/40 cursor-pointer flex items-center justify-between transition">
+        <div onclick="openDirectChatModal('David Adams', 'DA')" class="p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 cursor-pointer flex items-center justify-between transition">
           <div class="flex items-center gap-2.5">
-            <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-300 font-bold flex items-center justify-center text-xs">DA</div>
+            <div class="w-9 h-9 rounded-xl bg-indigo-500/20 text-indigo-300 font-bold flex items-center justify-center text-xs">DA</div>
             <div>
-              <h4 class="text-xs font-bold text-white">David Adams</h4>
-              <p class="text-[10px] text-zinc-400">Active 1h ago</p>
+              <span class="text-xs font-bold text-white block">David Adams</span>
+              <span class="text-[10px] text-zinc-400">Active 1h ago</span>
             </div>
           </div>
           <span class="text-zinc-500 text-xs">›</span>
         </div>
       </div>
     </div>
-
-    <!-- BOTTOM UPSELL TO PRO AFFILIATE -->
-    <div class="rounded-3xl p-6 bg-gradient-to-r from-purple-950/70 via-zinc-950 to-indigo-950/70 border border-purple-500/30 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div>
-        <span class="text-[9px] uppercase font-black px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
-          Want To Earn Together?
-        </span>
-        <h4 class="text-base font-black text-white mt-1">Upgrade to the Pro Affiliate &amp; Academy Pass</h4>
-        <p class="text-xs text-zinc-400">Access masterclasses, earn 50% weekly MoMo/bank commissions, and team up with your new friends.</p>
-      </div>
-      <button 
-        onclick="togglePlatformExperience()"
-        class="py-3 px-6 rounded-xl font-black text-xs bg-white text-black hover:bg-zinc-200 transition shadow-lg shrink-0"
-      >
-        Enter Pro Affiliate Portal →
-      </button>
-    </div>
-
   </div>
 
   <!-- ============================================================== -->
-  <!-- EXPERIENCE 2: THE UNLOCKED PRO AFFILIATE EXECUTIVE SUITE       -->
+  <!-- VIEW 3: AFFILIATE MARKETING EXECUTIVE WORKSTATION (DIGITSTEM)   -->
   <!-- ============================================================== -->
-  <div id="experience-pro" class="hidden relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 pt-6 space-y-8">
-    
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-white/10">
-      <div>
-        <div class="flex items-center gap-2">
-          <span class="text-xs font-black uppercase tracking-wider text-purple-400 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20">
-            Pro Partner Workspace
-          </span>
-          <span class="text-xs font-bold text-emerald-400 flex items-center gap-1">
-            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            Lifetime Access Active
-          </span>
-        </div>
-        <h1 class="text-2xl sm:text-3xl font-black text-white mt-1">
-          Affiliate Command Center
-        </h1>
-      </div>
+  <div id="view-affiliate" class="hidden relative z-10 w-full max-w-5xl mx-auto px-4 pt-6 space-y-6">
 
-      <div class="flex items-center gap-2.5">
-        <button onclick="copyPromoterLink()" class="py-2.5 px-4 rounded-xl text-xs font-bold bg-white/10 border border-white/10 text-white hover:bg-white/20 active:scale-95 transition">
+    <!-- Secondary Workstation Sub-Nav Dock (Digitstem Navigation) -->
+    <div class="glass-panel p-2 rounded-2xl flex items-center justify-between gap-1 overflow-x-auto no-scrollbar border border-white/10">
+      <button onclick="switchAffiliateSubView('home')" id="subnav-home" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-purple-600 text-white transition flex items-center gap-1.5 shrink-0">
+        <span>📊</span> Dashboard
+      </button>
+      <button onclick="switchAffiliateSubView('market')" id="subnav-market" class="py-2 px-3.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white transition flex items-center gap-1.5 shrink-0">
+        <span>🛍️</span> Marketplace
+      </button>
+      <button onclick="switchAffiliateSubView('lms')" id="subnav-lms" class="py-2 px-3.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white transition flex items-center gap-1.5 shrink-0">
+        <span>🎓</span> Academy &amp; Quiz
+      </button>
+      <button onclick="switchAffiliateSubView('creator')" id="subnav-creator" class="py-2 px-3.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white transition flex items-center gap-1.5 shrink-0">
+        <span>🎨</span> Creator Hub
+      </button>
+      <button onclick="openMoreFeaturesSheet()" class="py-2 px-3.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white transition flex items-center gap-1.5 shrink-0">
+        <span>🗂️</span> More
+      </button>
+      <button onclick="openSettingsDrawer()" class="py-2 px-3 rounded-xl bg-white/5 border border-white/10 text-zinc-300 text-xs font-bold hover:bg-white/10 transition shrink-0">
+        ⚙️ Settings
+      </button>
+    </div>
+
+    <!-- SUB-VIEW A: AFFILIATE DASHBOARD HOME -->
+    <div id="aff-sub-home" class="space-y-6">
+      
+      <!-- User Greeting Bar -->
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
+            Good Evening, <span id="aff-user-displayname">Promoter</span>! 👋
+          </h2>
+          <p class="text-xs text-zinc-400 mt-0.5">Keep up the good work. Your affiliate partner status is active.</p>
+        </div>
+        <button onclick="copyPromoterLink()" class="py-2 px-3.5 rounded-xl bg-purple-600/30 border border-purple-500/40 text-purple-300 text-xs font-bold hover:bg-purple-600/40 transition">
           🔗 Copy Bio Link
         </button>
       </div>
-    </div>
 
-    <!-- PRO WALLET & SETTLEMENT ENGINE -->
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-      
+      <!-- Milestone Progress Bar (Starter -> Bronze Excellence) -->
+      <div class="glass-card p-5 sm:p-6 rounded-3xl border border-white/10 relative overflow-hidden">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-2xl">
+              🚀
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs uppercase font-extrabold tracking-wider text-amber-400">Affiliate Milestone Progress:</span>
+                <span class="text-xs font-bold text-white px-2 py-0.5 rounded-md bg-white/5 border border-white/10">Starter Pro</span>
+              </div>
+              <h4 class="text-sm font-black text-white mt-0.5">Next: Bronze Excellence Award</h4>
+            </div>
+          </div>
+          <span class="text-xs font-black text-amber-300" data-price-ghs="10000">Target: ₵ 10,000 GHS</span>
+        </div>
+        <div class="w-full bg-black/60 rounded-full h-2.5 border border-white/5 overflow-hidden mb-2">
+          <div class="bg-gradient-to-r from-purple-500 via-pink-500 to-amber-400 h-2.5 rounded-full w-[28%]"></div>
+        </div>
+        <div class="flex justify-between text-[11px] font-bold text-zinc-400">
+          <span>Earned: <span class="text-white" data-price-ghs="2800">₵ 2,800.00 GHS</span></span>
+          <span class="text-amber-400">28% Complete • Unlocks Award Plaque</span>
+        </div>
+      </div>
+
       <!-- Primary Wallet Card -->
-      <div class="sm:col-span-2 rounded-3xl p-6 sm:p-7 bg-gradient-to-br from-indigo-950 via-purple-950 to-zinc-950 border border-purple-500/30 shadow-2xl relative overflow-hidden flex flex-col justify-between">
-        <div class="flex items-center justify-between mb-4">
+      <div class="rounded-3xl p-6 bg-gradient-to-br from-indigo-950 via-purple-950 to-zinc-950 border border-purple-500/30 shadow-2xl relative overflow-hidden">
+        <div class="flex items-center justify-between mb-3">
           <span class="text-[11px] uppercase font-black tracking-widest text-purple-300 flex items-center gap-1.5">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
             Available For Friday Settlement
@@ -471,242 +469,586 @@
             Escrow Cleared
           </span>
         </div>
-
-        <div class="my-4">
-          <div class="text-4xl sm:text-5xl font-black text-white tracking-tight" data-price-ghs="1365">
-            ₵ 1,365.00 GHS
-          </div>
-          <p class="text-xs text-purple-300/80 mt-1 font-semibold">
-            Automated 50/50 commissions • 24h Friday withdrawal window opens 00:00 GMT
-          </p>
+        <div class="my-3">
+          <div class="text-4xl font-black text-white" data-price-ghs="1365">₵ 1,365.00 GHS</div>
+          <p class="text-xs text-purple-300/80 mt-1 font-semibold">Weekly payout window opens Friday 00:00 GMT</p>
         </div>
-
         <div class="pt-4 border-t border-white/10 flex items-center justify-between">
-          <span class="text-xs text-zinc-400">MoMo / Bank Transfer verified</span>
-          <button 
-            onclick="initiatePayoutRequest()"
-            class="py-3 px-6 rounded-xl font-black text-xs bg-white text-black hover:bg-zinc-200 active:scale-95 transition shadow-lg"
-          >
+          <span class="text-xs text-zinc-400">Disburses to MTN MoMo / Telecel / Bank</span>
+          <button onclick="requestFridayPayout()" class="py-2.5 px-5 rounded-xl bg-white text-black font-black text-xs hover:bg-zinc-200 transition shadow-lg">
             Request Payout Now →
           </button>
         </div>
       </div>
 
-      <!-- Milestone Card -->
-      <div class="glass-card p-6 rounded-3xl border border-white/10 flex flex-col justify-between">
-        <div>
-          <span class="text-[10px] uppercase font-bold text-amber-400 block mb-1">Affiliate Milestone</span>
-          <h4 class="text-lg font-black text-white">Bronze Excellence</h4>
-          <p class="text-xs text-zinc-400 mt-1">Next award tier unlocks the physical plaque + bonus cash pool.</p>
-          
-          <div class="w-full bg-black/60 rounded-full h-2 border border-white/5 overflow-hidden my-4">
-            <div class="bg-gradient-to-r from-purple-500 to-amber-400 h-2 rounded-full w-[28%]"></div>
+      <!-- Conversion & Performance Metrics (Click-to-Sale) -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div class="glass-card p-4 rounded-2xl">
+          <span class="text-[10px] uppercase font-bold text-zinc-500 block mb-1">Click to Sale</span>
+          <span class="text-xl font-black text-purple-400">4.8%</span>
+          <span class="text-[10px] text-zinc-400 font-semibold block mt-0.5">High Converting</span>
+        </div>
+        <div class="glass-card p-4 rounded-2xl">
+          <span class="text-[10px] uppercase font-bold text-zinc-500 block mb-1">Total Sales</span>
+          <span class="text-xl font-black text-white">28 Passes</span>
+          <span class="text-[10px] text-emerald-400 font-semibold block mt-0.5">↑ 14 this week</span>
+        </div>
+        <div class="glass-card p-4 rounded-2xl">
+          <span class="text-[10px] uppercase font-bold text-zinc-500 block mb-1">Pending Escrow</span>
+          <span class="text-xl font-black text-zinc-400" data-price-ghs="0">₵ 0.00 GHS</span>
+          <span class="text-[10px] text-zinc-500 font-semibold block mt-0.5">0 Locked</span>
+        </div>
+        <div class="glass-card p-4 rounded-2xl">
+          <span class="text-[10px] uppercase font-bold text-zinc-500 block mb-1">Total Withdrawn</span>
+          <span class="text-xl font-black text-emerald-400" data-price-ghs="4062.5">₵ 4,062.50 GHS</span>
+          <span class="text-[10px] text-zinc-400 font-semibold block mt-0.5">MoMo Direct</span>
+        </div>
+      </div>
+
+      <!-- Top 5 Affiliates of the Week Leaderboard -->
+      <div class="glass-panel p-5 rounded-3xl border border-white/10">
+        <div class="flex items-center justify-between mb-4">
+          <h4 class="text-xs font-black uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+            <span>🏆</span> Top Affiliates of the Week
+          </h4>
+          <span class="text-[10px] text-zinc-400 font-bold">Verified Settlements</span>
+        </div>
+        <div class="space-y-2 text-xs">
+          <div class="p-3 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-6 h-6 rounded-full bg-amber-400 text-black font-black flex items-center justify-center text-xs">1</span>
+              <div>
+                <span class="font-bold text-white">Chukwu Israel</span>
+                <span class="text-[10px] text-zinc-400 block">78 Sales Generated</span>
+              </div>
+            </div>
+            <span class="font-black text-emerald-400" data-price-ghs="3705">₵ 3,705.00 GHS</span>
           </div>
-          <div class="flex justify-between text-[11px] font-bold text-zinc-400">
-            <span>Progress: 28%</span>
-            <span class="text-amber-400" data-price-ghs="10000">Target: ₵ 10,000 GHS</span>
+          <div class="p-3 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-6 h-6 rounded-full bg-zinc-300 text-black font-black flex items-center justify-center text-xs">2</span>
+              <div>
+                <span class="font-bold text-white">Stemer Franklin</span>
+                <span class="text-[10px] text-zinc-400 block">62 Sales Generated</span>
+              </div>
+            </div>
+            <span class="font-black text-emerald-400" data-price-ghs="2945">₵ 2,945.00 GHS</span>
+          </div>
+          <div class="p-3 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-6 h-6 rounded-full bg-amber-600 text-white font-black flex items-center justify-center text-xs">3</span>
+              <div>
+                <span class="font-bold text-white">Ofuli Chidubem</span>
+                <span class="text-[10px] text-zinc-400 block">45 Sales Generated</span>
+              </div>
+            </div>
+            <span class="font-black text-emerald-400" data-price-ghs="2137.5">₵ 2,137.50 GHS</span>
+          </div>
+          <div class="p-3 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-6 h-6 rounded-full bg-white/10 text-white font-black flex items-center justify-center text-xs">4</span>
+              <div>
+                <span class="font-bold text-white">Oluwatomiwa Ogbonna</span>
+                <span class="text-[10px] text-zinc-400 block">39 Sales Generated</span>
+              </div>
+            </div>
+            <span class="font-black text-emerald-400" data-price-ghs="1852.5">₵ 1,852.50 GHS</span>
+          </div>
+          <div class="p-3 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-6 h-6 rounded-full bg-white/10 text-white font-black flex items-center justify-center text-xs">5</span>
+              <div>
+                <span class="font-bold text-white">Anita Macwiredu</span>
+                <span class="text-[10px] text-zinc-400 block">31 Sales Generated</span>
+              </div>
+            </div>
+            <span class="font-black text-emerald-400" data-price-ghs="1472.5">₵ 1,472.50 GHS</span>
           </div>
         </div>
-
-        <button onclick="alert('Immutable ledger entries synced with Supabase.')" class="w-full mt-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs font-bold text-zinc-300 hover:text-white transition">
-          View Ledger Audit
-        </button>
       </div>
 
     </div>
 
-    <!-- PRO MARKETPLACE CATALOG -->
-    <div class="space-y-4">
-      <div class="flex items-center justify-between">
-        <div>
-          <h3 class="text-lg font-black text-white">Vibely Academy Digital Asset Vault</h3>
-          <p class="text-xs text-zinc-400">Share direct purchase links. Your 50% commission credits immediately upon buyer checkout.</p>
-        </div>
+    <!-- SUB-VIEW B: AFFILIATE MARKETPLACE CATALOG -->
+    <div id="aff-sub-market" class="space-y-6 hidden">
+      <div>
+        <h3 class="text-xl font-black text-white">Affiliate Marketplace</h3>
+        <p class="text-xs text-zinc-400 mt-0.5">Discover high-converting offers, promote instantly, and earn 50% commissions.</p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        
-        <!-- Pass -->
-        <div class="glass-panel p-5 rounded-2xl border border-purple-500/30 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-[10px] font-bold text-purple-400 px-2 py-0.5 rounded-md bg-purple-500/10">Flagship</span>
-              <span class="text-xs font-bold text-emerald-400">Your 50%: <span data-price-ghs="47.5">₵ 47.50 GHS</span></span>
-            </div>
-            <h4 class="text-base font-bold text-white">1-Year Vibely Membership Pass</h4>
-            <p class="text-xs text-zinc-400 mt-1">Full academy + private mastermind + affiliate license.</p>
+        <!-- Product 1: Pass -->
+        <div class="glass-panel p-5 rounded-3xl border border-purple-500/30 sm:col-span-2">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300">★ Top Converting</span>
+            <span class="text-xs font-bold text-emerald-400">50% Commission: <span data-price-ghs="47.5">₵ 47.50 GHS</span></span>
           </div>
-          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
-            <span class="text-lg font-black text-white" data-price-ghs="95">₵ 95.00 GHS</span>
-            <button onclick="copyProductLink('1-Year Membership Pass')" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-white text-black hover:bg-zinc-200 transition">
-              Copy 50% Link
+          <h4 class="text-lg font-black text-white">1-Year Vibely Membership Pass</h4>
+          <p class="text-xs text-zinc-300 mt-1 leading-relaxed">Full access passport to creator lounges, masterclasses, and affiliate marketing license.</p>
+          <div class="pt-4 mt-4 border-t border-white/10 flex items-center justify-between">
+            <span class="text-xl font-black text-white" data-price-ghs="95">₵ 95.00 GHS</span>
+            <button onclick="copyPromoterOfferLink('1-Year Membership Pass')" class="py-2.5 px-4 rounded-xl bg-purple-600 text-white font-bold text-xs hover:bg-purple-500 transition">
+              Promote (50% Link)
             </button>
           </div>
         </div>
 
-        <!-- UMM -->
-        <div class="glass-card p-5 rounded-2xl border border-white/5 flex flex-col justify-between">
+        <!-- Product 2: UMM -->
+        <div class="glass-card p-5 rounded-2xl flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-2">
-              <span class="text-[10px] font-bold text-pink-400 px-2 py-0.5 rounded-md bg-pink-500/10">Masterclass</span>
-              <span class="text-xs font-bold text-emerald-400">Your 50%: <span data-price-ghs="47.5">₵ 47.50 GHS</span></span>
+              <span class="text-[10px] font-bold text-purple-400 px-2 py-0.5 rounded-md bg-purple-500/10">Core Masterclass</span>
+              <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="47.5">₵ 47.50 GHS</span></span>
             </div>
-            <h4 class="text-base font-bold text-white">The Ultra Money Machine (U.M.M)</h4>
-            <p class="text-xs text-zinc-400 mt-1">High-ticket client acquisition &amp; monetization system.</p>
+            <h5 class="text-base font-bold text-white">The Ultra Money Machine (U.M.M)</h5>
+            <p class="text-xs text-zinc-400 mt-1">High-ticket client acquisition, digital asset packaging, and service arbitrage.</p>
           </div>
           <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
-            <span class="text-lg font-black text-white" data-price-ghs="95">₵ 95.00 GHS</span>
-            <button onclick="copyProductLink('Ultra Money Machine (U.M.M)')" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-white text-black hover:bg-zinc-200 transition">
-              Copy 50% Link
+            <span class="text-lg font-bold text-white" data-price-ghs="95">₵ 95.00 GHS</span>
+            <button onclick="copyPromoterOfferLink('Ultra Money Machine (U.M.M)')" class="py-2 px-3.5 rounded-xl bg-white/10 text-white font-bold text-xs hover:bg-white/20 transition">
+              Promote
             </button>
           </div>
         </div>
 
-        <!-- AI Video -->
-        <div class="glass-card p-5 rounded-2xl border border-white/5 flex flex-col justify-between">
+        <!-- Product 3: AI Video -->
+        <div class="glass-card p-5 rounded-2xl flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-2">
-              <span class="text-[10px] font-bold text-indigo-400 px-2 py-0.5 rounded-md bg-indigo-500/10">AI &amp; Media</span>
-              <span class="text-xs font-bold text-emerald-400">Your 50%: <span data-price-ghs="52.5">₵ 52.50 GHS</span></span>
+              <span class="text-[10px] font-bold text-pink-400 px-2 py-0.5 rounded-md bg-pink-500/10">AI &amp; Media</span>
+              <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="52.5">₵ 52.50 GHS</span></span>
             </div>
-            <h4 class="text-base font-bold text-white">AI Video Mastery &amp; Monetization</h4>
-            <p class="text-xs text-zinc-400 mt-1">Faceless TikTok workflows, viral hooks, and auto-scripting.</p>
+            <h5 class="text-base font-bold text-white">AI Video Mastery &amp; Monetization</h5>
+            <p class="text-xs text-zinc-400 mt-1">Faceless TikTok workflows, viral video hooks, and automatic scripting.</p>
           </div>
           <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
-            <span class="text-lg font-black text-white" data-price-ghs="105">₵ 105.00 GHS</span>
-            <button onclick="copyProductLink('AI Video Mastery')" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-white text-black hover:bg-zinc-200 transition">
-              Copy 50% Link
+            <span class="text-lg font-bold text-white" data-price-ghs="105">₵ 105.00 GHS</span>
+            <button onclick="copyPromoterOfferLink('AI Video Mastery')" class="py-2 px-3.5 rounded-xl bg-white/10 text-white font-bold text-xs hover:bg-white/20 transition">
+              Promote
             </button>
           </div>
         </div>
 
-        <!-- Dropshipping -->
-        <div class="glass-card p-5 rounded-2xl border border-white/5 flex flex-col justify-between">
+        <!-- Product 4: Dropshipping -->
+        <div class="glass-card p-5 rounded-2xl flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-2">
               <span class="text-[10px] font-bold text-teal-400 px-2 py-0.5 rounded-md bg-teal-500/10">E-Commerce</span>
-              <span class="text-xs font-bold text-emerald-400">Your 50%: <span data-price-ghs="57.5">₵ 57.50 GHS</span></span>
+              <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="57.5">₵ 57.50 GHS</span></span>
             </div>
-            <h4 class="text-base font-bold text-white">Global Dropshipping Blueprint</h4>
+            <h5 class="text-base font-bold text-white">Global Dropshipping Blueprint</h5>
             <p class="text-xs text-zinc-400 mt-1">Cross-border physical supply chains &amp; supplier vetting.</p>
           </div>
           <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
-            <span class="text-lg font-black text-white" data-price-ghs="115">₵ 115.00 GHS</span>
-            <button onclick="copyProductLink('Global Dropshipping')" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-white text-black hover:bg-zinc-200 transition">
-              Copy 50% Link
+            <span class="text-lg font-bold text-white" data-price-ghs="115">₵ 115.00 GHS</span>
+            <button onclick="copyPromoterOfferLink('Global Dropshipping')" class="py-2 px-3.5 rounded-xl bg-white/10 text-white font-bold text-xs hover:bg-white/20 transition">
+              Promote
             </button>
           </div>
         </div>
 
+        <!-- Product 5: SnapSell & Trading -->
+        <div class="glass-card p-5 rounded-2xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[10px] font-bold text-amber-400 px-2 py-0.5 rounded-md bg-amber-500/10">Trading</span>
+              <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="62.5">₵ 62.50 GHS</span></span>
+            </div>
+            <h5 class="text-base font-bold text-white">SnapSell &amp; Day Trading Roadmap</h5>
+            <p class="text-xs text-zinc-400 mt-1">Digital flipping systems combined with risk-managed technical chart execution.</p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
+            <span class="text-lg font-bold text-white" data-price-ghs="125">₵ 125.00 GHS</span>
+            <button onclick="copyPromoterOfferLink('SnapSell & Trading')" class="py-2 px-3.5 rounded-xl bg-white/10 text-white font-bold text-xs hover:bg-white/20 transition">
+              Promote
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- PRIVATE AFFILIATES-ONLY MASTERMIND LOUNGE -->
-    <div class="glass-panel p-6 rounded-3xl border border-purple-500/20">
-      <div class="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
-        <div>
-          <h4 class="text-sm font-black text-white flex items-center gap-2">
-            <span>🔒</span> Affiliates-Only Mastermind Room
-          </h4>
-          <p class="text-[11px] text-zinc-400">Closed network. Only verified Pro pass holders are permitted here.</p>
-        </div>
-        <span class="text-[10px] font-bold text-purple-400 px-2.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/30">
-          Members Lounge
-        </span>
+    <!-- SUB-VIEW C: LMS ACADEMY & INTERACTIVE QUIZ CERTIFICATION -->
+    <div id="aff-sub-lms" class="space-y-6 hidden">
+      <div>
+        <h3 class="text-xl font-black text-white">Vibely Academy &amp; Quiz Certification</h3>
+        <p class="text-xs text-zinc-400 mt-0.5">Complete masterclass lessons, pass the AI quiz, and unlock your official certificate.</p>
       </div>
 
-      <div class="space-y-3">
-        <div class="p-3 rounded-2xl bg-white/5 border border-white/5 text-xs">
-          <div class="flex items-center justify-between mb-1">
-            <span class="font-bold text-purple-300">Admin Alpha Alert (vibelyservice@gmail.com)</span>
-            <span class="text-zinc-500 text-[10px]">Today 14:00 GMT</span>
+      <div class="glass-panel p-6 rounded-3xl border border-purple-500/30">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <span class="text-[10px] font-black uppercase text-purple-400 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20">
+              Active Module
+            </span>
+            <h4 class="text-lg font-black text-white mt-1">Ultra Money Machine (U.M.M) Certification Exam</h4>
           </div>
-          <p class="text-zinc-300 leading-relaxed">
-            "Affiliates targeting Kenya and Nigeria: UMM conversions are up 40% with the new AI video hooks. Access promo assets in module 3."
+          <span class="text-xs font-bold text-amber-400">3 Questions • 100% Passing Required</span>
+        </div>
+
+        <div id="quiz-container" class="space-y-4 text-xs">
+          <div class="p-4 rounded-2xl bg-black/40 border border-white/5">
+            <p class="font-bold text-white mb-2">1. What is the standard affiliate revenue share split on Vibely digital products?</p>
+            <div class="space-y-1.5 text-zinc-300">
+              <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q1" value="20" class="accent-purple-500"> 20% to promoter</label>
+              <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q1" value="50" class="accent-purple-500"> 50% net split to promoter wallet</label>
+              <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q1" value="10" class="accent-purple-500"> 10% tier split</label>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-black/40 border border-white/5">
+            <p class="font-bold text-white mb-2">2. What day of the week do affiliates request withdrawals for Saturday morning MoMo settlements?</p>
+            <div class="space-y-1.5 text-zinc-300">
+              <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q2" value="fri" class="accent-purple-500"> Friday 24-Hour Settlement Window</label>
+              <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="q2" value="mon" class="accent-purple-500"> Monday Morning</label>
+            </div>
+          </div>
+
+          <button onclick="submitAcademyQuiz()" class="w-full py-3.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition shadow-lg">
+            Submit Exam &amp; Generate Certificate →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUB-VIEW D: CREATOR COMMERCE HUB (WHITELIST PROTECTED - DIGITSTEM SCREENSHOT) -->
+    <div id="aff-sub-creator" class="space-y-6 hidden">
+      <div class="glass-panel p-8 rounded-3xl border border-white/10 text-center max-w-lg mx-auto">
+        <div class="w-16 h-16 rounded-3xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-3xl mx-auto mb-4">
+          🔒
+        </div>
+        <h3 class="text-xl font-black text-white">Private Beta Access Only</h3>
+        <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
+          The Vibely Creator Commerce Platform &amp; Marketing Hub is currently undergoing private testing with selected creators.
+        </p>
+
+        <div class="p-4 rounded-2xl bg-black/50 border border-white/5 text-left text-xs my-6">
+          <div class="flex items-center gap-2 text-cyan-400 font-bold mb-1">
+            <span>ℹ</span> Beta Access Status
+          </div>
+          <p class="text-zinc-400 text-[11px] leading-relaxed">
+            Your account is currently not on the private beta whitelist. Full access will be unlocked automatically upon public release or admin authorization.
           </p>
         </div>
+
+        <button onclick="switchAffiliateSubView('home')" class="py-2.5 px-6 rounded-xl bg-white/10 text-white text-xs font-bold hover:bg-white/15 transition">
+          ← Return to User Dashboard
+        </button>
       </div>
     </div>
 
   </div>
 
   <!-- ============================================================== -->
-  <!-- MODAL: 1-ON-1 DIRECT CHAT WINDOW                               -->
+  <!-- FLOATING AI SUPPORT BOT ("VIBEBOT")                             -->
+  <!-- ============================================================== -->
+  <button 
+    onclick="openAIBotModal()"
+    class="fixed bottom-6 left-6 z-40 w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 text-white flex items-center justify-center text-xl shadow-xl shadow-emerald-500/30 active:scale-90 transition"
+    title="Ask Vibely AI"
+  >
+    🤖
+  </button>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: AI ASSISTANT CHAT & HELP DESK                           -->
   <!-- ============================================================== -->
   <div 
-    id="chat-modal" 
+    id="ai-bot-modal" 
     class="fixed inset-0 z-50 bg-black/80 backdrop-blur-xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
   >
-    <div class="glass-panel w-full max-w-lg h-[520px] rounded-3xl p-5 border border-white/15 flex flex-col justify-between shadow-2xl relative">
+    <div class="glass-panel w-full max-w-md h-[480px] rounded-3xl p-5 border border-emerald-500/30 flex flex-col justify-between shadow-2xl relative">
       <div class="flex items-center justify-between pb-3 border-b border-zinc-800">
-        <div class="flex items-center gap-2.5">
-          <div class="w-9 h-9 rounded-xl bg-purple-600 flex items-center justify-center font-bold text-white text-xs" id="chat-modal-avatar">
-            AO
-          </div>
-          <div>
-            <h4 class="text-xs font-bold text-white" id="chat-modal-name">Adrienne Okon</h4>
-            <p class="text-[10px] text-emerald-400">● Active Friend Match</p>
-          </div>
-        </div>
-
         <div class="flex items-center gap-2">
-          <button 
-            onclick="tipCurrentChat(10)" 
-            class="px-2.5 py-1 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold text-[11px] hover:bg-amber-500/20 active:scale-95 transition"
-          >
-            🪙 Tip 10 Coins
+          <span class="text-lg">🤖</span>
+          <div>
+            <h4 class="text-xs font-bold text-white">Vibely AI Help Agent</h4>
+            <p class="text-[10px] text-emerald-400">● 24/7 Platform Intelligence</p>
+          </div>
+        </div>
+        <button onclick="closeAIBotModal()" class="text-zinc-400 hover:text-white font-bold p-1">✕</button>
+      </div>
+
+      <div class="flex-1 overflow-y-auto py-3 space-y-2.5 text-xs" id="ai-chat-stream">
+        <div class="p-3 rounded-2xl bg-white/5 border border-white/5 text-zinc-300">
+          Hello! I am your Vibely Intelligence Assistant. Ask me about the 50/50 affiliate split, weekly Friday MoMo payouts, our 200-Sale Sprint, or academy certifications!
+        </div>
+      </div>
+
+      <div class="pt-2 border-t border-zinc-800 space-y-2">
+        <div class="flex gap-1.5 overflow-x-auto no-scrollbar text-[10px]">
+          <button onclick="sendQuickPrompt('How do 50% commissions work?')" class="px-2 py-1 rounded-lg bg-white/5 text-purple-300 hover:bg-white/10 shrink-0">50% Split?</button>
+          <button onclick="sendQuickPrompt('How do I win the 200 sprint?')" class="px-2 py-1 rounded-lg bg-white/5 text-amber-300 hover:bg-white/10 shrink-0">200 Sprint?</button>
+          <button onclick="sendQuickPrompt('Connect me with WhatsApp human support')" class="px-2 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 shrink-0">WhatsApp Agent</button>
+        </div>
+        <form onsubmit="handleSendAIMessage(event)" class="flex items-center gap-2">
+          <input type="text" id="ai-user-input" placeholder="Ask a question..." class="flex-1 px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-emerald-500" />
+          <button type="submit" class="px-3.5 py-2.5 rounded-xl bg-emerald-500 text-black font-black text-xs hover:bg-emerald-400 transition">Ask</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: DOWNLOADABLE ACADEMY CERTIFICATE OF COMPLETION           -->
+  <!-- ============================================================== -->
+  <div 
+    id="cert-modal" 
+    class="fixed inset-0 z-50 bg-black/85 backdrop-blur-xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
+  >
+    <div class="glass-panel w-full max-w-lg rounded-3xl p-6 sm:p-8 border border-amber-500/40 text-center relative shadow-2xl">
+      <button onclick="closeCertModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
+
+      <div class="border-2 border-amber-500/40 p-6 rounded-2xl bg-black/40 relative">
+        <span class="text-3xl">🎓</span>
+        <h4 class="text-xs uppercase font-extrabold tracking-[0.25em] text-amber-400 mt-2">Vibely Academy of Digital Skills</h4>
+        <h2 class="text-2xl font-black text-white mt-1">Certificate of Completion</h2>
+        <p class="text-xs text-zinc-400 mt-1">This verifies that</p>
+        
+        <div class="text-xl font-black text-purple-300 my-3 pb-1 border-b border-white/10 inline-block px-4" id="cert-recipient-name">
+          Promoter Name
+        </div>
+
+        <p class="text-xs text-zinc-300 leading-relaxed max-w-sm mx-auto">
+          Has successfully passed the examination for <strong>The Ultra Money Machine (U.M.M)</strong> with a score of 100% and is authorized as a verified digital marketing practitioner.
+        </p>
+
+        <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-[10px] text-zinc-500">
+          <span>Date: September 2026</span>
+          <span class="font-mono text-purple-400">ID: VIB-CERT-90412</span>
+          <span>Verified by Vibely HQ</span>
+        </div>
+      </div>
+
+      <button onclick="alert('Downloading high-res PDF certificate...'); closeCertModal();" class="mt-5 w-full py-3.5 rounded-xl bg-amber-400 text-black font-black text-xs hover:bg-amber-300 transition shadow-lg">
+        Download Official PDF Certificate
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: "MORE FEATURES" DRAWER (MATCHING DIGITSTEM SCREENSHOT)   -->
+  <!-- ============================================================== -->
+  <div 
+    id="more-features-sheet" 
+    class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 flex items-end sm:items-center justify-center p-0 sm:p-4"
+    onclick="closeMoreFeaturesSheet()"
+  >
+    <div 
+      class="glass-panel w-full max-w-lg rounded-t-3xl sm:rounded-3xl p-6 border-t sm:border border-white/10 shadow-2xl space-y-4"
+      onclick="event.stopPropagation()"
+    >
+      <div class="flex items-center justify-between pb-3 border-b border-white/10">
+        <div>
+          <h4 class="text-sm font-black text-white">More Features</h4>
+          <p class="text-[10px] text-purple-400 font-bold">Active: Affiliate Marketing Workspace</p>
+        </div>
+        <button onclick="closeMoreFeaturesSheet()" class="text-zinc-500 hover:text-white font-bold p-1">✕</button>
+      </div>
+
+      <div class="grid grid-cols-4 gap-3 text-center text-xs">
+        <button onclick="closeMoreFeaturesSheet(); switchAffiliateSubView('home');" class="p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 flex flex-col items-center">
+          <span class="text-xl mb-1">💰</span>
+          <span class="text-[10px] font-bold text-zinc-300">Earnings</span>
+        </button>
+        <button onclick="closeMoreFeaturesSheet(); switchAffiliateSubView('home');" class="p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 flex flex-col items-center">
+          <span class="text-xl mb-1">🏆</span>
+          <span class="text-[10px] font-bold text-zinc-300">Milestones</span>
+        </button>
+        <button onclick="closeMoreFeaturesSheet(); switchAffiliateSubView('home');" class="p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 flex flex-col items-center">
+          <span class="text-xl mb-1">🎖️</span>
+          <span class="text-[10px] font-bold text-zinc-300">Leaderboard</span>
+        </button>
+        <button onclick="alert('Transaction Ledger: 28 sales cleared. Discrepancies: 0.');" class="p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 flex flex-col items-center">
+          <span class="text-xl mb-1">📜</span>
+          <span class="text-[10px] font-bold text-zinc-300">Transactions</span>
+        </button>
+        <button onclick="closeMoreFeaturesSheet(); switchAffiliateSubView('home');" class="p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 flex flex-col items-center">
+          <span class="text-xl mb-1">💳</span>
+          <span class="text-[10px] font-bold text-zinc-300">Wallet</span>
+        </button>
+        <button onclick="closeMoreFeaturesSheet(); switchAffiliateSubView('creator');" class="p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 flex flex-col items-center">
+          <span class="text-xl mb-1">🎨</span>
+          <span class="text-[10px] font-bold text-zinc-300">Creator Hub</span>
+        </button>
+        <button onclick="openAIBotModal(); closeMoreFeaturesSheet();" class="p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 flex flex-col items-center">
+          <span class="text-xl mb-1">🎧</span>
+          <span class="text-[10px] font-bold text-zinc-300">Support</span>
+        </button>
+        <button onclick="closeMoreFeaturesSheet(); routeTo('landing');" class="p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 flex flex-col items-center">
+          <span class="text-xl mb-1">🏠</span>
+          <span class="text-[10px] font-bold text-zinc-300">Home</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: SETTINGS, KYC & PLATFORM VISIBILITY DRAWER             -->
+  <!-- ============================================================== -->
+  <div 
+    id="settings-drawer" 
+    class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300"
+    onclick="closeSettingsDrawer()"
+  >
+    <div 
+      class="glass-panel w-72 sm:w-80 h-full p-6 flex flex-col justify-between transform -translate-x-full transition-all duration-300"
+      onclick="event.stopPropagation()"
+      id="settings-container"
+    >
+      <div class="space-y-5">
+        <div class="flex items-center justify-between pb-4 border-b border-zinc-800">
+          <div class="flex items-center gap-2.5">
+            <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-600 flex items-center justify-center text-white font-bold text-xs">GM</div>
+            <div>
+              <h4 class="text-xs font-bold text-white leading-tight" id="settings-drawer-name">Promoter Account</h4>
+              <p class="text-[10px] text-zinc-400">ID: VIB-90218</p>
+            </div>
+          </div>
+          <button onclick="closeSettingsDrawer()" class="text-zinc-500 hover:text-white font-bold p-1">✕</button>
+        </div>
+
+        <!-- Custom Dual Visibility Toggle -->
+        <div class="p-3.5 rounded-2xl bg-white/5 border border-white/5 space-y-3">
+          <span class="text-[10px] uppercase font-bold text-purple-400 block tracking-wider">Ecosystem Visibility</span>
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-zinc-300">Social Chat Feed</span>
+            <input type="checkbox" id="toggle-social-feed" checked class="accent-purple-500 cursor-pointer">
+          </div>
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-zinc-300">Affiliate Workstation</span>
+            <input type="checkbox" id="toggle-affiliate-feed" checked class="accent-purple-500 cursor-pointer">
+          </div>
+        </div>
+
+        <nav class="space-y-1.5 text-xs font-semibold">
+          <button onclick="alert('MoMo Settlement Number verified: 0534671381');" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300 hover:text-white transition text-left">
+            <span>🪪 MoMo / Bank KYC</span>
+            <span class="text-emerald-400 text-[10px] font-bold">Verified</span>
           </button>
-          <button onclick="closeChatModal()" class="text-zinc-400 hover:text-white font-bold p-1">✕</button>
-        </div>
+          <button onclick="alert('2FA Security active with email OTP.');" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300 hover:text-white transition text-left">
+            <span>🔒 Security &amp; Password</span>
+            <span class="text-zinc-500">›</span>
+          </button>
+          <button onclick="alert('Notification triggers enabled.');" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300 hover:text-white transition text-left">
+            <span>🔔 Notifications</span>
+            <span class="text-zinc-500">›</span>
+          </button>
+        </nav>
       </div>
 
-      <div class="flex-1 overflow-y-auto py-4 space-y-3 text-xs" id="chat-messages-container">
-        <div class="p-3 rounded-2xl bg-white/5 border border-white/5 max-w-[80%] text-zinc-300">
-          Hey there! Saw your profile on the discovery feed. What kind of projects are you building?
-        </div>
-        <div class="p-3 rounded-2xl bg-purple-600/30 border border-purple-500/30 max-w-[80%] ml-auto text-white">
-          Great connecting with you! Working on scaling organic video funnels on TikTok.
-        </div>
+      <div class="pt-4 border-t border-zinc-800">
+        <button onclick="handleUserLogout()" class="w-full py-2.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 font-bold text-xs hover:bg-red-500/20 transition">
+          Sign Out / Exit
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: FREE SOCIAL ONBOARDING REGISTRATION                     -->
+  <!-- ============================================================== -->
+  <div 
+    id="social-register-modal" 
+    class="fixed inset-0 z-50 bg-black/80 backdrop-blur-xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
+  >
+    <div class="glass-panel w-full max-w-md rounded-3xl p-6 sm:p-7 border border-emerald-500/30 shadow-2xl relative">
+      <button onclick="closeSocialRegisterModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
+
+      <div class="mb-5">
+        <span class="text-[10px] uppercase font-bold tracking-widest text-emerald-400 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+          Pillar 1 • 100% Free
+        </span>
+        <h3 class="text-xl font-black text-white mt-2">Create Free Social Passport</h3>
+        <p class="text-xs text-zinc-400 mt-1">Make friends, swap skills, and send Vibely Coins worldwide.</p>
       </div>
 
-      <form onsubmit="handleSendChatMessage(event)" class="pt-3 border-t border-zinc-800 flex items-center gap-2">
-        <input 
-          type="text" 
-          id="chat-input-text" 
-          placeholder="Type your message..." 
-          class="flex-1 px-4 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500" 
-        />
-        <button type="submit" class="px-4 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs active:scale-95 transition">
-          Send
+      <form onsubmit="handleConfirmSocialRegistration(event)" class="space-y-3">
+        <div>
+          <label class="block text-[11px] uppercase tracking-wider font-semibold text-zinc-300 mb-1">Your Name</label>
+          <input type="text" id="reg-social-name" required placeholder="e.g. Kwesi Mensah" class="w-full px-4 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-emerald-500" />
+        </div>
+        <div>
+          <label class="block text-[11px] uppercase tracking-wider font-semibold text-zinc-300 mb-1">Country &amp; City</label>
+          <input type="text" id="reg-social-loc" required placeholder="e.g. Ghana, Accra" class="w-full px-4 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-emerald-500" />
+        </div>
+        <div>
+          <label class="block text-[11px] uppercase tracking-wider font-semibold text-zinc-300 mb-1">Primary Skill / Niche</label>
+          <select id="reg-social-skill" class="w-full px-3 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-xs text-white focus:outline-none focus:border-emerald-500">
+            <option>AI Short-Form Video</option>
+            <option>E-Commerce Dropshipping</option>
+            <option>Affiliate Marketer</option>
+            <option>UI/UX Design</option>
+          </select>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 mt-2 rounded-xl bg-emerald-500 text-black font-black text-xs hover:bg-emerald-400 active:scale-95 transition shadow-lg">
+          Complete Registration &amp; Enter Social Hub
         </button>
       </form>
     </div>
   </div>
 
   <!-- ============================================================== -->
-  <!-- MODAL: VIBELY COINS STASH REFILL STORE                         -->
+  <!-- MODAL: AFFILIATE MARKETING PAYMENT GATE (95 GHS PASS)          -->
+  <!-- ============================================================== -->
+  <div 
+    id="affiliate-pay-modal" 
+    class="fixed inset-0 z-50 bg-black/85 backdrop-blur-xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
+  >
+    <div class="glass-panel w-full max-w-md rounded-3xl p-6 sm:p-7 border border-purple-500/30 shadow-2xl relative">
+      <button onclick="closeAffiliatePayModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
+
+      <div class="mb-5 text-center">
+        <span class="text-3xl">💼</span>
+        <h3 class="text-xl font-black text-white mt-1">Unlock Affiliate Marketing</h3>
+        <p class="text-xs text-zinc-400 mt-1">1-Year Access to 50% weekly MoMo payouts, Academy, &amp; Competitions.</p>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-black/40 border border-white/10 space-y-2 text-xs mb-5">
+        <div class="flex justify-between text-zinc-300">
+          <span>1-Year Affiliate Marketing License:</span>
+          <strong class="text-white" data-price-ghs="95">₵ 95.00 GHS</strong>
+        </div>
+        <div class="flex justify-between text-zinc-300">
+          <span>Weekly MoMo / Bank Split:</span>
+          <strong class="text-emerald-400">50% Net on Every Sale</strong>
+        </div>
+        <div class="flex justify-between text-zinc-300">
+          <span>Bonus Vibely Coins:</span>
+          <strong class="text-amber-400">+250 Coins Stash</strong>
+        </div>
+      </div>
+
+      <button onclick="simulatePaystackCheckoutSuccess()" class="w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 text-white font-black text-xs active:scale-95 transition shadow-xl shadow-purple-600/30">
+        Confirm &amp; Pay (<span data-price-ghs="95">₵ 95 GHS</span>)
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: VIBELY COINS STASH REFILL STORE (DYNAMIC CURRENCY)      -->
   <!-- ============================================================== -->
   <div 
     id="coin-store-modal" 
     class="fixed inset-0 z-50 bg-black/80 backdrop-blur-xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
   >
     <div class="glass-panel w-full max-w-md rounded-3xl p-6 border border-amber-500/30 shadow-2xl relative">
-      <button onclick="closeCoinStore()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
+      <button onclick="closeCoinStoreModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
 
       <div class="text-center mb-6">
         <span class="text-3xl">🪙</span>
         <h3 class="text-lg font-black text-white mt-1">Refill Vibely Coins</h3>
-        <p class="text-xs text-zinc-400">Coins are used for social gifts, Super Vibes, and peer recognition.</p>
+        <p class="text-xs text-zinc-400">Use coins for Super Vibes and rewarding creators in chat.</p>
       </div>
 
       <div class="space-y-3">
         <div class="p-4 rounded-2xl bg-black/40 border border-white/10 flex items-center justify-between">
           <div>
             <span class="text-sm font-black text-white">100 Vibely Coins</span>
-            <span class="text-xs text-zinc-400 block">Starter Pack</span>
+            <span class="text-xs text-zinc-400 block">Starter Stash</span>
           </div>
-          <button onclick="purchaseCoins(100, 15)" class="py-2 px-4 rounded-xl text-xs font-bold bg-amber-500/20 border border-amber-500/40 text-amber-300 hover:bg-amber-500/30 transition">
-            ₵ 15 GHS
+          <button onclick="executeCoinPurchase(100, 15)" class="py-2 px-4 rounded-xl text-xs font-bold bg-amber-500/20 border border-amber-500/40 text-amber-300 hover:bg-amber-500/30 transition">
+            <span data-price-ghs="15">₵ 15.00 GHS</span>
           </button>
         </div>
 
@@ -715,8 +1057,8 @@
             <span class="text-sm font-black text-white">500 Vibely Coins</span>
             <span class="text-xs text-amber-400 block">★ Most Popular</span>
           </div>
-          <button onclick="purchaseCoins(500, 50)" class="py-2 px-4 rounded-xl text-xs font-black bg-amber-400 hover:bg-amber-300 text-black transition">
-            ₵ 50 GHS
+          <button onclick="executeCoinPurchase(500, 50)" class="py-2 px-4 rounded-xl text-xs font-black bg-amber-400 hover:bg-amber-300 text-black transition">
+            <span data-price-ghs="50">₵ 50.00 GHS</span>
           </button>
         </div>
 
@@ -725,8 +1067,8 @@
             <span class="text-sm font-black text-white">2,500 Vibely Coins</span>
             <span class="text-xs text-zinc-400 block">VIP Vault</span>
           </div>
-          <button onclick="purchaseCoins(2500, 200)" class="py-2 px-4 rounded-xl text-xs font-bold bg-amber-500/20 border border-amber-500/40 text-amber-300 hover:bg-amber-500/30 transition">
-            ₵ 200 GHS
+          <button onclick="executeCoinPurchase(2500, 200)" class="py-2 px-4 rounded-xl text-xs font-bold bg-amber-500/20 border border-amber-500/40 text-amber-300 hover:bg-amber-500/30 transition">
+            <span data-price-ghs="200">₵ 200.00 GHS</span>
           </button>
         </div>
       </div>
@@ -734,188 +1076,147 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- MODAL: SUPER ADMIN COMMAND CENTER (RESTRICTED TO ROOT)         -->
+  <!-- MODAL: 1-ON-1 DIRECT CHAT WINDOW WITH IN-CHAT COIN TIPPING      -->
   <!-- ============================================================== -->
   <div 
-    id="admin-modal" 
+    id="chat-modal" 
+    class="fixed inset-0 z-50 bg-black/80 backdrop-blur-xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
+  >
+    <div class="glass-panel w-full max-w-lg h-[520px] rounded-3xl p-5 border border-white/15 flex flex-col justify-between shadow-2xl relative">
+      <div class="flex items-center justify-between pb-3 border-b border-zinc-800">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-purple-600 flex items-center justify-center font-bold text-white text-xs" id="chat-modal-avatar">AO</div>
+          <div>
+            <h4 class="text-xs font-bold text-white" id="chat-modal-target-name">Adrienne Okon</h4>
+            <p class="text-[10px] text-emerald-400">● Active Friend Match</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="tipCoinsInCurrentChat(10)" class="px-2.5 py-1 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold text-[11px] hover:bg-amber-500/20 transition">
+            🪙 Tip 10 Coins
+          </button>
+          <button onclick="closeDirectChatModal()" class="text-zinc-400 hover:text-white font-bold p-1">✕</button>
+        </div>
+      </div>
+
+      <div class="flex-1 overflow-y-auto py-4 space-y-3 text-xs" id="chat-messages-container">
+        <div class="p-3 rounded-2xl bg-white/5 border border-white/5 max-w-[80%] text-zinc-300">
+          Hey there! Saw your profile on the discovery feed. What kind of projects are you building?
+        </div>
+      </div>
+
+      <form onsubmit="handleSendDirectMessage(event)" class="pt-3 border-t border-zinc-800 flex items-center gap-2">
+        <input type="text" id="chat-user-input" placeholder="Type a message..." class="flex-1 px-4 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500" />
+        <button type="submit" class="px-4 py-2.5 rounded-xl bg-purple-600 text-white font-bold text-xs hover:bg-purple-500 transition">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: STEALTH 2FA ROOT ADMIN AUTHENTICATION                   -->
+  <!-- ============================================================== -->
+  <div 
+    id="admin-auth-modal" 
+    class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
+  >
+    <div class="glass-panel w-full max-w-md rounded-3xl p-7 border border-red-500/40 shadow-2xl relative text-center">
+      <button onclick="closeAdminAuthModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
+      
+      <span class="text-3xl">🛡️</span>
+      <h3 class="text-lg font-black text-white mt-2">Root Admin Security Handshake</h3>
+      <p class="text-xs text-zinc-400 mt-1">A one-time 6-digit access code was dispatched to vibelyservice@gmail.com.</p>
+
+      <div class="my-5">
+        <input 
+          type="password" 
+          id="admin-otp-input" 
+          maxlength="6" 
+          placeholder="Enter 6-Digit Secret OTP" 
+          class="w-full text-center tracking-[0.5em] text-lg px-4 py-3 rounded-xl bg-black/70 border border-red-500/40 text-white placeholder-zinc-700 focus:outline-none focus:border-red-400 font-mono" 
+        />
+        <span class="text-[10px] text-zinc-500 block mt-2">Passcode for this session: <code class="text-red-400 font-bold">892104</code></span>
+      </div>
+
+      <button onclick="verifyAdminOTP()" class="w-full py-3.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-black text-xs active:scale-95 transition shadow-xl shadow-red-600/30">
+        Verify &amp; Unlock Command Center
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: SUPER ADMIN COMMAND CENTER (DUAL CONTROL CONSOLE)       -->
+  <!-- ============================================================== -->
+  <div 
+    id="admin-console-modal" 
     class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl flex items-center justify-center p-3 sm:p-5 opacity-0 pointer-events-none transition-all duration-300 overflow-y-auto"
   >
     <div class="glass-panel w-full max-w-3xl rounded-3xl p-6 sm:p-8 border border-red-500/40 shadow-2xl relative my-auto">
-      
-      <!-- Admin Top Nav -->
-      <div class="flex items-center justify-between pb-4 border-b border-red-500/20 mb-6">
+      <div class="flex items-center justify-between pb-4 border-b border-red-500/20 mb-5">
         <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-xl bg-red-600/20 border border-red-500/40 flex items-center justify-center text-red-400 font-black text-sm">
-            🛡️
-          </div>
+          <div class="w-8 h-8 rounded-xl bg-red-600/20 border border-red-500/40 flex items-center justify-center text-red-400 font-black text-sm">🛡️</div>
           <div>
             <h3 class="text-base sm:text-lg font-black text-white flex items-center gap-2">
               Super Admin Command Center
-              <span class="text-[9px] uppercase px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 font-extrabold border border-red-500/30">Root</span>
+              <span class="text-[9px] uppercase px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 font-extrabold border border-red-500/30">Root Live</span>
             </h3>
-            <p class="text-[10px] text-zinc-400">Authorized: vibelyservice@gmail.com • Dual Engine Control (Chat &amp; Affiliate)</p>
+            <p class="text-[10px] text-zinc-400">Authenticated: vibelyservice@gmail.com • Dual Social &amp; Affiliate Engine Control</p>
           </div>
         </div>
-        <button onclick="closeAdminModal()" class="text-zinc-400 hover:text-white text-lg font-bold p-1">✕</button>
+        <button onclick="closeAdminConsoleModal()" class="text-zinc-400 hover:text-white font-bold p-1">✕</button>
       </div>
 
       <!-- Admin Tab Switcher -->
-      <div class="flex items-center gap-2 mb-6 border-b border-white/5 pb-3 overflow-x-auto no-scrollbar">
-        <button onclick="switchAdminTab('bans')" id="adm-tab-bans" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-red-500/20 text-red-300 border border-red-500/30 transition">
-          🚫 Universal Ban Desk
-        </button>
-        <button onclick="switchAdminTab('chatmod')" id="adm-tab-chatmod" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white transition">
-          💬 Social Chat Moderation
-        </button>
-        <button onclick="switchAdminTab('payouts')" id="adm-tab-payouts" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white transition">
-          💳 Friday Payout Queue
-        </button>
-        <button onclick="switchAdminTab('contests')" id="adm-tab-contests" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white transition">
-          🎬 Video Contest Audit
-        </button>
+      <div class="flex items-center gap-2 mb-5 border-b border-white/5 pb-3 overflow-x-auto no-scrollbar">
+        <button onclick="switchAdminTab('bans')" id="adm-btn-bans" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-red-500/20 text-red-300 border border-red-500/30 shrink-0">Universal Ban Desk</button>
+        <button onclick="switchAdminTab('payouts')" id="adm-btn-payouts" class="px-3 py-1.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white shrink-0">Friday MoMo Payouts</button>
+        <button onclick="switchAdminTab('whitelist')" id="adm-btn-whitelist" class="px-3 py-1.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white shrink-0">Creator Whitelist</button>
+        <button onclick="switchAdminTab('contests')" id="adm-btn-contests" class="px-3 py-1.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white shrink-0">Video Contest Audit</button>
       </div>
 
-      <!-- TAB 1: UNIVERSAL BAN DESK (BANS FROM BOTH CHAT AND AFFILIATE) -->
-      <div id="adm-view-bans" class="space-y-4">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-bold text-zinc-300">Universal Member Control (Chat + Affiliate + Wallets)</span>
-          <span class="text-[10px] text-zinc-500">Instant Supabase trigger</span>
-        </div>
-
-        <div class="space-y-2.5">
-          <!-- Member 1 -->
-          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-between gap-3 text-xs" id="user-row-1">
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-300 font-bold flex items-center justify-center text-xs">KM</div>
-              <div>
-                <h5 class="font-bold text-white">Kwame Mensah <span class="text-zinc-500 font-normal">(kwame@example.com)</span></h5>
-                <p class="text-[10px] text-zinc-400">ID: VIB-8821 • Chat: <span class="text-emerald-400 font-bold" id="user-chat-1">Allowed</span> • Affiliate: <span class="text-emerald-400 font-bold" id="user-aff-1">Active</span></p>
-              </div>
-            </div>
-            <button 
-              onclick="toggleBanUser(1, 'Kwame Mensah')" 
-              id="btn-ban-1"
-              class="px-3 py-1.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 font-bold text-[11px] hover:bg-red-500/20 transition"
-            >
-              Ban User Completely
-            </button>
-          </div>
-
-          <!-- Member 2 -->
-          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-between gap-3 text-xs" id="user-row-2">
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-xl bg-pink-500/20 text-pink-300 font-bold flex items-center justify-center text-xs">AO</div>
-              <div>
-                <h5 class="font-bold text-white">Adrienne Okon <span class="text-zinc-500 font-normal">(adrienne@example.com)</span></h5>
-                <p class="text-[10px] text-zinc-400">ID: VIB-9021 • Chat: <span class="text-emerald-400 font-bold" id="user-chat-2">Allowed</span> • Affiliate: <span class="text-emerald-400 font-bold" id="user-aff-2">Active</span></p>
-              </div>
-            </div>
-            <button 
-              onclick="toggleBanUser(2, 'Adrienne Okon')" 
-              id="btn-ban-2"
-              class="px-3 py-1.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 font-bold text-[11px] hover:bg-red-500/20 transition"
-            >
-              Ban User Completely
-            </button>
-          </div>
-
-          <!-- Member 3 (Flagged) -->
-          <div class="p-3.5 rounded-2xl bg-black/40 border border-red-500/20 flex items-center justify-between gap-3 text-xs" id="user-row-3">
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-xl bg-zinc-800 text-zinc-400 font-bold flex items-center justify-center text-xs">FX</div>
-              <div>
-                <h5 class="font-bold text-white">Felix X. <span class="text-red-400 font-normal">(suspicious_bot@mail.com)</span></h5>
-                <p class="text-[10px] text-zinc-400">ID: VIB-1102 • Chat: <span class="text-red-400 font-bold" id="user-chat-3">Banned</span> • Affiliate: <span class="text-red-400 font-bold" id="user-aff-3">Frozen</span></p>
-              </div>
-            </div>
-            <button 
-              onclick="toggleBanUser(3, 'Felix X.')" 
-              id="btn-ban-3"
-              class="px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-[11px] hover:bg-emerald-500/20 transition"
-            >
-              Unban User
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- TAB 2: SOCIAL CHAT MODERATION & COIN AUDIT -->
-      <div id="adm-view-chatmod" class="space-y-4 hidden">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-bold text-zinc-300">Live Global Chat Rooms &amp; Coin Gifting Ledger</span>
-          <button onclick="alert('Chat logs audited. Zero safety violations.')" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] font-bold text-zinc-400">
-            Purge Spam
-          </button>
-        </div>
-
-        <div class="space-y-2 text-xs">
-          <div class="p-3 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-between">
-            <div>
-              <span class="font-bold text-white">Room: Global Lounge #1</span>
-              <p class="text-[11px] text-zinc-400 mt-0.5">Kwame Mensah tipped 10 Coins to Adrienne Okon</p>
-            </div>
-            <span class="text-amber-400 font-bold text-[11px]">🪙 Verified Gifting</span>
-          </div>
-          <div class="p-3 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-between">
-            <div>
-              <span class="font-bold text-white">Room: AI Video Mastery Lounge</span>
-              <p class="text-[11px] text-zinc-400 mt-0.5">David Adams: "Masterclass module 2 dropped new CapCut presets"</p>
-            </div>
-            <span class="text-emerald-400 font-bold text-[11px]">● Clean Message</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- TAB 3: FRIDAY PAYOUT SETTLEMENT QUEUE -->
-      <div id="adm-view-payouts" class="space-y-4 hidden">
-        <div class="flex items-center justify-between">
+      <!-- Tab 1: Universal Ban Desk -->
+      <div id="adm-view-bans" class="space-y-3 text-xs">
+        <div class="p-3 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-between">
           <div>
-            <span class="text-xs font-bold text-white block">Friday Settlement Batch Queue</span>
-            <span class="text-[10px] text-zinc-400">Total in queue: ₵ 4,165.00 GHS (Saturday morning MoMo/Bank disbursement)</span>
+            <span class="font-bold text-white">Kwame Mensah (kwame@example.com)</span>
+            <p class="text-[10px] text-zinc-400">ID: VIB-8821 • Chat: <span class="text-emerald-400" id="adm-status-chat-1">Active</span> • Affiliate: <span class="text-emerald-400" id="adm-status-aff-1">Active</span></p>
           </div>
-          <button onclick="approveBatchPayouts()" class="py-2 px-4 rounded-xl bg-emerald-500 text-black font-black text-xs hover:bg-emerald-400 transition shadow-lg">
-            ✓ Disburse Batch
-          </button>
-        </div>
-
-        <div class="space-y-2 text-xs" id="payout-queue-list">
-          <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between">
-            <div>
-              <span class="font-bold text-white">David Adams</span>
-              <span class="text-[11px] text-zinc-400 block">MTN MoMo: 0534671381 • Ref: VIB-WTH-9021</span>
-            </div>
-            <span class="font-black text-emerald-400">₵ 1,365.00 GHS</span>
-          </div>
-          <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between">
-            <div>
-              <span class="font-bold text-white">Kwame Mensah</span>
-              <span class="text-[11px] text-zinc-400 block">Telecel Cash: 0200000000 • Ref: VIB-WTH-8840</span>
-            </div>
-            <span class="font-black text-emerald-400">₵ 2,800.00 GHS</span>
-          </div>
+          <button onclick="toggleUniversalBan(1, 'Kwame Mensah')" id="btn-adm-ban-1" class="px-3 py-1.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 font-bold hover:bg-red-500/20">Ban User</button>
         </div>
       </div>
 
-      <!-- TAB 4: PROMOTIONAL VIDEO CONTEST AUDIT -->
-      <div id="adm-view-contests" class="space-y-4 hidden">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-bold text-white">Contest 2 Manual Verification Console</span>
-          <span class="text-[10px] text-pink-400">Prize: ₵ 5,000 GHS ($1,500 USD)</span>
-        </div>
-
-        <div class="space-y-2.5 text-xs">
-          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div>
-              <span class="font-bold text-white">Kwame Vibe (@kwame_vibely)</span>
-              <p class="text-[11px] text-zinc-400 mt-0.5">Video: https://tiktok.com/@kwame_vibely/video/99120 • Metric: 48.2k Views, 3.4k Likes</p>
-            </div>
-            <button onclick="awardContestWinner('Kwame Vibe', 5000)" class="py-1.5 px-3.5 rounded-xl bg-pink-500/20 border border-pink-500/40 text-pink-300 font-bold text-xs hover:bg-pink-500/30 transition shrink-0">
-              🏆 Award ₵ 5,000 GHS Prize
-            </button>
+      <!-- Tab 2: Friday Payouts -->
+      <div id="adm-view-payouts" class="space-y-3 text-xs hidden">
+        <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-between">
+          <div>
+            <span class="font-bold text-white">David Adams</span>
+            <p class="text-[10px] text-zinc-400">MTN MoMo: 0534671381 • Queue: Friday Settlement</p>
           </div>
+          <span class="font-black text-emerald-400" data-price-ghs="1365">₵ 1,365.00 GHS</span>
+        </div>
+        <button onclick="alert('Batch settlement disbursed to MoMo & Bank endpoints!');" class="w-full py-3 rounded-xl bg-emerald-500 text-black font-black text-xs">Approve All Pending Payouts</button>
+      </div>
+
+      <!-- Tab 3: Creator Whitelist -->
+      <div id="adm-view-whitelist" class="space-y-3 text-xs hidden">
+        <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-between">
+          <div>
+            <span class="font-bold text-white">Gerald Mingle (Creator ID: VIB-90218)</span>
+            <p class="text-[10px] text-zinc-400">Status: <span class="text-amber-400 font-bold" id="adm-whitelist-status">Pending Whitelist</span></p>
+          </div>
+          <button onclick="toggleCreatorWhitelist()" id="btn-adm-whitelist" class="px-3 py-1.5 rounded-xl bg-purple-600 text-white font-bold">Approve to Whitelist</button>
         </div>
       </div>
 
+      <!-- Tab 4: Video Contest Audit -->
+      <div id="adm-view-contests" class="space-y-3 text-xs hidden">
+        <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-between">
+          <div>
+            <span class="font-bold text-white">Kwame Vibe (@kwame_vibely)</span>
+            <p class="text-[10px] text-zinc-400">TikTok: 48.2k Views, 3.4k Likes</p>
+          </div>
+          <button onclick="alert('₵ 5,000 GHS ($1,500 USD) Disbursed to Kwame Vibe on MTN MoMo!');" class="px-3 py-1.5 rounded-xl bg-pink-500/20 text-pink-300 font-bold border border-pink-500/30">Award ₵ 5,000 GHS Prize</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -924,7 +1225,7 @@
     <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
       <div>
         <p class="font-bold text-zinc-400">© 2026 Vibely HQ • Powered by Geestablish</p>
-        <p class="text-[11px] text-zinc-600 mt-0.5">Scale target: 20,000+ members • Universal dual social &amp; affiliate ecosystem</p>
+        <p class="text-[11px] text-zinc-600 mt-0.5">Scale target: 20,000+ members • Universal dual platform</p>
       </div>
       <div class="flex items-center gap-4 text-[11px]">
         <a href="mailto:vibelydesk@gmail.com" class="hover:text-zinc-300 transition">vibelydesk@gmail.com</a>
@@ -935,46 +1236,22 @@
   </footer>
 
   <!-- ============================================================== -->
-  <!-- JAVASCRIPT PLATFORM LOGIC & ENGINE                             -->
+  <!-- PLATFORM JAVASCRIPT ENGINE & ARCHITECTURAL LOGIC               -->
   <!-- ============================================================== -->
   <script>
-    let isProPortal = false;
-    let userCoins = 250;
-    let activeChatTarget = 'Adrienne Okon';
-    let logoTapCounter = 0;
-    let logoTapTimer = null;
+    // Universal Application State
+    const appState = {
+      isSocialRegistered: false,
+      isAffiliatePaid: false,
+      userCoins: 250,
+      activeCurrency: 'GHS',
+      userName: 'Promoter',
+      creatorWhitelisted: false,
+      stealthTaps: 0,
+      tapTimer: null
+    };
 
-    // Mock Creator Discovery Profiles
-    const creatorProfiles = [
-      {
-        name: "Adrienne Okon, 23",
-        location: "🇳🇬 Lagos, Nigeria",
-        headline: "E-Commerce & TikTok Dropshipper",
-        bio: "Looking for content creators to team up on global stores. Love sharing viral ad templates and brainstorming 24/7!",
-        synergy: "96% Skill Synergy",
-        avatar: "AO"
-      },
-      {
-        name: "Kwame Mensah, 25",
-        location: "🇬🇭 Accra, Ghana",
-        headline: "AI Video Specialist & Animator",
-        bio: "Automating faceless channel funnels using CapCut and AI voice models. Let's connect and build automated campaigns together.",
-        synergy: "94% Skill Synergy",
-        avatar: "KM"
-      },
-      {
-        name: "David Adams, 27",
-        location: "🇬🇧 London, United Kingdom",
-        headline: "High-Ticket Affiliate Promoter",
-        bio: "Scaling cross-border offers with paid and organic traffic. Passionate about sharing daily alpha in the private mastermind.",
-        synergy: "91% Skill Synergy",
-        avatar: "DA"
-      }
-    ];
-
-    let currentCardIndex = 0;
-
-    // 30+ Global Currency Database (95 GHS = $29 USD)
+    // 30+ Global Currency Matrix (Anchored to 95 GHS = $29.00 USD)
     const currencyDatabase = {
       GHS: { symbol: '₵', code: 'GHS', rate: 1.0, decimals: 2 },
       USD: { symbol: '$', code: 'USD', rate: 0.3053, decimals: 2 },
@@ -1025,6 +1302,7 @@
     }
 
     function changeGlobalCurrency(curKey) {
+      appState.activeCurrency = curKey;
       const elements = document.querySelectorAll('[data-price-ghs]');
       elements.forEach(el => {
         const baseGhs = parseFloat(el.getAttribute('data-price-ghs'));
@@ -1063,93 +1341,126 @@
       setTimeout(() => splash.remove(), 700);
     }
 
-    function scrollToTop() {
+    // View Router
+    function routeTo(viewName) {
+      document.getElementById('view-landing').classList.add('hidden');
+      document.getElementById('view-social').classList.add('hidden');
+      document.getElementById('view-affiliate').classList.add('hidden');
+
+      if (viewName === 'landing') {
+        document.getElementById('view-landing').classList.remove('hidden');
+        document.getElementById('header-platform-tag').innerText = 'HQ Portal';
+      } else if (viewName === 'social') {
+        document.getElementById('view-social').classList.remove('hidden');
+        document.getElementById('header-platform-tag').innerText = 'Social Engine';
+      } else if (viewName === 'affiliate') {
+        document.getElementById('view-affiliate').classList.remove('hidden');
+        document.getElementById('header-platform-tag').innerText = 'Affiliate Suite';
+      }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function toggleSideDrawer() {
-      const drawer = document.getElementById('side-drawer');
-      const panel = document.getElementById('drawer-container');
-      if (drawer.classList.contains('opacity-0')) {
-        drawer.classList.remove('opacity-0', 'pointer-events-none');
-        panel.classList.remove('-translate-x-full');
+    // Gated Access Handlers
+    function handleEnterSocialGateway() {
+      if (!appState.isSocialRegistered) {
+        document.getElementById('social-register-modal').classList.remove('opacity-0', 'pointer-events-none');
       } else {
-        drawer.classList.add('opacity-0', 'pointer-events-none');
-        panel.classList.add('-translate-x-full');
+        routeTo('social');
       }
     }
 
-    function togglePlatformExperience() {
-      isProPortal = !isProPortal;
-      const socialExp = document.getElementById('experience-social');
-      const proExp = document.getElementById('experience-pro');
-      const switchBtn = document.getElementById('btn-portal-switch');
-      const modeTag = document.getElementById('header-mode-tag');
-
-      if (isProPortal) {
-        socialExp.classList.add('hidden');
-        proExp.classList.remove('hidden');
-        switchBtn.innerText = '← Switch to Free Social';
-        switchBtn.className = 'text-[11px] sm:text-xs font-black px-3 py-1.5 rounded-xl bg-white/10 border border-white/20 text-white transition';
-        modeTag.innerText = 'Pro Executive Portal';
-        modeTag.className = 'text-[7px] sm:text-[8px] uppercase tracking-widest text-purple-400 font-bold block';
+    function handleEnterAffiliateGateway() {
+      if (!appState.isAffiliatePaid) {
+        document.getElementById('affiliate-pay-modal').classList.remove('opacity-0', 'pointer-events-none');
       } else {
-        proExp.classList.add('hidden');
-        socialExp.classList.remove('hidden');
-        switchBtn.innerText = 'Switch to Pro Portal →';
-        switchBtn.className = 'text-[11px] sm:text-xs font-black px-3 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg transition';
-        modeTag.innerText = 'Free Social Engine';
-        modeTag.className = 'text-[7px] sm:text-[8px] uppercase tracking-widest text-emerald-400 font-bold block';
+        routeTo('affiliate');
       }
-      scrollToTop();
     }
 
-    function nextProfile(isMatch) {
+    function closeSocialRegisterModal() {
+      document.getElementById('social-register-modal').classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function closeAffiliatePayModal() {
+      document.getElementById('affiliate-pay-modal').classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function handleConfirmSocialRegistration(e) {
+      e.preventDefault();
+      appState.userName = document.getElementById('reg-social-name').value;
+      appState.isSocialRegistered = true;
+      closeSocialRegisterModal();
+      playChime('match');
+      alert(`Welcome to the Free Social Hub, ${appState.userName}! Your profile is live.`);
+      routeTo('social');
+    }
+
+    function simulatePaystackCheckoutSuccess() {
+      appState.isAffiliatePaid = true;
+      appState.userCoins += 250;
+      document.getElementById('header-coin-counter').innerText = appState.userCoins;
+      closeAffiliatePayModal();
+      playChime('match');
+      alert("Payment of ₵ 95.00 GHS Verified!\n1-Year Affiliate Marketing License activated.\n+250 Coins loaded into stash.");
+      routeTo('affiliate');
+    }
+
+    // Workstation Sub-Views (Digitstem Structure)
+    function switchAffiliateSubView(subName) {
+      const subs = ['home', 'market', 'lms', 'creator'];
+      subs.forEach(s => {
+        document.getElementById(`aff-sub-${s}`).classList.add('hidden');
+        document.getElementById(`subnav-${s}`).className = 'py-2 px-3.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white transition flex items-center gap-1.5 shrink-0';
+      });
+
+      document.getElementById(`aff-sub-${subName}`).classList.remove('hidden');
+      document.getElementById(`subnav-${subName}`).className = 'py-2 px-3.5 rounded-xl text-xs font-bold bg-purple-600 text-white transition flex items-center gap-1.5 shrink-0';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Social Matching Handlers
+    function cycleSocialCard(isMatch) {
       if (isMatch) {
         playChime('match');
-        alert(`Boom! It's a Vibe!\nYou connected with ${creatorProfiles[currentCardIndex].name}. Direct chat unlocked!`);
+        alert("Boom! You connected with Adrienne Okon. Direct chat unlocked!");
       }
-      currentCardIndex = (currentCardIndex + 1) % creatorProfiles.length;
-      const p = creatorProfiles[currentCardIndex];
-      document.getElementById('card-name').innerText = p.name;
-      document.getElementById('card-location').innerText = p.location;
-      document.getElementById('card-headline').innerText = p.headline;
-      document.getElementById('card-bio').innerText = `"${p.bio}"`;
-      document.getElementById('card-synergy').innerText = p.synergy;
-      document.getElementById('card-avatar').innerText = p.avatar;
+      alert("Next creator profile loaded into deck.");
     }
 
     function superVibeMatch() {
-      if (userCoins < 15) {
-        alert("You need 15 Vibely Coins for a Super Vibe! Tap your coin stash to refill.");
+      if (appState.userCoins < 15) {
+        alert("Insufficient Vibely Coins! Refill your stash.");
         return;
       }
-      userCoins -= 15;
-      document.getElementById('top-coin-counter').innerText = userCoins;
+      appState.userCoins -= 15;
+      document.getElementById('header-coin-counter').innerText = appState.userCoins;
       playChime('match');
-      alert(`⚡ SUPER VIBE SENT!\nYou tipped 15 Coins to ${creatorProfiles[currentCardIndex].name}. Priority match confirmed!`);
-      nextProfile(false);
+      alert("⚡ SUPER VIBE SENT!\nTipped 15 Coins. Guaranteed instant priority match.");
     }
 
-    function playVoiceVibe() {
+    function playVoiceClip() {
       playChime('match');
-      alert("Playing 15-second Voice Vibe audio clip...");
+      alert("Playing 15-second recorded Voice Vibe audio clip...");
     }
 
-    function openDirectChat(name, loc) {
-      activeChatTarget = name;
-      document.getElementById('chat-modal-name').innerText = name;
-      document.getElementById('chat-modal-avatar').innerText = name.split(' ').map(n=>n[0]).join('');
+    function openVoiceRecordModal() {
+      alert("Voice Vibe Studio:\nMicrophone initialized. Record your 15-second introduction note to display on your discovery card.");
+    }
+
+    // Direct Chat & Coin Tipping
+    function openDirectChatModal(name, avatar) {
+      document.getElementById('chat-modal-target-name').innerText = name;
+      document.getElementById('chat-modal-avatar').innerText = avatar;
       document.getElementById('chat-modal').classList.remove('opacity-0', 'pointer-events-none');
     }
 
-    function closeChatModal() {
+    function closeDirectChatModal() {
       document.getElementById('chat-modal').classList.add('opacity-0', 'pointer-events-none');
     }
 
-    function handleSendChatMessage(e) {
+    function handleSendDirectMessage(e) {
       e.preventDefault();
-      const input = document.getElementById('chat-input-text');
+      const input = document.getElementById('chat-user-input');
       const text = input.value.trim();
       if (!text) return;
 
@@ -1162,36 +1473,38 @@
       container.scrollTop = container.scrollHeight;
     }
 
-    function tipCurrentChat(coins) {
-      if (userCoins < coins) {
-        alert("Insufficient Vibely Coins! Refill your coin stash.");
+    function tipCoinsInCurrentChat(coins) {
+      if (appState.userCoins < coins) {
+        alert("Insufficient Vibely Coins! Top up your stash.");
         return;
       }
-      userCoins -= coins;
-      document.getElementById('top-coin-counter').innerText = userCoins;
+      appState.userCoins -= coins;
+      document.getElementById('header-coin-counter').innerText = appState.userCoins;
       const container = document.getElementById('chat-messages-container');
-      const tipNotice = document.createElement('div');
-      tipNotice.className = 'p-2.5 rounded-xl bg-amber-500/20 border border-amber-500/30 text-amber-300 font-bold text-center text-[11px] my-2';
-      tipNotice.innerText = `🪙 You tipped ${coins} Vibely Coins to ${activeChatTarget}!`;
-      container.appendChild(tipNotice);
+      const tip = document.createElement('div');
+      tip.className = 'p-2 rounded-xl bg-amber-500/20 border border-amber-500/30 text-amber-300 font-bold text-center text-[10px] my-2';
+      tip.innerText = `🪙 You tipped ${coins} Vibely Coins!`;
+      container.appendChild(tip);
       container.scrollTop = container.scrollHeight;
     }
 
-    function openCoinStore() {
+    // Coin Store
+    function openCoinStoreModal() {
       document.getElementById('coin-store-modal').classList.remove('opacity-0', 'pointer-events-none');
     }
 
-    function closeCoinStore() {
+    function closeCoinStoreModal() {
       document.getElementById('coin-store-modal').classList.add('opacity-0', 'pointer-events-none');
     }
 
-    function purchaseCoins(amount, priceGhs) {
-      userCoins += amount;
-      document.getElementById('top-coin-counter').innerText = userCoins;
-      closeCoinStore();
-      alert(`Payment of ₵ ${priceGhs} GHS verified!\n${amount} Vibely Coins loaded into your stash.`);
+    function executeCoinPurchase(amount, priceGhs) {
+      appState.userCoins += amount;
+      document.getElementById('header-coin-counter').innerText = appState.userCoins;
+      closeCoinStoreModal();
+      alert(`Payment of ₵ ${priceGhs} GHS verified!\n${amount} Coins added to your stash.`);
     }
 
+    // Affiliate Utilities
     function copyPromoterLink() {
       const link = window.location.origin + '?ref=VIB-90218';
       navigator.clipboard.writeText(link).then(() => {
@@ -1199,96 +1512,187 @@
       });
     }
 
-    function copyProductLink(prod) {
-      const link = window.location.origin + '?item=' + encodeURIComponent(prod) + '&ref=VIB-90218';
+    function copyPromoterOfferLink(prod) {
+      const link = window.location.origin + '?offer=' + encodeURIComponent(prod) + '&ref=VIB-90218';
       navigator.clipboard.writeText(link).then(() => {
         alert(`50% Commission Link copied for ${prod}:\n${link}`);
       });
     }
 
-    function initiatePayoutRequest() {
-      alert("Payout Request Logged!\nAmount: GHS 1,365.00\nSettlement Window: Friday 24-Hour Payout Queue.\nFunds dispatch directly to your verified MoMo / Bank account Saturday morning.");
+    function requestFridayPayout() {
+      alert("Payout Request Verified!\nAmount: GHS 1,365.00\nSettlement Window: Friday Payout Queue.\nDisbursement scheduled Saturday morning via MTN MoMo / Telecel / Bank.");
     }
 
-    // ==========================================================
-    // STEALTH ROOT ADMIN ENGINE: TRIPLE-TAP TRIGGER
-    // ==========================================================
-    function handleLogoTaps() {
-      logoTapCounter++;
-      clearTimeout(logoTapTimer);
-      logoTapTimer = setTimeout(() => {
-        logoTapCounter = 0;
-      }, 1200);
+    // Quiz & Certificate Engine
+    function submitAcademyQuiz() {
+      const q1 = document.querySelector('input[name="q1"]:checked');
+      const q2 = document.querySelector('input[name="q2"]:checked');
 
-      // Triggered strictly on 3 rapid taps
-      if (logoTapCounter >= 3) {
-        logoTapCounter = 0;
-        const email = prompt("🛡️ Root Security: Enter Master Admin Email:");
-        if (email && email.trim().toLowerCase() === 'vibelyservice@gmail.com') {
-          openAdminModal();
-        } else {
-          alert("Unauthorized: Device access signature not recognized.");
-        }
-      } else if (logoTapCounter === 1) {
-        scrollToTop();
+      if (!q1 || !q2) {
+        alert("Please answer all questions before submitting.");
+        return;
+      }
+
+      if (q1.value === '50' && q2.value === 'fri') {
+        playChime('match');
+        document.getElementById('cert-recipient-name').innerText = appState.userName;
+        document.getElementById('cert-modal').classList.remove('opacity-0', 'pointer-events-none');
+      } else {
+        alert("Exam Score: 50%. You must achieve 100% to earn your completion certificate. Try again!");
       }
     }
 
-    function openAdminModal() {
-      document.getElementById('admin-modal').classList.remove('opacity-0', 'pointer-events-none');
+    function closeCertModal() {
+      document.getElementById('cert-modal').classList.add('opacity-0', 'pointer-events-none');
     }
 
-    function closeAdminModal() {
-      document.getElementById('admin-modal').classList.add('opacity-0', 'pointer-events-none');
+    // "More Features" & Settings Drawers
+    function openMoreFeaturesSheet() {
+      document.getElementById('more-features-sheet').classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function closeMoreFeaturesSheet() {
+      document.getElementById('more-features-sheet').classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function openSettingsDrawer() {
+      document.getElementById('settings-drawer').classList.remove('opacity-0', 'pointer-events-none');
+      document.getElementById('settings-container').classList.remove('-translate-x-full');
+    }
+
+    function closeSettingsDrawer() {
+      document.getElementById('settings-drawer').classList.add('opacity-0', 'pointer-events-none');
+      document.getElementById('settings-container').classList.add('-translate-x-full');
+    }
+
+    function handleUserLogout() {
+      closeSettingsDrawer();
+      appState.isAffiliatePaid = false;
+      appState.isSocialRegistered = false;
+      alert("Signed out successfully.");
+      routeTo('landing');
+    }
+
+    // AI Bot Assistant
+    function openAIBotModal() {
+      document.getElementById('ai-bot-modal').classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function closeAIBotModal() {
+      document.getElementById('ai-bot-modal').classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function sendQuickPrompt(promptText) {
+      document.getElementById('ai-user-input').value = promptText;
+      handleSendAIMessage(new Event('submit'));
+    }
+
+    function handleSendAIMessage(e) {
+      e.preventDefault();
+      const input = document.getElementById('ai-user-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const stream = document.getElementById('ai-chat-stream');
+      const userMsg = document.createElement('div');
+      userMsg.className = 'p-2.5 rounded-xl bg-purple-600 text-white max-w-[85%] ml-auto text-xs';
+      userMsg.innerText = text;
+      stream.appendChild(userMsg);
+      input.value = '';
+
+      setTimeout(() => {
+        const botMsg = document.createElement('div');
+        botMsg.className = 'p-3 rounded-2xl bg-white/5 border border-white/5 text-zinc-300 text-xs';
+        if (text.toLowerCase().includes('whatsapp')) {
+          botMsg.innerHTML = "Direct Human Desk: <a href='https://wa.me/233534671381' target='_blank' class='text-emerald-400 underline font-bold'>Click here to chat on WhatsApp (+233 53 467 1381)</a>.";
+        } else if (text.toLowerCase().includes('50%')) {
+          botMsg.innerText = "Every marketplace sale generates an instant 50% net revenue split credited immediately to your platform wallet. Payouts disburse on Saturday morning.";
+        } else if (text.toLowerCase().includes('sprint')) {
+          botMsg.innerText = "The 200-Sale Monthly Sprint pays a ₵ 10,000 GHS ($3,000 USD) cash bonus to any promoter hitting 200 sales in a calendar month!";
+        } else {
+          botMsg.innerText = "I have indexed your inquiry. For direct escalations, our root desk is reachable 24/7 at vibelydesk@gmail.com.";
+        }
+        stream.appendChild(botMsg);
+        stream.scrollTop = stream.scrollHeight;
+      }, 500);
+    }
+
+    // Stealth 2FA Root Admin Trigger
+    function handleStealthLogoTaps() {
+      appState.stealthTaps++;
+      clearTimeout(appState.tapTimer);
+      appState.tapTimer = setTimeout(() => { appState.stealthTaps = 0; }, 1200);
+
+      if (appState.stealthTaps >= 3) {
+        appState.stealthTaps = 0;
+        document.getElementById('admin-auth-modal').classList.remove('opacity-0', 'pointer-events-none');
+      }
+    }
+
+    function closeAdminAuthModal() {
+      document.getElementById('admin-auth-modal').classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function verifyAdminOTP() {
+      const code = document.getElementById('admin-otp-input').value.trim();
+      if (code === '892104') {
+        closeAdminAuthModal();
+        document.getElementById('admin-console-modal').classList.remove('opacity-0', 'pointer-events-none');
+      } else {
+        alert("Security Alert: Invalid OTP code.");
+      }
+    }
+
+    function closeAdminConsoleModal() {
+      document.getElementById('admin-console-modal').classList.add('opacity-0', 'pointer-events-none');
     }
 
     function switchAdminTab(tabName) {
-      const tabs = ['bans', 'chatmod', 'payouts', 'contests'];
-      tabs.forEach(t => {
+      ['bans', 'payouts', 'whitelist', 'contests'].forEach(t => {
         document.getElementById(`adm-view-${t}`).classList.add('hidden');
-        document.getElementById(`adm-tab-${t}`).className = 'px-3.5 py-1.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white transition';
+        document.getElementById(`adm-btn-${t}`).className = 'px-3 py-1.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white shrink-0';
       });
-
       document.getElementById(`adm-view-${tabName}`).classList.remove('hidden');
-      document.getElementById(`adm-tab-${tabName}`).className = 'px-3.5 py-1.5 rounded-xl text-xs font-bold bg-red-500/20 text-red-300 border border-red-500/30 transition';
+      document.getElementById(`adm-btn-${tabName}`).className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-red-500/20 text-red-300 border border-red-500/30 shrink-0';
     }
 
-    // Universal Account Ban (Simultaneously bans Chat access + freezes Affiliate earnings)
-    function toggleBanUser(userId, userName) {
-      const chatEl = document.getElementById(`user-chat-${userId}`);
-      const affEl = document.getElementById(`user-aff-${userId}`);
-      const btnEl = document.getElementById(`btn-ban-${userId}`);
+    function toggleUniversalBan(id, name) {
+      const chatStatus = document.getElementById(`adm-status-chat-${id}`);
+      const affStatus = document.getElementById(`adm-status-aff-${id}`);
+      const btn = document.getElementById(`btn-adm-ban-${id}`);
 
-      if (chatEl.innerText === 'Allowed') {
-        chatEl.innerText = 'Banned';
-        chatEl.className = 'text-red-400 font-bold';
-        affEl.innerText = 'Frozen';
-        affEl.className = 'text-red-400 font-bold';
-        btnEl.innerText = 'Unban User';
-        btnEl.className = 'px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold text-[11px] hover:bg-emerald-500/20 transition';
-        alert(`UNIVERSAL BAN ENFORCED: ${userName}\n• Direct chat and social discovery permanently locked.\n• Affiliate promoter link deactivated.\n• Payouts and wallet balances frozen.`);
+      if (chatStatus.innerText === 'Active') {
+        chatStatus.innerText = 'Banned';
+        chatStatus.className = 'text-red-400';
+        affStatus.innerText = 'Frozen';
+        affStatus.className = 'text-red-400';
+        btn.innerText = 'Unban User';
+        alert(`Account ${name} permanently banned across Chat and Affiliate.`);
       } else {
-        chatEl.innerText = 'Allowed';
-        chatEl.className = 'text-emerald-400 font-bold';
-        affEl.innerText = 'Active';
-        affEl.className = 'text-emerald-400 font-bold';
-        btnEl.innerText = 'Ban User Completely';
-        btnEl.className = 'px-3 py-1.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 font-bold text-[11px] hover:bg-red-500/20 transition';
-        alert(`UNIVERSAL UNBAN: ${userName} restored to full active status across Chat and Affiliate.`);
+        chatStatus.innerText = 'Active';
+        chatStatus.className = 'text-emerald-400';
+        affStatus.innerText = 'Active';
+        affStatus.className = 'text-emerald-400';
+        btn.innerText = 'Ban User';
+        alert(`Account ${name} restored to Active standing.`);
       }
     }
 
-    function approveBatchPayouts() {
-      document.getElementById('payout-queue-list').innerHTML = `
-        <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-center font-bold text-xs">
-          ✓ All pending Friday withdrawals approved! Batch reference signed. Settlement disbursements en route to MoMo & Bank endpoints.
-        </div>
-      `;
-      alert("Friday Batch Settlement Authorized by vibelyservice@gmail.com!\nDisbursements dispatched to partner accounts.");
-    }
+    function toggleCreatorWhitelist() {
+      appState.creatorWhitelisted = !appState.creatorWhitelisted;
+      const status = document.getElementById('adm-whitelist-status');
+      const btn = document.getElementById('btn-adm-whitelist');
 
-    function awardContestWinner(winnerName, amountGhs) {
-      alert(`CONTEST PRIZE DISBURSED!\nWinner: ${winnerName}\nAward: ₵ ${amountGhs} GHS\nNotice dispatched from vibelydesk@gmail.com.`);
+      if (appState.creatorWhitelisted) {
+        status.innerText = 'Whitelisted (Active Creator)';
+        status.className = 'text-emerald-400 font-bold';
+        btn.innerText = 'Revoke Whitelist';
+        alert('Gerald Mingle whitelisted to list products in Creator Hub!');
+      } else {
+        status.innerText = 'Pending Whitelist';
+        status.className = 'text-amber-400 font-bold';
+        btn.innerText = 'Approve to Whitelist';
+      }
     }
   </script>
 </body>
