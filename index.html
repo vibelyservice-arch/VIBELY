@@ -1,1 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vibely — Global Social Network & Skill Academy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              purple: '#9333ea',
+              pink: '#ec4899',
+              indigo: '#6366f1'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #050507;
+    }
+  </style>
+</head>
+<body class="text-zinc-100 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-purple-500 selection:text-white">
+
+  <!-- Ambient Background Glows -->
+  <div class="fixed inset-0 pointer-events-none z-0">
+    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[350px] sm:w-[600px] h-[350px] sm:h-[600px] bg-purple-600/15 rounded-full blur-[140px]"></div>
+    <div class="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[350px] sm:w-[600px] h-[350px] sm:h-[600px] bg-indigo-600/15 rounded-full blur-[140px]"></div>
+  </div>
+
+  <!-- TAP TO ENTER OVERLAY -->
+  <div 
+    id="splash-screen" 
+    onclick="enterVibely()"
+    class="fixed inset-0 z-50 bg-[#050507]/95 backdrop-blur-2xl flex flex-col items-center justify-center p-6 text-center cursor-pointer transition-all duration-700"
+  >
+    <div class="relative mb-6">
+      <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-purple-600 via-pink-500 to-indigo-500 p-[2px] animate-pulse">
+        <div class="w-full h-full bg-[#050507] rounded-full flex items-center justify-center">
+          <svg class="w-9 h-9 text-white fill-current ml-1" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </div>
+      </div>
+      <div class="absolute -inset-2 bg-purple-500/20 rounded-full blur-xl animate-ping -z-10"></div>
+    </div>
+
+    <h2 class="text-3xl font-black tracking-widest uppercase bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent">
+      VIBELY
+    </h2>
+    <p class="text-xs uppercase tracking-[0.25em] text-zinc-400 mt-2 font-semibold">
+      Tap Screen To Enter
+    </p>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="relative z-10 w-full max-w-5xl mx-auto px-6 py-6 flex items-center justify-between border-b border-zinc-800/60">
+    <div class="flex items-center gap-2">
+      <span class="text-2xl font-black tracking-widest bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent">
+        VIBELY
+      </span>
+      <span class="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">
+        PRO
+      </span>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <a 
+        href="mailto:vibelydesk@gmail.com" 
+        class="text-xs font-semibold text-zinc-400 hover:text-white transition"
+      >
+        Support
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <main class="relative z-10 w-full max-w-4xl mx-auto px-6 py-12 flex flex-col items-center text-center">
+    
+    <!-- Live Badge -->
+    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-[11px] font-medium text-zinc-300 mb-8">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span>20,000+ Active Members • 50/50 Revenue Split</span>
+    </div>
+
+    <!-- Title -->
+    <h1 class="text-3xl sm:text-6xl font-black tracking-tight leading-tight sm:leading-tight mb-6">
+      The Global Social Hub &amp; <br />
+      <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent">
+        High-Income Digital Academy
+      </span>
+    </h1>
+
+    <!-- Description -->
+    <p class="max-w-lg text-sm sm:text-base text-zinc-400 mb-8 leading-relaxed">
+      Connect with verified creators, master high-income skills (AI Video, E-Commerce, Trading), and earn instant 50% commissions on every sale.
+    </p>
+
+    <!-- CTAs -->
+    <div class="w-full max-w-xs flex flex-col gap-3 mb-12">
+      <button 
+        onclick="alert('Day 2: Paystack Checkout activating next!')"
+        class="w-full py-4 px-6 rounded-2xl font-bold text-sm bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 text-white shadow-xl shadow-purple-600/25 active:scale-95 transition"
+      >
+        Get 1-Year Pass (Instant Access)
+      </button>
+
+      <button 
+        onclick="alert('Day 2: Affiliate Portal activating next!')"
+        class="w-full py-3.5 px-6 rounded-2xl font-semibold text-xs bg-zinc-900/90 border border-zinc-800 text-zinc-300 active:scale-95 transition"
+      >
+        Affiliate Partner Desk
+      </button>
+    </div>
+
+    <!-- Features -->
+    <div class="w-full grid grid-cols-1 sm:grid-cols-3 gap-3.5 text-left">
+      <div class="p-5 rounded-2xl bg-zinc-900/50 border border-zinc-800/80 backdrop-blur-sm">
+        <h3 class="text-xs uppercase tracking-wider font-bold text-purple-400 mb-1">01. Social Discovery</h3>
+        <p class="text-xs text-zinc-400 leading-relaxed">
+          Clean interest-based matching with isolated Vibely Coins for social gifting.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-zinc-900/50 border border-zinc-800/80 backdrop-blur-sm">
+        <h3 class="text-xs uppercase tracking-wider font-bold text-pink-400 mb-1">02. UMM Masterclass</h3>
+        <p class="text-xs text-zinc-400 leading-relaxed">
+          Step-by-step digital skills: AI Video Mastery, global dropshipping, and high-ticket sales.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-zinc-900/50 border border-zinc-800/80 backdrop-blur-sm">
+        <h3 class="text-xs uppercase tracking-wider font-bold text-indigo-400 mb-1">03. Weekly Settlements</h3>
+        <p class="text-xs text-zinc-400 leading-relaxed">
+          Automated 50/50 revenue share. Friday payout requests disbursed to MoMo & bank Saturday.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="relative z-10 w-full border-t border-zinc-800/60 py-6 text-xs text-zinc-500">
+    <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+      <p>© 2026 Vibely HQ • Powered by Geestablish</p>
+      <div class="flex items-center gap-4 text-[11px]">
+        <a href="mailto:vibelydesk@gmail.com" class="hover:text-zinc-300 transition">
+          vibelydesk@gmail.com
+        </a>
+        <span>•</span>
+        <a href="https://wa.me/233534671381" target="_blank" class="hover:text-zinc-300 transition">
+          WhatsApp: +233 53 467 1381
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Web Audio Synthesizer Script -->
+  <script>
+    function playChime() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        const ctx = new AudioCtx();
+        const chord = [523.25, 659.25, 783.99, 1046.50]; // C Major 9 chord
+        const now = ctx.currentTime;
+
+        chord.forEach((freq, i) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + i * 0.08);
+
+          gain.gain.setValueAtTime(0.001, now + i * 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.18, now + i * 0.08 + 0.04);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.08 + 1.6);
+
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+
+          osc.start(now + i * 0.08);
+          osc.stop(now + i * 0.08 + 1.8);
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    function enterVibely() {
+      playChime();
+      const splash = document.getElementById('splash-screen');
+      splash.style.opacity = '0';
+      splash.style.pointerEvents = 'none';
+      setTimeout(() => splash.remove(), 700);
+    }
+  </script>
+</body>
+</html>
 
