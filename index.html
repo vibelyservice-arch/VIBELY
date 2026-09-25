@@ -19,8 +19,21 @@
               teal: '#14b8a6',
               amber: '#f59e0b',
               dark: '#07070a',
-              surface: '#0f0f15',
-              card: '#161622'
+              card: '#12121a'
+            }
+          },
+          animation: {
+            'glow-pulse': 'glow 8s ease-in-out infinite',
+            'float': 'float 5s ease-in-out infinite'
+          },
+          keyframes: {
+            glow: {
+              '0%, 100%': { opacity: '0.18', transform: 'scale(1)' },
+              '50%': { opacity: '0.35', transform: 'scale(1.15)' }
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-6px)' }
             }
           }
         }
@@ -43,33 +56,36 @@
       color: #f4f4f5;
     }
     .glass-nav {
-      background: rgba(15, 15, 21, 0.85);
+      background: rgba(12, 12, 18, 0.90);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
     .glass-card {
-      background: rgba(22, 22, 34, 0.65);
+      background: rgba(18, 18, 28, 0.65);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.07);
     }
     .glass-panel {
-      background: rgba(15, 15, 21, 0.95);
+      background: rgba(14, 14, 22, 0.95);
       backdrop-filter: blur(24px);
       border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .text-glow {
+      text-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
     }
   </style>
 </head>
 
-<body class="min-h-screen pb-28 selection:bg-purple-600 selection:text-white overflow-x-hidden">
+<body class="min-h-screen pb-24 selection:bg-purple-600 selection:text-white overflow-x-hidden">
 
-  <!-- LUXURY AMBIENT GLOWS -->
+  <!-- LUXURY AMBIENT BACKGROUND GLOWS -->
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[350px] sm:w-[750px] h-[350px] sm:h-[750px] bg-purple-600/15 rounded-full blur-[140px]"></div>
-    <div class="absolute top-1/3 -right-32 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-indigo-600/10 rounded-full blur-[160px]"></div>
-    <div class="absolute -bottom-32 -left-32 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-pink-600/10 rounded-full blur-[150px]"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(#ffffff08_1px,transparent_1px)] [background-size:20px_20px]"></div>
+    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[380px] sm:w-[850px] h-[380px] sm:h-[850px] bg-purple-600/18 rounded-full blur-[150px] animate-glow-pulse"></div>
+    <div class="absolute top-1/2 -right-40 w-[300px] sm:w-[650px] h-[300px] sm:h-[650px] bg-indigo-600/12 rounded-full blur-[170px] animate-glow-pulse" style="animation-delay: 2.5s;"></div>
+    <div class="absolute -bottom-40 -left-40 w-[350px] sm:w-[700px] h-[350px] sm:h-[700px] bg-pink-600/12 rounded-full blur-[160px] animate-glow-pulse" style="animation-delay: 4.5s;"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:24px_24px]"></div>
   </div>
 
   <!-- TAP TO ENTER CHIME OVERLAY -->
@@ -78,488 +94,748 @@
     onclick="enterVibely()"
     class="fixed inset-0 z-50 bg-[#07070a]/95 backdrop-blur-3xl flex flex-col items-center justify-center p-6 text-center cursor-pointer transition-all duration-700 ease-out"
   >
-    <div class="relative mb-6">
-      <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-purple-600 via-pink-500 to-indigo-600 p-[1.5px] shadow-2xl shadow-purple-600/40">
-        <div class="w-full h-full bg-[#0a0a0f] rounded-2xl flex items-center justify-center">
-          <svg class="w-8 h-8 text-white fill-current translate-x-0.5" viewBox="0 0 24 24">
+    <div class="relative mb-6 animate-float">
+      <div class="w-20 h-20 rounded-3xl bg-gradient-to-tr from-purple-600 via-pink-500 to-indigo-600 p-[1.5px] shadow-2xl shadow-purple-600/40">
+        <div class="w-full h-full bg-[#0a0a0f] rounded-3xl flex items-center justify-center">
+          <svg class="w-9 h-9 text-white fill-current translate-x-0.5" viewBox="0 0 24 24">
             <path d="M8 5v14l11-7z" />
           </svg>
         </div>
       </div>
-      <div class="absolute -inset-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl blur-xl opacity-35 animate-pulse -z-10"></div>
+      <div class="absolute -inset-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-3xl blur-xl opacity-35 animate-pulse -z-10"></div>
     </div>
 
     <h2 class="text-3xl font-black tracking-[0.25em] uppercase bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
       VIBELY
     </h2>
-    <p class="text-[10px] uppercase tracking-[0.3em] text-purple-400 mt-2.5 font-bold px-3 py-1 rounded-full border border-purple-500/20 bg-purple-500/10">
+    <p class="text-[10px] uppercase tracking-[0.3em] text-purple-400 mt-2 font-bold px-3 py-1 rounded-full border border-purple-500/20 bg-purple-500/10">
       Tap Screen To Enter Experience
     </p>
   </div>
 
-  <!-- TOP APP BAR -->
-  <header class="sticky top-0 z-40 w-full glass-nav px-4 py-3 sm:px-6 flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <button onclick="toggleProfileDrawer()" class="p-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white transition">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-      </button>
-      <div class="flex items-center gap-2 cursor-pointer" onclick="switchView('dashboard')">
-        <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-purple-600 via-pink-500 to-indigo-500 p-[1px] flex items-center justify-center">
-          <div class="w-full h-full bg-[#0a0a0f] rounded-lg flex items-center justify-center">
-            <span class="text-xs font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">V</span>
-          </div>
+  <!-- TOP APP NAVIGATION BAR -->
+  <header class="sticky top-0 z-40 w-full glass-nav px-3 py-2.5 sm:px-8 flex items-center justify-between">
+    <!-- Brand Logo -->
+    <div class="flex items-center gap-2 cursor-pointer" onclick="scrollToTop()">
+      <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-purple-600 via-pink-500 to-indigo-500 p-[1px] flex items-center justify-center">
+        <div class="w-full h-full bg-[#0a0a0f] rounded-xl flex items-center justify-center">
+          <span class="text-xs font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">V</span>
         </div>
-        <span class="text-base font-black tracking-wider text-white">VIBELY</span>
+      </div>
+      <div>
+        <span class="text-sm sm:text-base font-black tracking-wider text-white block leading-tight">VIBELY</span>
+        <span class="text-[7px] sm:text-[8px] uppercase tracking-widest text-purple-400 font-bold block">Global Platform</span>
       </div>
     </div>
 
-    <!-- Currency Switcher -->
-    <div class="flex items-center bg-black/60 border border-zinc-800 rounded-xl p-0.5">
-      <button 
-        id="btn-curr-usd"
-        onclick="setCurrency('USD')" 
-        class="px-2.5 py-1 text-[11px] font-bold rounded-lg bg-purple-600 text-white transition"
-      >
-        🌐 USD ($)
-      </button>
-      <button 
-        id="btn-curr-ghs"
-        onclick="setCurrency('GHS')" 
-        class="px-2.5 py-1 text-[11px] font-bold rounded-lg text-zinc-400 hover:text-white transition"
-      >
-        🇬🇭 GHS (₵)
-      </button>
-    </div>
+    <!-- Multi-Currency Engine Selector -->
+    <div class="flex items-center gap-2">
+      <div class="relative">
+        <select 
+          id="global-currency-select"
+          onchange="changeGlobalCurrency(this.value)"
+          class="appearance-none bg-black/80 border border-purple-500/40 text-purple-300 font-black text-[11px] sm:text-xs py-1.5 pl-2.5 pr-6 rounded-xl focus:outline-none focus:border-purple-400 cursor-pointer shadow-inner"
+        >
+          <optgroup label="⭐ Flagship Anchors">
+            <option value="GHS" selected>🇬🇭 GHS (₵)</option>
+            <option value="USD">🌐 USD ($)</option>
+            <option value="EUR">🇪🇺 EUR (€)</option>
+            <option value="GBP">🇬🇧 GBP (£)</option>
+          </optgroup>
+          <optgroup label="🌍 Africa">
+            <option value="NGN">🇳🇬 NGN (₦)</option>
+            <option value="KES">🇰🇪 KES (KSh)</option>
+            <option value="ZAR">🇿🇦 ZAR (R)</option>
+            <option value="XOF">🇨🇮 XOF / CFA (Fr)</option>
+            <option value="EGP">🇪🇬 EGP (E£)</option>
+            <option value="UGX">🇺🇬 UGX (USh)</option>
+            <option value="TZS">🇹🇿 TZS (TSh)</option>
+            <option value="RWF">🇷🇼 RWF (RF)</option>
+            <option value="MAD">🇲🇦 MAD (DH)</option>
+            <option value="ZMW">🇿🇲 ZMW (ZK)</option>
+          </optgroup>
+          <optgroup label="🌏 Asia &amp; Oceania">
+            <option value="INR">🇮🇳 INR (₹)</option>
+            <option value="PKR">🇵🇰 PKR (₨)</option>
+            <option value="BDT">🇧🇩 BDT (৳)</option>
+            <option value="PHP">🇵🇭 PHP (₱)</option>
+            <option value="IDR">🇮🇩 IDR (Rp)</option>
+            <option value="MYR">🇲🇾 MYR (RM)</option>
+            <option value="VND">🇻🇳 VND (₫)</option>
+            <option value="THB">🇹🇭 THB (฿)</option>
+            <option value="JPY">🇯🇵 JPY (¥)</option>
+            <option value="CNY">🇨🇳 CNY (¥)</option>
+            <option value="SGD">🇸🇬 SGD (S$)</option>
+            <option value="AUD">🇦🇺 AUD (A$)</option>
+            <option value="NZD">🇳🇿 NZD (NZ$)</option>
+          </optgroup>
+          <optgroup label="🌎 Americas">
+            <option value="CAD">🇨🇦 CAD (CA$)</option>
+            <option value="BRL">🇧🇷 BRL (R$)</option>
+            <option value="MXN">🇲🇽 MXN (MX$)</option>
+            <option value="COP">🇨🇴 COP (COL$)</option>
+            <option value="CLP">🇨🇱 CLP (CLP$)</option>
+            <option value="ARS">🇦🇷 ARS ($)</option>
+          </optgroup>
+          <optgroup label="🕌 Middle East">
+            <option value="AED">🇦🇪 AED (AED)</option>
+            <option value="SAR">🇸🇦 SAR (SAR)</option>
+            <option value="QAR">🇶🇦 QAR (QAR)</option>
+            <option value="KWD">🇰🇼 KWD (KD)</option>
+          </optgroup>
+        </select>
+        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-1.5 text-purple-400 text-[10px]">▼</div>
+      </div>
 
-    <!-- Notification & Profile -->
-    <div class="flex items-center gap-2.5">
-      <button onclick="alert('No unread notifications.')" class="p-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white transition relative">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
-        <span class="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-pink-500"></span>
+      <!-- Free vs Pro CTAs -->
+      <button 
+        onclick="openModal('social')"
+        class="hidden sm:inline-flex text-xs font-bold px-3 py-1.5 rounded-xl bg-white/10 text-zinc-300 hover:text-white border border-white/10 transition"
+      >
+        Join Free Social
       </button>
-      <button onclick="toggleProfileDrawer()" class="w-8 h-8 rounded-xl bg-purple-500/20 border border-purple-500/40 text-purple-300 font-black text-xs flex items-center justify-center">
-        VP
+
+      <button 
+        onclick="openModal('affiliate')"
+        class="text-[11px] sm:text-xs font-black px-3 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-600/30 active:scale-95 transition"
+      >
+        Get Pro Pass
       </button>
     </div>
   </header>
 
-  <!-- SLIDE-OVER PROFILE DRAWER -->
-  <div 
-    id="profile-drawer" 
-    class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300"
-    onclick="toggleProfileDrawer()"
-  >
-    <div 
-      class="glass-panel w-72 sm:w-80 h-full p-6 flex flex-col justify-between transform -translate-x-full transition-all duration-300"
-      onclick="event.stopPropagation()"
-      id="drawer-panel"
-    >
-      <div>
-        <div class="flex items-center justify-between pb-5 border-b border-zinc-800">
-          <div class="flex items-center gap-3">
-            <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-600 flex items-center justify-center text-white font-black text-sm">
-              VP
-            </div>
-            <div>
-              <h4 class="text-sm font-bold text-white leading-tight">Vibely Promoter</h4>
-              <p class="text-[11px] text-zinc-400">ID: VIB-90218</p>
-            </div>
-          </div>
-          <button onclick="toggleProfileDrawer()" class="text-zinc-500 hover:text-white font-bold p-1">✕</button>
-        </div>
+  <!-- MAIN CONTAINER -->
+  <main class="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 pt-8 space-y-16">
 
-        <nav class="mt-6 space-y-1.5 text-xs font-semibold">
-          <a href="#" onclick="alert('Profile details active.'); toggleProfileDrawer();" class="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300 hover:text-white transition">
-            <span class="flex items-center gap-2.5">👤 Profile &amp; Details</span>
-            <span class="text-zinc-500">›</span>
-          </a>
-          <a href="#" onclick="alert('KYC verification is fully verified.'); toggleProfileDrawer();" class="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300 hover:text-white transition">
-            <span class="flex items-center gap-2.5">🪪 MoMo / Bank KYC</span>
-            <span class="text-emerald-400 text-[10px] font-bold">Verified</span>
-          </a>
-          <a href="#" onclick="alert('2FA security active.'); toggleProfileDrawer();" class="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300 hover:text-white transition">
-            <span class="flex items-center gap-2.5">🔒 2FA Security</span>
-            <span class="text-zinc-500">›</span>
-          </a>
-          <a href="mailto:vibelydesk@gmail.com" class="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300 hover:text-white transition">
-            <span class="flex items-center gap-2.5">💬 Desk Support</span>
-            <span class="text-zinc-500">›</span>
-          </a>
-        </nav>
+    <!-- HERO SECTION: THE DUAL UNIVERSE -->
+    <section class="text-center pt-4 pb-4">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-[11px] font-semibold text-zinc-300 mb-6 border border-white/10">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>The Two-Sided Platform: Free Global Social Network + Pro 50/50 Earning Academy</span>
       </div>
 
-      <div class="pt-4 border-t border-zinc-800">
-        <button onclick="alert('Session saved.'); toggleProfileDrawer();" class="w-full py-2.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 font-bold text-xs hover:bg-red-500/20 transition">
-          Sign Out
+      <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-[1.1] mb-5 text-glow">
+        Meet People Worldwide. <br />
+        <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-300 bg-clip-text text-transparent">
+          Earn 50% Revenue Share.
+        </span>
+      </h1>
+
+      <p class="max-w-xl mx-auto text-sm sm:text-base text-zinc-400 mb-8 leading-relaxed">
+        Join our free social hub to meet creators across 120+ nations, collaborate in open rooms, and gift Vibely Coins. Unlock the Pro Academy pass to start earning 50% weekly payouts on all marketplace digital assets.
+      </p>
+
+      <!-- Dual Core Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-md mx-auto">
+        <a 
+          href="#free-social"
+          class="w-full sm:w-auto py-3.5 px-6 rounded-2xl font-bold text-xs bg-white/10 hover:bg-white/15 border border-white/10 text-white active:scale-95 transition flex items-center justify-center gap-2"
+        >
+          <span>💬 Free Social &amp; Chat Hub</span>
+          <span class="text-[9px] uppercase font-black px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400">100% Free</span>
+        </a>
+
+        <a 
+          href="#pro-academy"
+          class="w-full sm:w-auto py-3.5 px-6 rounded-2xl font-black text-xs bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 text-white shadow-xl shadow-purple-600/30 active:scale-95 transition flex items-center justify-center gap-2"
+        >
+          <span>🔥 Unlock Pro Pass (<span data-price-ghs="95">₵ 95 GHS</span>)</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- PILLAR 1: FREE GLOBAL SOCIAL CONNECTION HUB    -->
+    <!-- ============================================== -->
+    <section id="free-social" class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-1.5 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            Pillar 1 • Completely Free
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
+            Connect &amp; Chat With People Globally
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-400 mt-1 max-w-xl">
+            Build global friendships across Africa, Europe, the Americas, and Asia. Share skills, network in free community rooms, and send Vibely Coins. Zero registration fee required to join the social hub.
+          </p>
+        </div>
+
+        <button 
+          onclick="openModal('social')"
+          class="px-4 py-2.5 rounded-xl bg-white text-black font-black text-xs hover:bg-zinc-200 active:scale-95 transition shrink-0 shadow-lg"
+        >
+          Create Free Social Profile →
         </button>
       </div>
-    </div>
-  </div>
 
-  <!-- MAIN APP CONTAINER -->
-  <main class="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 pt-5">
-
-    <!-- VIEW: AFFILIATE DASHBOARD -->
-    <div id="view-dashboard" class="space-y-6">
-
-      <!-- WELCOME BAR -->
-      <div class="flex items-center justify-between">
-        <div>
-          <h1 class="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
-            Welcome Back! <span class="text-lg">👋</span>
-          </h1>
-          <p class="text-xs text-zinc-400 mt-0.5">Your status is active • Friday settlement cycle primed</p>
+      <!-- Live Interactive Creator Directory -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        
+        <!-- Social Card 1 -->
+        <div class="glass-card p-5 rounded-2xl border border-white/5 flex flex-col justify-between hover:border-emerald-500/30 transition">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-2.5">
+                <div class="w-10 h-10 rounded-xl bg-purple-500/20 border border-purple-500/30 flex items-center justify-center font-black text-purple-300 text-xs">
+                  🇬🇭 KM
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-white flex items-center gap-1">
+                    Kwame Mensah <span class="w-1.5 h-1.5 rounded-full bg-emerald-400" title="Online now"></span>
+                  </h4>
+                  <p class="text-[10px] text-zinc-400">Accra, Ghana • Content Creator</p>
+                </div>
+              </div>
+            </div>
+            <p class="text-xs text-zinc-300 leading-relaxed mb-4">
+              "Building short-form video pipelines. Connect with me in the free video lounge to discuss organic TikTok algorithms!"
+            </p>
+          </div>
+          <div class="pt-3 border-t border-white/5 flex items-center justify-between text-xs">
+            <button onclick="tipUser('Kwame Mensah')" class="text-amber-400 hover:text-amber-300 font-bold active:scale-95 transition">
+              🪙 Tip 10 Coins
+            </button>
+            <button onclick="openChat('Kwame Mensah')" class="text-purple-400 font-bold hover:text-purple-300">
+              Chat Free →
+            </button>
+          </div>
         </div>
-        <div class="text-right">
-          <span class="text-[10px] font-bold uppercase tracking-wider text-purple-400 px-2.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/20">
-            50% Partner
-          </span>
+
+        <!-- Social Card 2 -->
+        <div class="glass-card p-5 rounded-2xl border border-white/5 flex flex-col justify-between hover:border-pink-500/30 transition">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-2.5">
+                <div class="w-10 h-10 rounded-xl bg-pink-500/20 border border-pink-500/30 flex items-center justify-center font-black text-pink-300 text-xs">
+                  🇳🇬 AO
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-white flex items-center gap-1">
+                    Adrienne Okon <span class="w-1.5 h-1.5 rounded-full bg-emerald-400" title="Online now"></span>
+                  </h4>
+                  <p class="text-[10px] text-zinc-400">Lagos, Nigeria • E-Com Specialist</p>
+                </div>
+              </div>
+            </div>
+            <p class="text-xs text-zinc-300 leading-relaxed mb-4">
+              "Looking to meet international partners to scale e-commerce funnels. Always down for creative brainstorm sessions."
+            </p>
+          </div>
+          <div class="pt-3 border-t border-white/5 flex items-center justify-between text-xs">
+            <button onclick="tipUser('Adrienne Okon')" class="text-amber-400 hover:text-amber-300 font-bold active:scale-95 transition">
+              🪙 Tip 10 Coins
+            </button>
+            <button onclick="openChat('Adrienne Okon')" class="text-purple-400 font-bold hover:text-purple-300">
+              Chat Free →
+            </button>
+          </div>
         </div>
+
+        <!-- Social Card 3 -->
+        <div class="glass-card p-5 rounded-2xl border border-white/5 flex flex-col justify-between hover:border-indigo-500/30 transition">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-2.5">
+                <div class="w-10 h-10 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center font-black text-indigo-300 text-xs">
+                  🇬🇧 DA
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-white flex items-center gap-1">
+                    David Adams <span class="w-1.5 h-1.5 rounded-full bg-emerald-400" title="Online now"></span>
+                  </h4>
+                  <p class="text-[10px] text-zinc-400">London, UK • Digital Promoter</p>
+                </div>
+              </div>
+            </div>
+            <p class="text-xs text-zinc-300 leading-relaxed mb-4">
+              "Networking with peers from Africa, North America, and Europe. Let's build collaborative affiliate campaigns!"
+            </p>
+          </div>
+          <div class="pt-3 border-t border-white/5 flex items-center justify-between text-xs">
+            <button onclick="tipUser('David Adams')" class="text-amber-400 hover:text-amber-300 font-bold active:scale-95 transition">
+              🪙 Tip 10 Coins
+            </button>
+            <button onclick="openChat('David Adams')" class="text-purple-400 font-bold hover:text-purple-300">
+              Chat Free →
+            </button>
+          </div>
+        </div>
+
       </div>
 
-      <!-- MILESTONE PROGRESSION -->
-      <div class="glass-card p-5 sm:p-6 rounded-3xl border border-white/10 relative overflow-hidden">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-2xl shadow-inner">
-              🚀
-            </div>
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="text-xs uppercase font-extrabold tracking-wider text-amber-400">Current Milestone:</span>
-                <span class="text-xs font-bold text-white px-2 py-0.5 rounded-md bg-white/5 border border-white/10">Starter Pro</span>
-              </div>
-              <h3 class="text-base sm:text-lg font-black text-white mt-0.5">Bronze Excellence Award</h3>
-            </div>
+      <!-- FREE COMMUNITY ROOMS BANNER -->
+      <div class="glass-panel p-5 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 border border-emerald-500/20">
+        <div class="flex items-center gap-3">
+          <span class="text-2xl">🌍</span>
+          <div>
+            <h4 class="text-sm font-bold text-white">Join 24/7 Global Community Lounges (100% Free)</h4>
+            <p class="text-xs text-zinc-400">Open spaces for AI video enthusiasts, e-commerce builders, and making friends worldwide.</p>
           </div>
-          <div class="text-left sm:text-right">
-            <span class="text-[10px] uppercase font-bold text-zinc-400 block">Milestone Target</span>
-            <span class="text-sm font-black text-amber-300" id="dash-milestone-target">
-              $3,000.00 USD (10,000 GHS)
+        </div>
+        <button onclick="openModal('social')" class="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20 transition shrink-0">
+          Enter Community Lounges →
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- PILLAR 2: PRO AFFILIATE ACADEMY & MARKETPLACE   -->
+    <!-- ============================================== -->
+    <section id="pro-academy" class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-1.5 text-purple-400 text-xs font-bold uppercase tracking-wider mb-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
+            Pillar 2 • Monetization Engine
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
+            High-Income Academy &amp; 50/50 Affiliate Split
+          </h2>
+          <p class="text-xs sm:text-sm text-zinc-400 mt-1 max-w-xl">
+            Upgrade to the Pro Pass (<span data-price-ghs="95">₵ 95 GHS</span>) to unlock the exclusive affiliate dashboard, high-income masterclasses, custom promoter links, and Friday settlements.
+          </p>
+        </div>
+
+        <button 
+          onclick="toggleDashboardPreview()"
+          class="px-4 py-2.5 rounded-xl bg-purple-500/20 border border-purple-500/30 text-purple-300 font-bold text-xs hover:bg-purple-500/30 active:scale-95 transition shrink-0"
+        >
+          👁️ Inside Dashboard Preview
+        </button>
+      </div>
+
+      <!-- INTERACTIVE INSIDE LOOK SIMULATION (COLLAPSIBLE) -->
+      <div id="dashboard-preview-box" class="hidden glass-panel p-6 rounded-3xl border border-purple-500/40 relative overflow-hidden transition-all duration-500">
+        <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+            <span class="text-xs font-black uppercase tracking-wider text-white">Live Affiliate Portal Preview (Members Only)</span>
+          </div>
+          <button onclick="toggleDashboardPreview()" class="text-zinc-400 hover:text-white text-xs font-bold">✕ Close Preview</button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+          <div class="glass-card p-4 rounded-2xl">
+            <span class="text-[10px] uppercase font-bold text-zinc-400 block mb-1">Available For Friday Payout</span>
+            <span class="text-2xl font-black text-white" data-price-ghs="1365">₵ 1,365.00 GHS</span>
+            <span class="text-[10px] text-emerald-400 font-semibold block mt-0.5">Disburses to MoMo / Bank Saturday</span>
+          </div>
+          <div class="glass-card p-4 rounded-2xl">
+            <span class="text-[10px] uppercase font-bold text-zinc-400 block mb-1">Your 50% Split Commission</span>
+            <span class="text-2xl font-black text-purple-400"><span data-price-ghs="47.5">₵ 47.50 GHS</span> / sale</span>
+            <span class="text-[10px] text-zinc-400 font-semibold block mt-0.5">Automated webhook split</span>
+          </div>
+          <div class="glass-card p-4 rounded-2xl">
+            <span class="text-[10px] uppercase font-bold text-zinc-400 block mb-1">Private Affiliates Lounge</span>
+            <span class="text-xs font-bold text-emerald-400 flex items-center gap-1 mt-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              Unlocked with Pro Pass
             </span>
           </div>
         </div>
 
-        <div class="w-full bg-black/60 rounded-full h-2.5 border border-white/5 overflow-hidden mb-2">
-          <div class="bg-gradient-to-r from-purple-500 via-pink-500 to-amber-400 h-2.5 rounded-full w-[14%]"></div>
-        </div>
-        <div class="flex items-center justify-between text-[11px] font-bold text-zinc-400">
-          <span>Earned: <span class="text-white" id="dash-milestone-earned">$420.00 USD (1,365 GHS)</span></span>
-          <span class="text-amber-400 font-black">14% Complete • Plaque + Cash Bonus</span>
-        </div>
-      </div>
-
-      <!-- WALLET HERO CARD -->
-      <div class="rounded-3xl p-6 sm:p-7 bg-gradient-to-br from-indigo-950 via-purple-950 to-zinc-950 border border-purple-500/30 shadow-2xl relative overflow-hidden">
-        <div class="absolute -right-16 -top-16 w-52 h-52 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="flex items-center justify-between mb-4">
-          <span class="text-[11px] uppercase font-black tracking-widest text-purple-300 flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-            Available For Friday Payout
-          </span>
-          <span class="text-[10px] uppercase font-bold px-2.5 py-0.5 rounded-full bg-white/10 text-zinc-300 border border-white/10">
-            Escrow Cleared
-          </span>
-        </div>
-
-        <div class="mb-6">
-          <div id="wallet-balance" class="text-4xl sm:text-5xl font-black text-white tracking-tight">
-            $420.00 USD
-          </div>
-          <div id="wallet-balance-sub" class="text-xs text-purple-300/80 mt-1 font-semibold">
-            ≈ 1,365.00 GHS (Settles via MoMo / Bank)
-          </div>
-        </div>
-
-        <div class="grid grid-cols-2 gap-3 max-w-sm">
+        <div class="text-center pt-2">
           <button 
-            onclick="initiatePayoutRequest()"
-            class="w-full py-3.5 px-4 rounded-xl font-black text-xs bg-white text-black hover:bg-zinc-200 active:scale-95 transition shadow-lg flex items-center justify-center gap-1.5"
+            onclick="openModal('affiliate')"
+            class="py-3 px-8 rounded-xl font-black text-xs bg-white text-black hover:bg-zinc-200 active:scale-95 transition shadow-lg"
           >
-            <span>Request Payout</span>
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </button>
-          <button 
-            onclick="switchView('marketplace')"
-            class="w-full py-3.5 px-4 rounded-xl font-bold text-xs bg-black/50 border border-white/10 text-white hover:bg-black/70 active:scale-95 transition flex items-center justify-center gap-1.5"
-          >
-            <span>Promote Products</span>
+            Unlock Your Pro Affiliate Account Now (<span data-price-ghs="95">₵ 95 GHS</span>)
           </button>
         </div>
       </div>
 
-      <!-- QUICK ACTION HUB -->
-      <div>
-        <h3 class="text-xs uppercase font-extrabold tracking-wider text-zinc-400 mb-3">
-          Quick Action Hub
-        </h3>
-        <div class="grid grid-cols-3 sm:grid-cols-6 gap-2.5">
-          <button onclick="initiatePayoutRequest()" class="glass-card p-3 rounded-2xl flex flex-col items-center justify-center hover:border-purple-500/40 active:scale-95 transition">
-            <span class="text-xl mb-1">💳</span>
-            <span class="text-[11px] font-bold text-zinc-300">Withdraw</span>
-          </button>
-          <button onclick="switchView('marketplace')" class="glass-card p-3 rounded-2xl flex flex-col items-center justify-center hover:border-purple-500/40 active:scale-95 transition">
-            <span class="text-xl mb-1">🛍️</span>
-            <span class="text-[11px] font-bold text-zinc-300">Market</span>
-          </button>
-          <button onclick="copyPromoterLink()" class="glass-card p-3 rounded-2xl flex flex-col items-center justify-center hover:border-purple-500/40 active:scale-95 transition">
-            <span class="text-xl mb-1">🔗</span>
-            <span class="text-[11px] font-bold text-zinc-300">Bio Link</span>
-          </button>
-          <button onclick="alert('50% commissions verified and credited instantly upon checkout.')" class="glass-card p-3 rounded-2xl flex flex-col items-center justify-center hover:border-purple-500/40 active:scale-95 transition">
-            <span class="text-xl mb-1">📊</span>
-            <span class="text-[11px] font-bold text-zinc-300">Split 50%</span>
-          </button>
-          <button onclick="switchView('sprint')" class="glass-card p-3 rounded-2xl flex flex-col items-center justify-center hover:border-purple-500/40 active:scale-95 transition">
-            <span class="text-xl mb-1">🏆</span>
-            <span class="text-[11px] font-bold text-zinc-300">200 Sprint</span>
-          </button>
-          <button onclick="alert('Strict ledger audit active. Zero discrepancies.')" class="glass-card p-3 rounded-2xl flex flex-col items-center justify-center hover:border-purple-500/40 active:scale-95 transition">
-            <span class="text-xl mb-1">🛡️</span>
-            <span class="text-[11px] font-bold text-zinc-300">Security</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- METRICS -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div class="glass-card p-4 rounded-2xl">
-          <span class="text-[10px] uppercase font-bold text-zinc-500 block mb-1">Total Sales</span>
-          <span class="text-xl font-black text-white">28 Passes</span>
-          <span class="text-[10px] text-emerald-400 font-semibold block mt-0.5">↑ 14 this week</span>
-        </div>
-        <div class="glass-card p-4 rounded-2xl">
-          <span class="text-[10px] uppercase font-bold text-zinc-500 block mb-1">Click to Sale</span>
-          <span class="text-xl font-black text-purple-400">4.8%</span>
-          <span class="text-[10px] text-zinc-400 font-semibold block mt-0.5">High Converting</span>
-        </div>
-        <div class="glass-card p-4 rounded-2xl">
-          <span class="text-[10px] uppercase font-bold text-zinc-500 block mb-1">Pending Escrow</span>
-          <span class="text-xl font-black text-zinc-400" id="dash-escrow">$0.00</span>
-          <span class="text-[10px] text-zinc-500 font-semibold block mt-0.5">0 Locked</span>
-        </div>
-        <div class="glass-card p-4 rounded-2xl">
-          <span class="text-[10px] uppercase font-bold text-zinc-500 block mb-1">All-Time Withdrawn</span>
-          <span class="text-xl font-black text-emerald-400" id="dash-withdrawn">$1,250.00</span>
-          <span class="text-[10px] text-zinc-400 font-semibold block mt-0.5">MoMo Direct</span>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- VIEW: MARKETPLACE CATALOG -->
-    <div id="view-marketplace" class="space-y-6 hidden">
-      <div>
-        <div class="inline-flex items-center gap-1.5 text-pink-400 text-xs font-bold uppercase tracking-wider mb-1">
-          <span class="w-1.5 h-1.5 rounded-full bg-pink-400"></span>
-          Vibely Academy Marketplace
-        </div>
-        <h2 class="text-2xl sm:text-3xl font-black text-white">
-          Digital Products &amp; Access Vault
-        </h2>
-        <p class="text-xs text-zinc-400 mt-1 max-w-xl">
-          Earn instant 50% revenue share on every sale using your affiliate link. Payments process via Paystack.
-        </p>
-      </div>
-
-      <!-- Catalog List -->
+      <!-- PRODUCT CATALOG CARDS -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
         <!-- 1-YEAR MEMBERSHIP PASS -->
         <div class="glass-panel p-6 rounded-3xl border border-purple-500/30 sm:col-span-2 relative overflow-hidden">
           <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
             <span class="text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white">
-              ★ Flagship Product
+              ★ Flagship Pass
             </span>
-            <span class="text-xs font-bold text-emerald-400 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20" id="card-pass-comm">
-              50% Commission: $14.50 (47.50 GHS)
+            <span class="text-xs font-bold text-emerald-400 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+              50% Split: <span data-price-ghs="47.5">₵ 47.50 GHS</span>
             </span>
           </div>
           <h3 class="text-xl font-black text-white">1-Year Vibely Membership Pass</h3>
           <p class="text-xs text-zinc-300 mt-1 leading-relaxed max-w-xl">
-            All-inclusive access to creator discovery rooms, masterclasses, and 50% affiliate license for 365 days.
+            VIP passport unlocking the full academy curriculum, 50% affiliate license, exclusive Affiliates-Only Community Lounge, and weekly Friday cash payouts.
           </p>
           <div class="pt-5 mt-5 border-t border-white/10 flex items-center justify-between">
             <div>
               <span class="text-[10px] uppercase font-bold text-zinc-500 block">Registration Price</span>
-              <span class="text-2xl font-black text-white" id="card-pass-price">$29.00 USD (95 GHS)</span>
+              <span class="text-2xl font-black text-white" data-price-ghs="95">₵ 95.00 GHS</span>
             </div>
-            <div class="flex items-center gap-2">
-              <button onclick="copyProductLink('1-Year Membership Pass')" class="py-2.5 px-4 rounded-xl font-bold text-xs bg-zinc-800 hover:bg-zinc-700 text-white transition">
-                🔗 Copy Link
-              </button>
-              <button onclick="initiateOrder('1-Year Membership Pass', 95, 29)" class="py-2.5 px-5 rounded-xl font-black text-xs bg-white text-black hover:bg-zinc-200 transition">
-                Buy Now
-              </button>
-            </div>
+            <button 
+              onclick="initiateOrder('1-Year Membership Pass', 95)"
+              class="py-3 px-6 rounded-xl font-black text-xs bg-white text-black hover:bg-zinc-200 transition shadow-lg"
+            >
+              Get Instant Access
+            </button>
           </div>
         </div>
 
-        <!-- PRODUCT: THE ULTRA MONEY MACHINE (U.M.M) - 95 GHS / $29 USD -->
+        <!-- UMM -->
         <div class="glass-card p-5 rounded-2xl flex flex-col justify-between border border-purple-500/20">
           <div>
             <div class="flex items-center justify-between mb-2">
-              <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-purple-500/10 text-purple-400">Core Academy</span>
-              <span class="text-xs font-bold text-emerald-400" id="card-umm-comm">50%: $14.50 (47.50 GHS)</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-purple-500/10 text-purple-400">Masterclass</span>
+              <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="47.5">₵ 47.50 GHS</span></span>
             </div>
             <h4 class="text-base font-bold text-white">The Ultra Money Machine (U.M.M)</h4>
-            <p class="text-xs text-zinc-400 mt-1">Digital skill monetization, client acquisition, and high-ticket service packaging.</p>
+            <p class="text-xs text-zinc-400 mt-1">High-ticket client acquisition, digital asset packaging, and service arbitrage.</p>
           </div>
           <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
-            <span class="text-lg font-black text-white" id="card-umm-price">$29.00 USD (95 GHS)</span>
-            <button onclick="initiateOrder('Ultra Money Machine (U.M.M)', 95, 29)" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-purple-600 hover:bg-purple-500 text-white transition shadow-lg">
+            <span class="text-lg font-black text-white" data-price-ghs="95">₵ 95.00 GHS</span>
+            <button onclick="initiateOrder('Ultra Money Machine (U.M.M)', 95)" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-purple-600 hover:bg-purple-500 text-white transition shadow-lg">
               Enroll Now
             </button>
           </div>
         </div>
 
-        <!-- PRODUCT: AI VIDEO MASTERY - 105 GHS / $32 USD -->
+        <!-- AI VIDEO MASTERY -->
         <div class="glass-card p-5 rounded-2xl flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-2">
               <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-pink-500/10 text-pink-400">AI &amp; Media</span>
-              <span class="text-xs font-bold text-emerald-400" id="card-ai-comm">50%: $16.00 (52.50 GHS)</span>
+              <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="52.5">₵ 52.50 GHS</span></span>
             </div>
             <h4 class="text-base font-bold text-white">AI Video Mastery &amp; Monetization</h4>
-            <p class="text-xs text-zinc-400 mt-1">Automated scripts, AI voice engines, and CapCut workflows for viral faceless channels.</p>
+            <p class="text-xs text-zinc-400 mt-1">Automated scripting, AI voice engines, and CapCut workflows for faceless viral channels.</p>
           </div>
           <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
-            <span class="text-lg font-black text-white" id="card-ai-price">$32.00 USD (105 GHS)</span>
-            <button onclick="initiateOrder('AI Video Mastery', 105, 32)" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-zinc-800 hover:bg-zinc-700 text-white transition">
+            <span class="text-lg font-black text-white" data-price-ghs="105">₵ 105.00 GHS</span>
+            <button onclick="initiateOrder('AI Video Mastery', 105)" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-zinc-800 hover:bg-zinc-700 text-white transition">
               Enroll Now
             </button>
           </div>
         </div>
 
-        <!-- PRODUCT: GLOBAL DROPSHIPPING - 115 GHS / $35 USD -->
+        <!-- GLOBAL DROPSHIPPING -->
         <div class="glass-card p-5 rounded-2xl flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-2">
               <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-400">E-Commerce</span>
-              <span class="text-xs font-bold text-emerald-400" id="card-drop-comm">50%: $17.50 (57.50 GHS)</span>
+              <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="57.5">₵ 57.50 GHS</span></span>
             </div>
             <h4 class="text-base font-bold text-white">Global Dropshipping Blueprint</h4>
-            <p class="text-xs text-zinc-400 mt-1">Cross-border physical and digital supply chains with zero upfront inventory costs.</p>
+            <p class="text-xs text-zinc-400 mt-1">Sourcing trusted suppliers and building organic, high-converting TikTok and WhatsApp funnels.</p>
           </div>
           <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
-            <span class="text-lg font-black text-white" id="card-drop-price">$35.00 USD (115 GHS)</span>
-            <button onclick="initiateOrder('Global Dropshipping', 115, 35)" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-zinc-800 hover:bg-zinc-700 text-white transition">
+            <span class="text-lg font-black text-white" data-price-ghs="115">₵ 115.00 GHS</span>
+            <button onclick="initiateOrder('Global Dropshipping', 115)" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-zinc-800 hover:bg-zinc-700 text-white transition">
               Enroll Now
             </button>
           </div>
         </div>
 
-        <!-- PRODUCT: SNAPSELL & DAY TRADING - 125 GHS / $38.50 USD -->
+        <!-- SNAPSELL & DAY TRADING -->
         <div class="glass-card p-5 rounded-2xl flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-2">
               <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-400">Trading</span>
-              <span class="text-xs font-bold text-emerald-400" id="card-trade-comm">50%: $19.25 (62.50 GHS)</span>
+              <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="62.5">₵ 62.50 GHS</span></span>
             </div>
             <h4 class="text-base font-bold text-white">SnapSell &amp; Day Trading Roadmap</h4>
-            <p class="text-xs text-zinc-400 mt-1">Rapid digital flipping combined with risk-managed technical chart execution.</p>
+            <p class="text-xs text-zinc-400 mt-1">Digital flipping systems combined with risk-managed technical chart execution.</p>
           </div>
           <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
-            <span class="text-lg font-black text-white" id="card-trade-price">$38.50 USD (125 GHS)</span>
-            <button onclick="initiateOrder('SnapSell & Day Trading', 125, 38.5)" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-zinc-800 hover:bg-zinc-700 text-white transition">
+            <span class="text-lg font-black text-white" data-price-ghs="125">₵ 125.00 GHS</span>
+            <button onclick="initiateOrder('SnapSell & Day Trading', 125)" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-zinc-800 hover:bg-zinc-700 text-white transition">
               Enroll Now
             </button>
           </div>
         </div>
 
-        <!-- EXISTING MEMBER RENEWAL - 45 GHS / $14 USD -->
+        <!-- EXISTING MEMBER RENEWAL (45 GHS) -->
         <div class="glass-card p-5 rounded-2xl flex flex-col justify-between sm:col-span-2">
           <div>
             <div class="flex items-center justify-between mb-2">
               <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-zinc-800 text-zinc-300">Member Renewal</span>
-              <span class="text-xs font-bold text-emerald-400" id="card-renew-comm">50%: $7.00 (22.50 GHS)</span>
+              <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="22.5">₵ 22.50 GHS</span></span>
             </div>
             <h4 class="text-base font-bold text-white">Existing Member Pass Renewal</h4>
             <p class="text-xs text-zinc-400 mt-1">Special loyalty extension rate for existing active members.</p>
           </div>
           <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
-            <span class="text-lg font-black text-white" id="card-renew-price">$14.00 USD (45 GHS)</span>
-            <button onclick="initiateOrder('Existing Member Renewal', 45, 14)" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-zinc-800 hover:bg-zinc-700 text-white transition">
+            <span class="text-lg font-black text-white" data-price-ghs="45">₵ 45.00 GHS</span>
+            <button onclick="initiateOrder('Existing Member Renewal', 45)" class="py-2 px-3.5 rounded-xl text-xs font-bold bg-zinc-800 hover:bg-zinc-700 text-white transition">
               Extend Pass
             </button>
           </div>
         </div>
 
       </div>
-    </div>
+    </section>
 
-    <!-- VIEW: 200 SPRINT COMPETITION -->
-    <div id="view-sprint" class="space-y-6 hidden">
-      <div class="rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-amber-950/60 via-zinc-950 to-purple-950/60 border border-amber-500/30 relative overflow-hidden">
-        <div class="max-w-xl">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-[10px] font-black uppercase tracking-widest text-amber-300 mb-3">
-            🏆 Monthly Sprint Challenge
+    <!-- ============================================== -->
+    <!-- COMPETITIONS & CONTESTS PAVILION               -->
+    <!-- ============================================== -->
+    <section class="space-y-6">
+      <div>
+        <div class="inline-flex items-center gap-1.5 text-amber-400 text-xs font-bold uppercase tracking-wider mb-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+          Official Competitions Arena
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          Vibely Grand Challenges &amp; Cash Pools
+        </h2>
+        <p class="text-xs text-zinc-400 mt-1">
+          Compete in performance sprints or showcase your creativity in the video challenge. All winnings disburse directly to your MoMo or bank account.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        
+        <!-- CONTEST 1: 200-SALE MONTHLY SPRINT -->
+        <div class="rounded-3xl p-6 sm:p-7 bg-gradient-to-br from-amber-950/50 via-zinc-950 to-purple-950/50 border border-amber-500/30 flex flex-col justify-between relative overflow-hidden">
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[10px] font-black uppercase tracking-wider mb-3">
+              🏆 Contest 1: Performance Sprint
+            </div>
+            <h3 class="text-xl sm:text-2xl font-black text-white">The 200-Sale Monthly Sprint</h3>
+            <p class="text-xs text-zinc-300 mt-2 leading-relaxed">
+              Generate 200 sales in a single calendar month on any individual marketplace product. Unlocks the Grand Champion Cash Pool on top of your 50% commission!
+            </p>
+            <div class="mt-4 p-3 rounded-xl bg-black/40 border border-white/5">
+              <span class="text-[10px] uppercase font-bold text-zinc-400 block">Grand Champion Prize</span>
+              <span class="text-2xl font-black text-amber-300" data-price-ghs="10000">₵ 10,000 GHS</span>
+            </div>
           </div>
-          <h2 class="text-2xl sm:text-4xl font-black text-white tracking-tight">
-            Generate 200 Sales. <br />
-            <span class="text-amber-400" id="sprint-prize-title">Win 10,000 GHS ($3,000 USD) Cash.</span>
-          </h2>
-          <p class="text-xs sm:text-sm text-zinc-300 mt-2 leading-relaxed">
-            Hit 200 sales in a calendar month on any individual marketplace product. Settles during the first Friday payout of the month alongside your standard 50% revenue share.
-          </p>
+          <div class="pt-5 mt-5 border-t border-white/10">
+            <button 
+              onclick="openModal('sprint-reg')"
+              class="w-full py-3 rounded-xl font-black text-xs bg-amber-400 hover:bg-amber-300 text-black active:scale-95 transition shadow-lg"
+            >
+              Register For 200-Sale Sprint →
+            </button>
+          </div>
         </div>
 
-        <div class="mt-6 pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <!-- CONTEST 2: VIRAL PROMOTIONAL VIDEO CHALLENGE -->
+        <div class="rounded-3xl p-6 sm:p-7 bg-gradient-to-br from-pink-950/50 via-zinc-950 to-indigo-950/50 border border-pink-500/30 flex flex-col justify-between relative overflow-hidden">
           <div>
-            <span class="text-[10px] uppercase font-bold text-zinc-400 block">Your Current Monthly Progress</span>
-            <span class="text-2xl font-black text-white">28 / 200 Verified Sales</span>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pink-500/10 border border-pink-500/20 text-pink-400 text-[10px] font-black uppercase tracking-wider mb-3">
+              🎬 Contest 2: Viral Creator Challenge
+            </div>
+            <h3 class="text-xl sm:text-2xl font-black text-white">Promotional Video Grand Award</h3>
+            <p class="text-xs text-zinc-300 mt-2 leading-relaxed">
+              Post a creative video about Vibely on TikTok, Instagram, YouTube, or X. The video with the highest combined views, likes, and comments wins cash!
+            </p>
+            <div class="mt-4 p-3 rounded-xl bg-black/40 border border-white/5">
+              <span class="text-[10px] uppercase font-bold text-zinc-400 block">Grand Creator Award</span>
+              <span class="text-2xl font-black text-pink-300" data-price-ghs="5000">₵ 5,000 GHS</span>
+            </div>
           </div>
-          <button onclick="switchView('marketplace')" class="py-3 px-6 rounded-xl font-black text-xs bg-amber-400 hover:bg-amber-300 text-black active:scale-95 transition shadow-lg">
-            Pick Product &amp; Scale
-          </button>
+          <div class="pt-5 mt-5 border-t border-white/10">
+            <button 
+              onclick="openModal('video-entry')"
+              class="w-full py-3 rounded-xl font-black text-xs bg-gradient-to-r from-pink-600 to-purple-600 text-white active:scale-95 transition shadow-lg"
+            >
+              Submit Your Video Entry →
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- LIVE CONTESTANT ROSTER (VIDEO CHALLENGE ENTRANTS) -->
+      <div class="glass-panel p-5 sm:p-6 rounded-3xl border border-white/10">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h4 class="text-sm font-black text-white flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              Live Video Challenge Entrants Roster
+            </h4>
+            <p class="text-[11px] text-zinc-400">Admin manually audits views, likes, and comments before contacting winners personally.</p>
+          </div>
+          <span class="text-[10px] font-bold text-purple-400 px-2 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20">
+            Audit Queue
+          </span>
+        </div>
+
+        <div id="entrants-list" class="space-y-2 text-xs">
+          <div class="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5">
+            <div class="flex items-center gap-3">
+              <span class="font-black text-purple-400">#1</span>
+              <div>
+                <span class="font-bold text-white">Kwame Vibe</span>
+                <span class="text-zinc-500 ml-2">TikTok: @kwame_vibely</span>
+              </div>
+            </div>
+            <span class="text-emerald-400 font-bold text-[11px]">Under Admin Review</span>
+          </div>
+
+          <div class="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5">
+            <div class="flex items-center gap-3">
+              <span class="font-black text-purple-400">#2</span>
+              <div>
+                <span class="font-bold text-white">Zara Daniels</span>
+                <span class="text-zinc-500 ml-2">Instagram: @zarabuilds</span>
+              </div>
+            </div>
+            <span class="text-emerald-400 font-bold text-[11px]">Under Admin Review</span>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
   </main>
 
-  <!-- BOTTOM DOCKED NATIVE NAVIGATION -->
-  <nav class="fixed bottom-0 inset-x-0 z-40 glass-nav border-t border-white/10 py-2 px-4 max-w-lg mx-auto sm:rounded-t-2xl">
-    <div class="flex items-center justify-around">
-      <button onclick="switchView('dashboard')" id="nav-btn-dashboard" class="flex flex-col items-center gap-1 text-purple-400 transition">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-        <span class="text-[10px] font-bold">Dashboard</span>
-      </button>
+  <!-- ============================================== -->
+  <!-- MODAL ENGINE: SOCIAL / AFFILIATE / CONTESTS    -->
+  <!-- ============================================== -->
+  <div 
+    id="global-modal" 
+    class="fixed inset-0 z-50 bg-black/80 backdrop-blur-xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
+  >
+    <div class="glass-panel w-full max-w-md rounded-3xl p-6 sm:p-7 border border-white/15 relative shadow-2xl">
+      <button onclick="closeModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
 
-      <button onclick="switchView('marketplace')" id="nav-btn-marketplace" class="flex flex-col items-center gap-1 text-zinc-400 hover:text-white transition">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-        <span class="text-[10px] font-bold">Market</span>
-      </button>
+      <div class="mb-5">
+        <span id="modal-tag" class="text-[10px] uppercase font-bold tracking-widest text-purple-400 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20">
+          Vibely Registration
+        </span>
+        <h3 id="modal-heading" class="text-xl font-black text-white mt-2">Join Vibely</h3>
+        <p id="modal-subtext" class="text-xs text-zinc-400 mt-1">Complete details below.</p>
+      </div>
 
-      <button onclick="switchView('sprint')" id="nav-btn-sprint" class="flex flex-col items-center gap-1 text-zinc-400 hover:text-white transition">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/></svg>
-        <span class="text-[10px] font-bold">Sprint</span>
-      </button>
+      <form id="modal-form" onsubmit="handleModalSubmit(event)" class="space-y-3.5">
+        <div id="field-name">
+          <label class="block text-[11px] uppercase tracking-wider font-semibold text-zinc-300 mb-1">Full Name</label>
+          <input type="text" required id="input-name" placeholder="e.g. Samuel Darko" class="w-full px-4 py-3 rounded-xl bg-black/60 border border-zinc-800 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500 transition" />
+        </div>
 
-      <button onclick="alert('LMS Course Vault unlocks upon course enrollment.')" class="flex flex-col items-center gap-1 text-zinc-400 hover:text-white transition">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-        <span class="text-[10px] font-bold">LMS</span>
-      </button>
+        <div id="field-email">
+          <label class="block text-[11px] uppercase tracking-wider font-semibold text-zinc-300 mb-1">Email Address</label>
+          <input type="email" required id="input-email" placeholder="name@example.com" class="w-full px-4 py-3 rounded-xl bg-black/60 border border-zinc-800 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500 transition" />
+        </div>
 
-      <button onclick="toggleProfileDrawer()" class="flex flex-col items-center gap-1 text-zinc-400 hover:text-white transition">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-        <span class="text-[10px] font-bold">Profile</span>
-      </button>
+        <div id="field-phone">
+          <label class="block text-[11px] uppercase tracking-wider font-semibold text-zinc-300 mb-1">WhatsApp / Phone Number</label>
+          <input type="tel" required id="input-phone" placeholder="+233 XX XXX XXXX" class="w-full px-4 py-3 rounded-xl bg-black/60 border border-zinc-800 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500 transition" />
+        </div>
+
+        <!-- Custom Fields for Video Challenge -->
+        <div id="field-social" class="hidden">
+          <label class="block text-[11px] uppercase tracking-wider font-semibold text-zinc-300 mb-1">Platform &amp; Your Username</label>
+          <input type="text" id="input-handle" placeholder="e.g. TikTok @fiyero_creator" class="w-full px-4 py-3 rounded-xl bg-black/60 border border-zinc-800 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500 transition" />
+        </div>
+
+        <div id="field-videolink" class="hidden">
+          <label class="block text-[11px] uppercase tracking-wider font-semibold text-zinc-300 mb-1">Video Direct Link</label>
+          <input type="url" id="input-link" placeholder="https://tiktok.com/@.../video/..." class="w-full px-4 py-3 rounded-xl bg-black/60 border border-zinc-800 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500 transition" />
+        </div>
+
+        <button 
+          type="submit" 
+          id="modal-btn"
+          class="w-full py-4 mt-2 rounded-xl font-black text-xs bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 text-white shadow-xl shadow-purple-600/30 active:scale-95 transition"
+        >
+          Confirm &amp; Proceed
+        </button>
+      </form>
     </div>
-  </nav>
+  </div>
 
-  <!-- PLATFORM ENGINE SCRIPT -->
+  <!-- LUXURY FOOTER -->
+  <footer class="relative z-10 w-full border-t border-white/5 py-8 text-xs text-zinc-500 mt-16">
+    <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div>
+        <p class="font-bold text-zinc-400">© 2026 Vibely HQ • Powered by Geestablish</p>
+        <p class="text-[11px] text-zinc-600 mt-0.5">Scale target: 20,000+ members • Verified 50/50 dual platform</p>
+      </div>
+      <div class="flex items-center gap-4 text-[11px]">
+        <a href="mailto:vibelydesk@gmail.com" class="hover:text-zinc-300 transition">vibelydesk@gmail.com</a>
+        <span>•</span>
+        <a href="https://wa.me/233534671381" target="_blank" rel="noreferrer" class="hover:text-zinc-300 transition">WhatsApp: +233 53 467 1381</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PLATFORM LOGIC & 30+ GLOBAL CURRENCY ENGINE SCRIPT -->
   <script>
-    let activeCurrency = 'USD';
+    let activeModalMode = 'social';
+    let userCoins = 250;
+    let entrantCount = 2;
 
+    // 30+ GLOBAL CURRENCY DEFINITIONS ANCHORED TO VIBELY STRATEGIC RATE (95 GHS = $29 USD)
+    const currencyDatabase = {
+      // Anchors
+      GHS: { symbol: '₵', code: 'GHS', rate: 1.0, decimals: 2 },
+      USD: { symbol: '$', code: 'USD', rate: 0.3053, decimals: 2 },    // 95 GHS = $29.00 USD
+      EUR: { symbol: '€', code: 'EUR', rate: 0.2810, decimals: 2 },
+      GBP: { symbol: '£', code: 'GBP', rate: 0.2440, decimals: 2 },
+      
+      // Africa
+      NGN: { symbol: '₦', code: 'NGN', rate: 152.63, decimals: 0 },   // 95 GHS = 14,500 NGN
+      KES: { symbol: 'KSh', code: 'KES', rate: 39.47, decimals: 0 },   // 95 GHS = 3,750 KES
+      ZAR: { symbol: 'R', code: 'ZAR', rate: 5.45, decimals: 0 },
+      XOF: { symbol: 'Fr', code: 'XOF', rate: 184.21, decimals: 0 },  // 95 GHS = 17,500 CFA
+      EGP: { symbol: 'E£', code: 'EGP', rate: 14.80, decimals: 0 },
+      UGX: { symbol: 'USh', code: 'UGX', rate: 1120.0, decimals: 0 },
+      TZS: { symbol: 'TSh', code: 'TZS', rate: 820.0, decimals: 0 },
+      RWF: { symbol: 'RF', code: 'RWF', rate: 420.0, decimals: 0 },
+      MAD: { symbol: 'DH', code: 'MAD', rate: 3.05, decimals: 2 },
+      ZMW: { symbol: 'ZK', code: 'ZMW', rate: 8.20, decimals: 0 },
+
+      // Asia & Pacific
+      INR: { symbol: '₹', code: 'INR', rate: 25.50, decimals: 0 },
+      PKR: { symbol: '₨', code: 'PKR', rate: 85.00, decimals: 0 },
+      BDT: { symbol: '৳', code: 'BDT', rate: 36.50, decimals: 0 },
+      PHP: { symbol: '₱', code: 'PHP', rate: 17.20, decimals: 0 },
+      IDR: { symbol: 'Rp', code: 'IDR', rate: 4950.0, decimals: 0 },
+      MYR: { symbol: 'RM', code: 'MYR', rate: 1.35, decimals: 2 },
+      VND: { symbol: '₫', code: 'VND', rate: 7650.0, decimals: 0 },
+      THB: { symbol: '฿', code: 'THB', rate: 10.50, decimals: 0 },
+      JPY: { symbol: '¥', code: 'JPY', rate: 45.80, decimals: 0 },
+      CNY: { symbol: '¥', code: 'CNY', rate: 2.22, decimals: 2 },
+      SGD: { symbol: 'S$', code: 'SGD', rate: 0.41, decimals: 2 },
+      AUD: { symbol: 'A$', code: 'AUD', rate: 0.465, decimals: 2 },
+      NZD: { symbol: 'NZ$', code: 'NZD', rate: 0.510, decimals: 2 },
+
+      // Americas
+      CAD: { symbol: 'CA$', code: 'CAD', rate: 0.415, decimals: 2 },
+      BRL: { symbol: 'R$', code: 'BRL', rate: 1.75, decimals: 2 },
+      MXN: { symbol: 'MX$', code: 'MXN', rate: 5.80, decimals: 2 },
+      COP: { symbol: 'COL$', code: 'COP', rate: 1250.0, decimals: 0 },
+      CLP: { symbol: 'CLP$', code: 'CLP', rate: 285.0, decimals: 0 },
+      ARS: { symbol: '$', code: 'ARS', rate: 310.0, decimals: 0 },
+
+      // Middle East
+      AED: { symbol: 'AED', code: 'AED', rate: 1.12, decimals: 2 },
+      SAR: { symbol: 'SAR', code: 'SAR', rate: 1.14, decimals: 2 },
+      QAR: { symbol: 'QAR', code: 'QAR', rate: 1.11, decimals: 2 },
+      KWD: { symbol: 'KD', code: 'KWD', rate: 0.094, decimals: 3 }
+    };
+
+    function formatAmount(baseGhs, curKey) {
+      const cur = currencyDatabase[curKey] || currencyDatabase['GHS'];
+      const rawVal = baseGhs * cur.rate;
+      const formatted = cur.decimals > 0
+        ? rawVal.toLocaleString(undefined, { minimumFractionDigits: cur.decimals, maximumFractionDigits: cur.decimals })
+        : Math.round(rawVal).toLocaleString();
+      return `${cur.symbol} ${formatted} ${cur.code}`;
+    }
+
+    // AUTOMATIC IN-PLACE RE-RENDER OF EVERY PRICE TAG ON SITE
+    function changeGlobalCurrency(curKey) {
+      const elements = document.querySelectorAll('[data-price-ghs]');
+      elements.forEach(el => {
+        const baseGhs = parseFloat(el.getAttribute('data-price-ghs'));
+        el.innerText = formatAmount(baseGhs, curKey);
+      });
+    }
+
+    // Synthesized Audio Chime
     function playChime() {
       try {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
         const ctx = new AudioCtx();
         const chord = [523.25, 659.25, 783.99, 1046.50];
         const now = ctx.currentTime;
-
         chord.forEach((freq, idx) => {
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
@@ -584,132 +860,113 @@
       setTimeout(() => splash.remove(), 700);
     }
 
-    // Dynamic Currency Switcher
-    function setCurrency(curr) {
-      activeCurrency = curr;
-      const btnUsd = document.getElementById('btn-curr-usd');
-      const btnGhs = document.getElementById('btn-curr-ghs');
-
-      if (curr === 'USD') {
-        btnUsd.className = 'px-2.5 py-1 text-[11px] font-bold rounded-lg bg-purple-600 text-white transition';
-        btnGhs.className = 'px-2.5 py-1 text-[11px] font-bold rounded-lg text-zinc-400 hover:text-white transition';
-
-        document.getElementById('wallet-balance').innerText = '$420.00 USD';
-        document.getElementById('wallet-balance-sub').innerText = '≈ 1,365.00 GHS (Settles via MoMo / Bank)';
-        document.getElementById('dash-milestone-target').innerText = '$3,000.00 USD (10,000 GHS)';
-        document.getElementById('dash-milestone-earned').innerText = '$420.00 USD (1,365 GHS)';
-        document.getElementById('dash-escrow').innerText = '$0.00';
-        document.getElementById('dash-withdrawn').innerText = '$1,250.00';
-
-        // Products
-        document.getElementById('card-pass-comm').innerText = '50% Commission: $14.50 (47.50 GHS)';
-        document.getElementById('card-pass-price').innerText = '$29.00 USD (95 GHS)';
-
-        document.getElementById('card-umm-comm').innerText = '50%: $14.50 (47.50 GHS)';
-        document.getElementById('card-umm-price').innerText = '$29.00 USD (95 GHS)';
-
-        document.getElementById('card-ai-comm').innerText = '50%: $16.00 (52.50 GHS)';
-        document.getElementById('card-ai-price').innerText = '$32.00 USD (105 GHS)';
-
-        document.getElementById('card-drop-comm').innerText = '50%: $17.50 (57.50 GHS)';
-        document.getElementById('card-drop-price').innerText = '$35.00 USD (115 GHS)';
-
-        document.getElementById('card-trade-comm').innerText = '50%: $19.25 (62.50 GHS)';
-        document.getElementById('card-trade-price').innerText = '$38.50 USD (125 GHS)';
-
-        document.getElementById('card-renew-comm').innerText = '50%: $7.00 (22.50 GHS)';
-        document.getElementById('card-renew-price').innerText = '$14.00 USD (45 GHS)';
-
-        document.getElementById('sprint-prize-title').innerText = 'Win 10,000 GHS ($3,000 USD) Cash.';
-      } else {
-        btnGhs.className = 'px-2.5 py-1 text-[11px] font-bold rounded-lg bg-purple-600 text-white transition';
-        btnUsd.className = 'px-2.5 py-1 text-[11px] font-bold rounded-lg text-zinc-400 hover:text-white transition';
-
-        document.getElementById('wallet-balance').innerText = '₵ 1,365.00 GHS';
-        document.getElementById('wallet-balance-sub').innerText = '≈ $420.00 Strategic USD Equivalent';
-        document.getElementById('dash-milestone-target').innerText = '₵ 10,000.00 GHS ($3,000 USD)';
-        document.getElementById('dash-milestone-earned').innerText = '₵ 1,365.00 GHS ($420 USD)';
-        document.getElementById('dash-escrow').innerText = '₵ 0.00';
-        document.getElementById('dash-withdrawn').innerText = '₵ 4,062.50';
-
-        // Products
-        document.getElementById('card-pass-comm').innerText = '50% Commission: 47.50 GHS ($14.50 USD)';
-        document.getElementById('card-pass-price').innerText = '₵ 95.00 GHS ($29.00 USD)';
-
-        document.getElementById('card-umm-comm').innerText = '50%: 47.50 GHS ($14.50 USD)';
-        document.getElementById('card-umm-price').innerText = '₵ 95.00 GHS ($29.00 USD)';
-
-        document.getElementById('card-ai-comm').innerText = '50%: 52.50 GHS ($16.00 USD)';
-        document.getElementById('card-ai-price').innerText = '₵ 105.00 GHS ($32.00 USD)';
-
-        document.getElementById('card-drop-comm').innerText = '50%: 57.50 GHS ($17.50 USD)';
-        document.getElementById('card-drop-price').innerText = '₵ 115.00 GHS ($35.00 USD)';
-
-        document.getElementById('card-trade-comm').innerText = '50%: 62.50 GHS ($19.25 USD)';
-        document.getElementById('card-trade-price').innerText = '₵ 125.00 GHS ($38.50 USD)';
-
-        document.getElementById('card-renew-comm').innerText = '50%: 22.50 GHS ($7.00 USD)';
-        document.getElementById('card-renew-price').innerText = '₵ 45.00 GHS ($14.00 USD)';
-
-        document.getElementById('sprint-prize-title').innerText = 'Win 10,000 GHS ($3,000 USD) Cash.';
-      }
-    }
-
-    // View Navigation
-    function switchView(viewName) {
-      document.getElementById('view-dashboard').classList.add('hidden');
-      document.getElementById('view-marketplace').classList.add('hidden');
-      document.getElementById('view-sprint').classList.add('hidden');
-
-      document.getElementById('nav-btn-dashboard').className = 'flex flex-col items-center gap-1 text-zinc-400 hover:text-white transition';
-      document.getElementById('nav-btn-marketplace').className = 'flex flex-col items-center gap-1 text-zinc-400 hover:text-white transition';
-      document.getElementById('nav-btn-sprint').className = 'flex flex-col items-center gap-1 text-zinc-400 hover:text-white transition';
-
-      if (viewName === 'dashboard') {
-        document.getElementById('view-dashboard').classList.remove('hidden');
-        document.getElementById('nav-btn-dashboard').className = 'flex flex-col items-center gap-1 text-purple-400 transition';
-      } else if (viewName === 'marketplace') {
-        document.getElementById('view-marketplace').classList.remove('hidden');
-        document.getElementById('nav-btn-marketplace').className = 'flex flex-col items-center gap-1 text-purple-400 transition';
-      } else if (viewName === 'sprint') {
-        document.getElementById('view-sprint').classList.remove('hidden');
-        document.getElementById('nav-btn-sprint').className = 'flex flex-col items-center gap-1 text-purple-400 transition';
-      }
+    function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function toggleProfileDrawer() {
-      const drawer = document.getElementById('profile-drawer');
-      const panel = document.getElementById('drawer-panel');
-      if (drawer.classList.contains('opacity-0')) {
-        drawer.classList.remove('opacity-0', 'pointer-events-none');
-        panel.classList.remove('-translate-x-full');
-      } else {
-        drawer.classList.add('opacity-0', 'pointer-events-none');
-        panel.classList.add('-translate-x-full');
+    function toggleDashboardPreview() {
+      const box = document.getElementById('dashboard-preview-box');
+      box.classList.toggle('hidden');
+    }
+
+    function tipUser(name) {
+      if (userCoins < 10) {
+        alert("You need more Vibely Coins! Top up inside the app.");
+        return;
       }
+      userCoins -= 10;
+      alert(`Boom! Sent 10 Vibely Coins to ${name}!`);
     }
 
-    function copyPromoterLink() {
-      const link = window.location.origin + '?ref=VIB-90218';
-      navigator.clipboard.writeText(link).then(() => {
-        alert('Promoter link copied to clipboard:\n' + link);
-      });
+    function openChat(name) {
+      alert(`Opening Free Direct Chat Room with ${name}...\nJoin the free social hub to message peers worldwide 24/7!`);
     }
 
-    function copyProductLink(prod) {
-      const link = window.location.origin + '?item=' + encodeURIComponent(prod) + '&ref=VIB-90218';
-      navigator.clipboard.writeText(link).then(() => {
-        alert('50% Commission Link copied for ' + prod + ':\n' + link);
-      });
+    // Universal Modal Router
+    function openModal(mode) {
+      activeModalMode = mode;
+      const modal = document.getElementById('global-modal');
+      const tag = document.getElementById('modal-tag');
+      const heading = document.getElementById('modal-heading');
+      const subtext = document.getElementById('modal-subtext');
+      const btn = document.getElementById('modal-btn');
+      const socialField = document.getElementById('field-social');
+      const videoField = document.getElementById('field-videolink');
+
+      socialField.classList.add('hidden');
+      videoField.classList.add('hidden');
+
+      if (mode === 'social') {
+        tag.innerText = 'Pillar 1: Social Hub';
+        heading.innerText = 'Join Free Global Social Hub';
+        subtext.innerText = 'Make friends, chat in lounges, and build your international network for free.';
+        btn.innerText = 'Create Free Social Account';
+      } else if (mode === 'affiliate') {
+        tag.innerText = 'Pillar 2: Pro Affiliate Pass';
+        heading.innerText = 'Unlock Pro Affiliate & Academy Pass';
+        subtext.innerText = 'Registration: 95 GHS ($29 USD). Unlocks 50% commission license and private lounge.';
+        btn.innerText = 'Proceed to Paystack Payment (95 GHS)';
+      } else if (mode === 'sprint-reg') {
+        tag.innerText = 'Contest 1 Registration';
+        heading.innerText = 'Register For 200-Sale Monthly Sprint';
+        subtext.innerText = 'Input your details to track your monthly sales toward the 10,000 GHS ($3,000 USD) prize.';
+        btn.innerText = 'Enroll in 200 Sprint Pool';
+      } else if (mode === 'video-entry') {
+        tag.innerText = 'Contest 2 Submission';
+        heading.innerText = 'Submit Promotional Video Entry';
+        subtext.innerText = 'Win 5,000 GHS ($1,500 USD)! Admin manually audits views, likes & comments.';
+        btn.innerText = 'Submit Entry For Audit';
+        socialField.classList.remove('hidden');
+        videoField.classList.remove('hidden');
+      }
+
+      modal.classList.remove('opacity-0', 'pointer-events-none');
     }
 
-    function initiatePayoutRequest() {
-      alert('Payout Request Verified!\nAmount: GHS 1,365.00 ($420.00 USD)\nRouting: Friday Settlement Window -> Direct MoMo/Bank disbursement on Saturday morning.');
+    function closeModal() {
+      document.getElementById('global-modal').classList.add('opacity-0', 'pointer-events-none');
     }
 
-    function initiateOrder(prod, priceGhs, priceUsd) {
-      alert(`Checkout Initialized:\nProduct: ${prod}\nPrice: ${priceGhs} GHS ($${priceUsd} USD)\nConnecting to Paystack gateway...`);
+    function initiateOrder(prodName, ghsPrice) {
+      const curKey = document.getElementById('global-currency-select').value;
+      const converted = formatAmount(ghsPrice, curKey);
+      alert(`Initializing Paystack Secure Checkout:\nProduct: ${prodName}\nPrice: ₵ ${ghsPrice} GHS (≈ ${converted})\nConnecting to payment gateway...`);
+    }
+
+    function handleModalSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('input-name').value;
+      const email = document.getElementById('input-email').value;
+
+      if (activeModalMode === 'video-entry') {
+        const handle = document.getElementById('input-handle').value || '@creator';
+        entrantCount++;
+        
+        const roster = document.getElementById('entrants-list');
+        const newEntry = document.createElement('div');
+        newEntry.className = 'flex items-center justify-between p-3 rounded-xl bg-white/5 border border-purple-500/20';
+        newEntry.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="font-black text-purple-400">#${entrantCount}</span>
+            <div>
+              <span class="font-bold text-white">${name}</span>
+              <span class="text-zinc-500 ml-2">${handle}</span>
+            </div>
+          </div>
+          <span class="text-purple-400 font-bold text-[11px]">Added to Audit Queue</span>
+        `;
+        roster.prepend(newEntry);
+
+        alert(`Submission Confirmed, ${name}!\nYour video has been added as #${entrantCount} to the live audit queue. The Root Admin (vibelyservice@gmail.com) will review your views, likes & comments, and reach out to you personally!`);
+      } else if (activeModalMode === 'sprint-reg') {
+        alert(`Success, ${name}! You are registered for this month's 200-Sale Sprint. Sales tied to your promoter ID are now tracked toward the 10,000 GHS ($3,000 USD) prize!`);
+      } else if (activeModalMode === 'social') {
+        alert(`Welcome to the Free Vibely Social Hub, ${name}! Your free social passport is activated.`);
+      } else {
+        alert(`Redirecting ${name} (${email}) to Paystack for 95 GHS Pro Pass activation...`);
+      }
+
+      closeModal();
     }
   </script>
 </body>
