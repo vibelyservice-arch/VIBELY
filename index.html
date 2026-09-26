@@ -57,7 +57,7 @@
       color: #f4f4f5;
     }
     .glass-nav {
-      background: rgba(11, 11, 18, 0.94);
+      background: rgba(11, 11, 18, 0.95);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
@@ -78,6 +78,12 @@
       min-width: 44px;
       min-height: 44px;
       touch-action: manipulation;
+    }
+    .chip-active {
+      background-color: #9333ea !important;
+      color: #ffffff !important;
+      border-color: #c084fc !important;
+      box-shadow: 0 0 12px rgba(147, 51, 234, 0.4);
     }
   </style>
 </head>
@@ -112,6 +118,7 @@
 
   <!-- TOP APP NAVIGATION BAR -->
   <header class="sticky top-0 z-40 w-full glass-nav px-3 py-2.5 sm:px-8 flex items-center justify-between">
+    <!-- Brand Logo with Stealth Triple-Tap Trigger -->
     <div class="flex items-center gap-2.5">
       <div class="flex items-center gap-2 cursor-pointer select-none" onclick="handleStealthLogoTaps()">
         <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-purple-600 via-pink-500 to-indigo-500 p-[1px] flex items-center justify-center shadow-lg shadow-purple-600/20">
@@ -126,9 +133,11 @@
       </div>
     </div>
 
-    <!-- Center/Right: Coins Stash & 30+ Currency Selector -->
+    <!-- Center/Right: Dynamic Currency & Navigation -->
     <div class="flex items-center gap-2">
+      <!-- Coins Stash Button (RENDERED EXCLUSIVELY FOR PILLAR 1) -->
       <button 
+        id="header-coin-wrapper"
         onclick="openCoinStoreModal()"
         class="btn-tap-target flex items-center gap-1.5 px-3 py-1 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold text-xs hover:bg-amber-500/20 active:scale-95 transition"
       >
@@ -136,7 +145,7 @@
         <span id="header-coin-counter">250</span>
       </button>
 
-      <!-- 30+ Currency Engine Dropdown -->
+      <!-- 50+ Worldwide Currency Selector -->
       <div class="relative">
         <select 
           id="global-currency-select"
@@ -160,6 +169,9 @@
             <option value="RWF">🇷🇼 RWF (RF)</option>
             <option value="MAD">🇲🇦 MAD (DH)</option>
             <option value="ZMW">🇿🇲 ZMW (ZK)</option>
+            <option value="GMD">🇬🇲 GMD (D)</option>
+            <option value="SLE">🇸🇱 SLE (Le)</option>
+            <option value="ETB">🇪🇹 ETB (Br)</option>
           </optgroup>
           <optgroup label="🌏 Asia &amp; Oceania">
             <option value="INR">🇮🇳 INR (₹)</option>
@@ -175,6 +187,8 @@
             <option value="SGD">🇸🇬 SGD (S$)</option>
             <option value="AUD">🇦🇺 AUD (A$)</option>
             <option value="NZD">🇳🇿 NZD (NZ$)</option>
+            <option value="KRW">🇰🇷 KRW (₩)</option>
+            <option value="HKD">🇭🇰 HKD (HK$)</option>
           </optgroup>
           <optgroup label="🌎 Americas">
             <option value="CAD">🇨🇦 CAD (CA$)</option>
@@ -183,12 +197,16 @@
             <option value="COP">🇨🇴 COL (COL$)</option>
             <option value="CLP">🇨🇱 CLP (CLP$)</option>
             <option value="ARS">🇦🇷 ARS ($)</option>
+            <option value="PEN">🇵🇪 PEN (S/)</option>
+            <option value="JMD">🇯🇲 JMD (J$)</option>
           </optgroup>
           <optgroup label="🕌 Middle East">
             <option value="AED">🇦🇪 AED (AED)</option>
             <option value="SAR">🇸🇦 SAR (SAR)</option>
             <option value="QAR">🇶🇦 QAR (QAR)</option>
             <option value="KWD">🇰🇼 KWD (KD)</option>
+            <option value="BHD">🇧🇭 BHD (BD)</option>
+            <option value="OMR">🇴🇲 OMR (OMR)</option>
           </optgroup>
         </select>
         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-1.5 text-purple-400 text-[10px]">▼</div>
@@ -277,7 +295,7 @@
       <!-- Stage Progress Indicator -->
       <div class="flex items-center justify-between mb-6 pb-3 border-b border-white/10">
         <div>
-          <span class="text-[10px] uppercase font-bold text-purple-400 tracking-wider" id="p1-stage-label">Step 1 of 4: Account Creation</span>
+          <span class="text-[10px] uppercase font-bold text-purple-400 tracking-wider" id="p1-stage-label">Step 1 of 4: Onboarding</span>
           <h3 class="text-lg font-black text-white" id="p1-stage-title">Create Social Identity</h3>
         </div>
         <div class="flex gap-1">
@@ -311,14 +329,15 @@
         </button>
       </div>
 
-      <!-- STAGE 2: PROFILE PHOTO UPLOAD -->
+      <!-- STAGE 2: PROFILE PHOTO UPLOAD WITH REAL CAMERA INTEGRATION -->
       <div id="p1-step-2" class="space-y-4 text-xs text-center hidden">
-        <div class="relative w-28 h-28 mx-auto rounded-full border-2 border-purple-500 overflow-hidden shadow-xl">
+        <div class="relative w-32 h-32 mx-auto rounded-full border-2 border-purple-500 overflow-hidden shadow-xl bg-black flex items-center justify-center">
+          <video id="p1-selfie-cam" autoplay playsinline class="w-full h-full object-cover hidden"></video>
           <img id="p1-avatar-preview" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=250" class="w-full h-full object-cover" />
         </div>
         <p class="text-zinc-400 text-xs">Choose how to set your main creator photo</p>
         <div class="grid grid-cols-2 gap-3">
-          <button onclick="simulateCameraSelfie()" class="btn-tap-target py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold flex items-center justify-center gap-2">
+          <button onclick="openRealCameraStream('p1-selfie-cam', 'p1-avatar-preview')" class="btn-tap-target py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold flex items-center justify-center gap-2">
             📷 Open Camera
           </button>
           <label class="btn-tap-target py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold flex items-center justify-center gap-2 cursor-pointer">
@@ -331,37 +350,37 @@
         </button>
       </div>
 
-      <!-- STAGE 3: LIFESTYLE, HOBBY, SPORT & FOOD SURVEY -->
+      <!-- STAGE 3: LIFESTYLE, HOBBY, SPORT & FOOD SURVEY (FULLY WORKING CHIPS) -->
       <div id="p1-step-3" class="space-y-4 text-xs text-left hidden max-h-[380px] overflow-y-auto no-scrollbar">
         <div>
           <label class="block font-bold text-white mb-1.5">Favorite Hobbies</label>
-          <div class="flex flex-wrap gap-1.5">
-            <button onclick="toggleSurveyChip(this)" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-zinc-300">Gaming</button>
-            <button onclick="toggleSurveyChip(this)" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-zinc-300">Video Editing</button>
-            <button onclick="toggleSurveyChip(this)" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-zinc-300">Coding</button>
-            <button onclick="toggleSurveyChip(this)" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-zinc-300">Music Production</button>
-            <button onclick="toggleSurveyChip(this)" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-zinc-300">Reading</button>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="toggleSurveyChip(this)" class="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-300 font-semibold text-xs border border-white/10 hover:border-white/20 transition">Gaming</button>
+            <button onclick="toggleSurveyChip(this)" class="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-300 font-semibold text-xs border border-white/10 hover:border-white/20 transition">Video Editing</button>
+            <button onclick="toggleSurveyChip(this)" class="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-300 font-semibold text-xs border border-white/10 hover:border-white/20 transition">Coding</button>
+            <button onclick="toggleSurveyChip(this)" class="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-300 font-semibold text-xs border border-white/10 hover:border-white/20 transition">Music Production</button>
+            <button onclick="toggleSurveyChip(this)" class="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-300 font-semibold text-xs border border-white/10 hover:border-white/20 transition">Reading</button>
           </div>
         </div>
 
         <div>
           <label class="block font-bold text-white mb-1.5">Favorite Sports &amp; Fitness</label>
-          <div class="flex flex-wrap gap-1.5">
-            <button onclick="toggleSurveyChip(this)" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-zinc-300">Football</button>
-            <button onclick="toggleSurveyChip(this)" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-zinc-300">Basketball</button>
-            <button onclick="toggleSurveyChip(this)" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-zinc-300">Gym &amp; Lifting</button>
-            <button onclick="toggleSurveyChip(this)" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-zinc-300">Running</button>
-            <button onclick="toggleSurveyChip(this)" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-zinc-300">Swimming</button>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="toggleSurveyChip(this)" class="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-300 font-semibold text-xs border border-white/10 hover:border-white/20 transition">Football</button>
+            <button onclick="toggleSurveyChip(this)" class="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-300 font-semibold text-xs border border-white/10 hover:border-white/20 transition">Basketball</button>
+            <button onclick="toggleSurveyChip(this)" class="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-300 font-semibold text-xs border border-white/10 hover:border-white/20 transition">Gym &amp; Lifting</button>
+            <button onclick="toggleSurveyChip(this)" class="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-300 font-semibold text-xs border border-white/10 hover:border-white/20 transition">Running</button>
+            <button onclick="toggleSurveyChip(this)" class="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-300 font-semibold text-xs border border-white/10 hover:border-white/20 transition">Swimming</button>
           </div>
         </div>
 
         <div>
           <label class="block font-bold text-white mb-1.5">Favorite Foods &amp; Dining</label>
-          <div class="flex flex-wrap gap-1.5">
-            <button onclick="toggleSurveyChip(this)" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-zinc-300">Local Dishes</button>
-            <button onclick="toggleSurveyChip(this)" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-zinc-300">Pizza &amp; Italian</button>
-            <button onclick="toggleSurveyChip(this)" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-zinc-300">Grill &amp; BBQ</button>
-            <button onclick="toggleSurveyChip(this)" class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-zinc-300">Healthy Vegan</button>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="toggleSurveyChip(this)" class="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-300 font-semibold text-xs border border-white/10 hover:border-white/20 transition">Local Dishes</button>
+            <button onclick="toggleSurveyChip(this)" class="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-300 font-semibold text-xs border border-white/10 hover:border-white/20 transition">Pizza &amp; Italian</button>
+            <button onclick="toggleSurveyChip(this)" class="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-300 font-semibold text-xs border border-white/10 hover:border-white/20 transition">Grill &amp; BBQ</button>
+            <button onclick="toggleSurveyChip(this)" class="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-300 font-semibold text-xs border border-white/10 hover:border-white/20 transition">Healthy Vegan</button>
           </div>
         </div>
 
@@ -391,7 +410,7 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- PILLAR 1: BIOMETRIC 5-STEP FACIAL VERIFICATION (BLUE TICK)     -->
+  <!-- PILLAR 1: REAL CAMERA BIOMETRIC 5-STEP LIVENESS VERIFICATION   -->
   <!-- ============================================================== -->
   <div 
     id="facial-liveness-modal" 
@@ -404,10 +423,10 @@
       <h3 class="text-lg font-black text-white">Facial Liveness Verification</h3>
       <p class="text-xs text-zinc-400">Complete the 5 camera motions to remove the Red Flag and earn your ✓ Blue Tick.</p>
 
-      <!-- Circular Camera Viewport -->
-      <div class="relative w-44 h-44 mx-auto rounded-full border-4 border-dashed border-purple-500 overflow-hidden flex items-center justify-center bg-black/60 shadow-inner">
-        <img id="liveness-cam-feed" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=250" class="w-full h-full object-cover opacity-60" />
-        <div class="absolute inset-0 flex items-center justify-center bg-black/30">
+      <!-- Circular Real Camera Stream Viewport -->
+      <div class="relative w-48 h-48 mx-auto rounded-full border-4 border-dashed border-purple-500 overflow-hidden flex items-center justify-center bg-black shadow-inner">
+        <video id="liveness-video-feed" autoplay playsinline class="w-full h-full object-cover"></video>
+        <div class="absolute inset-0 flex items-center justify-center bg-black/25 pointer-events-none">
           <span class="text-xs font-black text-white bg-purple-600/90 px-3 py-1 rounded-full shadow-lg" id="liveness-motion-instruction">
             Step 1: Look Forward
           </span>
@@ -423,7 +442,7 @@
       </div>
 
       <button onclick="advanceLivenessStep()" id="btn-liveness-action" class="btn-tap-target w-full py-3.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-black text-xs transition shadow-lg shadow-purple-600/30">
-        I Am Ready • Begin Step 1
+        Start Step 1: Look Forward
       </button>
     </div>
   </div>
@@ -436,7 +455,7 @@
     <!-- User Profile Header & Verification Status Badge -->
     <div class="glass-panel p-4 rounded-3xl flex items-center justify-between border border-white/10">
       <div class="flex items-center gap-3">
-        <div class="relative cursor-pointer" onclick="openProfileSettingsModal()">
+        <div class="relative cursor-pointer">
           <img id="social-my-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="w-12 h-12 rounded-2xl object-cover border border-purple-500/40" />
           <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-400 border-2 border-black"></span>
         </div>
@@ -457,7 +476,7 @@
       </div>
     </div>
 
-    <!-- 11-TAB GLOBAL NAVIGATION BAR (PILLAR 1) -->
+    <!-- 11-TAB GLOBAL NAVIGATION BAR (PILLAR 1 SOCIAL ONLY) -->
     <div class="glass-card p-1.5 rounded-2xl flex items-center gap-1 overflow-x-auto no-scrollbar border border-white/10 text-xs font-bold">
       <button onclick="switchP1Tab('home')" id="p1-tab-home" class="btn-tap-target px-3.5 py-1.5 rounded-xl bg-purple-600 text-white shrink-0">🏠 Home</button>
       <button onclick="switchP1Tab('discover')" id="p1-tab-discover" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">❤️ Discover</button>
@@ -467,8 +486,6 @@
       <button onclick="switchP1Tab('communities')" id="p1-tab-communities" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">👥 Communities</button>
       <button onclick="switchP1Tab('activities')" id="p1-tab-activities" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">🎯 Activities</button>
       <button onclick="switchP1Tab('notifications')" id="p1-tab-notifications" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">🔔 Alerts</button>
-      <button onclick="switchP1Tab('profile')" id="p1-tab-profile" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">👤 Profile</button>
-      <button onclick="switchP1Tab('premium')" id="p1-tab-premium" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">🚀 VIP</button>
       <button onclick="switchP1Tab('settings')" id="p1-tab-settings" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">⚙️ Settings</button>
     </div>
 
@@ -528,9 +545,9 @@
     <div id="p1-view-discover" class="space-y-6 hidden">
       <!-- Quick Filter Bar -->
       <div class="flex gap-2 overflow-x-auto no-scrollbar text-xs font-bold">
-        <button onclick="setDeckFilter('active_now')" class="px-3 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0">● Active Now</button>
-        <button onclick="setDeckFilter('nearby')" class="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-300 hover:text-white shrink-0">📍 Nearby Friends</button>
-        <button onclick="setDeckFilter('global')" class="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-300 hover:text-white shrink-0">🌐 Global Friends</button>
+        <button onclick="alert('Filter applied: Active Now');" class="px-3 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0">● Active Now</button>
+        <button onclick="alert('Filter applied: Nearby Friends');" class="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-300 hover:text-white shrink-0">📍 Nearby Friends</button>
+        <button onclick="alert('Filter applied: Global Friends');" class="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-300 hover:text-white shrink-0">🌐 Global Friends</button>
         <button onclick="triggerTop10Matchmaker()" class="px-3 py-1.5 rounded-xl bg-purple-600/30 text-purple-300 border border-purple-500/40 shrink-0">⚡ Top 10 Matches</button>
       </div>
 
@@ -589,7 +606,6 @@
 
     <!-- P1 SUB-TAB: MATCHES (24H ANTI-GHOST CLOCK & 3-PERSON TRIADS) -->
     <div id="p1-view-matches" class="space-y-6 hidden">
-      <!-- 24-Hour Active Match Responders -->
       <div class="glass-panel p-5 rounded-3xl border border-white/10 space-y-4">
         <div class="flex items-center justify-between">
           <h4 class="text-xs font-black uppercase tracking-wider text-white">Active Connections (24h Anti-Ghost Clock)</h4>
@@ -605,106 +621,44 @@
               </div>
             </div>
             <div class="flex gap-2">
-              <button onclick="extendMatchCountdown(10)" class="px-2.5 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 font-bold text-[10px]">Extend (+24h)</button>
-              <button onclick="openDirectChatThread('Adrienne Okon', 'AO', 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150')" class="px-3 py-1.5 rounded-xl bg-purple-600 text-white font-bold">Chat</button>
+              <button onclick="alert('Extended +24h for 10 Coins!');" class="px-2.5 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 font-bold text-[10px]">Extend (+24h)</button>
+              <button onclick="alert('Opening chat thread...');" class="px-3 py-1.5 rounded-xl bg-purple-600 text-white font-bold">Chat</button>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- 3-Person Smart Match Triad -->
-      <div class="glass-panel p-5 rounded-3xl border border-purple-500/30 space-y-3">
-        <div class="flex items-center justify-between">
-          <span class="text-[10px] uppercase font-bold text-purple-400 px-2 py-0.5 rounded-full bg-purple-500/10">3-Person Smart Match</span>
-          <span class="text-[10px] text-emerald-400 font-bold">High Group Synergy</span>
-        </div>
-        <h4 class="text-sm font-bold text-white">The E-Com Launch Triad</h4>
-        <p class="text-xs text-zinc-400">Vibely introduced you with Kwame (Video Editor) and Liam (Media Buyer) to eliminate 1-on-1 small talk.</p>
-        <button onclick="alert('Opening Triad Group Chat with Kwame and Liam...');" class="w-full py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition">
-          Enter 3-Person Group Chat →
-        </button>
-      </div>
     </div>
 
-    <!-- P1 SUB-TAB: MESSAGES (E2EE INBOX & CHAT) -->
+    <!-- P1 SUB-TAB: MESSAGES -->
     <div id="p1-view-messages" class="space-y-4 hidden">
-      <div class="relative">
-        <input 
-          type="text" 
-          id="social-search-input" 
-          oninput="handleSearchConversations(this.value)"
-          placeholder="Search by username or name..." 
-          class="w-full px-4 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500" 
-        />
-        <span class="absolute right-3 top-2.5 text-zinc-500 text-xs">🔍</span>
-      </div>
-
       <div id="conversations-list" class="space-y-2 text-xs">
-        <div onclick="openDirectChatThread('Adrienne Okon', 'AO', 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150')" class="p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 cursor-pointer flex items-center justify-between transition">
+        <div onclick="alert('Opening E2EE chat with Adrienne Okon...');" class="p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 cursor-pointer flex items-center justify-between transition">
           <div class="flex items-center gap-3">
-            <div class="relative">
-              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150" class="w-10 h-10 rounded-xl object-cover" />
-              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 absolute -bottom-0.5 -right-0.5 border border-black"></span>
-            </div>
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150" class="w-10 h-10 rounded-xl object-cover" />
             <div>
               <div class="flex items-center gap-1.5">
                 <span class="font-bold text-white">Adrienne Okon</span>
                 <span class="text-[9px] text-purple-400 font-bold">@adrienne_pro</span>
               </div>
-              <p class="text-[11px] text-zinc-400 mt-0.5" id="last-msg-adrienne">"Looking for content creators to team up on stores!"</p>
+              <p class="text-[11px] text-zinc-400 mt-0.5">"Looking for content creators to team up on stores!"</p>
             </div>
           </div>
-          <div class="text-right">
-            <span class="text-[9px] text-zinc-500 block">12:40 PM</span>
-            <span class="w-2 h-2 rounded-full bg-purple-500 inline-block mt-1"></span>
-          </div>
-        </div>
-
-        <div onclick="openDirectChatThread('Kwame Mensah', 'KM', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150')" class="p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 cursor-pointer flex items-center justify-between transition">
-          <div class="flex items-center gap-3">
-            <div class="relative">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" class="w-10 h-10 rounded-xl object-cover" />
-              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 absolute -bottom-0.5 -right-0.5 border border-black"></span>
-            </div>
-            <div>
-              <div class="flex items-center gap-1.5">
-                <span class="font-bold text-white">Kwame Mensah</span>
-                <span class="text-[9px] text-purple-400 font-bold">@kwame_ai</span>
-              </div>
-              <p class="text-[11px] text-zinc-400 mt-0.5" id="last-msg-kwame">"Let's test the AI video module together."</p>
-            </div>
-          </div>
-          <div class="text-right">
-            <span class="text-[9px] text-zinc-500 block">Yesterday</span>
-          </div>
+          <span class="text-[9px] text-zinc-500">12:40 PM</span>
         </div>
       </div>
     </div>
 
     <!-- P1 SUB-TAB: COMMUNITIES -->
     <div id="p1-view-communities" class="space-y-4 hidden">
-      <div class="flex justify-between items-center">
-        <h4 class="text-xs font-black uppercase text-white">Public &amp; Private Creator Hubs</h4>
-        <button onclick="alert('Create Community Wizard loaded.');" class="px-3 py-1.5 rounded-xl bg-purple-600 text-white font-bold text-xs">+ Create Hub</button>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-        <div class="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-2">
-          <div class="flex justify-between items-start">
-            <span class="font-bold text-white">🌍 Global AI Video Animators</span>
-            <span class="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md">Public</span>
-          </div>
-          <p class="text-[11px] text-zinc-400">Share scripts, CapCut templates, and discuss viral hooks.</p>
-          <button onclick="alert('Joined Community Hub!');" class="w-full py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold transition">Join Community</button>
-        </div>
+      <div class="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-2 text-xs">
+        <span class="font-bold text-white block">🌍 Global AI Video Animators</span>
+        <p class="text-[11px] text-zinc-400">Share scripts, CapCut templates, and discuss viral hooks.</p>
+        <button onclick="alert('Joined Community Hub!');" class="w-full py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold transition">Join Community</button>
       </div>
     </div>
 
     <!-- P1 SUB-TAB: ACTIVITIES -->
     <div id="p1-view-activities" class="space-y-4 hidden">
-      <div class="flex justify-between items-center">
-        <h4 class="text-xs font-black uppercase text-white">Collaborative Activities</h4>
-        <button onclick="alert('Activity Scheduler initialized.');" class="px-3 py-1.5 rounded-xl bg-purple-600 text-white font-bold text-xs">+ Plan Activity</button>
-      </div>
       <div class="p-4 rounded-2xl bg-white/5 border border-white/5 text-xs space-y-2">
         <span class="text-amber-400 font-bold block">💻 25-Minute Pomodoro Co-Working Jam</span>
         <p class="text-zinc-400 text-[11px]">Today at 16:00 GMT • Online Video Lounge</p>
@@ -721,316 +675,356 @@
           <span class="text-[10px] text-zinc-500">24 minutes ago</span>
         </div>
       </div>
-      <div class="p-3.5 rounded-2xl bg-white/5 border border-white/5 flex items-center gap-3">
-        <span class="text-xl">⚡</span>
-        <div>
-          <span class="text-white font-bold block">Kwame Mensah sent you a Super Vibe!</span>
-          <span class="text-[10px] text-zinc-500">2 hours ago</span>
-        </div>
-      </div>
     </div>
 
-    <!-- P1 SUB-TAB: SETTINGS & ACCOUNT -->
+    <!-- P1 SUB-TAB: SETTINGS -->
     <div id="p1-view-settings" class="space-y-3 hidden text-xs">
       <button onclick="open2FAModal()" class="w-full p-3.5 rounded-2xl bg-white/5 border border-white/5 flex justify-between items-center text-zinc-300 hover:text-white">
         <span>🔒 Configure Google Authenticator 2FA</span>
         <span class="text-cyan-400 font-bold">Setup</span>
-      </button>
-      <button onclick="openDRMModal()" class="w-full p-3.5 rounded-2xl bg-white/5 border border-white/5 flex justify-between items-center text-zinc-300 hover:text-white">
-        <span>🛡️ DRM &amp; Dynamic Watermarking Audit</span>
-        <span class="text-zinc-500">›</span>
-      </button>
-      <button onclick="alert('Password reset link sent to Gmail.');" class="w-full p-3.5 rounded-2xl bg-white/5 border border-white/5 flex justify-between items-center text-zinc-300 hover:text-white">
-        <span>🔑 Reset Password via Gmail</span>
-        <span class="text-zinc-500">›</span>
       </button>
       <button onclick="handleUserLogout()" class="w-full p-3.5 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-400 font-bold">
         Sign Out / Exit
       </button>
     </div>
 
+    <!-- PILLAR 1 DEDICATED SOCIAL BOTTOM NAVIGATION BAR -->
+    <nav class="fixed bottom-0 inset-x-0 z-40 bg-[#0d0d14] border-t border-white/10 px-4 py-2 flex items-center justify-around text-center text-[10px] text-zinc-400">
+      <button onclick="switchP1Tab('discover')" class="flex flex-col items-center gap-1 hover:text-white transition">
+        <span>🔥</span>
+        <span>Discover</span>
+      </button>
+      <button onclick="switchP1Tab('matches')" class="flex flex-col items-center gap-1 hover:text-white transition">
+        <span>🤝</span>
+        <span>Matches</span>
+      </button>
+      <button onclick="switchP1Tab('messages')" class="flex flex-col items-center gap-1 hover:text-white transition">
+        <span>💬</span>
+        <span>Messages</span>
+      </button>
+      <button onclick="switchP1Tab('home')" class="flex flex-col items-center gap-1 hover:text-white transition">
+        <span>📸</span>
+        <span>Stories</span>
+      </button>
+      <button onclick="switchP1Tab('settings')" class="flex flex-col items-center gap-1 hover:text-white transition">
+        <span>👤</span>
+        <span>Profile</span>
+      </button>
+    </nav>
+
   </div>
 
   <!-- ============================================================== -->
-  <!-- VIEW 3: PILLAR 2 - AFFILIATE MARKETING EXECUTIVE WORKSTATION   -->
+  <!-- VIEW 3: PILLAR 2 - AFFILIATE WORKSTATION (DIGITSTEM PARITY)    -->
   <!-- ============================================================== -->
-  <div id="view-affiliate" class="hidden relative z-10 w-full max-w-5xl mx-auto px-4 pt-6 space-y-6">
+  <div id="view-affiliate" class="hidden relative z-10 w-full max-w-5xl mx-auto px-4 pt-4 space-y-6">
 
-    <!-- Secondary Workstation Sub-Nav Dock (Digitstem Parity) -->
-    <div class="glass-panel p-2 rounded-2xl flex items-center justify-between gap-1 overflow-x-auto no-scrollbar border border-white/10">
-      <button onclick="switchAffiliateSubView('home')" id="subnav-home" class="btn-tap-target py-2 px-3.5 rounded-xl text-xs font-bold bg-purple-600 text-white transition flex items-center gap-1.5 shrink-0">
-        <span>📊</span> Dashboard
-      </button>
-      <button onclick="switchAffiliateSubView('market')" id="subnav-market" class="btn-tap-target py-2 px-3.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white transition flex items-center gap-1.5 shrink-0">
-        <span>🛍️</span> Marketplace
-      </button>
-      <button onclick="switchAffiliateSubView('contests')" id="subnav-contests" class="btn-tap-target py-2 px-3.5 rounded-xl text-xs font-bold text-amber-400 hover:text-white transition flex items-center gap-1.5 shrink-0">
-        <span>🏆</span> Competitions
-      </button>
-      <button onclick="switchAffiliateSubView('lms')" id="subnav-lms" class="btn-tap-target py-2 px-3.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white transition flex items-center gap-1.5 shrink-0">
-        <span>🎓</span> Academy &amp; Quiz
-      </button>
-      <button onclick="switchAffiliateSubView('creator')" id="subnav-creator" class="btn-tap-target py-2 px-3.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white transition flex items-center gap-1.5 shrink-0">
-        <span>🎨</span> Creator Hub
-      </button>
-      <button onclick="switchAffiliateSubView('community')" id="subnav-community" class="btn-tap-target py-2 px-3.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white transition flex items-center gap-1.5 shrink-0">
-        <span>🔒</span> Community
-      </button>
-      <button onclick="openMoreFeaturesSheet()" class="btn-tap-target py-2 px-3.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white transition flex items-center gap-1.5 shrink-0">
-        <span>🗂️</span> More
-      </button>
-      <button onclick="openAffiliateSettingsModal()" class="btn-tap-target py-2 px-3 rounded-xl bg-white/5 border border-white/10 text-zinc-300 text-xs font-bold hover:bg-white/10 transition shrink-0">
-        ⚙️ Settings
-      </button>
-    </div>
+    <!-- TOP BAR (SCREENSHOT 1000082126 REPLICA) -->
+    <div class="glass-panel p-4 rounded-3xl flex items-center justify-between border border-white/10">
+      <div class="flex items-center gap-2">
+        <button onclick="openMoreFeaturesSheet()" class="p-2 rounded-xl bg-white/5 border border-white/10 text-zinc-300">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <span class="text-xs font-bold text-white uppercase tracking-wider">Dashboard</span>
+      </div>
 
-    <!-- CORE 15 BUTTONS PANEL (UNLOCKED WITH 95 GHS PASS) -->
-    <div class="glass-card p-4 rounded-3xl border border-white/10">
-      <span class="text-[10px] uppercase font-bold text-zinc-400 tracking-wider block mb-3">Core Workspace Actions (Unlocked with Registration)</span>
-      <div class="grid grid-cols-3 sm:grid-cols-5 gap-2 text-center text-xs font-bold">
-        <button onclick="switchAffiliateSubView('home')" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white">1. Dashboard</button>
-        <button onclick="switchAffiliateSubView('market')" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white">2. Marketplace</button>
-        <button onclick="alert('Viewing My Products (6 courses active)');" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white">3. My Products</button>
-        <button onclick="copyPromoterLink(this)" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white">4. Affiliate Links</button>
-        <button onclick="alert('Campaigns: Organic TikTok & WhatsApp bridge funnels active.');" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white">5. Campaigns</button>
-        <button onclick="alert('Total Sales: 28 Verified Passes');" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white">6. Sales</button>
-        <button onclick="alert('Commissions: 50% split per sale.');" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white">7. Commissions</button>
-        <button onclick="switchAffiliateSubView('home')" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white">8. Wallet</button>
-        <button onclick="requestFridayPayout()" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white">9. Payouts</button>
-        <button onclick="alert('Analytics: 4.8% Click-to-Sale Conversion Rate');" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white">10. Analytics</button>
-        <button onclick="alert('Customers: 28 active students assigned.');" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white">11. Customers</button>
-        <button onclick="alert('Referrals: Tier 1 split active.');" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white">12. Referrals</button>
-        <button onclick="alert('0 unread notifications.');" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white">13. Notifications</button>
-        <button onclick="alert('Promoter messages clean.');" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white">14. Messages</button>
-        <button onclick="openAffiliateSettingsModal()" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white">15. Settings</button>
+      <div class="flex items-center gap-3">
+        <button onclick="alert('Theme toggled');" class="text-zinc-400 hover:text-white text-sm">🌙</button>
+        <button onclick="alert('45 unread notifications');" class="relative text-zinc-400 hover:text-white text-sm">
+          🔔
+          <span class="absolute -top-1 -right-1.5 w-3.5 h-3.5 bg-red-500 text-white rounded-full text-[8px] font-bold flex items-center justify-center">45</span>
+        </button>
+        <div onclick="openAffiliateProfileDrawer()" class="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-600 to-pink-600 flex items-center justify-center text-white text-[10px] font-black cursor-pointer">
+          GM
+        </div>
       </div>
     </div>
 
-    <!-- PREMIUM 100 GHS/MONTH SUBSCRIPTION TRIGGER & BUTTONS (16 TO 45) -->
-    <div class="rounded-3xl p-5 bg-gradient-to-r from-purple-950/70 via-zinc-950 to-pink-950/70 border border-purple-500/30 space-y-4">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+    <!-- WELCOME BANNER (SCREENSHOT 1000082126 REPLICA) -->
+    <div class="space-y-1 text-left">
+      <h2 class="text-2xl font-black text-white flex items-center gap-2">
+        Welcome back, Gerald 👋
+      </h2>
+      <p class="text-xs text-zinc-400 italic">"Consistency is the secret currency of top creators. ✨"</p>
+    </div>
+
+    <!-- QUICK ACTION CARDS (SCREENSHOT 1000082126 REPLICA) -->
+    <div class="grid grid-cols-2 gap-3 text-left">
+      <div onclick="alert('Viewing Announcement: UMM conversions +40% with AI Video hooks.');" class="p-4 rounded-2xl bg-white/5 border border-white/10 cursor-pointer hover:border-purple-500/30 transition">
+        <span class="text-xs font-bold text-white flex items-center gap-1.5">
+          <span>📢</span> View Announcement
+        </span>
+      </div>
+      <div onclick="alert('Notifications Drawer: 45 lead conversions logged.');" class="p-4 rounded-2xl bg-pink-950/20 border border-pink-500/20 cursor-pointer hover:border-pink-500/40 transition flex items-center justify-between">
+        <span class="text-xs font-bold text-pink-300 flex items-center gap-1.5">
+          <span>🔔</span> Notifications
+        </span>
+        <span class="px-2 py-0.5 rounded-full bg-pink-500 text-white text-[10px] font-black">45</span>
+      </div>
+    </div>
+
+    <!-- YOUR WORKSPACES (SCREENSHOT 1000082126 REPLICA) -->
+    <div class="space-y-3 text-left">
+      <div class="flex justify-between items-center">
         <div>
-          <span class="text-[10px] uppercase font-black px-2.5 py-0.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30">
-            ★ Premium AI &amp; Growth Suite (100 GHS / Month)
-          </span>
-          <h4 class="text-sm font-black text-white mt-1">Unlock Buttons 16 to 45 (AI Engines &amp; Enterprise Tools)</h4>
+          <h4 class="text-sm font-black text-white">Your Workspaces</h4>
+          <p class="text-[11px] text-zinc-400">Access your primary hubs or customize your workspace order.</p>
         </div>
-        <button onclick="openPremium100Modal()" id="btn-premium-100-status" class="py-2.5 px-5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-black text-xs shadow-lg shadow-purple-600/30 shrink-0">
-          Subscribe (100 GHS / Mo)
+        <button onclick="alert('Workspace arrangement locked in.');" class="px-2.5 py-1 rounded-xl bg-white/5 text-[10px] text-zinc-300 border border-white/10 font-bold">
+          ↕ Rearrange Hubs
         </button>
       </div>
 
-      <!-- 30 Gated Premium Buttons -->
-      <div id="premium-buttons-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 text-center text-[11px] font-bold opacity-60">
-        <button onclick="triggerPremiumTool('AI Affiliate Manager')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">16. AI Affiliate Manager</button>
-        <button onclick="triggerPremiumTool('AI Product Matchmaker')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">17. AI Product Matchmaker</button>
-        <button onclick="triggerPremiumTool('AI Campaign Doctor')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">18. AI Campaign Doctor</button>
-        <button onclick="triggerPremiumTool('Revenue Opportunity Radar')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">19. Revenue Radar</button>
-        <button onclick="triggerPremiumTool('AI Promotion Generator')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">20. AI Promo Generator</button>
-        <button onclick="triggerPremiumTool('AI Video Ad Creator')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">21. AI Video Creator</button>
-        <button onclick="triggerPremiumTool('Smart Universal Links')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">22. Smart Universal Link</button>
-        <button onclick="triggerPremiumTool('Affiliate–Vendor Matchmaker')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">23. Vendor Matchmaking</button>
-        <button onclick="triggerPremiumTool('Customer Value Analytics')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">24. Customer Value LTV</button>
-        <button onclick="triggerPremiumTool('Fraud & Commission Protection')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">25. Fraud Protection</button>
-        <button onclick="triggerPremiumTool('Dynamic Commission Engine')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">26. Dynamic Commissions</button>
-        <button onclick="triggerPremiumTool('Affiliate Team Selling')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">27. Team Selling</button>
-        <button onclick="triggerPremiumTool('Affiliate Growth Roadmap')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">28. Growth Roadmap</button>
-        <button onclick="triggerPremiumTool('VIP & Early-Access Marketplace')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">29. VIP Marketplace</button>
-        <button onclick="triggerPremiumTool('Enterprise Command Center')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">30. Enterprise Center</button>
-        <button onclick="triggerPremiumTool('Smart Campaign Builder')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">31. Campaign Builder</button>
-        <button onclick="triggerPremiumTool('Conversion Optimizer')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">32. Conversion Optimizer</button>
-        <button onclick="triggerPremiumTool('Landing Page Builder')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">33. Landing Page Builder</button>
-        <button onclick="triggerPremiumTool('A/B Testing Center')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">34. A/B Testing Center</button>
-        <button onclick="triggerPremiumTool('Traffic Intelligence')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">35. Traffic Intelligence</button>
-        <button onclick="triggerPremiumTool('Audience Insights')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">36. Audience Insights</button>
-        <button onclick="triggerPremiumTool('Campaign Automation')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">37. Automation</button>
-        <button onclick="triggerPremiumTool('Lead Management')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">38. Lead Management</button>
-        <button onclick="triggerPremiumTool('Customer Retention')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">39. Retention Center</button>
-        <button onclick="triggerPremiumTool('Affiliate Recruitment')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">40. Recruitment</button>
-        <button onclick="triggerPremiumTool('Affiliate Leaderboard')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">41. Leaderboard</button>
-        <button onclick="triggerPremiumTool('Performance Rewards')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">42. Rewards Engine</button>
-        <button onclick="triggerPremiumTool('Global Currency Center')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">43. Currency Center</button>
-        <button onclick="triggerPremiumTool('Tax & Earnings Center')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">44. Tax Center</button>
-        <button onclick="triggerPremiumTool('API & Integrations')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">45. API &amp; Webhooks</button>
-      </div>
-    </div>
-
-    <!-- SUB-VIEW A: AFFILIATE DASHBOARD HOME -->
-    <div id="aff-sub-home" class="space-y-6">
-      <div class="flex items-center justify-between">
-        <div>
-          <h2 class="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
-            Good Evening, <span id="aff-user-displayname">Gerald Mingle</span>! 👋
-          </h2>
-          <p class="text-xs text-zinc-400 mt-0.5">Keep up the good work. Your current status is active.</p>
-        </div>
-        <button onclick="copyPromoterLink(this)" class="btn-tap-target py-2 px-3.5 rounded-xl bg-purple-600/30 border border-purple-500/40 text-purple-300 text-xs font-bold hover:bg-purple-600/40 transition">
-          🔗 Copy Bio Link
-        </button>
-      </div>
-
-      <!-- Milestone Progress Bar -->
-      <div class="glass-card p-5 sm:p-6 rounded-3xl border border-white/10 relative overflow-hidden">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-2xl">
-              🚀
-            </div>
+      <!-- Affiliate Hub Workspace Card -->
+      <div class="p-5 rounded-3xl bg-card border border-white/10 space-y-4">
+        <div class="flex justify-between items-start">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">🤝</span>
             <div>
-              <div class="flex items-center gap-2">
-                <span class="text-xs uppercase font-extrabold tracking-wider text-amber-400">Affiliate Milestone Progress:</span>
-                <span class="text-xs font-bold text-white px-2 py-0.5 rounded-md bg-white/5 border border-white/10">Starter</span>
-              </div>
-              <h4 class="text-sm font-black text-white mt-0.5">Next: Bronze Excellence Award</h4>
+              <h5 class="text-sm font-bold text-white">Affiliate Hub</h5>
+              <p class="text-[11px] text-zinc-400">Promote products and earn commissions.</p>
             </div>
           </div>
-          <span class="text-xs font-black text-amber-300" data-price-ghs="10000">Target: ₵ 10,000 GHS</span>
+          <span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-[10px] font-bold flex items-center gap-1 border border-emerald-500/20">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Live
+          </span>
         </div>
-        <div class="w-full bg-black/60 rounded-full h-2.5 border border-white/5 overflow-hidden mb-2">
-          <div class="bg-gradient-to-r from-purple-500 via-pink-500 to-amber-400 h-2.5 rounded-full w-[28%]"></div>
-        </div>
-        <div class="flex justify-between text-[11px] font-bold text-zinc-400">
-          <span>Earned: <span class="text-white" data-price-ghs="2800">₵ 2,800.00 GHS</span></span>
-          <span class="text-amber-400">28% Complete • Goal: 10,000.00</span>
-        </div>
-      </div>
 
-      <!-- Settlement Wallet Card -->
-      <div class="rounded-3xl p-6 bg-gradient-to-br from-indigo-950 via-purple-950 to-zinc-950 border border-purple-500/30 shadow-2xl relative overflow-hidden">
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-[11px] uppercase font-black tracking-widest text-purple-300 flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-            Available For Friday Settlement
+        <div class="flex justify-between items-center pt-2">
+          <span class="text-xs text-zinc-400 flex items-center gap-1">
+            <span>💵</span> 0.00 USD Earned
           </span>
-          <span class="text-[10px] uppercase font-bold px-2.5 py-0.5 rounded-full bg-white/10 text-zinc-300 border border-white/10">
-            Escrow Cleared
-          </span>
-        </div>
-        <div class="my-3">
-          <div class="text-4xl font-black text-white" data-price-ghs="1365">₵ 1,365.00 GHS</div>
-          <p class="text-xs text-purple-300/80 mt-1 font-semibold">Weekly payout window opens Friday 00:00 GMT</p>
-        </div>
-        <div class="pt-4 border-t border-white/10 flex items-center justify-between">
-          <span class="text-xs text-zinc-400">Disburses to MTN MoMo / Telecel / Bank</span>
-          <button onclick="requestFridayPayout()" class="btn-tap-target py-2.5 px-5 rounded-xl bg-white text-black font-black text-xs hover:bg-zinc-200 transition shadow-lg">
-            Request Payout Now →
+          <button onclick="openAIBotModal()" class="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-black text-xs font-bold shadow-lg shadow-emerald-500/30">
+            💬
           </button>
         </div>
-      </div>
 
-      <!-- Conversion & Performance Metrics -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div class="glass-card p-4 rounded-2xl">
-          <span class="text-[10px] uppercase font-bold text-zinc-500 block mb-1">Click to Sale</span>
-          <span class="text-xl font-black text-purple-400">4.8%</span>
-          <span class="text-[10px] text-zinc-400 font-semibold block mt-0.5">High Converting</span>
-        </div>
-        <div class="glass-card p-4 rounded-2xl">
-          <span class="text-[10px] uppercase font-bold text-zinc-500 block mb-1">Total Sales</span>
-          <span class="text-xl font-black text-white">28 Passes</span>
-          <span class="text-[10px] text-emerald-400 font-semibold block mt-0.5">↑ 14 this week</span>
-        </div>
-        <div class="glass-card p-4 rounded-2xl">
-          <span class="text-[10px] uppercase font-bold text-zinc-500 block mb-1">Pending Escrow</span>
-          <span class="text-xl font-black text-zinc-400" data-price-ghs="0">₵ 0.00 GHS</span>
-          <span class="text-[10px] text-zinc-500 font-semibold block mt-0.5">0 Locked</span>
-        </div>
-        <div class="glass-card p-4 rounded-2xl">
-          <span class="text-[10px] uppercase font-bold text-zinc-500 block mb-1">Total Withdrawn</span>
-          <span class="text-xl font-black text-emerald-400" data-price-ghs="4062.5">₵ 4,062.50 GHS</span>
-          <span class="text-[10px] text-zinc-400 font-semibold block mt-0.5">MoMo Direct</span>
-        </div>
-      </div>
-
-      <!-- Top 5 Affiliates of the Week Leaderboard -->
-      <div class="glass-panel p-5 rounded-3xl border border-white/10">
-        <div class="flex items-center justify-between mb-4">
-          <h4 class="text-xs font-black uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
-            <span>🏆</span> Top Affiliates of the Week
-          </h4>
-          <span class="text-[10px] text-zinc-400 font-bold">Verified Settlements</span>
-        </div>
-        <div class="space-y-2 text-xs">
-          <div class="p-3 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <span class="w-6 h-6 rounded-full bg-amber-400 text-black font-black flex items-center justify-center text-xs">1</span>
-              <div>
-                <span class="font-bold text-white">Chukwu Israel</span>
-                <span class="text-[10px] text-zinc-400 block">78 Sales Generated</span>
-              </div>
-            </div>
-            <span class="font-black text-emerald-400" data-price-ghs="3705">₵ 3,705.00 GHS</span>
-          </div>
-          <div class="p-3 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <span class="w-6 h-6 rounded-full bg-zinc-300 text-black font-black flex items-center justify-center text-xs">2</span>
-              <div>
-                <span class="font-bold text-white">Stemer Franklin</span>
-                <span class="text-[10px] text-zinc-400 block">62 Sales Generated</span>
-              </div>
-            </div>
-            <span class="font-black text-emerald-400" data-price-ghs="2945">₵ 2,945.00 GHS</span>
-          </div>
-          <div class="p-3 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <span class="w-6 h-6 rounded-full bg-amber-600 text-white font-black flex items-center justify-center text-xs">3</span>
-              <div>
-                <span class="font-bold text-white">Ofuli Chidubem</span>
-                <span class="text-[10px] text-zinc-400 block">45 Sales Generated</span>
-              </div>
-            </div>
-            <span class="font-black text-emerald-400" data-price-ghs="2137.5">₵ 2,137.50 GHS</span>
-          </div>
-        </div>
+        <button onclick="switchAffiliateSubView('market')" class="btn-tap-target w-full py-3 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-black font-black text-xs transition shadow-lg">
+          Open Affiliate Hub →
+        </button>
       </div>
     </div>
 
-    <!-- SUB-VIEW B: MARKETPLACE -->
+    <!-- DOCKED LOWER SUB-BAR (SCREENSHOT 1000082126 REPLICA) -->
+    <div class="glass-card p-2 rounded-2xl flex items-center justify-between text-center text-xs font-bold border border-white/10 text-zinc-400">
+      <button onclick="switchAffiliateSubView('home')" class="flex flex-col items-center gap-1 hover:text-white transition">
+        <span>🏠</span>
+        <span class="text-[10px]">Home</span>
+      </button>
+      <button onclick="switchAffiliateSubView('market')" class="flex flex-col items-center gap-1 hover:text-white transition">
+        <span>📊</span>
+        <span class="text-[10px]">Affiliate</span>
+      </button>
+      <button onclick="switchAffiliateSubView('creator')" class="flex flex-col items-center gap-1 hover:text-white transition">
+        <span>🎨</span>
+        <span class="text-[10px]">Creator</span>
+      </button>
+      <button onclick="openMoreFeaturesSheet()" class="flex flex-col items-center gap-1 hover:text-white transition">
+        <span>🗂️</span>
+        <span class="text-[10px]">More</span>
+      </button>
+      <button onclick="openAffiliateProfileDrawer()" class="flex flex-col items-center gap-1 text-emerald-400 transition">
+        <span class="w-5 h-5 rounded-full bg-gradient-to-tr from-purple-600 to-pink-600 flex items-center justify-center text-white text-[8px] font-black">GM</span>
+        <span class="text-[10px]">Profile</span>
+      </button>
+    </div>
+
+    <!-- HORIZONTAL BUTTONS DOCK (1 TO 15 + PREMIUM SUITE) -->
+    <div class="glass-panel p-2 rounded-2xl flex items-center gap-1 overflow-x-auto no-scrollbar border border-white/10 text-xs font-bold">
+      <button onclick="switchAffiliateSubView('home')" id="subnav-home" class="btn-tap-target px-3.5 py-1.5 rounded-xl bg-purple-600 text-white shrink-0">1. Dashboard</button>
+      <button onclick="switchAffiliateSubView('market')" id="subnav-market" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">2. Marketplace</button>
+      <button onclick="alert('Viewing My Products (6 courses active)');" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">3. My Products</button>
+      <button onclick="copyPromoterLink(this)" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">4. Affiliate Links</button>
+      <button onclick="alert('Campaigns active on TikTok & WhatsApp');" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">5. Campaigns</button>
+      <button onclick="alert('Total Sales: 28 Verified');" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">6. Sales</button>
+      <button onclick="alert('Commissions: 50% split per sale');" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">7. Commissions</button>
+      <button onclick="switchAffiliateSubView('home')" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">8. Wallet</button>
+      <button onclick="requestFridayPayout()" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">9. Payouts</button>
+      <button onclick="alert('Analytics: 4.8% Click to Sale');" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">10. Analytics</button>
+      <button onclick="alert('Customers: 28 students');" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">11. Customers</button>
+      <button onclick="alert('Referrals: Tier 1 split active');" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">12. Referrals</button>
+      <button onclick="alert('0 unread notifications');" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">13. Notifications</button>
+      <button onclick="alert('Messages queue clean');" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">14. Messages</button>
+      <button onclick="openAffiliateSettingsModal()" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">15. Settings</button>
+      <!-- Dedicated Premium Suite Button -->
+      <button onclick="switchAffiliateSubView('premium_suite')" id="subnav-premium_suite" class="btn-tap-target px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white shrink-0 shadow-lg">👑 Premium Suite (16-45)</button>
+    </div>
+
+    <!-- SUB-VIEW: MARKETPLACE (ALL 6 PRODUCTS RENDERED) -->
     <div id="aff-sub-market" class="space-y-6 hidden">
-      <div class="glass-panel p-5 rounded-3xl border border-purple-500/30">
-        <div class="w-full h-28 rounded-2xl bg-gradient-to-r from-purple-900 to-indigo-900 p-4 flex flex-col justify-between mb-4">
-          <span class="text-[9px] uppercase font-black px-2 py-0.5 rounded-full bg-amber-400 text-black w-max">★ TOP PICK</span>
-          <h4 class="text-base font-black text-white">1-Year Vibely Membership Pass</h4>
+      <div>
+        <h3 class="text-xl font-black text-white">Affiliate Marketplace</h3>
+        <p class="text-xs text-zinc-400 mt-0.5">Discover high-converting offers, promote instantly, and earn 50% commissions.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
+        <!-- 1. Pass -->
+        <div class="glass-panel p-5 rounded-3xl border border-purple-500/30 sm:col-span-2">
+          <div class="w-full h-28 rounded-2xl bg-gradient-to-r from-purple-900 to-indigo-900 p-4 flex flex-col justify-between mb-4">
+            <span class="text-[9px] uppercase font-black px-2 py-0.5 rounded-full bg-amber-400 text-black w-max">★ TOP PICK</span>
+            <h4 class="text-base font-black text-white">1-Year Vibely Membership Pass</h4>
+          </div>
+          <div class="flex justify-between items-center text-xs mb-3">
+            <span class="font-bold text-emerald-400">50% Split: <span data-price-ghs="47.5">₵ 47.50 GHS</span></span>
+            <span class="font-bold text-white" data-price-ghs="95">₵ 95.00 GHS</span>
+          </div>
+          <button onclick="copyPromoterOfferLink(this, '1-Year Membership Pass')" class="btn-tap-target w-full py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition">
+            Promote Offer (50% Link)
+          </button>
         </div>
-        <div class="flex justify-between items-center text-xs mb-3">
-          <span class="font-bold text-emerald-400">50% Split: <span data-price-ghs="47.5">₵ 47.50 GHS</span></span>
-          <span class="font-bold text-white" data-price-ghs="95">₵ 95.00 GHS</span>
+
+        <!-- 2. UMM -->
+        <div class="glass-card p-5 rounded-2xl flex flex-col justify-between">
+          <div>
+            <div class="w-full h-24 rounded-xl bg-gradient-to-r from-emerald-950 to-teal-900 p-3 flex flex-col justify-between mb-3 border border-white/10">
+              <span class="text-[9px] font-bold text-emerald-300">CORE MASTERCLASS</span>
+              <h5 class="text-sm font-black text-white">The Ultimate Money Machine (U.M.M)</h5>
+            </div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="47.5">₵ 47.50 GHS</span></span>
+              <span class="text-[10px] text-zinc-400">EPC: $1.85</span>
+            </div>
+            <p class="text-xs text-zinc-400">High-ticket client acquisition, digital packaging, and arbitrage.</p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
+            <span class="text-base font-bold text-white" data-price-ghs="95">₵ 95.00 GHS</span>
+            <button onclick="copyPromoterOfferLink(this, 'The Ultimate Money Machine')" class="btn-tap-target py-2 px-3.5 rounded-xl bg-white/10 text-white font-bold text-xs hover:bg-white/20 transition">Promote</button>
+          </div>
         </div>
-        <button onclick="copyPromoterOfferLink(this, '1-Year Membership Pass')" class="btn-tap-target w-full py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition">
-          Promote Offer (50% Link)
-        </button>
+
+        <!-- 3. AI Video -->
+        <div class="glass-card p-5 rounded-2xl flex flex-col justify-between">
+          <div>
+            <div class="w-full h-24 rounded-xl bg-gradient-to-r from-pink-950 to-purple-900 p-3 flex flex-col justify-between mb-3 border border-white/10">
+              <span class="text-[9px] font-bold text-pink-300">AI &amp; MEDIA</span>
+              <h5 class="text-sm font-black text-white">AI Video Mastery &amp; Monetization</h5>
+            </div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="52.5">₵ 52.50 GHS</span></span>
+              <span class="text-[10px] text-zinc-400">EPC: $2.10</span>
+            </div>
+            <p class="text-xs text-zinc-400">Faceless TikTok workflows, viral hooks, and auto-scripting.</p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
+            <span class="text-base font-bold text-white" data-price-ghs="105">₵ 105.00 GHS</span>
+            <button onclick="copyPromoterOfferLink(this, 'AI Video Mastery')" class="btn-tap-target py-2 px-3.5 rounded-xl bg-white/10 text-white font-bold text-xs hover:bg-white/20 transition">Promote</button>
+          </div>
+        </div>
+
+        <!-- 4. Dropshipping -->
+        <div class="glass-card p-5 rounded-2xl flex flex-col justify-between">
+          <div>
+            <div class="w-full h-24 rounded-xl bg-gradient-to-r from-indigo-950 to-blue-900 p-3 flex flex-col justify-between mb-3 border border-white/10">
+              <span class="text-[9px] font-bold text-indigo-300">E-COMMERCE</span>
+              <h5 class="text-sm font-black text-white">Global Dropshipping Blueprint</h5>
+            </div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="57.5">₵ 57.50 GHS</span></span>
+              <span class="text-[10px] text-zinc-400">EPC: $1.90</span>
+            </div>
+            <p class="text-xs text-zinc-400">Cross-border physical supply chains &amp; supplier vetting.</p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
+            <span class="text-base font-bold text-white" data-price-ghs="115">₵ 115.00 GHS</span>
+            <button onclick="copyPromoterOfferLink(this, 'Global Dropshipping')" class="btn-tap-target py-2 px-3.5 rounded-xl bg-white/10 text-white font-bold text-xs hover:bg-white/20 transition">Promote</button>
+          </div>
+        </div>
+
+        <!-- 5. Trading -->
+        <div class="glass-card p-5 rounded-2xl flex flex-col justify-between">
+          <div>
+            <div class="w-full h-24 rounded-xl bg-gradient-to-r from-amber-950 to-orange-900 p-3 flex flex-col justify-between mb-3 border border-white/10">
+              <span class="text-[9px] font-bold text-amber-300">FINANCE &amp; TRADING</span>
+              <h5 class="text-sm font-black text-white">SnapSell &amp; Day Trading Roadmap</h5>
+            </div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="62.5">₵ 62.50 GHS</span></span>
+              <span class="text-[10px] text-zinc-400">EPC: $2.30</span>
+            </div>
+            <p class="text-xs text-zinc-400">Digital flipping systems combined with risk-managed technical chart execution.</p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
+            <span class="text-base font-bold text-white" data-price-ghs="125">₵ 125.00 GHS</span>
+            <button onclick="copyPromoterOfferLink(this, 'SnapSell & Trading')" class="btn-tap-target py-2 px-3.5 rounded-xl bg-white/10 text-white font-bold text-xs hover:bg-white/20 transition">Promote</button>
+          </div>
+        </div>
+
+        <!-- 6. Renewal Pass -->
+        <div class="glass-card p-5 rounded-2xl flex flex-col justify-between">
+          <div>
+            <div class="w-full h-24 rounded-xl bg-gradient-to-r from-zinc-900 to-zinc-800 p-3 flex flex-col justify-between mb-3 border border-white/10">
+              <span class="text-[9px] font-bold text-zinc-300">MEMBER RENEWAL</span>
+              <h5 class="text-sm font-black text-white">Existing Member Pass Renewal</h5>
+            </div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="22.5">₵ 22.50 GHS</span></span>
+              <span class="text-[10px] text-zinc-400">EPC: $1.40</span>
+            </div>
+            <p class="text-xs text-zinc-400">Loyalty extension rate for active promoter members.</p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
+            <span class="text-base font-bold text-white" data-price-ghs="45">₵ 45.00 GHS</span>
+            <button onclick="copyPromoterOfferLink(this, 'Existing Member Renewal')" class="btn-tap-target py-2 px-3.5 rounded-xl bg-white/10 text-white font-bold text-xs hover:bg-white/20 transition">Promote</button>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- SUB-VIEW C: COMPETITIONS -->
-    <div id="aff-sub-contests" class="space-y-6 hidden">
-      <div class="rounded-3xl p-6 bg-gradient-to-br from-amber-950/60 to-purple-950/60 border border-amber-500/40">
-        <span class="text-[10px] font-black uppercase text-amber-300 px-3 py-1 rounded-full bg-amber-500/20">🏆 Sprint Challenge</span>
-        <h4 class="text-xl font-black text-white mt-2">The 200-Sale Monthly Sprint</h4>
-        <p class="text-xs text-zinc-300 mt-1">Hit 200 sales in a calendar month to claim the ₵ 10,000 GHS ($3,000 USD) cash bonus.</p>
-        <button onclick="alert('Enrolled in 200-Sale Sprint!');" class="btn-tap-target mt-4 w-full py-3 rounded-xl bg-amber-400 text-black font-black text-xs">
-          Register In Pool (<span data-price-ghs="10000">₵ 10,000 GHS</span>)
-        </button>
-      </div>
-    </div>
-
-    <!-- SUB-VIEW D: LMS ACADEMY -->
-    <div id="aff-sub-lms" class="space-y-6 hidden">
-      <div class="glass-panel p-6 rounded-3xl border border-purple-500/30">
-        <h4 class="text-base font-black text-white">Masterclass Certification Exam</h4>
-        <p class="text-xs text-zinc-400 mt-1 mb-4">Score 100% to generate your downloadable certificate.</p>
-        <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 space-y-2 text-xs mb-4">
-          <p class="font-bold text-white">What is the net revenue split on all digital products?</p>
-          <label class="flex items-center gap-2 text-zinc-300"><input type="radio" name="q_exam" value="50" class="accent-purple-500"> 50% Net Split to promoter wallet</label>
-          <label class="flex items-center gap-2 text-zinc-300"><input type="radio" name="q_exam" value="20" class="accent-purple-500"> 20% Net Split</label>
+    <!-- SUB-VIEW: 👑 PREMIUM SUITE (BUTTONS 16 TO 45) -->
+    <div id="aff-sub-premium_suite" class="space-y-6 hidden">
+      <div class="glass-panel p-6 rounded-3xl border border-pink-500/40 text-left space-y-4">
+        <div class="flex justify-between items-start">
+          <div>
+            <span class="text-[10px] uppercase font-black px-2.5 py-0.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30">
+              Premium AI &amp; Growth Suite (100 GHS / Month)
+            </span>
+            <h3 class="text-xl font-black text-white mt-2">Buttons 16 to 45 Control Terminal</h3>
+            <p class="text-xs text-zinc-300 leading-relaxed mt-1">
+              Unlock the complete suite of autonomous AI engines, video ad generation, and enterprise team selling tools.
+            </p>
+          </div>
+          <button onclick="openPremium100Modal()" id="btn-suite-subscribe" class="btn-tap-target py-2 px-4 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white text-xs font-bold shrink-0">
+            Subscribe Now (100 GHS)
+          </button>
         </div>
-        <button onclick="submitToughAcademyQuiz()" class="btn-tap-target w-full py-3 rounded-xl bg-purple-600 text-white font-bold text-xs">
-          Submit Exam &amp; Unlock Certificate
-        </button>
+
+        <!-- Buttons 16 to 45 -->
+        <div id="premium-suite-buttons" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 text-center text-[11px] font-bold opacity-60">
+          <button onclick="triggerPremiumTool('AI Affiliate Manager')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">16. AI Affiliate Manager</button>
+          <button onclick="triggerPremiumTool('AI Product Matchmaker')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">17. AI Product Matchmaker</button>
+          <button onclick="triggerPremiumTool('AI Campaign Doctor')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">18. AI Campaign Doctor</button>
+          <button onclick="triggerPremiumTool('Revenue Opportunity Radar')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">19. Revenue Radar</button>
+          <button onclick="triggerPremiumTool('AI Promotion Generator')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">20. AI Promo Generator</button>
+          <button onclick="triggerPremiumTool('AI Video Ad Creator')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">21. AI Video Creator</button>
+          <button onclick="triggerPremiumTool('Smart Universal Links')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">22. Smart Universal Link</button>
+          <button onclick="triggerPremiumTool('Affiliate–Vendor Matchmaker')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">23. Vendor Matchmaking</button>
+          <button onclick="triggerPremiumTool('Customer Value Analytics')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">24. Customer Value LTV</button>
+          <button onclick="triggerPremiumTool('Fraud & Commission Protection')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">25. Fraud Protection</button>
+          <button onclick="triggerPremiumTool('Dynamic Commission Engine')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">26. Dynamic Commissions</button>
+          <button onclick="triggerPremiumTool('Affiliate Team Selling')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">27. Team Selling</button>
+          <button onclick="triggerPremiumTool('Affiliate Growth Roadmap')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">28. Growth Roadmap</button>
+          <button onclick="triggerPremiumTool('VIP & Early-Access Marketplace')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">29. VIP Marketplace</button>
+          <button onclick="triggerPremiumTool('Enterprise Command Center')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">30. Enterprise Center</button>
+          <button onclick="triggerPremiumTool('Smart Campaign Builder')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">31. Campaign Builder</button>
+          <button onclick="triggerPremiumTool('Conversion Optimizer')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">32. Conversion Optimizer</button>
+          <button onclick="triggerPremiumTool('Landing Page Builder')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">33. Landing Page Builder</button>
+          <button onclick="triggerPremiumTool('A/B Testing Center')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">34. A/B Testing Center</button>
+          <button onclick="triggerPremiumTool('Traffic Intelligence')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">35. Traffic Intelligence</button>
+          <button onclick="triggerPremiumTool('Audience Insights')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">36. Audience Insights</button>
+          <button onclick="triggerPremiumTool('Campaign Automation')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">37. Automation</button>
+          <button onclick="triggerPremiumTool('Lead Management')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">38. Lead Management</button>
+          <button onclick="triggerPremiumTool('Customer Retention')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">39. Retention Center</button>
+          <button onclick="triggerPremiumTool('Affiliate Recruitment')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">40. Recruitment</button>
+          <button onclick="triggerPremiumTool('Affiliate Leaderboard')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">41. Leaderboard</button>
+          <button onclick="triggerPremiumTool('Performance Rewards')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">42. Rewards Engine</button>
+          <button onclick="triggerPremiumTool('Global Currency Center')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">43. Currency Center</button>
+          <button onclick="triggerPremiumTool('Tax & Earnings Center')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">44. Tax Center</button>
+          <button onclick="triggerPremiumTool('API & Integrations')" class="p-2.5 rounded-xl bg-black/40 border border-white/5 text-purple-300">45. API &amp; Webhooks</button>
+        </div>
       </div>
     </div>
 
-    <!-- SUB-VIEW E: CREATOR HUB (SCREENSHOT 1000082053 REPLICA) -->
+    <!-- SUB-VIEW: CREATOR HUB (SCREENSHOT 1000082053 EXACT REPLICA) -->
     <div id="aff-sub-creator" class="space-y-6 hidden">
       <div class="glass-panel p-8 rounded-3xl border border-white/10 text-center max-w-lg mx-auto">
         <div class="w-16 h-16 rounded-3xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-3xl mx-auto mb-4">
@@ -1056,12 +1050,12 @@
       </div>
     </div>
 
-    <!-- SUB-VIEW F: COMMUNITY TAB (GATED "COMING SOON") -->
+    <!-- SUB-VIEW: COMMUNITY TAB (GATED COMING SOON) -->
     <div id="aff-sub-community" class="space-y-6 hidden">
       <div class="glass-panel p-8 rounded-3xl border border-purple-500/20 text-center max-w-lg mx-auto space-y-3">
         <span class="text-3xl">🔒</span>
         <span class="text-[10px] uppercase font-bold text-purple-400 block">Gated Mastermind</span>
-        <h3 class="text-xl font-black text-white">Private Affiliates Inner Circle</h3>
+        <h3 class="text-xl font-black text-white">Private Affiliates Inner Circle — Coming Soon</h3>
         <p class="text-xs text-zinc-400 leading-relaxed">
           The private verified earners lounge, weekly voice masterminds, and vendor alpha rooms are currently in final audit. Access opens in the next release for active pass holders.
         </p>
@@ -1070,6 +1064,26 @@
         </button>
       </div>
     </div>
+
+    <!-- PILLAR 2 DIGITSTEM BOTTOM NAVIGATION BAR (EXCLUSIVE TO PILLAR 2) -->
+    <nav class="fixed bottom-0 inset-x-0 z-40 bg-[#0d0d14] border-t border-white/10 px-4 py-2 flex items-center justify-around text-center text-[10px] text-zinc-400">
+      <button onclick="switchAffiliateSubView('home')" class="flex flex-col items-center gap-1 text-emerald-400 font-bold">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        <span>Home</span>
+      </button>
+      <button onclick="switchAffiliateSubView('market')" class="flex flex-col items-center gap-1 hover:text-white transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        <span>Dashboard</span>
+      </button>
+      <button onclick="switchAffiliateSubView('lms')" class="flex flex-col items-center gap-1 hover:text-white transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+        <span>LMS</span>
+      </button>
+      <button onclick="switchAffiliateSubView('community')" class="flex flex-col items-center gap-1 hover:text-white transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+        <span>Community</span>
+      </button>
+    </nav>
 
   </div>
 
@@ -1083,7 +1097,7 @@
     <div class="glass-panel w-full max-w-md rounded-3xl p-6 border border-white/10 shadow-2xl relative my-auto">
       <button onclick="closePaystackCheckoutModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
 
-      <!-- 15-Minute Urgency Countdown (Screenshot Parity) -->
+      <!-- 15-Minute Countdown -->
       <div class="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold flex items-center justify-between mb-4">
         <span>⚠️ You have <span id="checkout-countdown" class="font-mono text-white">14:57</span> to complete payment</span>
         <span class="text-[9px] uppercase px-1.5 py-0.5 rounded bg-amber-400/20">Paystack</span>
@@ -1120,7 +1134,7 @@
           </select>
         </div>
         <button onclick="advancePaystackCheckout(2)" class="btn-tap-target w-full py-3.5 rounded-xl bg-purple-600 text-white font-bold text-xs hover:bg-purple-500 transition">
-          Next: Payment Method &amp; Currency →
+          Next: Select Gateway &amp; Currency →
         </button>
       </div>
 
@@ -1499,25 +1513,100 @@
     </div>
   </div>
 
-  <!-- FIXED BOTTOM NAVIGATION BAR (DIGITSTEM 4-TAB PARITY) -->
-  <nav class="fixed bottom-0 inset-x-0 z-40 bg-[#0d0d14] border-t border-white/10 px-4 py-2 flex items-center justify-around text-center text-[10px] text-zinc-400">
-    <button onclick="routeTo('landing')" class="flex flex-col items-center gap-1 text-emerald-400 font-bold">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-      <span>Home</span>
-    </button>
-    <button onclick="routeTo('affiliate'); switchAffiliateSubView('home');" class="flex flex-col items-center gap-1 hover:text-white transition">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-      <span>Dashboard</span>
-    </button>
-    <button onclick="routeTo('affiliate'); switchAffiliateSubView('lms');" class="flex flex-col items-center gap-1 hover:text-white transition">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-      <span>LMS</span>
-    </button>
-    <button onclick="routeTo('social')" class="flex flex-col items-center gap-1 hover:text-white transition">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-      <span>Community</span>
-    </button>
-  </nav>
+  <!-- COIN STORE MODAL (PILLAR 1 SOCIAL ONLY) -->
+  <div 
+    id="coin-store-modal" 
+    class="fixed inset-0 z-50 bg-black/80 backdrop-blur-xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
+  >
+    <div class="glass-panel w-full max-w-md rounded-3xl p-6 border border-amber-500/30 shadow-2xl relative">
+      <button onclick="closeCoinStoreModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
+
+      <div class="text-center mb-6">
+        <span class="text-3xl">🪙</span>
+        <h3 class="text-lg font-black text-white mt-1">Refill Vibely Coins</h3>
+        <p class="text-xs text-zinc-400">Coins are used for Super Vibes and rewarding creators in chat.</p>
+      </div>
+
+      <div class="space-y-3">
+        <div class="p-4 rounded-2xl bg-black/40 border border-white/10 flex items-center justify-between">
+          <div>
+            <span class="text-sm font-black text-white">100 Vibely Coins</span>
+            <span class="text-xs text-zinc-400 block">Starter Stash</span>
+          </div>
+          <button onclick="executeCoinPurchase(100, 15)" class="py-2 px-4 rounded-xl text-xs font-bold bg-amber-500/20 border border-amber-500/40 text-amber-300 hover:bg-amber-500/30 transition">
+            <span data-price-ghs="15">₵ 15.00 GHS</span>
+          </button>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-black/40 border border-amber-500/30 flex items-center justify-between">
+          <div>
+            <span class="text-sm font-black text-white">500 Vibely Coins</span>
+            <span class="text-xs text-amber-400 block">★ Most Popular</span>
+          </div>
+          <button onclick="executeCoinPurchase(500, 50)" class="py-2 px-4 rounded-xl text-xs font-black bg-amber-400 hover:bg-amber-300 text-black transition">
+            <span data-price-ghs="50">₵ 50.00 GHS</span>
+          </button>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-black/40 border border-white/10 flex items-center justify-between">
+          <div>
+            <span class="text-sm font-black text-white">2,500 Vibely Coins</span>
+            <span class="text-xs text-zinc-400 block">VIP Vault</span>
+          </div>
+          <button onclick="executeCoinPurchase(2500, 200)" class="py-2 px-4 rounded-xl text-xs font-bold bg-amber-500/20 border border-amber-500/40 text-amber-300 hover:bg-amber-500/30 transition">
+            <span data-price-ghs="200">₵ 200.00 GHS</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2FA SETUP MODAL -->
+  <div 
+    id="modal-2fa-setup" 
+    class="fixed inset-0 z-50 bg-black/90 backdrop-blur-2xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
+  >
+    <div class="glass-panel w-full max-w-md rounded-3xl p-6 border border-white/10 shadow-2xl relative">
+      <button onclick="close2FAModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
+
+      <div class="mb-4">
+        <span class="text-[10px] uppercase font-bold text-cyan-400 tracking-wider">Settings &gt; 2FA Setting</span>
+        <h3 class="text-xl font-black text-white mt-1">Add Your Account</h3>
+        <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
+          Use the QR code or setup key on your Google Authenticator app to add your account.
+        </p>
+      </div>
+
+      <div class="w-48 h-48 mx-auto my-4 bg-white p-3 rounded-2xl flex flex-col justify-between shadow-xl">
+        <div class="grid grid-cols-6 gap-1 w-full h-full p-1 bg-white">
+          <div class="bg-black col-span-2 row-span-2 rounded"></div>
+          <div class="bg-black col-span-2"></div>
+          <div class="bg-black col-span-2 row-span-2 rounded"></div>
+          <div class="bg-black col-span-1"></div>
+          <div class="bg-black col-span-1"></div>
+          <div class="bg-black col-span-2"></div>
+          <div class="bg-black col-span-2"></div>
+          <div class="bg-black col-span-2 row-span-2 rounded"></div>
+          <div class="bg-black col-span-2"></div>
+          <div class="bg-black col-span-2"></div>
+        </div>
+      </div>
+
+      <div class="space-y-1 mb-4 text-left">
+        <label class="block text-[11px] font-bold text-zinc-400">Setup Key</label>
+        <div class="flex items-center justify-between p-3 rounded-xl bg-black/60 border border-zinc-800 text-xs font-mono text-white">
+          <span id="setup-key-text">JW33CQJXRKSL4AC5</span>
+          <button onclick="copy2FASetupKey(this)" class="btn-tap-target text-zinc-400 hover:text-white transition p-1 flex items-center justify-center" title="Copy Key">
+            📋 Copy
+          </button>
+        </div>
+      </div>
+
+      <button onclick="confirm2FAActive()" class="btn-tap-target w-full py-3.5 rounded-xl bg-emerald-500 text-black font-black text-xs hover:bg-emerald-400 transition shadow-lg">
+        I Have Scanned QR Code
+      </button>
+    </div>
+  </div>
 
   <!-- ============================================================== -->
   <!-- JAVASCRIPT MASTER SYSTEM ARCHITECTURE                          -->
@@ -1535,10 +1624,11 @@
       livenessStep: 1,
       stealthTaps: 0,
       tapTimer: null,
-      countdownTimer: null
+      countdownTimer: null,
+      cameraMediaStream: null
     };
 
-    // 30+ Currency Matrix (Anchored to 95 GHS = $29.00 USD)
+    // 50+ Currency Matrix (Anchored to 95 GHS = $29.00 USD)
     const currencyDatabase = {
       GHS: { symbol: '₵', code: 'GHS', rate: 1.0, decimals: 2 },
       USD: { symbol: '$', code: 'USD', rate: 0.3053, decimals: 2 },
@@ -1554,6 +1644,9 @@
       RWF: { symbol: 'RF', code: 'RWF', rate: 420.0, decimals: 0 },
       MAD: { symbol: 'DH', code: 'MAD', rate: 3.05, decimals: 2 },
       ZMW: { symbol: 'ZK', code: 'ZMW', rate: 8.20, decimals: 0 },
+      GMD: { symbol: 'D', code: 'GMD', rate: 21.05, decimals: 0 },
+      SLE: { symbol: 'Le', code: 'SLE', rate: 6.85, decimals: 2 },
+      ETB: { symbol: 'Br', code: 'ETB', rate: 37.10, decimals: 0 },
       INR: { symbol: '₹', code: 'INR', rate: 25.50, decimals: 0 },
       PKR: { symbol: '₨', code: 'PKR', rate: 85.00, decimals: 0 },
       BDT: { symbol: '৳', code: 'BDT', rate: 36.50, decimals: 0 },
@@ -1567,16 +1660,22 @@
       SGD: { symbol: 'S$', code: 'SGD', rate: 0.41, decimals: 2 },
       AUD: { symbol: 'A$', code: 'AUD', rate: 0.465, decimals: 2 },
       NZD: { symbol: 'NZ$', code: 'NZD', rate: 0.510, decimals: 2 },
+      KRW: { symbol: '₩', code: 'KRW', rate: 420.0, decimals: 0 },
+      HKD: { symbol: 'HK$', code: 'HKD', rate: 2.38, decimals: 2 },
       CAD: { symbol: 'CA$', code: 'CAD', rate: 0.415, decimals: 2 },
       BRL: { symbol: 'R$', code: 'BRL', rate: 1.75, decimals: 2 },
       MXN: { symbol: 'MX$', code: 'MXN', rate: 5.80, decimals: 2 },
       COP: { symbol: 'COL$', code: 'COP', rate: 1250.0, decimals: 0 },
       CLP: { symbol: 'CLP$', code: 'CLP', rate: 285.0, decimals: 0 },
       ARS: { symbol: '$', code: 'ARS', rate: 310.0, decimals: 0 },
+      PEN: { symbol: 'S/', code: 'PEN', rate: 1.15, decimals: 2 },
+      JMD: { symbol: 'J$', code: 'JMD', rate: 47.50, decimals: 0 },
       AED: { symbol: 'AED', code: 'AED', rate: 1.12, decimals: 2 },
       SAR: { symbol: 'SAR', code: 'SAR', rate: 1.14, decimals: 2 },
       QAR: { symbol: 'QAR', code: 'QAR', rate: 1.11, decimals: 2 },
-      KWD: { symbol: 'KD', code: 'KWD', rate: 0.094, decimals: 3 }
+      KWD: { symbol: 'KD', code: 'KWD', rate: 0.094, decimals: 3 },
+      BHD: { symbol: 'BD', code: 'BHD', rate: 0.115, decimals: 3 },
+      OMR: { symbol: 'OMR', code: 'OMR', rate: 0.117, decimals: 3 }
     };
 
     function formatAmount(baseGhs, curKey) {
@@ -1597,7 +1696,6 @@
       });
     }
 
-    // Audio Chimes
     function playChime(type) {
       try {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -1634,17 +1732,49 @@
       document.getElementById('view-social').classList.add('hidden');
       document.getElementById('view-affiliate').classList.add('hidden');
 
+      const coinBadge = document.getElementById('header-coin-wrapper');
+
       if (viewName === 'landing') {
         document.getElementById('view-landing').classList.remove('hidden');
         document.getElementById('header-platform-tag').innerText = 'HQ Portal';
+        coinBadge.classList.remove('hidden');
       } else if (viewName === 'social') {
         document.getElementById('view-social').classList.remove('hidden');
         document.getElementById('header-platform-tag').innerText = 'Social Engine';
+        coinBadge.classList.remove('hidden'); // Coins ONLY visible in Pillar 1!
       } else if (viewName === 'affiliate') {
         document.getElementById('view-affiliate').classList.remove('hidden');
         document.getElementById('header-platform-tag').innerText = 'Affiliate Suite';
+        coinBadge.classList.add('hidden'); // Coins REMOVED from Pillar 2! Real cash only!
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ==============================================================
+    // REAL WEBRTC CAMERA STREAM (USERMEDIA IMPLEMENTATION)
+    // ==============================================================
+    async function openRealCameraStream(videoElId, previewImgId) {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 640 } },
+          audio: false
+        });
+        appState.cameraMediaStream = stream;
+        const video = document.getElementById(videoElId);
+        video.srcObject = stream;
+        video.classList.remove('hidden');
+        if (previewImgId) document.getElementById(previewImgId).classList.add('hidden');
+        await video.play();
+      } catch (err) {
+        alert("Camera Permission Notice: Please allow camera access in browser permissions to complete live verification.");
+      }
+    }
+
+    function stopCameraStream() {
+      if (appState.cameraMediaStream) {
+        appState.cameraMediaStream.getTracks().forEach(track => track.stop());
+        appState.cameraMediaStream = null;
+      }
     }
 
     // ==============================================================
@@ -1718,6 +1848,10 @@
       executeHardenedCopy(btn, link);
     }
 
+    function copy2FASetupKey(btn) {
+      executeHardenedCopy(btn, 'https://vibely.app/2fa?key=JW33CQJXRKSL4AC5');
+    }
+
     // ==============================================================
     // PILLAR 1: ONBOARDING STATE MACHINE
     // ==============================================================
@@ -1731,6 +1865,7 @@
 
     function closeP1OnboardingModal() {
       document.getElementById('p1-onboarding-modal').classList.add('opacity-0', 'pointer-events-none');
+      stopCameraStream();
     }
 
     function advanceP1Onboarding(targetStep) {
@@ -1753,11 +1888,6 @@
       document.getElementById('p1-stage-title').innerText = titles[targetStep - 1];
     }
 
-    function simulateCameraSelfie() {
-      alert("📷 Live camera activated. Selfie captured!");
-      document.getElementById('p1-avatar-preview').src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=250";
-    }
-
     function handleP1AvatarFile(e) {
       const file = e.target.files[0];
       if (file) {
@@ -1770,9 +1900,14 @@
       }
     }
 
-    function toggleSurveyChip(el) {
-      el.classList.toggle('bg-purple-600');
-      el.classList.toggle('text-white');
+    // Interactive Working Survey Chips
+    function toggleSurveyChip(btn) {
+      btn.classList.toggle('chip-active');
+      if (btn.classList.contains('chip-active')) {
+        btn.classList.remove('bg-white/5', 'text-zinc-300', 'border-white/10');
+      } else {
+        btn.classList.add('bg-white/5', 'text-zinc-300', 'border-white/10');
+      }
     }
 
     function generateAIBioSuggestion() {
@@ -1790,16 +1925,18 @@
     }
 
     // ==============================================================
-    // PILLAR 1: BIOMETRIC 5-STEP LIVENESS ENGINE
+    // PILLAR 1: REAL CAMERA BIOMETRIC 5-STEP LIVENESS ENGINE
     // ==============================================================
-    function openFacialVerificationModal() {
+    async function openFacialVerificationModal() {
       appState.livenessStep = 1;
       updateLivenessUI();
       document.getElementById('facial-liveness-modal').classList.remove('opacity-0', 'pointer-events-none');
+      await openRealCameraStream('liveness-video-feed');
     }
 
     function closeFacialVerificationModal() {
       document.getElementById('facial-liveness-modal').classList.add('opacity-0', 'pointer-events-none');
+      stopCameraStream();
     }
 
     function updateLivenessUI() {
@@ -1834,7 +1971,7 @@
     }
 
     // ==============================================================
-    // PILLAR 1: 11-TAB NAVIGATION
+    // PILLAR 1: NAVIGATION & INTERACTIONS
     // ==============================================================
     function switchP1Tab(tabName) {
       const tabs = ['home', 'discover', 'likes', 'matches', 'messages', 'communities', 'activities', 'notifications', 'settings'];
@@ -1849,6 +1986,51 @@
       if (targetEl) targetEl.classList.remove('hidden');
       const targetBtn = document.getElementById(`p1-tab-${tabName}`);
       if (targetBtn) targetBtn.className = 'btn-tap-target px-3.5 py-1.5 rounded-xl bg-purple-600 text-white shrink-0';
+    }
+
+    function cycleSocialCard(isMatch) {
+      if (isMatch) {
+        playChime('match');
+        alert("Boom! You connected with Adrienne Okon. Direct chat unlocked!");
+      }
+      alert("Next candidate loaded into deck.");
+    }
+
+    function superVibeMatch() {
+      if (appState.userCoins < 15) {
+        alert("Insufficient Vibely Coins! Refill your stash.");
+        return;
+      }
+      appState.userCoins -= 15;
+      document.getElementById('header-coin-counter').innerText = appState.userCoins;
+      playChime('match');
+      alert("⚡ SUPER VIBE SENT!\nTipped 15 Coins. Guaranteed instant priority match.");
+    }
+
+    function playVoiceClip() {
+      playChime('match');
+      alert("Playing 15-second recorded Voice Vibe audio clip...");
+    }
+
+    function triggerTop10Matchmaker() {
+      playChime('match');
+      alert("⚡ Top 10 Curated Creator Matches ranked by your survey tags loaded!");
+    }
+
+    function openChemistryScoreModal() {
+      alert("🔥 Friendship Chemistry Score Breakdown (96%):\n• Shared Goals: Both building e-commerce & video channels\n• Communication Style: Fast texters with evening study jams\n• Activity Match: Gym, gaming, and dropship roadmaps");
+    }
+
+    function handlePostStatus() {
+      const story = prompt("Enter status text or story caption:");
+      if (story) {
+        document.getElementById('social-my-status').innerText = `"${story}"`;
+        alert("Your 24-hour status has been posted to global friends!");
+      }
+    }
+
+    function viewFriendStory(name, text) {
+      alert(`Story by ${name}:\n\n"${text}"\n\n👁️ Viewed by 48 creators`);
     }
 
     // ==============================================================
@@ -1930,7 +2112,6 @@
 
       appState.isAffiliatePaid = true;
       appState.userName = name;
-      document.getElementById('aff-user-displayname').innerText = name;
 
       document.getElementById('modal-credentials-dispatch').classList.remove('opacity-0', 'pointer-events-none');
     }
@@ -1945,7 +2126,6 @@
       if (token) {
         appState.isAffiliatePaid = true;
         appState.userName = localStorage.getItem('vibely_user_name') || 'Gerald Mingle';
-        document.getElementById('aff-user-displayname').innerText = appState.userName;
       }
     }
 
@@ -1965,9 +2145,9 @@
       appState.isPremium100Subscribed = true;
       playChime('match');
 
-      document.getElementById('premium-buttons-grid').classList.remove('opacity-60');
-      const btn = document.getElementById('btn-premium-100-status');
-      btn.innerText = "✓ Subscribed (100 GHS/Mo Active)";
+      document.getElementById('premium-suite-buttons').classList.remove('opacity-60');
+      const btn = document.getElementById('btn-suite-subscribe');
+      btn.innerText = "✓ Active (100 GHS/Mo)";
       btn.className = "py-2 px-4 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold shrink-0";
 
       alert("🎉 Premium 100 GHS/Month Subscription Verified!\nAll Buttons 16 to 45 (AI Engines, Video Ad Creator, Team Selling & Enterprise Center) are unlocked!");
@@ -1975,7 +2155,7 @@
 
     function triggerPremiumTool(toolName) {
       if (!appState.isPremium100Subscribed) {
-        alert(`🔒 Locked: ${toolName} requires the 100 GHS / Month Premium Subscription.\nTap 'Subscribe (100 GHS / Mo)' above to unlock all tools from 16 to 45!`);
+        alert(`🔒 Locked: ${toolName} requires the 100 GHS / Month Premium Subscription.\nTap 'Subscribe Now (100 GHS)' above to unlock all tools from 16 to 45!`);
         openPremium100Modal();
       } else {
         alert(`🚀 Launching ${toolName}:\nAnalyzing live marketplace campaigns and streaming generative output...`);
@@ -1986,106 +2166,22 @@
     // PILLAR 2 WORKSTATION ROUTING
     // ==============================================================
     function switchAffiliateSubView(subName) {
-      ['home', 'market', 'contests', 'lms', 'creator', 'community'].forEach(s => {
+      ['home', 'market', 'creator', 'community', 'premium_suite'].forEach(s => {
         const el = document.getElementById(`aff-sub-${s}`);
         if (el) el.classList.add('hidden');
         const btn = document.getElementById(`subnav-${s}`);
-        if (btn) btn.className = 'btn-tap-target py-2 px-3.5 rounded-xl text-xs font-bold text-zinc-400 hover:text-white transition flex items-center gap-1.5 shrink-0';
+        if (btn) btn.className = 'btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0';
       });
 
       const targetEl = document.getElementById(`aff-sub-${subName}`);
       if (targetEl) targetEl.classList.remove('hidden');
       const targetBtn = document.getElementById(`subnav-${subName}`);
-      if (targetBtn) targetBtn.className = 'btn-tap-target py-2 px-3.5 rounded-xl text-xs font-bold bg-purple-600 text-white transition flex items-center gap-1.5 shrink-0';
+      if (targetBtn) targetBtn.className = 'btn-tap-target px-3.5 py-1.5 rounded-xl bg-purple-600 text-white shrink-0';
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function submitToughAcademyQuiz() {
-      const q = document.querySelector('input[name="q_exam"]:checked');
-      if (q && q.value === '50') {
-        playChime('match');
-        alert("Exam Passed: 100% Mastery Confirmed!\nCertificate serial VIB-CERT-90412 generated and ready for download.");
-      } else {
-        alert("Examination Failed. Score below 100%. Review modules and try again.");
-      }
     }
 
     function requestFridayPayout() {
       alert("Friday Payout Request Logged!\nAmount: GHS 1,365.00\nDisbursement window scheduled Saturday morning via MTN MoMo / Bank endpoints.");
-    }
-
-    // Social Matching Handlers
-    function cycleSocialCard(isMatch) {
-      if (isMatch) {
-        playChime('match');
-        alert("Boom! You connected with Adrienne Okon. Direct chat unlocked!");
-      }
-      alert("Next candidate loaded into deck.");
-    }
-
-    function superVibeMatch() {
-      if (appState.userCoins < 15) {
-        alert("Insufficient Vibely Coins! Refill your stash.");
-        return;
-      }
-      appState.userCoins -= 15;
-      document.getElementById('header-coin-counter').innerText = appState.userCoins;
-      playChime('match');
-      alert("⚡ SUPER VIBE SENT!\nTipped 15 Coins. Guaranteed instant priority match.");
-    }
-
-    function playVoiceClip() {
-      playChime('match');
-      alert("Playing 15-second recorded Voice Vibe audio clip...");
-    }
-
-    function triggerTop10Matchmaker() {
-      playChime('match');
-      alert("⚡ Top 10 Curated Creator Matches ranked by your survey tags loaded!");
-    }
-
-    function openChemistryScoreModal() {
-      alert("🔥 Friendship Chemistry Score Breakdown (96%):\n• Shared Goals: Both building e-commerce & video channels\n• Communication Style: Fast texters with evening study jams\n• Activity Match: Gym, gaming, and dropship roadmaps");
-    }
-
-    function handlePostStatus() {
-      const story = prompt("Enter status text or story caption:");
-      if (story) {
-        document.getElementById('social-my-status').innerText = `"${story}"`;
-        alert("Your 24-hour status has been posted to global friends!");
-      }
-    }
-
-    function viewFriendStory(name, text) {
-      alert(`Story by ${name}:\n\n"${text}"\n\n👁️ Viewed by 48 creators`);
-    }
-
-    function openDirectChatThread(name, avatar, imgUrl) {
-      alert(`Opening secure E2EE chat thread with ${name}...`);
-    }
-
-    function handleSearchConversations(query) {
-      const q = query.toLowerCase();
-      const rows = document.querySelectorAll('#conversations-list > div');
-      rows.forEach(r => {
-        const txt = r.innerText.toLowerCase();
-        r.style.display = txt.includes(q) ? 'flex' : 'none';
-      });
-    }
-
-    function openCoinStoreModal() {
-      document.getElementById('coin-store-modal').classList.remove('opacity-0', 'pointer-events-none');
-    }
-
-    function closeCoinStoreModal() {
-      document.getElementById('coin-store-modal').classList.add('opacity-0', 'pointer-events-none');
-    }
-
-    function executeCoinPurchase(amount, priceGhs) {
-      appState.userCoins += amount;
-      document.getElementById('header-coin-counter').innerText = appState.userCoins;
-      closeCoinStoreModal();
-      alert(`Payment of ₵ ${priceGhs} GHS verified!\n${amount} Coins added to your stash.`);
     }
 
     // Drawers
@@ -2095,7 +2191,7 @@
     function closeMoreFeaturesSheet() {
       document.getElementById('more-features-sheet').classList.add('opacity-0', 'pointer-events-none');
     }
-    function openAffiliateSettingsModal() {
+    function openAffiliateProfileDrawer() {
       const drawer = document.getElementById('affiliate-profile-drawer');
       const container = document.getElementById('profile-drawer-container');
       drawer.classList.remove('opacity-0', 'pointer-events-none');
@@ -2153,6 +2249,32 @@
         stream.appendChild(botMsg);
         stream.scrollTop = stream.scrollHeight;
       }, 500);
+    }
+
+    // Coin Stash Actions
+    function openCoinStoreModal() {
+      document.getElementById('coin-store-modal').classList.remove('opacity-0', 'pointer-events-none');
+    }
+    function closeCoinStoreModal() {
+      document.getElementById('coin-store-modal').classList.add('opacity-0', 'pointer-events-none');
+    }
+    function executeCoinPurchase(amount, priceGhs) {
+      appState.userCoins += amount;
+      document.getElementById('header-coin-counter').innerText = appState.userCoins;
+      closeCoinStoreModal();
+      alert(`Payment of ₵ ${priceGhs} GHS verified!\n${amount} Coins added to your stash.`);
+    }
+
+    // 2FA Actions
+    function open2FAModal() {
+      document.getElementById('modal-2fa-setup').classList.remove('opacity-0', 'pointer-events-none');
+    }
+    function close2FAModal() {
+      document.getElementById('modal-2fa-setup').classList.add('opacity-0', 'pointer-events-none');
+    }
+    function confirm2FAActive() {
+      close2FAModal();
+      alert("Google Authenticator 2FA is now ACTIVE on your account.");
     }
 
     // Stealth Admin Handshake
