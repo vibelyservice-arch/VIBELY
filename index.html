@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Vibely — Global Social Network & Affiliate Marketing Academy</title>
   
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -41,8 +42,9 @@
     }
   </script>
 
+  <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
@@ -80,7 +82,7 @@
   </style>
 </head>
 
-<body class="min-h-screen pb-20 selection:bg-purple-600 selection:text-white overflow-x-hidden">
+<body class="min-h-screen pb-24 selection:bg-purple-600 selection:text-white overflow-x-hidden">
 
   <!-- LUXURY AMBIENT BACKGROUND GLOWS -->
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
@@ -108,7 +110,7 @@
     <p class="text-[10px] uppercase tracking-[0.3em] text-purple-400 mt-2 font-bold px-3 py-1 rounded-full border border-purple-500/20 bg-purple-500/10">Tap Screen To Enter Experience</p>
   </div>
 
-  <!-- TOP APP BAR -->
+  <!-- TOP APP NAVIGATION BAR -->
   <header class="sticky top-0 z-40 w-full glass-nav px-3 py-2.5 sm:px-8 flex items-center justify-between">
     <!-- Brand Logo with Stealth Triple-Tap Trigger -->
     <div class="flex items-center gap-2.5">
@@ -125,7 +127,7 @@
       </div>
     </div>
 
-    <!-- Center/Right: Coins Stash & 30+ Currency Selector -->
+    <!-- Center/Right: Coins Stash & 30+ Global Currency Selector -->
     <div class="flex items-center gap-2">
       <!-- Coins Stash Button -->
       <button 
@@ -194,14 +196,14 @@
         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-1.5 text-purple-400 text-[10px]">▼</div>
       </div>
 
-      <button onclick="routeTo('landing')" class="btn-tap-target p-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white transition flex items-center justify-center">
+      <button onclick="routeTo('landing')" class="btn-tap-target p-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white transition flex items-center justify-center" title="Home Gateway">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
       </button>
     </div>
   </header>
 
   <!-- ============================================================== -->
-  <!-- VIEW 1: CLEAN PUBLIC FRONT DOOR                                -->
+  <!-- VIEW 1: CLEAN PUBLIC FRONT DOOR (NO COMPETITIONS LEAKED)       -->
   <!-- ============================================================== -->
   <div id="view-landing" class="relative z-10 w-full max-w-5xl mx-auto px-4 pt-10 space-y-16">
     <div class="text-center max-w-3xl mx-auto">
@@ -265,7 +267,7 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- VIEW 2: PILLAR 1 - GLOBAL SOCIAL & CHAT                        -->
+  <!-- VIEW 2: PILLAR 1 - GLOBAL SOCIAL & CHAT (SUPER-APP ENGINE)     -->
   <!-- ============================================================== -->
   <div id="view-social" class="hidden relative z-10 w-full max-w-4xl mx-auto px-4 pt-4 space-y-6">
     
@@ -296,7 +298,7 @@
       </div>
     </div>
 
-    <!-- Stories / Status Tray -->
+    <!-- Stories / Status Tray (WhatsApp & Snapchat Style) -->
     <div class="glass-card p-4 rounded-3xl overflow-hidden border border-white/10">
       <span class="text-[10px] uppercase font-bold text-zinc-400 tracking-wider block mb-3">Live Status &amp; Stories</span>
       <div class="flex items-center gap-4 overflow-x-auto no-scrollbar pb-1">
@@ -327,7 +329,7 @@
       </div>
     </div>
 
-    <!-- Swipe Deck Component -->
+    <!-- Discovery Swipe Deck Component -->
     <div class="w-full max-w-md mx-auto">
       <div class="glass-panel rounded-3xl p-6 border border-white/10 shadow-2xl relative overflow-hidden" id="social-card-box">
         <div class="flex items-center justify-between mb-4">
@@ -443,7 +445,7 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- VIEW 3: PILLAR 2 - AFFILIATE MARKETING WORKSTATION             -->
+  <!-- VIEW 3: PILLAR 2 - AFFILIATE WORKSTATION                       -->
   <!-- ============================================================== -->
   <div id="view-affiliate" class="hidden relative z-10 w-full max-w-5xl mx-auto px-4 pt-6 space-y-6">
 
@@ -812,7 +814,6 @@
         </div>
 
         <div id="quiz-container" class="space-y-4 text-xs">
-          <!-- Question 1 -->
           <div class="p-4 rounded-2xl bg-black/40 border border-white/5">
             <p class="font-bold text-white mb-2">1. On Vibely's strategic peg, if a promoter generates 10 pass referrals at 95 GHS ($29 USD) each, what is their exact net payout balance?</p>
             <div class="space-y-1.5 text-zinc-300">
@@ -822,7 +823,6 @@
             </div>
           </div>
 
-          <!-- Question 2 -->
           <div class="p-4 rounded-2xl bg-black/40 border border-white/5">
             <p class="font-bold text-white mb-2">2. How does Vibely's DRM Dynamic Watermarking protect your course files and downloads?[span_0](start_span)[span_0](end_span)</p>
             <div class="space-y-1.5 text-zinc-300">
@@ -832,7 +832,6 @@
             </div>
           </div>
 
-          <!-- Question 3 -->
           <div class="p-4 rounded-2xl bg-black/40 border border-white/5">
             <p class="font-bold text-white mb-2">3. What is the mandatory settlement timeline for requesting wallet withdrawals to Mobile Money or bank accounts?</p>
             <div class="space-y-1.5 text-zinc-300">
@@ -842,7 +841,6 @@
             </div>
           </div>
 
-          <!-- Question 4 -->
           <div class="p-4 rounded-2xl bg-black/40 border border-white/5">
             <p class="font-bold text-white mb-2">4. To qualify for the 10,000 GHS ($3,000 USD) Grand Champion Bonus, what performance threshold must you hit?</p>
             <div class="space-y-1.5 text-zinc-300">
@@ -1248,7 +1246,7 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
+  <!-- LUXURY FOOTER -->
   <footer class="relative z-10 w-full border-t border-white/5 py-8 text-xs text-zinc-500 mt-16">
     <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
       <div>
@@ -1389,24 +1387,18 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // ==============================================================
-    // HARDENED CLIPBOARD & ATTRIBUTION INGESTION ENGINE
-    // ==============================================================
+    // Hardened Clipboard & Attribution Pipeline
     async function executeHardenedCopy(btnElement, rawPayload) {
       if (btnElement.getAttribute('data-busy') === 'true') return;
       btnElement.setAttribute('data-busy', 'true');
 
-      // 1. Data Normalization: sanitize whitespace & zero-width artifacts
       let sanitized = rawPayload.replace(/[\u200B-\u200D\uFEFF]/g, '').trim();
-      
-      // 2. Query Injection: append attribution & timestamp
       const url = new URL(sanitized);
       url.searchParams.set('t', Date.now());
       const finalPayload = url.toString();
 
       let copySuccess = false;
 
-      // 3. Modern Async Clipboard API
       if (navigator.clipboard && window.isSecureContext) {
         try {
           await navigator.clipboard.writeText(finalPayload);
@@ -1416,7 +1408,6 @@
         }
       }
 
-      // 4. Secondary Fallback Engine: Off-Screen Virtual Textarea (For WebViews)
       if (!copySuccess) {
         try {
           const textArea = document.createElement('textarea');
@@ -1424,7 +1415,7 @@
           textArea.style.position = 'fixed';
           textArea.style.top = '-9999px';
           textArea.style.left = '-9999px';
-          textArea.style.fontSize = '16px'; // Prevents iOS Safari auto-zoom
+          textArea.style.fontSize = '16px';
           textArea.setAttribute('readonly', '');
           document.body.appendChild(textArea);
           textArea.select();
@@ -1436,12 +1427,10 @@
         }
       }
 
-      // 5. Tactile Haptic Pulse
       if (navigator.vibrate) {
         navigator.vibrate(copySuccess ? 15 : [50, 50, 50]);
       }
 
-      // 6. UI Morphing State Transition
       const originalText = btnElement.innerText;
       if (copySuccess) {
         btnElement.innerText = "✓ Copied!";
@@ -1471,9 +1460,7 @@
       executeHardenedCopy(btn, 'https://vibely.app/2fa?key=JW33CQJXRKSL4AC5');
     }
 
-    // ==============================================================
-    // PAYSTACK 15-MINUTE COUNTDOWN & CHECKOUT FUNNEL
-    // ==============================================================
+    // Paystack 15-Minute Countdown & Checkout Funnel
     function handleEnterSocialGateway() {
       if (!appState.isSocialRegistered) {
         alert("Please complete Social Passport registration first.");
@@ -1527,14 +1514,12 @@
       closePaystackCheckoutModal();
       playChime('match');
 
-      // Automated Credentials Dispatch Simulation
       const generatedUsername = name.toLowerCase().replace(/\s+/g, '_') + '_' + Math.floor(1000 + Math.random() * 9000);
       const generatedPassword = 'VIB-' + Math.floor(100000 + Math.random() * 900000) + '-SEC';
 
       document.getElementById('cred-disp-username').innerText = generatedUsername;
       document.getElementById('cred-disp-password').innerText = generatedPassword;
 
-      // Bind Persistent Session Fingerprint to Device
       localStorage.setItem('vibely_device_session_token', 'TOKEN_' + Math.random());
       localStorage.setItem('vibely_user_email', email);
       localStorage.setItem('vibely_user_name', name);
@@ -1561,7 +1546,6 @@
       }
     }
 
-    // Workstation Sub-Views
     function switchAffiliateSubView(subName) {
       ['home', 'market', 'contests', 'lms', 'creator'].forEach(s => {
         document.getElementById(`aff-sub-${s}`).classList.add('hidden');
@@ -1573,7 +1557,6 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Tough Academy Quiz Verification (Strict 100%)
     function submitToughAcademyQuiz() {
       const q1 = document.querySelector('input[name="tough_q1"]:checked');
       const q2 = document.querySelector('input[name="tough_q2"]:checked');
@@ -1664,7 +1647,6 @@
       });
     }
 
-    // Coin Stash Functions
     function openCoinStoreModal() {
       document.getElementById('coin-store-modal').classList.remove('opacity-0', 'pointer-events-none');
     }
@@ -1680,7 +1662,6 @@
       alert(`Payment of ₵ ${priceGhs} GHS verified!\n${amount} Coins added to your stash.`);
     }
 
-    // Security Modals
     function open2FAModal() {
       document.getElementById('modal-2fa-setup').classList.remove('opacity-0', 'pointer-events-none');
     }
@@ -1707,7 +1688,6 @@
       alert("Affiliate Settings:\nSettlement MoMo: 0534671381\nStatus: 50% Partner Verified.");
     }
 
-    // AI Support Bot
     function openAIBotModal() {
       document.getElementById('ai-bot-modal').classList.remove('opacity-0', 'pointer-events-none');
     }
@@ -1754,7 +1734,6 @@
       }, 500);
     }
 
-    // Stealth Admin Trigger Handshake
     function handleStealthLogoTaps() {
       appState.stealthTaps++;
       clearTimeout(appState.tapTimer);
