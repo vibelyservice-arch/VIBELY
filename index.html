@@ -132,9 +132,9 @@
       </div>
     </div>
 
-    <!-- Center/Right: Coins Stash & 50+ Global Currency Selector -->
+    <!-- Center/Right: Coins Stash (Pillar 1 Only) & 50+ Currency Selector -->
     <div class="flex items-center gap-2">
-      <!-- Coins Stash Button (ONLY VISIBLE IN PILLAR 1 SOCIAL HUB) -->
+      <!-- Coins Stash Button (EXCLUSIVELY RENDERED IN PILLAR 1) -->
       <button 
         id="header-coin-wrapper"
         onclick="openCoinStoreModal()"
@@ -144,7 +144,7 @@
         <span id="header-coin-counter">250</span>
       </button>
 
-      <!-- 50+ Currency Dropdown Engine (Zero-Loss Fair Exchange) -->
+      <!-- 50+ Global Currency Dropdown Engine (Zero Loss Parity) -->
       <div class="relative">
         <select 
           id="global-currency-select"
@@ -273,7 +273,7 @@
             onclick="handleEnterAffiliateGateway()" 
             class="btn-tap-target mt-6 w-full py-3.5 rounded-2xl bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 text-white font-black text-xs active:scale-95 transition shadow-xl shadow-purple-600/30 text-center"
           >
-            Enter Affiliate Marketing (<span data-price-ghs="95">₵ 95.00 GHS</span>) →
+            Enter Affiliate Marketing (<span data-price-ghs="95">₵ 95 GHS</span>) →
           </button>
         </div>
       </div>
@@ -281,7 +281,7 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- PILLAR 1: ONBOARDING WIZARD MODAL (MANDATORY 5 STAGES)         -->
+  <!-- PILLAR 1: ONBOARDING WIZARD MODAL (MANDATORY 4 STAGES)         -->
   <!-- ============================================================== -->
   <div 
     id="p1-onboarding-modal" 
@@ -347,7 +347,7 @@
         </button>
       </div>
 
-      <!-- STAGE 3: LIFESTYLE, HOBBY, SPORT & FOOD SURVEY -->
+      <!-- STAGE 3: LIFESTYLE, HOBBY, SPORT & FOOD SURVEY (FULLY WORKING CHIPS)[span_0](start_span)[span_0](end_span) -->
       <div id="p1-step-3" class="space-y-4 text-xs text-left hidden max-h-[380px] overflow-y-auto no-scrollbar">
         <div>
           <label class="block font-bold text-white mb-1.5">Favorite Hobbies</label>
@@ -407,7 +407,7 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- PILLAR 1: REAL CAMERA BIOMETRIC 5-STEP LIVENESS VERIFICATION -->
+  <!-- PILLAR 1: REAL CAMERA BIOMETRIC 5-STEP LIVENESS VERIFICATION[span_1](start_span)[span_1](end_span) -->
   <!-- ============================================================== -->
   <div 
     id="facial-liveness-modal" 
@@ -417,8 +417,8 @@
       <button onclick="closeFacialVerificationModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
 
       <span class="text-3xl">🛡️</span>
-      <h3 class="text-lg font-black text-white">Facial Liveness Verification</h3>
-      <p class="text-xs text-zinc-400">Complete the 5 camera motions to remove the Red Flag and earn your ✓ Blue Tick.</p>
+      <h3 class="text-lg font-black text-white">Facial Liveness Verification[span_2](start_span)[span_2](end_span)</h3>
+      <p class="text-xs text-zinc-400">Complete the 5 camera motions to remove the Red Flag and earn your ✓ Blue Tick.[span_3](start_span)[span_3](end_span)</p>
 
       <div class="relative w-48 h-48 mx-auto rounded-full border-4 border-dashed border-purple-500 overflow-hidden flex items-center justify-center bg-black shadow-inner">
         <video id="liveness-video-feed" autoplay playsinline class="w-full h-full object-cover"></video>
@@ -522,11 +522,11 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- VIEW 2: PILLAR 1 - GLOBAL SOCIAL & CHAT (SUPER-APP SHELL) -->
+  <!-- VIEW 2: PILLAR 1 - GLOBAL SOCIAL & CHAT (SUPER-APP SHELL)[span_4](start_span)[span_4](end_span) -->
   <!-- ============================================================== -->
   <div id="view-social" class="hidden relative z-10 w-full max-w-4xl mx-auto px-4 pt-4 space-y-6">
     
-    <!-- User Profile Header & Verification Status Badge -->
+    <!-- User Profile Header & Verification Status Badge[span_5](start_span)[span_5](end_span) -->
     <div class="glass-panel p-4 rounded-3xl flex items-center justify-between border border-white/10">
       <div class="flex items-center gap-3">
         <div class="relative cursor-pointer">
@@ -537,10 +537,10 @@
           <div class="flex items-center gap-2">
             <h3 class="text-sm font-black text-white" id="social-my-name">Samuel Mensah</h3>
             <span id="social-verify-badge" class="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-red-500/20 text-red-400 border border-red-500/30 cursor-pointer" onclick="openFacialVerificationModal()">
-              🚩 Unverified
+              🚩 Unverified[span_6](start_span)[span_6](end_span)
             </span>
           </div>
-          <p class="text-[10px] text-zinc-400" id="social-my-status">"Looking for creative partners &amp; builders on Vibely."</p>
+          <p class="text-[10px] text-zinc-400" id="social-my-status">"Looking for creative partners &amp; builders on Vibely.[span_7](start_span)"[span_7](end_span)</p>
         </div>
       </div>
       <div class="flex items-center gap-2">
@@ -566,10 +566,10 @@
       <button onclick="switchP1Tab('settings')" id="p1-tab-settings" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">⚙️ Settings</button>
     </div>
 
-    <!-- P1 SUB-TAB: HOME (FEED & 24H STORIES) -->
+    <!-- P1 SUB-TAB: HOME (FEED & 24H STORIES)[span_8](start_span)[span_8](end_span) -->
     <div id="p1-view-home" class="space-y-6">
       <div class="glass-card p-4 rounded-3xl overflow-hidden border border-white/10">
-        <span class="text-[10px] uppercase font-bold text-zinc-400 tracking-wider block mb-3">Live Status &amp; Stories (WhatsApp / Snapchat Hybrid)</span>
+        <span class="text-[10px] uppercase font-bold text-zinc-400 tracking-wider block mb-3">Live Status &amp; Stories (WhatsApp / Snapchat Hybrid)[span_9](start_span)[span_9](end_span)</span>
         <div class="flex items-center gap-4 overflow-x-auto no-scrollbar pb-1">
           <div class="flex flex-col items-center gap-1.5 cursor-pointer shrink-0" onclick="handlePostStatus()">
             <div class="relative w-14 h-14 rounded-2xl border-2 border-dashed border-purple-500/60 p-0.5 flex items-center justify-center">
@@ -616,7 +616,7 @@
       </div>
     </div>
 
-    <!-- P1 SUB-TAB: DISCOVER (SWIPE DECK, CHEMISTRY SCORE & REPORT ACTION) -->
+    <!-- P1 SUB-TAB: DISCOVER (SWIPE DECK, CHEMISTRY SCORE & REPORT ACTION)[span_10](start_span)[span_10](end_span) -->
     <div id="p1-view-discover" class="space-y-6 hidden">
       <div class="flex gap-2 overflow-x-auto no-scrollbar text-xs font-bold">
         <button onclick="alert('Filter applied: Active Now');" class="px-3 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0">● Active Now</button>
@@ -628,10 +628,10 @@
       <div class="w-full max-w-md mx-auto">
         <div class="glass-panel rounded-3xl p-6 border border-white/10 shadow-2xl relative overflow-hidden" id="social-card-box">
           <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-bold text-emerald-300" id="card-user-location">🇳🇬 Lagos, Nigeria</span>
+            <span class="text-xs font-bold text-emerald-300" id="card-user-location">🇳🇬 Lagos, Nigeria[span_11](start_span)[span_11](end_span)</span>
             <div class="flex items-center gap-1.5">
               <button onclick="openChemistryScoreModal()" class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30" id="card-user-synergy">
-                🔥 96% Chemistry Score
+                🔥 96% Chemistry Score[span_12](start_span)[span_12](end_span)
               </button>
               <!-- Report User Action Trigger -->
               <button onclick="openReportUserModal('Adrienne Okon (@adrienne_pro)')" class="p-1 rounded-lg text-zinc-400 hover:text-red-400 text-xs" title="Report Violation">
@@ -641,10 +641,10 @@
           </div>
 
           <div class="relative w-full h-56 rounded-2xl bg-gradient-to-br from-purple-900/40 via-zinc-900 to-pink-900/40 border border-white/10 flex flex-col justify-end p-5 overflow-hidden mb-5">
-            <div class="absolute top-4 left-4 w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center text-xl font-black text-white" id="card-user-avatar">AO</div>
+            <div class="absolute top-4 left-4 w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center text-xl font-black text-white" id="card-user-avatar">AO[span_13](start_span)[span_13](end_span)</div>
             <div>
-              <h3 class="text-xl font-black text-white flex items-center gap-2" id="card-user-name">Adrienne Okon, 23</h3>
-              <p class="text-xs text-purple-300 font-semibold" id="card-user-headline">E-Commerce &amp; TikTok Dropshipper</p>
+              <h3 class="text-xl font-black text-white flex items-center gap-2" id="card-user-name">Adrienne Okon, 23[span_14](start_span)[span_14](end_span)</h3>
+              <p class="text-xs text-purple-300 font-semibold" id="card-user-headline">E-Commerce &amp; TikTok Dropshipper[span_15](start_span)[span_15](end_span)</p>
             </div>
           </div>
 
@@ -795,27 +795,27 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- VIEW 3: PILLAR 2 - AFFILIATE WORKSTATION (DIGITSTEM PARITY) -->
+  <!-- VIEW 3: PILLAR 2 - AFFILIATE WORKSTATION (DIGITSTEM PARITY)[span_16](start_span)[span_16](end_span) -->
   <!-- ============================================================== -->
   <div id="view-affiliate" class="hidden relative z-10 w-full max-w-5xl mx-auto px-4 pt-4 space-y-6">
 
-    <!-- TOP BAR -->
+    <!-- TOP BAR[span_17](start_span)[span_17](end_span) -->
     <div class="glass-panel p-4 rounded-3xl flex items-center justify-between border border-white/10">
       <div class="flex items-center gap-2">
         <button onclick="openAffiliateDrawerMenu()" class="p-2 rounded-xl bg-white/5 border border-white/10 text-zinc-300">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
-        <span class="text-xs font-bold text-white uppercase tracking-wider" id="p2-current-section-title">Dashboard</span>
+        <span class="text-xs font-bold text-white uppercase tracking-wider" id="p2-current-section-title">Dashboard[span_18](start_span)[span_18](end_span)</span>
       </div>
 
       <div class="flex items-center gap-3">
         <button onclick="alert('Theme toggled');" class="text-zinc-400 hover:text-white text-sm">🌙</button>
         <button onclick="alert('45 unread notifications');" class="relative text-zinc-400 hover:text-white text-sm">
           🔔
-          <span class="absolute -top-1 -right-1.5 w-3.5 h-3.5 bg-red-500 text-white rounded-full text-[8px] font-bold flex items-center justify-center">45</span>
+          <span class="absolute -top-1 -right-1.5 w-3.5 h-3.5 bg-red-500 text-white rounded-full text-[8px] font-bold flex items-center justify-center">45[span_19](start_span)[span_19](end_span)</span>
         </button>
         <div onclick="openAffiliateProfileDrawer()" class="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-600 to-pink-600 flex items-center justify-center text-white text-[10px] font-black cursor-pointer">
-          GM
+          GM[span_20](start_span)[span_20](end_span)
         </div>
       </div>
     </div>
@@ -841,27 +841,27 @@
       <button onclick="switchAffiliateSubView('premium_suite')" id="subnav-premium_suite" class="btn-tap-target px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white shrink-0 shadow-lg">👑 Premium (16-45)</button>
     </div>
 
-    <!-- 0. AFFILIATE HUB VIEW (CONTAINER FOR SCREENSHOTS 1000082151 TO 1000082161) -->
+    <!-- 0. AFFILIATE HUB VIEW (CONTAINER FOR SCREENSHOTS 1000082151 TO 1000082161)[span_21](start_span)[span_21](end_span)[span_22](start_span)[span_22](end_span)[span_23](start_span)[span_23](end_span)[span_24](start_span)[span_24](end_span)[span_25](start_span)[span_25](end_span)[span_26](start_span)[span_26](end_span) -->
     <div id="aff-sub-affiliate_hub" class="space-y-6 hidden text-left">
       <div class="space-y-1">
         <span class="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Affiliate Hub &gt; Overview</span>
         <h2 class="text-2xl font-black text-white flex items-center gap-2">
-          Good Afternoon, Gerald! 👋
+          Good Afternoon, Gerald! 👋[span_27](start_span)[span_27](end_span)
         </h2>
-        <p class="text-xs text-zinc-400">Keep up the good work. Your current status is active.</p>
+        <p class="text-xs text-zinc-400">Keep up the good work. Your current status is active.[span_28](start_span)[span_28](end_span)</p>
       </div>
 
-      <!-- Milestone Progress -->
+      <!-- Milestone Progress[span_29](start_span)[span_29](end_span) -->
       <div class="glass-card p-5 rounded-3xl border border-white/10 space-y-3">
         <div class="flex justify-between items-center text-xs">
           <div class="flex items-center gap-2">
             <span class="text-xl">🚀</span>
             <div>
-              <span class="font-black text-white block">Starter</span>
-              <span class="text-[10px] text-zinc-400">Next: Bronze Excellence Award</span>
+              <span class="font-black text-white block">Starter[span_30](start_span)[span_30](end_span)</span>
+              <span class="text-[10px] text-zinc-400">Next: Bronze Excellence Award[span_31](start_span)[span_31](end_span)</span>
             </div>
           </div>
-          <span class="text-amber-400 font-bold">7%</span>
+          <span class="text-amber-400 font-bold">7%[span_32](start_span)[span_32](end_span)</span>
         </div>
         <div class="w-full bg-black/60 rounded-full h-2 border border-white/5 overflow-hidden">
           <div class="bg-gradient-to-r from-purple-500 to-amber-400 h-2 rounded-full w-[7%]"></div>
@@ -872,80 +872,80 @@
         </div>
       </div>
 
-      <!-- Available Balance Card with Add Fund / Pay Out Now -->
+      <!-- Available Balance Card with Add Fund / Pay Out Now[span_33](start_span)[span_33](end_span) -->
       <div class="rounded-3xl p-6 bg-gradient-to-br from-indigo-950 via-purple-950 to-zinc-950 border border-purple-500/30 space-y-4">
         <div>
-          <span class="text-[10px] uppercase font-bold text-purple-300 block">AVAILABLE BALANCE</span>
+          <span class="text-[10px] uppercase font-bold text-purple-300 block">AVAILABLE BALANCE[span_34](start_span)[span_34](end_span)</span>
           <div class="text-3xl font-black text-white font-mono" id="hub-avail-balance">₵ 1,365.00 GHS</div>
-          <span class="text-[10px] text-emerald-400 font-semibold block mt-0.5">● Payout ready</span>
+          <span class="text-[10px] text-emerald-400 font-semibold block mt-0.5">● Payout ready[span_35](start_span)[span_35](end_span)</span>
         </div>
         <div class="grid grid-cols-2 gap-3 pt-2">
           <button onclick="switchAffiliateSubView('payout_deposit')" class="py-2.5 rounded-xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 font-bold text-xs hover:bg-emerald-500/30 transition">
-            + Add Fund
+            + Add Fund[span_36](start_span)[span_36](end_span)
           </button>
           <button onclick="switchAffiliateSubView('payout_deposit')" class="py-2.5 rounded-xl bg-white text-black font-black text-xs hover:bg-zinc-200 transition shadow-lg">
-            Pay Out Now
+            Pay Out Now[span_37](start_span)[span_37](end_span)
           </button>
         </div>
       </div>
 
-      <!-- Platform Wallet & Total Earnings -->
+      <!-- Platform Wallet & Total Earnings[span_38](start_span)[span_38](end_span)[span_39](start_span)[span_39](end_span)[span_40](start_span)[span_40](end_span) -->
       <div class="grid grid-cols-2 gap-3">
         <div class="glass-card p-4 rounded-2xl">
-          <span class="text-[10px] uppercase font-bold text-zinc-400 block mb-1">Platform Wallet</span>
+          <span class="text-[10px] uppercase font-bold text-zinc-400 block mb-1">Platform Wallet[span_41](start_span)[span_41](end_span)</span>
           <span class="text-lg font-black text-white font-mono" id="hub-wallet-balance-box">₵ 1,365.00 GHS</span>
           <span class="text-[10px] text-zinc-500 block mt-0.5">Escrow Cleared</span>
         </div>
         <div class="glass-card p-4 rounded-2xl">
-          <span class="text-[10px] uppercase font-bold text-zinc-400 block mb-1">Total Earnings</span>
+          <span class="text-[10px] uppercase font-bold text-zinc-400 block mb-1">Total Earnings[span_42](start_span)[span_42](end_span)[span_43](start_span)[span_43](end_span)</span>
           <span class="text-lg font-black text-emerald-400 font-mono" id="hub-total-earnings-box">₵ 4,062.50 GHS</span>
-          <span class="text-[10px] text-emerald-400 block mt-0.5">↑ +0% From last week</span>
+          <span class="text-[10px] text-emerald-400 block mt-0.5">↑ +0% From last week[span_44](start_span)[span_44](end_span)[span_45](start_span)[span_45](end_span)</span>
         </div>
       </div>
 
-      <!-- Total Sales & Clicks & Conversion Rate -->
+      <!-- Total Sales & Clicks & Conversion Rate[span_46](start_span)[span_46](end_span) -->
       <div class="grid grid-cols-3 gap-2.5">
         <div class="glass-card p-3 rounded-2xl">
-          <span class="text-[10px] text-zinc-400 block">Total Sales</span>
-          <span class="text-base font-black text-white">46</span>
-          <span class="text-[9px] text-zinc-500 block">Checkout sales</span>
+          <span class="text-[10px] text-zinc-400 block">Total Sales[span_47](start_span)[span_47](end_span)</span>
+          <span class="text-base font-black text-white">46[span_48](start_span)[span_48](end_span)</span>
+          <span class="text-[9px] text-zinc-500 block">Checkout sales[span_49](start_span)[span_49](end_span)</span>
         </div>
         <div class="glass-card p-3 rounded-2xl">
-          <span class="text-[10px] text-zinc-400 block">Total Clicks</span>
-          <span class="text-base font-black text-white">2300</span>
-          <span class="text-[9px] text-zinc-500 block">Traffic generated</span>
+          <span class="text-[10px] text-zinc-400 block">Total Clicks[span_50](start_span)[span_50](end_span)</span>
+          <span class="text-base font-black text-white">2300[span_51](start_span)[span_51](end_span)</span>
+          <span class="text-[9px] text-zinc-500 block">Traffic generated[span_52](start_span)[span_52](end_span)</span>
         </div>
         <div class="glass-card p-3 rounded-2xl">
-          <span class="text-[10px] text-zinc-400 block">Conversion</span>
-          <span class="text-base font-black text-purple-400">2%</span>
-          <span class="text-[9px] text-zinc-500 block">Click to Sale</span>
+          <span class="text-[10px] text-zinc-400 block">Conversion[span_53](start_span)[span_53](end_span)</span>
+          <span class="text-base font-black text-purple-400">2%[span_54](start_span)[span_54](end_span)</span>
+          <span class="text-[9px] text-zinc-500 block">Click to Sale[span_55](start_span)[span_55](end_span)</span>
         </div>
       </div>
 
-      <!-- Pending Commissions & Withdrawn -->
+      <!-- Pending Commissions & Withdrawn[span_56](start_span)[span_56](end_span) -->
       <div class="grid grid-cols-2 gap-3">
         <div class="glass-card p-4 rounded-2xl">
-          <span class="text-[10px] text-zinc-400 block mb-1">Pending Commissions</span>
+          <span class="text-[10px] text-zinc-400 block mb-1">Pending Commissions[span_57](start_span)[span_57](end_span)</span>
           <span class="text-base font-black text-zinc-400 font-mono" data-price-ghs="0">₵ 0.00 GHS</span>
-          <span class="text-[10px] text-zinc-500 block mt-0.5">🔒 Escrow Lock</span>
+          <span class="text-[10px] text-zinc-500 block mt-0.5">🔒 Escrow Lock[span_58](start_span)[span_58](end_span)</span>
         </div>
         <div class="glass-card p-4 rounded-2xl">
-          <span class="text-[10px] text-zinc-400 block mb-1">Withdrawn Earnings</span>
+          <span class="text-[10px] text-zinc-400 block mb-1">Withdrawn Earnings[span_59](start_span)[span_59](end_span)</span>
           <span class="text-base font-black text-white font-mono" data-price-ghs="2697.5">₵ 2,697.50 GHS</span>
-          <span class="text-[10px] text-zinc-500 block mt-0.5">↓ Bank withdrawals</span>
+          <span class="text-[10px] text-zinc-500 block mt-0.5">↓ Bank withdrawals[span_60](start_span)[span_60](end_span)</span>
         </div>
       </div>
 
-      <!-- Earnings Analytics Chart Simulation -->
+      <!-- Earnings Analytics Chart Simulation[span_61](start_span)[span_61](end_span) -->
       <div class="glass-panel p-5 rounded-3xl border border-white/10 space-y-4">
         <div class="flex justify-between items-center">
           <span class="text-xs font-bold text-white flex items-center gap-1.5">
-            <span>📈</span> Earnings Analytics
+            <span>📈</span> Earnings Analytics[span_62](start_span)[span_62](end_span)
           </span>
           <div class="flex gap-1 text-[10px]">
-            <button class="px-2 py-0.5 rounded-md bg-purple-600 text-white font-bold">Daily</button>
-            <button class="px-2 py-0.5 rounded-md bg-white/5 text-zinc-400">Weekly</button>
-            <button class="px-2 py-0.5 rounded-md bg-white/5 text-zinc-400">Monthly</button>
+            <button class="px-2 py-0.5 rounded-md bg-purple-600 text-white font-bold">Daily[span_63](start_span)[span_63](end_span)</button>
+            <button class="px-2 py-0.5 rounded-md bg-white/5 text-zinc-400">Weekly[span_64](start_span)[span_64](end_span)</button>
+            <button class="px-2 py-0.5 rounded-md bg-white/5 text-zinc-400">Monthly[span_65](start_span)[span_65](end_span)</button>
           </div>
         </div>
 
@@ -961,28 +961,28 @@
         </div>
       </div>
 
-      <!-- Recent Activity Ledger -->
+      <!-- Recent Activity Ledger[span_66](start_span)[span_66](end_span) -->
       <div class="glass-panel p-5 rounded-3xl border border-white/10 space-y-3">
         <span class="text-xs font-bold text-white flex items-center gap-1.5">
-          <span>🕒</span> Recent Activity
+          <span>🕒</span> Recent Activity[span_67](start_span)[span_67](end_span)
         </span>
         <div class="space-y-2 text-xs">
           <div class="p-3 rounded-2xl bg-white/5 flex justify-between items-center">
             <div class="flex items-center gap-2.5">
               <span class="w-7 h-7 rounded-full bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold">↑</span>
               <div>
-                <span class="font-bold text-white block">Withdrawal via MoMo</span>
-                <span class="text-[10px] text-zinc-500">3 months ago</span>
+                <span class="font-bold text-white block">Withdrawal via MoMo[span_68](start_span)[span_68](end_span)</span>
+                <span class="text-[10px] text-zinc-500">3 months ago[span_69](start_span)[span_69](end_span)</span>
               </div>
             </div>
-            <span class="font-bold text-red-400 font-mono" data-price-ghs="163.88">- ₵ 163.88 GHS</span>
+            <span class="font-bold text-red-400 font-mono" data-price-ghs="163.88">- ₵ 163.88 GHS[span_70](start_span)[span_70](end_span)</span>
           </div>
           <div class="p-3 rounded-2xl bg-white/5 flex justify-between items-center">
             <div class="flex items-center gap-2.5">
               <span class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">↓</span>
               <div>
-                <span class="font-bold text-white block">Sale Commission for UMM</span>
-                <span class="text-[10px] text-zinc-500">4 months ago</span>
+                <span class="font-bold text-white block">Sale Commission for UMM[span_71](start_span)[span_71](end_span)</span>
+                <span class="text-[10px] text-zinc-500">4 months ago[span_72](start_span)[span_72](end_span)</span>
               </div>
             </div>
             <span class="font-bold text-emerald-400 font-mono" data-price-ghs="47.50">+ ₵ 47.50 GHS</span>
@@ -991,37 +991,37 @@
       </div>
     </div>
 
-    <!-- 1. DASHBOARD VIEW (ISOLATED CONTAINER FOR 1000082126) -->
+    <!-- 1. DASHBOARD VIEW (ISOLATED CONTAINER FOR 1000082126)[span_73](start_span)[span_73](end_span) -->
     <div id="aff-sub-dashboard" class="space-y-6 text-left">
       <div class="space-y-1">
         <h2 class="text-2xl font-black text-white flex items-center gap-2">
-          Welcome back, Gerald 👋
+          Welcome back, Gerald 👋[span_74](start_span)[span_74](end_span)
         </h2>
-        <p class="text-xs text-zinc-400 italic">"Consistency is the secret currency of top creators. ✨"</p>
+        <p class="text-xs text-zinc-400 italic">"Consistency is the secret currency of top creators. ✨[span_75](start_span)"[span_75](end_span)</p>
       </div>
 
       <div class="grid grid-cols-2 gap-3 text-left">
         <div onclick="alert('Viewing Announcement: UMM conversions +40% with AI Video hooks.');" class="p-4 rounded-2xl bg-white/5 border border-white/10 cursor-pointer hover:border-purple-500/30 transition">
           <span class="text-xs font-bold text-white flex items-center gap-1.5">
-            <span>📢</span> View Announcement
+            <span>📢</span> View Announcement[span_76](start_span)[span_76](end_span)
           </span>
         </div>
         <div onclick="alert('Notifications: 45 lead conversions logged.');" class="p-4 rounded-2xl bg-pink-950/20 border border-pink-500/20 cursor-pointer hover:border-pink-500/40 transition flex items-center justify-between">
           <span class="text-xs font-bold text-pink-300 flex items-center gap-1.5">
-            <span>🔔</span> Notifications
+            <span>🔔</span> Notifications[span_77](start_span)[span_77](end_span)
           </span>
-          <span class="px-2 py-0.5 rounded-full bg-pink-500 text-white text-[10px] font-black">45</span>
+          <span class="px-2 py-0.5 rounded-full bg-pink-500 text-white text-[10px] font-black">45[span_78](start_span)[span_78](end_span)</span>
         </div>
       </div>
 
       <div class="space-y-3">
         <div class="flex justify-between items-center">
           <div>
-            <h4 class="text-sm font-black text-white">Your Workspaces</h4>
-            <p class="text-[11px] text-zinc-400">Access your primary hubs or customize your workspace order.</p>
+            <h4 class="text-sm font-black text-white">Your Workspaces[span_79](start_span)[span_79](end_span)</h4>
+            <p class="text-[11px] text-zinc-400">Access your primary hubs or customize your workspace order.[span_80](start_span)[span_80](end_span)</p>
           </div>
           <button onclick="alert('Rearranging hubs enabled.');" class="px-2.5 py-1 rounded-xl bg-white/5 text-[10px] text-zinc-300 border border-white/10 font-bold">
-            ↕ Rearrange Hubs
+            ↕ Rearrange Hubs[span_81](start_span)[span_81](end_span)
           </button>
         </div>
 
@@ -1030,18 +1030,18 @@
             <div class="flex items-center gap-2">
               <span class="text-xl">🤝</span>
               <div>
-                <h5 class="text-sm font-bold text-white">Affiliate Hub</h5>
-                <p class="text-[11px] text-zinc-400">Promote products and earn commissions.</p>
+                <h5 class="text-sm font-bold text-white">Affiliate Hub[span_82](start_span)[span_82](end_span)</h5>
+                <p class="text-[11px] text-zinc-400">Promote products and earn commissions.[span_83](start_span)[span_83](end_span)</p>
               </div>
             </div>
             <span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-[10px] font-bold flex items-center gap-1 border border-emerald-500/20">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Live
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Live[span_84](start_span)[span_84](end_span)
             </span>
           </div>
 
           <div class="flex justify-between items-center pt-2">
             <span class="text-xs text-zinc-400 flex items-center gap-1">
-              <span>💵</span> <span data-price-ghs="0">0.00 USD</span> Earned
+              <span>💵</span> <span data-price-ghs="0">0.00 USD</span> Earned[span_85](start_span)[span_85](end_span)
             </span>
             <button onclick="openAIBotModal()" class="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-black text-xs font-bold shadow-lg shadow-emerald-500/30">
               💬
@@ -1049,37 +1049,37 @@
           </div>
 
           <button onclick="switchAffiliateSubView('affiliate_hub')" class="btn-tap-target w-full py-3 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-black font-black text-xs transition shadow-lg">
-            Open Affiliate Hub →
+            Open Affiliate Hub →[span_86](start_span)[span_86](end_span)
           </button>
         </div>
       </div>
 
-      <!-- Docked Lower Sub-Bar -->
+      <!-- Docked Lower Sub-Bar[span_87](start_span)[span_87](end_span) -->
       <div class="glass-card p-2 rounded-2xl flex items-center justify-between text-center text-xs font-bold border border-white/10 text-zinc-400">
         <button onclick="switchAffiliateSubView('dashboard')" class="flex flex-col items-center gap-1 text-emerald-400">
           <span>🏠</span>
-          <span class="text-[10px]">Home</span>
+          <span class="text-[10px]">Home[span_88](start_span)[span_88](end_span)</span>
         </button>
         <button onclick="switchAffiliateSubView('affiliate_hub')" class="flex flex-col items-center gap-1 hover:text-white transition">
           <span>📊</span>
-          <span class="text-[10px]">Affiliate</span>
+          <span class="text-[10px]">Affiliate[span_89](start_span)[span_89](end_span)</span>
         </button>
         <button onclick="switchAffiliateSubView('creator')" class="flex flex-col items-center gap-1 hover:text-white transition">
           <span>🎨</span>
-          <span class="text-[10px]">Creator</span>
+          <span class="text-[10px]">Creator[span_90](start_span)[span_90](end_span)</span>
         </button>
         <button onclick="openMoreFeaturesSheet()" class="flex flex-col items-center gap-1 hover:text-white transition">
           <span>🗂️</span>
-          <span class="text-[10px]">More</span>
+          <span class="text-[10px]">More[span_91](start_span)[span_91](end_span)</span>
         </button>
         <button onclick="openAffiliateProfileDrawer()" class="flex flex-col items-center gap-1 hover:text-white transition">
-          <span class="w-5 h-5 rounded-full bg-gradient-to-tr from-purple-600 to-pink-600 flex items-center justify-center text-white text-[8px] font-black">GM</span>
-          <span class="text-[10px]">Profile</span>
+          <span class="w-5 h-5 rounded-full bg-gradient-to-tr from-purple-600 to-pink-600 flex items-center justify-center text-white text-[8px] font-black">GM[span_92](start_span)[span_92](end_span)</span>
+          <span class="text-[10px]">Profile[span_93](start_span)[span_93](end_span)</span>
         </button>
       </div>
     </div>
 
-    <!-- 2. MARKETPLACE VIEW -->
+    <!-- 2. MARKETPLACE VIEW[span_94](start_span)[span_94](end_span) -->
     <div id="aff-sub-market" class="space-y-6 hidden text-left">
       <div>
         <h3 class="text-xl font-black text-white">Affiliate Marketplace</h3>
@@ -1087,18 +1087,18 @@
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <!-- 1. Pass -->
+        <!-- 1. Pass[span_95](start_span)[span_95](end_span) -->
         <div class="glass-panel p-5 rounded-3xl border border-purple-500/30 sm:col-span-2">
           <div class="w-full h-28 rounded-2xl bg-gradient-to-r from-purple-900 to-indigo-900 p-4 flex flex-col justify-between mb-4">
-            <span class="text-[9px] uppercase font-black px-2 py-0.5 rounded-full bg-amber-400 text-black w-max">★ TOP PICK</span>
-            <h4 class="text-base font-black text-white">1-Year Vibely Membership Pass</h4>
+            <span class="text-[9px] uppercase font-black px-2 py-0.5 rounded-full bg-amber-400 text-black w-max">★ TOP PICK[span_96](start_span)[span_96](end_span)</span>
+            <h4 class="text-base font-black text-white">1-Year Vibely Membership Pass[span_97](start_span)[span_97](end_span)</h4>
           </div>
           <div class="flex justify-between items-center text-xs mb-3">
-            <span class="font-bold text-emerald-400">50% Split: <span data-price-ghs="47.5">₵ 47.50 GHS</span></span>
-            <span class="font-bold text-white" data-price-ghs="95">₵ 95.00 GHS</span>
+            <span class="font-bold text-emerald-400">50% Split: <span data-price-ghs="47.5">₵ 47.50 GHS</span>[span_98](start_span)[span_98](end_span)</span>
+            <span class="font-bold text-white" data-price-ghs="95">₵ 95.00 GHS[span_99](start_span)[span_99](end_span)</span>
           </div>
           <button onclick="copyPromoterOfferLink(this, '1-Year Membership Pass')" class="btn-tap-target w-full py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition">
-            Promote Offer (50% Link)
+            Promote Offer (50% Link)[span_100](start_span)[span_100](end_span)
           </button>
         </div>
 
@@ -1209,13 +1209,13 @@
       </div>
     </div>
 
-    <!-- 4. CONTESTS VIEW[span_1](start_span)[span_1](end_span) -->
+    <!-- 4. CONTESTS VIEW[span_101](start_span)[span_101](end_span) -->
     <div id="aff-sub-contests" class="space-y-6 hidden text-left">
       <div class="rounded-3xl p-6 bg-gradient-to-br from-amber-950/60 to-purple-950/60 border border-amber-500/40 space-y-4">
-        <span class="text-[10px] font-black uppercase text-amber-300 px-3 py-1 rounded-full bg-amber-500/20">🏆 Sprint Challenge[span_2](start_span)[span_2](end_span)</span>
-        <h4 class="text-xl font-black text-white">The 200-Sale Monthly Sprint[span_3](start_span)[span_3](end_span)</h4>
+        <span class="text-[10px] font-black uppercase text-amber-300 px-3 py-1 rounded-full bg-amber-500/20">🏆 Sprint Challenge[span_102](start_span)[span_102](end_span)</span>
+        <h4 class="text-xl font-black text-white">The 200-Sale Monthly Sprint[span_103](start_span)[span_103](end_span)</h4>
         <p class="text-xs text-zinc-300 leading-relaxed">
-          Generate 200 verified sales in a calendar month to claim the <strong>10,000 GHS ($861 USD)</strong> grand champion cash prize!
+          Generate 200 verified sales in a calendar month to claim the <strong>10,000 GHS ($861 USD)</strong> grand champion cash prize[span_104](start_span)[span_104](end_span)!
         </p>
         <button onclick="alert('Enrolled in 200-Sale Sprint! Your referrals are being tracked.');" class="btn-tap-target w-full py-3 rounded-xl bg-amber-400 text-black font-black text-xs">
           Register In Pool (<span data-price-ghs="10000">₵ 10,000 GHS</span>)
@@ -1223,10 +1223,10 @@
       </div>
 
       <div class="rounded-3xl p-6 bg-gradient-to-br from-pink-950/60 to-indigo-950/60 border border-pink-500/40 space-y-4">
-        <span class="text-[10px] font-black uppercase text-pink-300 px-3 py-1 rounded-full bg-pink-500/20">🎬 Viral Video Challenge[span_4](start_span)[span_4](end_span)</span>
-        <h4 class="text-xl font-black text-white">Promotional Video Grand Award[span_5](start_span)[span_5](end_span)</h4>
+        <span class="text-[10px] font-black uppercase text-pink-300 px-3 py-1 rounded-full bg-pink-500/20">🎬 Viral Video Challenge[span_105](start_span)[span_105](end_span)</span>
+        <h4 class="text-xl font-black text-white">Promotional Video Grand Award[span_106](start_span)[span_106](end_span)</h4>
         <p class="text-xs text-zinc-300 leading-relaxed">
-          Post a video about Vibely on TikTok or Instagram. The video with the highest engagement wins <strong>5,000 GHS ($430 USD)</strong>!
+          Post a video about Vibely on TikTok or Instagram. The video with the highest engagement wins <strong>5,000 GHS ($430 USD)</strong>[span_107](start_span)[span_107](end_span)!
         </p>
         <button onclick="promptVideoSubmission()" class="btn-tap-target w-full py-3 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white font-black text-xs">
           Submit Video URL For Audit
@@ -1451,20 +1451,20 @@
       </div>
     </div>
 
-    <!-- CREATOR HUB[span_6](start_span)[span_6](end_span) -->
+    <!-- CREATOR HUB[span_108](start_span)[span_108](end_span) -->
     <div id="aff-sub-creator" class="space-y-6 hidden">
       <div class="glass-panel p-8 rounded-3xl border border-white/10 text-center max-w-lg mx-auto">
         <div class="w-16 h-16 rounded-3xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-3xl mx-auto mb-4">🔒</div>
-        <h3 class="text-xl font-black text-white">Private Beta Access Only</h3>
+        <h3 class="text-xl font-black text-white">Private Beta Access Only[span_109](start_span)[span_109](end_span)</h3>
         <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
-          The Vibely Creator Commerce Platform &amp; Marketing Hub is currently undergoing private testing with selected creators.[span_7](start_span)[span_7](end_span)
+          The Vibely Creator Commerce Platform &amp; Marketing Hub is currently undergoing private testing with selected creators.[span_110](start_span)[span_110](end_span)
         </p>
         <div class="p-4 rounded-2xl bg-black/50 border border-white/5 text-left text-xs my-6">
-          <div class="flex items-center gap-2 text-cyan-400 font-bold mb-1"><span>ℹ</span> Beta Access Status[span_8](start_span)[span_8](end_span)</div>
-          <p class="text-zinc-400 text-[11px] leading-relaxed">Your account is currently not on the private beta whitelist. Full access will be unlocked automatically upon public release or admin authorization.[span_9](start_span)[span_9](end_span)</p>
+          <div class="flex items-center gap-2 text-cyan-400 font-bold mb-1"><span>ℹ</span> Beta Access Status[span_111](start_span)[span_111](end_span)</div>
+          <p class="text-zinc-400 text-[11px] leading-relaxed">Your account is currently not on the private beta whitelist. Full access will be unlocked automatically upon public release or admin authorization.[span_112](start_span)[span_112](end_span)</p>
         </div>
         <button onclick="switchAffiliateSubView('dashboard')" class="btn-tap-target py-2.5 px-6 rounded-xl bg-white/10 text-white text-xs font-bold hover:bg-white/15 transition">
-          ← Return to User Dashboard[span_10](start_span)[span_10](end_span)
+          ← Return to User Dashboard[span_113](start_span)[span_113](end_span)
         </button>
       </div>
     </div>
@@ -1534,7 +1534,7 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- MODAL: GERALD MINGLE PROFILE DRAWER -->
+  <!-- MODAL: GERALD MINGLE PROFILE DRAWER[span_114](start_span)[span_114](end_span) -->
   <!-- ============================================================== -->
   <div 
     id="affiliate-profile-drawer" 
@@ -1549,42 +1549,42 @@
       <div class="space-y-4">
         <div class="flex items-center justify-between pb-3 border-b border-zinc-800">
           <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-600 flex items-center justify-center text-white font-bold text-sm">GM</div>
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-600 flex items-center justify-center text-white font-bold text-sm">GM[span_115](start_span)[span_115](end_span)</div>
             <div>
-              <h4 class="text-sm font-bold text-white leading-tight">Gerald Mingle</h4>
-              <p class="text-[11px] text-zinc-400">geemingle15@gmail.com</p>
+              <h4 class="text-sm font-bold text-white leading-tight">Gerald Mingle[span_116](start_span)[span_116](end_span)</h4>
+              <p class="text-[11px] text-zinc-400">geemingle15@gmail.com[span_117](start_span)[span_117](end_span)</p>
             </div>
           </div>
-          <button onclick="closeAffiliateProfileDrawer()" class="text-zinc-500 hover:text-white font-bold p-1">✕</button>
+          <button onclick="closeAffiliateProfileDrawer()" class="text-zinc-500 hover:text-white font-bold p-1">✕[span_118](start_span)[span_118](end_span)</button>
         </div>
 
         <nav class="space-y-2 text-xs font-semibold text-left">
           <button onclick="alert('Profile Details: Gerald Mingle');" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300">
-            <span>👤 Profile &amp; Details</span>
-            <span class="text-zinc-500">›</span>
+            <span>👤 Profile &amp; Details[span_119](start_span)[span_119](end_span)</span>
+            <span class="text-zinc-500">›[span_120](start_span)[span_120](end_span)</span>
           </button>
           <button onclick="alert('KYC Verified: MoMo Account 0534671381');" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300">
-            <span>🪪 Account Information / KYC</span>
-            <span class="text-emerald-400 text-[10px]">Verified</span>
+            <span>🪪 Account Information / KYC[span_121](start_span)[span_121](end_span)</span>
+            <span class="text-emerald-400 text-[10px]">Verified[span_122](start_span)[span_122](end_span)</span>
           </button>
           <button onclick="closeAffiliateProfileDrawer(); switchAffiliateSubView('payout_deposit');" class="w-full flex items-center justify-between p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
             <span>💳 Payout &amp; Deposit</span>
             <span class="text-xs">›</span>
           </button>
           <button onclick="alert('0 unread notifications.');" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300">
-            <span>🔔 Notifications</span>
-            <span class="text-zinc-500">›</span>
+            <span>🔔 Notifications[span_123](start_span)[span_123](end_span)</span>
+            <span class="text-zinc-500">›[span_124](start_span)[span_124](end_span)</span>
           </button>
           <button onclick="alert('Security: 2FA Active');" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300">
-            <span>🔑 Security &amp; Password</span>
-            <span class="text-zinc-500">›</span>
+            <span>🔑 Security &amp; Password[span_125](start_span)[span_125](end_span)</span>
+            <span class="text-zinc-500">›[span_126](start_span)[span_126](end_span)</span>
           </button>
           <button onclick="open2FAModal(); closeAffiliateProfileDrawer();" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300">
-            <span>🛡️ 2FA Authentication</span>
-            <span class="text-cyan-400 text-[10px]">Configure</span>
+            <span>🛡️ 2FA Authentication[span_127](start_span)[span_127](end_span)</span>
+            <span class="text-cyan-400 text-[10px]">Configure[span_128](start_span)[span_128](end_span)</span>
           </button>
           <a href="mailto:vibelydesk@gmail.com" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300">
-            <span>🎧 Help &amp; Support</span>
+            <span>🎧 Help &amp; Support[span_129](start_span)[span_129](end_span)</span>
             <span class="text-[10px] text-zinc-400 font-mono">vibelydesk@gmail.com</span>
           </a>
         </nav>
@@ -1592,14 +1592,14 @@
 
       <div class="pt-4 border-t border-zinc-800">
         <button onclick="handleUserLogout()" class="w-full py-2.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 font-bold text-xs hover:bg-red-500/20 transition">
-          Sign Out
+          Sign Out[span_130](start_span)[span_130](end_span)
         </button>
       </div>
     </div>
   </div>
 
   <!-- ============================================================== -->
-  <!-- MODAL: PAYSTACK CHRONOLOGICAL CHECKOUT FUNNEL[span_11](start_span)[span_11](end_span)[span_12](start_span)[span_12](end_span)[span_13](start_span)[span_13](end_span)[span_14](start_span)[span_14](end_span)[span_15](start_span)[span_15](end_span) -->
+  <!-- MODAL: PAYSTACK CHRONOLOGICAL CHECKOUT FUNNEL[span_131](start_span)[span_131](end_span)[span_132](start_span)[span_132](end_span)[span_133](start_span)[span_133](end_span)[span_134](start_span)[span_134](end_span)[span_135](start_span)[span_135](end_span) -->
   <!-- ============================================================== -->
   <div 
     id="modal-paystack-checkout" 
@@ -1609,23 +1609,23 @@
       <button onclick="closePaystackCheckoutModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
 
       <div class="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold flex items-center justify-between mb-4">
-        <span>⚠️ You have <span id="checkout-countdown" class="font-mono text-white">14:57</span> to complete payment[span_16](start_span)[span_16](end_span)</span>
+        <span>⚠️ You have <span id="checkout-countdown" class="font-mono text-white">14:57</span> to complete payment[span_136](start_span)[span_136](end_span)</span>
         <span class="text-[9px] uppercase px-1.5 py-0.5 rounded bg-amber-400/20">Paystack</span>
       </div>
 
-      <!-- STEP 1: CONTACT DETAILS[span_17](start_span)[span_17](end_span) -->
+      <!-- STEP 1: CONTACT DETAILS[span_137](start_span)[span_137](end_span) -->
       <div id="chk-step-1" class="space-y-3.5 text-xs text-left">
         <div>
-          <span class="text-[10px] uppercase font-bold text-zinc-400 tracking-wider">Step 1 of 3: Checkout Instruction[span_18](start_span)[span_18](end_span)</span>
+          <span class="text-[10px] uppercase font-bold text-zinc-400 tracking-wider">Step 1 of 3: Checkout Instruction[span_138](start_span)[span_138](end_span)</span>
           <h3 class="text-lg font-black text-white mt-0.5">Payment Details</h3>
-          <p class="text-[11px] text-zinc-400 mt-1">Make sure your email is active and accessible to receive access credentials.[span_19](start_span)[span_19](end_span)</p>
+          <p class="text-[11px] text-zinc-400 mt-1">Make sure your email is active and accessible to receive access credentials.[span_139](start_span)[span_139](end_span)</p>
         </div>
         <div>
-          <label class="block font-bold text-zinc-300 mb-1">Full Name[span_20](start_span)[span_20](end_span)</label>
+          <label class="block font-bold text-zinc-300 mb-1">Full Name[span_140](start_span)[span_140](end_span)</label>
           <input type="text" id="chk-fullname" required placeholder="e.g. Samuel Mensah" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500" />
         </div>
         <div>
-          <label class="block font-bold text-zinc-300 mb-1">Phone Number (MoMo / SMS)[span_21](start_span)[span_21](end_span)</label>
+          <label class="block font-bold text-zinc-300 mb-1">Phone Number (MoMo / SMS)[span_141](start_span)[span_141](end_span)</label>
           <input type="tel" id="chk-phone" required placeholder="e.g. 0534671381" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500" />
         </div>
         <div>
@@ -1648,16 +1648,16 @@
         </button>
       </div>
 
-      <!-- STEP 2: GATEWAY & CURRENCY SELECTION[span_22](start_span)[span_22](end_span) -->
+      <!-- STEP 2: GATEWAY & CURRENCY SELECTION[span_142](start_span)[span_142](end_span) -->
       <div id="chk-step-2" class="space-y-4 text-xs text-left hidden">
         <div>
-          <span class="text-[10px] uppercase font-bold text-zinc-400 tracking-wider">Step 2 of 3: Payment Confirm[span_23](start_span)[span_23](end_span)</span>
+          <span class="text-[10px] uppercase font-bold text-zinc-400 tracking-wider">Step 2 of 3: Payment Confirm[span_143](start_span)[span_143](end_span)</span>
           <h3 class="text-lg font-black text-white mt-0.5">Select Currency &amp; Channel</h3>
         </div>
         <div>
-          <label class="block font-bold text-zinc-300 mb-1">Select Gateway Channel[span_24](start_span)[span_24](end_span)</label>
+          <label class="block font-bold text-zinc-300 mb-1">Select Gateway Channel[span_144](start_span)[span_144](end_span)</label>
           <select id="chk-gateway-channel" onchange="updatePaystackPayableUI()" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white focus:outline-none focus:border-purple-500">
-            <option value="GHS">Ghana GHS (MTN MoMo / Telecel / Cards)[span_25](start_span)[span_25](end_span)</option>
+            <option value="GHS">Ghana GHS (MTN MoMo / Telecel / Cards)[span_145](start_span)[span_145](end_span)</option>
             <option value="NGN">Nigeria NGN (Bank Transfer / USSD)</option>
             <option value="KES">Kenya KES (M-Pesa)</option>
             <option value="USD">USD (International Credit / Debit Cards)</option>
@@ -1670,7 +1670,7 @@
           </div>
           <div class="flex justify-between text-zinc-400">
             <span>Processing Fee:</span>
-            <span class="text-emerald-400">0.00 (Zero Surcharge)[span_26](start_span)[span_26](end_span)</span>
+            <span class="text-emerald-400">0.00 (Zero Surcharge)[span_146](start_span)[span_146](end_span)</span>
           </div>
         </div>
         <div class="flex gap-2">
@@ -1679,13 +1679,13 @@
         </div>
       </div>
 
-      <!-- STEP 3: PAYSTACK EXECUTION SCREEN[span_27](start_span)[span_27](end_span)[span_28](start_span)[span_28](end_span) -->
+      <!-- STEP 3: PAYSTACK EXECUTION SCREEN[span_147](start_span)[span_147](end_span)[span_148](start_span)[span_148](end_span) -->
       <div id="chk-step-3" class="space-y-4 text-xs text-center hidden">
         <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-xl mx-auto">💳</div>
-        <h3 class="text-lg font-black text-white">Paystack Live Processing[span_29](start_span)[span_29](end_span)</h3>
-        <p class="text-zinc-400 text-xs">Please authorize the prompt sent to your Mobile Money number or input card details.[span_30](start_span)[span_30](end_span)</p>
+        <h3 class="text-lg font-black text-white">Paystack Live Processing[span_149](start_span)[span_149](end_span)</h3>
+        <p class="text-zinc-400 text-xs">Please authorize the prompt sent to your Mobile Money number or input card details.[span_150](start_span)[span_150](end_span)</p>
         <button onclick="simulatePaystackPaymentSuccess()" class="btn-tap-target w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-purple-600 text-white font-black text-xs active:scale-95 transition shadow-xl shadow-amber-500/20">
-          Pay Now (<span id="chk-final-pay-btn-label">₵ 95.00 GHS</span>)[span_31](start_span)[span_31](end_span)[span_32](start_span)[span_32](end_span)
+          Pay Now (<span id="chk-final-pay-btn-label">₵ 95.00 GHS</span>)[span_151](start_span)[span_151](end_span)[span_152](start_span)[span_152](end_span)
         </button>
       </div>
 
@@ -2010,7 +2010,7 @@
           </div>
         </div>
 
-        <!-- P2 Sector 2: Creator Beta Whitelist Desk[span_33](start_span)[span_33](end_span) -->
+        <!-- P2 Sector 2: Creator Beta Whitelist Desk[span_153](start_span)[span_153](end_span) -->
         <div id="sec-p2_whitelist" class="space-y-3 text-xs hidden">
           <div class="p-4 rounded-2xl bg-black/50 border border-purple-500/30 flex justify-between items-center">
             <div>
@@ -2022,7 +2022,7 @@
             </button>
           </div>
           <p class="text-[11px] text-zinc-500 italic">
-            * Approving a creator grants them access to the Creator Commerce platform, removing the private beta access lock.[span_34](start_span)[span_34](end_span)
+            * Approving a creator grants them access to the Creator Commerce platform, removing the private beta access lock.[span_154](start_span)[span_154](end_span)
           </p>
         </div>
 
@@ -2088,7 +2088,7 @@
 
       <div class="flex-1 overflow-y-auto py-3 space-y-2.5 text-xs" id="ai-chat-stream">
         <div class="p-3 rounded-2xl bg-white/5 border border-white/5 text-zinc-300">
-          Hello! I am your Vibely Intelligence Assistant. Ask me about the 50/50 affiliate split, DRM protection, Google Authenticator 2FA, weekly Friday MoMo payouts, or our 200-Sale Sprint[span_35](start_span)[span_35](end_span)!
+          Hello! I am your Vibely Intelligence Assistant. Ask me about the 50/50 affiliate split, DRM protection, Google Authenticator 2FA, weekly Friday MoMo payouts, or our 200-Sale Sprint[span_155](start_span)[span_155](end_span)!
         </div>
       </div>
 
@@ -2284,7 +2284,7 @@
       return `${cur.symbol} ${formatted} ${cur.code}`;
     }
 
-    // UNIVERSAL NO-LOSS ZERO-ARBITRAGE DYNAMIC CONVERSION
+    // UNIVERSAL ZERO-LOSS ZERO-ARBITRAGE DYNAMIC CONVERSION
     function changeGlobalCurrency(curKey) {
       appState.activeCurrency = curKey;
       
@@ -2612,7 +2612,6 @@
 
       appState.adminReports.unshift(reportObject);
 
-      // Add to Super Admin Stream dynamically
       const stream = document.getElementById('adm-live-reports-stream');
       const item = document.createElement('div');
       item.className = "p-3.5 rounded-2xl bg-red-950/20 border border-red-500/30 flex justify-between items-center";
@@ -2706,7 +2705,7 @@
       alert(`Story by ${name}:\n\n"${text}"\n\n👁️ Viewed by 48 creators`);
     }
 
-    // PILLAR 2: PAYSTACK CHRONOLOGICAL CHECKOUT FUNNEL[span_36](start_span)[span_36](end_span)[span_37](start_span)[span_37](end_span)[span_38](start_span)[span_38](end_span)[span_39](start_span)[span_39](end_span)[span_40](start_span)[span_40](end_span)
+    // PILLAR 2: PAYSTACK CHRONOLOGICAL CHECKOUT FUNNEL[span_156](start_span)[span_156](end_span)[span_157](start_span)[span_157](end_span)[span_158](start_span)[span_158](end_span)[span_159](start_span)[span_159](end_span)[span_160](start_span)[span_160](end_span)
     function handleEnterAffiliateGateway() {
       if (!appState.isAffiliatePaid) {
         openPaystackCheckoutModal();
@@ -3164,7 +3163,7 @@
       }
     }
 
-    // CREATOR BETA WHITELIST TOGGLE[span_41](start_span)[span_41](end_span)
+    // CREATOR BETA WHITELIST TOGGLE[span_161](start_span)[span_161](end_span)
     function toggleCreatorWhitelist() {
       appState.creatorWhitelisted = !appState.creatorWhitelisted;
       const statusText = document.getElementById('adm-whitelist-status-text');
@@ -3175,7 +3174,7 @@
         statusText.className = 'text-emerald-400 font-bold';
         btn.innerText = 'Revoke Creator Whitelist';
         btn.className = 'px-4 py-2 rounded-xl bg-red-600/30 text-red-300 font-black text-xs hover:bg-red-600/40 transition';
-        alert('Gerald Mingle is now WHITELISTED in the Creator Commerce Hub! Marketplace listing privileges unlocked.[span_42](start_span)[span_42](end_span)');
+        alert('Gerald Mingle is now WHITELISTED in the Creator Commerce Hub! Marketplace listing privileges unlocked.[span_162](start_span)[span_162](end_span)');
       } else {
         statusText.innerText = 'Pending Whitelist Review';
         statusText.className = 'text-amber-400 font-bold';
