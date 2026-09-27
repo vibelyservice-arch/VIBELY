@@ -2793,51 +2793,6 @@
 
       handler.openIframe();
     }
-
-      
-      const amountGhs = 95.00;
-      const amountPesewas = Math.round(amountGhs * 100);
-
-      closePaystackCheckoutModal();
-
-      // Safety check: Ensure Paystack script is loaded
-      if (typeof PaystackPop === 'undefined') {
-        alert("Paystack SDK is still loading. Please wait 2 seconds and try again.");
-        return;
-      }
-
-      let handler = PaystackPop.setup({
-        key: 'pk_test_your_actual_key_here', // Replace with your real public key
-        email: email,
-        amount: amountPesewas,
-        currency: 'GHS',
-        ref: 'VIB_' + Math.floor(Math.random() * 1000000000),
-        callback: function(response) {
-          playChime('match');
-
-          const generatedUsername = name.toLowerCase().replace(/\s+/g, '_') + '_' + Math.floor(1000 + Math.random() * 9000);
-          const generatedPassword = 'VIB-' + Math.floor(100000 + Math.random() * 900000) + '-SEC';
-
-          document.getElementById('cred-disp-username').innerText = generatedUsername;
-          document.getElementById('cred-disp-password').innerText = generatedPassword;
-
-          localStorage.setItem('vibely_device_session_token', response.reference);
-          localStorage.setItem('vibely_user_email', email);
-          localStorage.setItem('vibely_user_name', name);
-          localStorage.setItem('vibely_user_phone', phone);
-
-          appState.isAffiliatePaid = true;
-          appState.userName = name;
-
-          document.getElementById('modal-credentials-dispatch').classList.remove('opacity-0', 'pointer-events-none');
-        },
-        onClose: function() {
-          alert('Transaction window closed.');
-        }
-      });
-
-      handler.openIframe();
-    }
  
 
       closePaystackCheckoutModal();
