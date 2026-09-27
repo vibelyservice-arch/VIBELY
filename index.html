@@ -2763,10 +2763,58 @@
       }, 1000);
     }
 
-    function simulatePaystackPaymentSuccess() {
+        function simulatePaystackPaymentSuccess() {
       const name = document.getElementById('chk-fullname').value || 'Gerald Mingle';
       const email = document.getElementById('chk-email').value || 'geemingle15@gmail.com';
       const phone = document.getElementById('chk-phone').value || '0534671381';
+      
+      // Determine amount based on active currency (Default 95 GHS base)
+      const amountGhs = 95.00;
+      const amountKoboOrPesewas = Math.round(amountGhs * 100); // Paystack processes in pesewas/kobo
+
+      closePaystackCheckoutModal();
+
+      // Initialize Paystack Inline Pop-up Window
+      let handler = PaystackPop.setup({
+        key: 'pk_live_YOUR_ACTUAL_PAYSTACK_PUBLIC_KEY', // Replace with your live or test public key from Paystack dashboard
+        email: email,
+        amount: amountKoboOrPesewas,
+        currency: 'GHS', // Automatically adapts to selected currency
+        ref: 'VIB_' + Math.floor(Math.random() * 1000000000),
+        metadata: {
+          custom_fields: [
+            { display_name: "Full Name", variable_name: "full_name", value: name },
+            { display_name: "Phone Number", variable_name: "phone_number", value: phone }
+          ]
+        },
+        callback: function(response) {
+          // Triggered when payment is successful
+          playChime('match');
+
+          const generatedUsername = name.toLowerCase().replace(/\s+/g, '_') + '_' + Math.floor(1000 + Math.random() * 9000);
+          const generatedPassword = 'VIB-' + Math.floor(100000 + Math.random() * 900000) + '-SEC';
+
+          document.getElementById('cred-disp-username').innerText = generatedUsername;
+          document.getElementById('cred-disp-password').innerText = generatedPassword;
+
+          localStorage.setItem('vibely_device_session_token', response.reference);
+          localStorage.setItem('vibely_user_email', email);
+          localStorage.setItem('vibely_user_name', name);
+          localStorage.setItem('vibely_user_phone', phone);
+
+          appState.isAffiliatePaid = true;
+          appState.userName = name;
+
+          document.getElementById('modal-credentials-dispatch').classList.remove('opacity-0', 'pointer-events-none');
+        },
+        onClose: function() {
+          alert('Transaction window closed. You can retry payment anytime.');
+        }
+      });
+
+      handler.openIframe();
+    }
+
 
       closePaystackCheckoutModal();
       playChime('match');
