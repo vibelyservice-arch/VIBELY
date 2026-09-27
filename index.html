@@ -132,9 +132,9 @@
       </div>
     </div>
 
-    <!-- Center/Right: Coins Stash & 50+ Global Currency Selector -->
+    <!-- Center/Right: Coins Stash & Global Currency Selector -->
     <div class="flex items-center gap-2">
-      <!-- Coins Stash Button (ONLY VISIBLE IN PILLAR 1 SOCIAL HUB) -->
+      <!-- Coins Stash Button (VISIBLE IN PILLAR 1 SOCIAL HUB) -->
       <button 
         id="header-coin-wrapper"
         onclick="openCoinStoreModal()"
@@ -144,7 +144,7 @@
         <span id="header-coin-counter">250</span>
       </button>
 
-      <!-- 50+ Currency Dropdown Engine (Zero-Loss Fair Exchange) -->
+      <!-- Global Currency Dropdown Engine (Universal Worldwide Exchange) -->
       <div class="relative">
         <select 
           id="global-currency-select"
@@ -281,7 +281,7 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- PILLAR 1: ONBOARDING WIZARD MODAL (MANDATORY 5 STAGES)         -->
+  <!-- PILLAR 1: ONBOARDING WIZARD MODAL                              -->
   <!-- ============================================================== -->
   <div 
     id="p1-onboarding-modal" 
@@ -616,7 +616,7 @@
       </div>
     </div>
 
-    <!-- P1 SUB-TAB: DISCOVER (SWIPE DECK, CHEMISTRY SCORE & REPORT ACTION) -->
+    <!-- P1 SUB-TAB: DISCOVER -->
     <div id="p1-view-discover" class="space-y-6 hidden">
       <div class="flex gap-2 overflow-x-auto no-scrollbar text-xs font-bold">
         <button onclick="alert('Filter applied: Active Now');" class="px-3 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0">● Active Now</button>
@@ -633,7 +633,6 @@
               <button onclick="openChemistryScoreModal()" class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30" id="card-user-synergy">
                 🔥 96% Chemistry Score
               </button>
-              <!-- Report User Action Trigger -->
               <button onclick="openReportUserModal('Adrienne Okon (@adrienne_pro)')" class="p-1 rounded-lg text-zinc-400 hover:text-red-400 text-xs" title="Report Violation">
                 🚩
               </button>
@@ -680,6 +679,23 @@
       </div>
     </div>
 
+    <!-- P1 SUB-TAB: LIKES -->
+    <div id="p1-view-likes" class="space-y-4 hidden text-xs">
+      <div class="glass-panel p-5 rounded-3xl border border-white/10 space-y-3">
+        <h4 class="text-xs font-black uppercase tracking-wider text-white">Creators Who Liked Your Profile</h4>
+        <div class="p-3 rounded-2xl bg-white/5 flex justify-between items-center">
+          <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" class="w-10 h-10 rounded-xl object-cover" />
+            <div>
+              <span class="font-bold text-white block">Kwame Mensah</span>
+              <span class="text-[10px] text-zinc-400">Liked your bio &amp; portfolio</span>
+            </div>
+          </div>
+          <button onclick="switchP1Tab('messages')" class="px-3 py-1.5 rounded-xl bg-purple-600 text-white font-bold">Chat Back</button>
+        </div>
+      </div>
+    </div>
+
     <!-- P1 SUB-TAB: MATCHES -->
     <div id="p1-view-matches" class="space-y-6 hidden">
       <div class="glass-panel p-5 rounded-3xl border border-white/10 space-y-4">
@@ -698,7 +714,7 @@
             </div>
             <div class="flex gap-2">
               <button onclick="alert('Extended +24h for 10 Coins!');" class="px-2.5 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 font-bold text-[10px]">Extend (+24h)</button>
-              <button onclick="alert('Opening chat thread...');" class="px-3 py-1.5 rounded-xl bg-purple-600 text-white font-bold">Chat</button>
+              <button onclick="openChatInterface('Adrienne Okon', 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150')" class="px-3 py-1.5 rounded-xl bg-purple-600 text-white font-bold">Chat</button>
             </div>
           </div>
         </div>
@@ -708,7 +724,7 @@
     <!-- P1 SUB-TAB: MESSAGES -->
     <div id="p1-view-messages" class="space-y-4 hidden">
       <div id="conversations-list" class="space-y-2 text-xs">
-        <div onclick="alert('Opening E2EE chat with Adrienne Okon...');" class="p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 cursor-pointer flex items-center justify-between transition">
+        <div onclick="openChatInterface('Adrienne Okon', 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150')" class="p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 cursor-pointer flex items-center justify-between transition">
           <div class="flex items-center gap-3">
             <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150" class="w-10 h-10 rounded-xl object-cover" />
             <div>
@@ -726,10 +742,29 @@
 
     <!-- P1 SUB-TAB: COMMUNITIES -->
     <div id="p1-view-communities" class="space-y-4 hidden">
-      <div class="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-2 text-xs">
-        <span class="font-bold text-white block">🌍 Global AI Video Animators</span>
-        <p class="text-[11px] text-zinc-400">Share scripts, CapCut templates, and discuss viral hooks.</p>
-        <button onclick="alert('Joined Community Hub!');" class="w-full py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold transition">Join Community</button>
+      <div class="glass-panel p-5 rounded-3xl border border-white/10 space-y-4">
+        <div class="flex justify-between items-center">
+          <div>
+            <h4 class="text-sm font-black text-white">Vibely Social Communities &amp; Groups</h4>
+            <p class="text-[11px] text-zinc-400">Create or join topic-specific chat groups (WhatsApp-style group builder).</p>
+          </div>
+          <button onclick="openCreateGroupModal()" class="px-3.5 py-2 rounded-xl bg-purple-600 text-white text-xs font-bold hover:bg-purple-500 transition shadow-lg">
+            + Create Group
+          </button>
+        </div>
+
+        <div id="social-groups-list" class="space-y-3 text-xs">
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-between">
+            <div>
+              <span class="font-bold text-white block text-sm">🌍 Global AI Video Animators</span>
+              <p class="text-[11px] text-zinc-400 mt-0.5">Share scripts, CapCut templates, and discuss viral hooks.</p>
+              <span class="text-[9px] text-purple-400 font-mono mt-1 block">14 Members • Admin: System</span>
+            </div>
+            <button onclick="openGroupChatModal('Global AI Video Animators')" class="px-4 py-2 rounded-xl bg-purple-600/30 text-purple-300 border border-purple-500/40 font-bold hover:bg-purple-600/40 transition">
+              Open Group Chat
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -753,7 +788,7 @@
       </div>
     </div>
 
-    <!-- P1 SUB-TAB: SETTINGS & GUIDELINES -->
+    <!-- P1 SUB-TAB: SETTINGS -->
     <div id="p1-view-settings" class="space-y-3 hidden text-xs">
       <button onclick="openRulesGuidelinesModal()" class="w-full p-3.5 rounded-2xl bg-purple-950/20 border border-purple-500/20 flex justify-between items-center text-purple-300 font-bold hover:bg-purple-950/30">
         <span>📜 Platform Rules &amp; Zero-Tolerance Conduct</span>
@@ -795,7 +830,7 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- VIEW 3: PILLAR 2 - AFFILIATE WORKSTATION (DIGITSTEM PARITY) -->
+  <!-- VIEW 3: PILLAR 2 - AFFILIATE WORKSTATION                       -->
   <!-- ============================================================== -->
   <div id="view-affiliate" class="hidden relative z-10 w-full max-w-5xl mx-auto px-4 pt-4 space-y-6">
 
@@ -820,7 +855,7 @@
       </div>
     </div>
 
-    <!-- HORIZONTAL BUTTONS DOCK (BUTTONS 0 TO 15 + PREMIUM SUITE) -->
+    <!-- HORIZONTAL BUTTONS DOCK -->
     <div class="glass-panel p-2 rounded-2xl flex items-center gap-1 overflow-x-auto no-scrollbar border border-white/10 text-xs font-bold">
       <button onclick="switchAffiliateSubView('affiliate_hub')" id="subnav-affiliate_hub" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">0. Affiliate Hub</button>
       <button onclick="switchAffiliateSubView('dashboard')" id="subnav-dashboard" class="btn-tap-target px-3.5 py-1.5 rounded-xl bg-purple-600 text-white shrink-0">1. Dashboard</button>
@@ -841,7 +876,7 @@
       <button onclick="switchAffiliateSubView('premium_suite')" id="subnav-premium_suite" class="btn-tap-target px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white shrink-0 shadow-lg">👑 Premium (16-45)</button>
     </div>
 
-    <!-- 0. AFFILIATE HUB VIEW (CONTAINER FOR SCREENSHOTS 1000082151 TO 1000082161) -->
+    <!-- 0. AFFILIATE HUB VIEW -->
     <div id="aff-sub-affiliate_hub" class="space-y-6 hidden text-left">
       <div class="space-y-1">
         <span class="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Affiliate Hub &gt; Overview</span>
@@ -851,7 +886,6 @@
         <p class="text-xs text-zinc-400">Keep up the good work. Your current status is active.</p>
       </div>
 
-      <!-- Milestone Progress -->
       <div class="glass-card p-5 rounded-3xl border border-white/10 space-y-3">
         <div class="flex justify-between items-center text-xs">
           <div class="flex items-center gap-2">
@@ -872,7 +906,6 @@
         </div>
       </div>
 
-      <!-- Available Balance Card with Add Fund / Pay Out Now -->
       <div class="rounded-3xl p-6 bg-gradient-to-br from-indigo-950 via-purple-950 to-zinc-950 border border-purple-500/30 space-y-4">
         <div>
           <span class="text-[10px] uppercase font-bold text-purple-300 block">AVAILABLE BALANCE</span>
@@ -889,7 +922,6 @@
         </div>
       </div>
 
-      <!-- Platform Wallet & Total Earnings -->
       <div class="grid grid-cols-2 gap-3">
         <div class="glass-card p-4 rounded-2xl">
           <span class="text-[10px] uppercase font-bold text-zinc-400 block mb-1">Platform Wallet</span>
@@ -902,96 +934,9 @@
           <span class="text-[10px] text-emerald-400 block mt-0.5">↑ +0% From last week</span>
         </div>
       </div>
-
-      <!-- Total Sales & Clicks & Conversion Rate -->
-      <div class="grid grid-cols-3 gap-2.5">
-        <div class="glass-card p-3 rounded-2xl">
-          <span class="text-[10px] text-zinc-400 block">Total Sales</span>
-          <span class="text-base font-black text-white">46</span>
-          <span class="text-[9px] text-zinc-500 block">Checkout sales</span>
-        </div>
-        <div class="glass-card p-3 rounded-2xl">
-          <span class="text-[10px] text-zinc-400 block">Total Clicks</span>
-          <span class="text-base font-black text-white">2300</span>
-          <span class="text-[9px] text-zinc-500 block">Traffic generated</span>
-        </div>
-        <div class="glass-card p-3 rounded-2xl">
-          <span class="text-[10px] text-zinc-400 block">Conversion</span>
-          <span class="text-base font-black text-purple-400">2%</span>
-          <span class="text-[9px] text-zinc-500 block">Click to Sale</span>
-        </div>
-      </div>
-
-      <!-- Pending Commissions & Withdrawn -->
-      <div class="grid grid-cols-2 gap-3">
-        <div class="glass-card p-4 rounded-2xl">
-          <span class="text-[10px] text-zinc-400 block mb-1">Pending Commissions</span>
-          <span class="text-base font-black text-zinc-400 font-mono" data-price-ghs="0">₵ 0.00 GHS</span>
-          <span class="text-[10px] text-zinc-500 block mt-0.5">🔒 Escrow Lock</span>
-        </div>
-        <div class="glass-card p-4 rounded-2xl">
-          <span class="text-[10px] text-zinc-400 block mb-1">Withdrawn Earnings</span>
-          <span class="text-base font-black text-white font-mono" data-price-ghs="2697.5">₵ 2,697.50 GHS</span>
-          <span class="text-[10px] text-zinc-500 block mt-0.5">↓ Bank withdrawals</span>
-        </div>
-      </div>
-
-      <!-- Earnings Analytics Chart Simulation -->
-      <div class="glass-panel p-5 rounded-3xl border border-white/10 space-y-4">
-        <div class="flex justify-between items-center">
-          <span class="text-xs font-bold text-white flex items-center gap-1.5">
-            <span>📈</span> Earnings Analytics
-          </span>
-          <div class="flex gap-1 text-[10px]">
-            <button class="px-2 py-0.5 rounded-md bg-purple-600 text-white font-bold">Daily</button>
-            <button class="px-2 py-0.5 rounded-md bg-white/5 text-zinc-400">Weekly</button>
-            <button class="px-2 py-0.5 rounded-md bg-white/5 text-zinc-400">Monthly</button>
-          </div>
-        </div>
-
-        <div class="h-32 w-full bg-black/40 rounded-2xl border border-white/5 flex items-end justify-between p-3">
-          <div class="w-8 bg-purple-600/30 h-[20%] rounded-t-md"></div>
-          <div class="w-8 bg-purple-600/40 h-[35%] rounded-t-md"></div>
-          <div class="w-8 bg-purple-600/50 h-[50%] rounded-t-md"></div>
-          <div class="w-8 bg-purple-600/60 h-[30%] rounded-t-md"></div>
-          <div class="w-8 bg-purple-600/80 h-[70%] rounded-t-md"></div>
-          <div class="w-8 bg-purple-500 h-[90%] rounded-t-md relative">
-            <span class="absolute -top-5 left-1/2 -translate-x-1/2 text-[9px] text-emerald-400 font-bold">Today</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Recent Activity Ledger -->
-      <div class="glass-panel p-5 rounded-3xl border border-white/10 space-y-3">
-        <span class="text-xs font-bold text-white flex items-center gap-1.5">
-          <span>🕒</span> Recent Activity
-        </span>
-        <div class="space-y-2 text-xs">
-          <div class="p-3 rounded-2xl bg-white/5 flex justify-between items-center">
-            <div class="flex items-center gap-2.5">
-              <span class="w-7 h-7 rounded-full bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold">↑</span>
-              <div>
-                <span class="font-bold text-white block">Withdrawal via MoMo</span>
-                <span class="text-[10px] text-zinc-500">3 months ago</span>
-              </div>
-            </div>
-            <span class="font-bold text-red-400 font-mono" data-price-ghs="163.88">- ₵ 163.88 GHS</span>
-          </div>
-          <div class="p-3 rounded-2xl bg-white/5 flex justify-between items-center">
-            <div class="flex items-center gap-2.5">
-              <span class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">↓</span>
-              <div>
-                <span class="font-bold text-white block">Sale Commission for UMM</span>
-                <span class="text-[10px] text-zinc-500">4 months ago</span>
-              </div>
-            </div>
-            <span class="font-bold text-emerald-400 font-mono" data-price-ghs="47.50">+ ₵ 47.50 GHS</span>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <!-- 1. DASHBOARD VIEW (ISOLATED CONTAINER FOR 1000082126) -->
+    <!-- 1. DASHBOARD VIEW -->
     <div id="aff-sub-dashboard" class="space-y-6 text-left">
       <div class="space-y-1">
         <h2 class="text-2xl font-black text-white flex items-center gap-2">
@@ -1039,47 +984,14 @@
             </span>
           </div>
 
-          <div class="flex justify-between items-center pt-2">
-            <span class="text-xs text-zinc-400 flex items-center gap-1">
-              <span>💵</span> <span data-price-ghs="0">0.00 USD</span> Earned
-            </span>
-            <button onclick="openAIBotModal()" class="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-black text-xs font-bold shadow-lg shadow-emerald-500/30">
-              💬
-            </button>
-          </div>
-
           <button onclick="switchAffiliateSubView('affiliate_hub')" class="btn-tap-target w-full py-3 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-black font-black text-xs transition shadow-lg">
             Open Affiliate Hub →
           </button>
         </div>
       </div>
-
-      <!-- Docked Lower Sub-Bar -->
-      <div class="glass-card p-2 rounded-2xl flex items-center justify-between text-center text-xs font-bold border border-white/10 text-zinc-400">
-        <button onclick="switchAffiliateSubView('dashboard')" class="flex flex-col items-center gap-1 text-emerald-400">
-          <span>🏠</span>
-          <span class="text-[10px]">Home</span>
-        </button>
-        <button onclick="switchAffiliateSubView('affiliate_hub')" class="flex flex-col items-center gap-1 hover:text-white transition">
-          <span>📊</span>
-          <span class="text-[10px]">Affiliate</span>
-        </button>
-        <button onclick="switchAffiliateSubView('creator')" class="flex flex-col items-center gap-1 hover:text-white transition">
-          <span>🎨</span>
-          <span class="text-[10px]">Creator</span>
-        </button>
-        <button onclick="openMoreFeaturesSheet()" class="flex flex-col items-center gap-1 hover:text-white transition">
-          <span>🗂️</span>
-          <span class="text-[10px]">More</span>
-        </button>
-        <button onclick="openAffiliateProfileDrawer()" class="flex flex-col items-center gap-1 hover:text-white transition">
-          <span class="w-5 h-5 rounded-full bg-gradient-to-tr from-purple-600 to-pink-600 flex items-center justify-center text-white text-[8px] font-black">GM</span>
-          <span class="text-[10px]">Profile</span>
-        </button>
-      </div>
     </div>
 
-    <!-- 2. MARKETPLACE VIEW -->
+    <!-- 2. MARKETPLACE VIEW (UPDATED: SHARE LINK MODAL, 45 GHS REMOVED) -->
     <div id="aff-sub-market" class="space-y-6 hidden text-left">
       <div>
         <h3 class="text-xl font-black text-white">Affiliate Marketplace</h3>
@@ -1097,9 +1009,14 @@
             <span class="font-bold text-emerald-400">50% Split: <span data-price-ghs="47.5">₵ 47.50 GHS</span></span>
             <span class="font-bold text-white" data-price-ghs="95">₵ 95.00 GHS</span>
           </div>
-          <button onclick="copyPromoterOfferLink(this, '1-Year Membership Pass')" class="btn-tap-target w-full py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition">
-            Promote Offer (50% Link)
-          </button>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="copyPromoterOfferLink(this, '1-Year Membership Pass')" class="btn-tap-target py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition text-center">
+              📋 Copy Link
+            </button>
+            <button onclick="openShareModal('1-Year Membership Pass')" class="btn-tap-target py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition text-center">
+              📤 Share Link
+            </button>
+          </div>
         </div>
 
         <!-- 2. UMM -->
@@ -1113,11 +1030,10 @@
               <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="47.5">₵ 47.50 GHS</span></span>
               <span class="text-[10px] text-zinc-400">EPC: $1.85</span>
             </div>
-            <p class="text-xs text-zinc-400">High-ticket client acquisition, digital packaging, and arbitrage.</p>
           </div>
           <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
             <span class="text-base font-bold text-white" data-price-ghs="95">₵ 95.00 GHS</span>
-            <button onclick="copyPromoterOfferLink(this, 'The Ultimate Money Machine')" class="btn-tap-target py-2 px-3.5 rounded-xl bg-white/10 text-white font-bold text-xs hover:bg-white/20 transition">Promote</button>
+            <button onclick="openShareModal('The Ultimate Money Machine')" class="btn-tap-target py-2 px-3.5 rounded-xl bg-purple-600 text-white font-bold text-xs hover:bg-purple-500 transition">Promote</button>
           </div>
         </div>
 
@@ -1132,68 +1048,10 @@
               <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="52.5">₵ 52.50 GHS</span></span>
               <span class="text-[10px] text-zinc-400">EPC: $2.10</span>
             </div>
-            <p class="text-xs text-zinc-400">Faceless TikTok workflows, viral hooks, and auto-scripting.</p>
           </div>
           <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
             <span class="text-base font-bold text-white" data-price-ghs="105">₵ 105.00 GHS</span>
-            <button onclick="copyPromoterOfferLink(this, 'AI Video Mastery')" class="btn-tap-target py-2 px-3.5 rounded-xl bg-white/10 text-white font-bold text-xs hover:bg-white/20 transition">Promote</button>
-          </div>
-        </div>
-
-        <!-- 4. Dropshipping -->
-        <div class="glass-card p-5 rounded-2xl flex flex-col justify-between">
-          <div>
-            <div class="w-full h-24 rounded-xl bg-gradient-to-r from-indigo-950 to-blue-900 p-3 flex flex-col justify-between mb-3 border border-white/10">
-              <span class="text-[9px] font-bold text-indigo-300">E-COMMERCE</span>
-              <h5 class="text-sm font-black text-white">Global Dropshipping Blueprint</h5>
-            </div>
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="57.5">₵ 57.50 GHS</span></span>
-              <span class="text-[10px] text-zinc-400">EPC: $1.90</span>
-            </div>
-            <p class="text-xs text-zinc-400">Cross-border physical supply chains &amp; supplier vetting.</p>
-          </div>
-          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
-            <span class="text-base font-bold text-white" data-price-ghs="115">₵ 115.00 GHS</span>
-            <button onclick="copyPromoterOfferLink(this, 'Global Dropshipping')" class="btn-tap-target py-2 px-3.5 rounded-xl bg-white/10 text-white font-bold text-xs hover:bg-white/20 transition">Promote</button>
-          </div>
-        </div>
-
-        <!-- 5. Trading -->
-        <div class="glass-card p-5 rounded-2xl flex flex-col justify-between">
-          <div>
-            <div class="w-full h-24 rounded-xl bg-gradient-to-r from-amber-950 to-orange-900 p-3 flex flex-col justify-between mb-3 border border-white/10">
-              <span class="text-[9px] font-bold text-amber-300">FINANCE &amp; TRADING</span>
-              <h5 class="text-sm font-black text-white">SnapSell &amp; Day Trading Roadmap</h5>
-            </div>
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="62.5">₵ 62.50 GHS</span></span>
-              <span class="text-[10px] text-zinc-400">EPC: $2.30</span>
-            </div>
-            <p class="text-xs text-zinc-400">Digital flipping systems combined with risk-managed technical chart execution.</p>
-          </div>
-          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
-            <span class="text-base font-bold text-white" data-price-ghs="125">₵ 125.00 GHS</span>
-            <button onclick="copyPromoterOfferLink(this, 'SnapSell & Trading')" class="btn-tap-target py-2 px-3.5 rounded-xl bg-white/10 text-white font-bold text-xs hover:bg-white/20 transition">Promote</button>
-          </div>
-        </div>
-
-        <!-- 6. Renewal Pass -->
-        <div class="glass-card p-5 rounded-2xl flex flex-col justify-between">
-          <div>
-            <div class="w-full h-24 rounded-xl bg-gradient-to-r from-zinc-900 to-zinc-800 p-3 flex flex-col justify-between mb-3 border border-white/10">
-              <span class="text-[9px] font-bold text-zinc-300">MEMBER RENEWAL</span>
-              <h5 class="text-sm font-black text-white">Existing Member Pass Renewal</h5>
-            </div>
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-bold text-emerald-400">50%: <span data-price-ghs="22.5">₵ 22.50 GHS</span></span>
-              <span class="text-[10px] text-zinc-400">EPC: $1.40</span>
-            </div>
-            <p class="text-xs text-zinc-400">Loyalty extension rate for active promoter members.</p>
-          </div>
-          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
-            <span class="text-base font-bold text-white" data-price-ghs="45">₵ 45.00 GHS</span>
-            <button onclick="copyPromoterOfferLink(this, 'Existing Member Renewal')" class="btn-tap-target py-2 px-3.5 rounded-xl bg-white/10 text-white font-bold text-xs hover:bg-white/20 transition">Promote</button>
+            <button onclick="openShareModal('AI Video Mastery')" class="btn-tap-target py-2 px-3.5 rounded-xl bg-purple-600 text-white font-bold text-xs hover:bg-purple-500 transition">Promote</button>
           </div>
         </div>
       </div>
@@ -1204,67 +1062,47 @@
       <h3 class="text-xl font-black text-white">My Purchased Products &amp; Licenses</h3>
       <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2 text-xs">
         <span class="font-bold text-white block">1-Year Vibely Membership Pass (Active)</span>
-        <p class="text-zinc-400 text-[11px]">Valid until September 2027 • Unlimited 50% commission rights.</p>
+        <p class="text-zinc-400 text-[11px]" id="my-sub-expiry-text">Valid until September 2027 • Unlimited 50% commission rights.</p>
         <button onclick="switchAffiliateSubView('quiz_course')" class="px-3 py-1.5 rounded-xl bg-purple-600 text-white font-bold">Access Course Curriculum →</button>
       </div>
     </div>
 
-    <!-- 4. CONTESTS VIEW[span_1](start_span)[span_1](end_span) -->
+    <!-- 4. CONTESTS VIEW (UPDATED: PROFESSIONAL MODALS DISPATCHING TO GMAIL) -->
     <div id="aff-sub-contests" class="space-y-6 hidden text-left">
       <div class="rounded-3xl p-6 bg-gradient-to-br from-amber-950/60 to-purple-950/60 border border-amber-500/40 space-y-4">
-        <span class="text-[10px] font-black uppercase text-amber-300 px-3 py-1 rounded-full bg-amber-500/20">🏆 Sprint Challenge[span_2](start_span)[span_2](end_span)</span>
-        <h4 class="text-xl font-black text-white">The 200-Sale Monthly Sprint[span_3](start_span)[span_3](end_span)</h4>
+        <span class="text-[10px] font-black uppercase text-amber-300 px-3 py-1 rounded-full bg-amber-500/20">🏆 Sprint Challenge</span>
+        <h4 class="text-xl font-black text-white">The 200-Sale Monthly Sprint</h4>
         <p class="text-xs text-zinc-300 leading-relaxed">
           Generate 200 verified sales in a calendar month to claim the <strong>10,000 GHS ($861 USD)</strong> grand champion cash prize!
         </p>
-        <button onclick="alert('Enrolled in 200-Sale Sprint! Your referrals are being tracked.');" class="btn-tap-target w-full py-3 rounded-xl bg-amber-400 text-black font-black text-xs">
-          Register In Pool (<span data-price-ghs="10000">₵ 10,000 GHS</span>)
+        <button onclick="openContestModal('200-Sale Sprint Challenge')" class="btn-tap-target w-full py-3.5 rounded-xl bg-amber-400 text-black font-black text-xs">
+          Register In Pool (₵ 10,000 GHS)
         </button>
       </div>
 
       <div class="rounded-3xl p-6 bg-gradient-to-br from-pink-950/60 to-indigo-950/60 border border-pink-500/40 space-y-4">
-        <span class="text-[10px] font-black uppercase text-pink-300 px-3 py-1 rounded-full bg-pink-500/20">🎬 Viral Video Challenge[span_4](start_span)[span_4](end_span)</span>
-        <h4 class="text-xl font-black text-white">Promotional Video Grand Award[span_5](start_span)[span_5](end_span)</h4>
+        <span class="text-[10px] font-black uppercase text-pink-300 px-3 py-1 rounded-full bg-pink-500/20">🎬 Viral Video Challenge</span>
+        <h4 class="text-xl font-black text-white">Promotional Video Grand Award</h4>
         <p class="text-xs text-zinc-300 leading-relaxed">
           Post a video about Vibely on TikTok or Instagram. The video with the highest engagement wins <strong>5,000 GHS ($430 USD)</strong>!
         </p>
-        <button onclick="promptVideoSubmission()" class="btn-tap-target w-full py-3 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white font-black text-xs">
+        <button onclick="openVideoContestModal()" class="btn-tap-target w-full py-3.5 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white font-black text-xs">
           Submit Video URL For Audit
         </button>
       </div>
     </div>
 
-    <!-- 5. QUIZ & COURSE VIEW (AUTONOMOUS AI EXAMINATION ENGINE) -->
+    <!-- 5. QUIZ & COURSE VIEW -->
     <div id="aff-sub-quiz_course" class="space-y-6 hidden text-left">
       <div class="glass-panel p-6 rounded-3xl border border-purple-500/30 space-y-4">
         <div>
           <span class="text-[10px] uppercase font-bold text-purple-400 px-2 py-0.5 rounded-full bg-purple-500/10">AI Evaluator Linked</span>
           <h4 class="text-lg font-black text-white mt-1">Autonomous AI Masterclass Certification Exam</h4>
-          <p class="text-xs text-zinc-400 mt-0.5">Evaluated directly by our AI engines (Buttons 16–45). Must score 100% across the randomized pool.</p>
-        </div>
-
-        <div class="space-y-4 text-xs">
-          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 space-y-2">
-            <p class="font-bold text-white">Scenario 1 (Dynamic Attribution): If a lead uses an in-app browser on TikTok and copies your link, how does Vibely guarantee 100% affiliate attribution?</p>
-            <label class="flex items-center gap-2 text-zinc-300"><input type="radio" name="ai_q1" value="correct" class="accent-purple-500"> Fallback off-screen buffer with 16px font and millisecond query injection</label>
-            <label class="flex items-center gap-2 text-zinc-300"><input type="radio" name="ai_q1" value="wrong" class="accent-purple-500"> Basic unencoded anchor tag</label>
-          </div>
-
-          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 space-y-2">
-            <p class="font-bold text-white">Scenario 2 (DRM Anti-Piracy): How does the platform protect downloaded assets from being leaked on Telegram?</p>
-            <label class="flex items-center gap-2 text-zinc-300"><input type="radio" name="ai_q2" value="correct" class="accent-purple-500"> Dynamic cryptographic watermarking stamping buyer email, phone, and order hash</label>
-            <label class="flex items-center gap-2 text-zinc-300"><input type="radio" name="ai_q2" value="wrong" class="accent-purple-500"> Generic public zip archives</label>
-          </div>
-
-          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 space-y-2">
-            <p class="font-bold text-white">Scenario 3 (Financial Settlement): When can a promoter log a withdrawal, and how does the Saturday settlement execute?</p>
-            <label class="flex items-center gap-2 text-zinc-300"><input type="radio" name="ai_q3" value="correct" class="accent-purple-500"> Friday 24h withdrawal queue window, batch Paystack disbursement Saturday morning</label>
-            <label class="flex items-center gap-2 text-zinc-300"><input type="radio" name="ai_q3" value="wrong" class="accent-purple-500"> Random daily manual cashouts</label>
-          </div>
+          <p class="text-xs text-zinc-400 mt-0.5">Evaluated directly by our AI engines (200-Question Hard Examination Bank).</p>
         </div>
 
         <button onclick="submitToughAIQuiz()" class="btn-tap-target w-full py-3.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition shadow-lg">
-          Submit Exam to AI Evaluator &amp; Generate Certificate →
+          Start 200-Question AI Master Exam →
         </button>
       </div>
     </div>
@@ -1287,7 +1125,7 @@
       </div>
     </div>
 
-    <!-- 8. WALLET VIEW (SHOWS AVAILABLE BALANCE & TOTAL BALANCE) -->
+    <!-- 8. WALLET VIEW -->
     <div id="aff-sub-wallet" class="space-y-6 hidden text-left">
       <h3 class="text-xl font-black text-white">Affiliate Financial Wallet</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -1304,11 +1142,11 @@
       </div>
     </div>
 
-    <!-- 9. PAYOUT & DEPOSIT VIEW (WITHDRAWAL & DEPOSIT ENGINE) -->
+    <!-- 9. PAYOUT & DEPOSIT VIEW (WIRED TO VIBELYDESK@GMAIL.COM & PAYSTACK) -->
     <div id="aff-sub-payout_deposit" class="space-y-6 hidden text-left text-xs">
       <div>
         <h3 class="text-xl font-black text-white">Payout &amp; Deposit Terminal</h3>
-        <p class="text-zinc-400 text-xs">Manage MoMo/Bank withdrawals and account balance deposits.</p>
+        <p class="text-zinc-400 text-xs">Manage MoMo/Bank withdrawals and account balance deposits via Paystack.</p>
       </div>
 
       <!-- Withdraw Terminal -->
@@ -1330,7 +1168,7 @@
           <input type="number" id="payout-amount" placeholder="500" class="w-full px-3 py-2 rounded-xl bg-black/60 border border-zinc-800 text-white" />
         </div>
         <button onclick="handleExecutePayout()" class="btn-tap-target w-full py-3 rounded-xl bg-white text-black font-black text-xs hover:bg-zinc-200 transition">
-          Submit Payout Request (Paystack Saturday Settlement)
+          Submit Payout (Dispatches to vibelydesk@gmail.com &amp; Paystack)
         </button>
       </div>
 
@@ -1350,7 +1188,7 @@
           <input type="number" id="deposit-amount" placeholder="200" class="w-full px-3 py-2 rounded-xl bg-black/60 border border-zinc-800 text-white" />
         </div>
         <button onclick="handleExecuteDeposit()" class="btn-tap-target w-full py-3 rounded-xl bg-emerald-500 text-black font-black text-xs hover:bg-emerald-400 transition">
-          Deposit via Paystack (+Add to Balance)
+          Deposit via Paystack (Notifies vibelydesk@gmail.com)
         </button>
       </div>
     </div>
@@ -1404,7 +1242,7 @@
         <div class="flex justify-between items-start">
           <div>
             <span class="text-[10px] uppercase font-black px-2.5 py-0.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30">
-              Premium AI &amp; Growth Suite (100 GHS / Month)
+              Premium AI &amp; Growth Suite (100 GHS / Year)
             </span>
             <h3 class="text-xl font-black text-white mt-2">Buttons 16 to 45 Terminal</h3>
             <p class="text-xs text-zinc-300 leading-relaxed mt-1">
@@ -1451,25 +1289,21 @@
       </div>
     </div>
 
-    <!-- CREATOR HUB[span_6](start_span)[span_6](end_span) -->
+    <!-- CREATOR HUB -->
     <div id="aff-sub-creator" class="space-y-6 hidden">
       <div class="glass-panel p-8 rounded-3xl border border-white/10 text-center max-w-lg mx-auto">
         <div class="w-16 h-16 rounded-3xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-3xl mx-auto mb-4">🔒</div>
         <h3 class="text-xl font-black text-white">Private Beta Access Only</h3>
         <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
-          The Vibely Creator Commerce Platform &amp; Marketing Hub is currently undergoing private testing with selected creators.[span_7](start_span)[span_7](end_span)
+          The Vibely Creator Commerce Platform &amp; Marketing Hub is currently undergoing private testing with selected creators.
         </p>
-        <div class="p-4 rounded-2xl bg-black/50 border border-white/5 text-left text-xs my-6">
-          <div class="flex items-center gap-2 text-cyan-400 font-bold mb-1"><span>ℹ</span> Beta Access Status[span_8](start_span)[span_8](end_span)</div>
-          <p class="text-zinc-400 text-[11px] leading-relaxed">Your account is currently not on the private beta whitelist. Full access will be unlocked automatically upon public release or admin authorization.[span_9](start_span)[span_9](end_span)</p>
-        </div>
-        <button onclick="switchAffiliateSubView('dashboard')" class="btn-tap-target py-2.5 px-6 rounded-xl bg-white/10 text-white text-xs font-bold hover:bg-white/15 transition">
-          ← Return to User Dashboard[span_10](start_span)[span_10](end_span)
+        <button onclick="switchAffiliateSubView('dashboard')" class="btn-tap-target py-2.5 px-6 rounded-xl bg-white/10 text-white text-xs font-bold hover:bg-white/15 transition mt-4">
+          ← Return to User Dashboard
         </button>
       </div>
     </div>
 
-    <!-- PILLAR 2 DIGITSTEM BOTTOM NAVIGATION BAR -->
+    <!-- PILLAR 2 DIGITSTEM BOTTOM NAVIGATION BAR (FIXED COMMUNITY CLICK -> COMING SOON) -->
     <nav class="fixed bottom-0 inset-x-0 z-40 bg-[#0d0d14] border-t border-white/10 px-4 py-2 flex items-center justify-around text-center text-[10px] text-zinc-400">
       <button onclick="switchAffiliateSubView('dashboard')" class="flex flex-col items-center gap-1 text-emerald-400 font-bold">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
@@ -1483,7 +1317,7 @@
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
         <span>LMS</span>
       </button>
-      <button onclick="alert('Community Mastermind: Private Affiliates Inner Circle — Coming Soon!');" class="flex flex-col items-center gap-1 hover:text-white transition">
+      <button onclick="openAffiliateCommunityComingSoon()" class="flex flex-col items-center gap-1 hover:text-white transition">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
         <span>Community</span>
       </button>
@@ -1492,49 +1326,169 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- DRAWER: DASHBOARD 3-LINE MENU DRAWER -->
+  <!-- MODAL: SNAPCHAT-STYLE CHAT INTERFACE WITH STICKERS & MULTIMEDIA -->
   <!-- ============================================================== -->
   <div 
-    id="affiliate-menu-drawer" 
-    class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300"
-    onclick="closeAffiliateDrawerMenu()"
+    id="chat-interface-modal" 
+    class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl flex items-center justify-center p-0 sm:p-5 opacity-0 pointer-events-none transition-all duration-300"
   >
-    <div 
-      class="glass-panel w-72 sm:w-80 h-full p-6 flex flex-col justify-between transform -translate-x-full transition-all duration-300 overflow-y-auto no-scrollbar"
-      onclick="event.stopPropagation()"
-      id="menu-drawer-container"
-    >
-      <div class="space-y-4">
-        <div class="flex items-center justify-between pb-3 border-b border-zinc-800">
-          <span class="text-xs font-black uppercase text-white">Vibely Affiliate Menu</span>
-          <button onclick="closeAffiliateDrawerMenu()" class="text-zinc-500 hover:text-white font-bold p-1">✕</button>
+    <div class="glass-panel w-full max-w-lg h-full sm:h-[620px] rounded-none sm:rounded-3xl border border-white/10 shadow-2xl flex flex-col justify-between relative overflow-hidden">
+      <!-- Chat Header -->
+      <div class="p-4 glass-nav flex items-center justify-between border-b border-white/10">
+        <div class="flex items-center gap-3">
+          <img id="chat-header-avatar" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150" class="w-10 h-10 rounded-xl object-cover" />
+          <div>
+            <h4 class="text-sm font-bold text-white" id="chat-header-name">Adrienne Okon</h4>
+            <span class="text-[10px] text-emerald-400">● Active now (E2EE Secured)</span>
+          </div>
         </div>
+        <button onclick="closeChatInterface()" class="text-zinc-400 hover:text-white font-bold p-2">✕</button>
+      </div>
 
-        <nav class="space-y-1 text-xs font-bold text-left">
-          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('affiliate_hub');" class="w-full p-2.5 rounded-xl hover:bg-white/5 text-zinc-300">0. Affiliate Hub</button>
-          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('dashboard');" class="w-full p-2.5 rounded-xl hover:bg-white/5 text-zinc-300">1. Dashboard</button>
-          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('market');" class="w-full p-2.5 rounded-xl hover:bg-white/5 text-zinc-300">2. Marketplace</button>
-          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('my_products');" class="w-full p-2.5 rounded-xl hover:bg-white/5 text-zinc-300">3. My Products</button>
-          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('contests');" class="w-full p-2.5 rounded-xl hover:bg-white/5 text-amber-300">4. Contests</button>
-          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('quiz_course');" class="w-full p-2.5 rounded-xl hover:bg-white/5 text-zinc-300">5. Quiz &amp; Course</button>
-          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('sales');" class="w-full p-2.5 rounded-xl hover:bg-white/5 text-zinc-300">6. Sales</button>
-          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('commissions');" class="w-full p-2.5 rounded-xl hover:bg-white/5 text-zinc-300">7. Commissions</button>
-          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('wallet');" class="w-full p-2.5 rounded-xl hover:bg-white/5 text-zinc-300">8. Wallet</button>
-          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('payout_deposit');" class="w-full p-2.5 rounded-xl hover:bg-white/5 text-emerald-400">9. Payout &amp; Deposit</button>
-          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('analytics');" class="w-full p-2.5 rounded-xl hover:bg-white/5 text-zinc-300">10. Analytics</button>
-          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('customers');" class="w-full p-2.5 rounded-xl hover:bg-white/5 text-zinc-300">11. Customers</button>
-          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('referrals');" class="w-full p-2.5 rounded-xl hover:bg-white/5 text-zinc-300">12. Referrals</button>
-          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('notifications_tab');" class="w-full p-2.5 rounded-xl hover:bg-white/5 text-zinc-300">13. Notifications</button>
-          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('messages_tab');" class="w-full p-2.5 rounded-xl hover:bg-white/5 text-zinc-300">14. Messages</button>
-          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('settings_tab');" class="w-full p-2.5 rounded-xl hover:bg-white/5 text-zinc-300">15. Settings</button>
-          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('premium_suite');" class="w-full p-2.5 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white mt-2">👑 Premium Suite (16-45)</button>
-        </nav>
+      <!-- Messages Stream -->
+      <div id="chat-messages-container" class="flex-1 overflow-y-auto p-4 space-y-3 text-xs">
+        <div class="p-3 rounded-2xl bg-white/5 text-zinc-300 max-w-[80%]">
+          Hey Gerald! Ready to collaborate on our digital products?
+        </div>
+      </div>
+
+      <!-- Sticker Tray -->
+      <div id="sticker-tray" class="hidden p-3 bg-black/80 border-t border-white/10 flex gap-3 overflow-x-auto text-2xl">
+        <button onclick="sendSticker('🔥')">🔥</button>
+        <button onclick="sendSticker('🚀')">🚀</button>
+        <button onclick="sendSticker('❤️')">❤️</button>
+        <button onclick="sendSticker('💸')">💸</button>
+        <button onclick="sendSticker('🎉')">🎉</button>
+        <button onclick="sendSticker('⭐')">⭐</button>
+      </div>
+
+      <!-- Chat Input Toolbar (Images, Camera, Voice, Text, Stickers) -->
+      <div class="p-3 glass-nav border-t border-white/10 space-y-2">
+        <div class="flex items-center gap-2">
+          <label class="p-2 rounded-xl bg-white/5 text-zinc-300 hover:bg-white/10 cursor-pointer" title="Upload Image / Gallery">
+            🖼️ <input type="file" accept="image/*" onchange="sendChatMedia(event, 'image')" class="hidden" />
+          </label>
+          <button onclick="openChatCamera()" class="p-2 rounded-xl bg-white/5 text-zinc-300 hover:bg-white/10" title="Snap Camera">
+            📷
+          </button>
+          <button onclick="toggleStickerTray()" class="p-2 rounded-xl bg-white/5 text-zinc-300 hover:bg-white/10" title="Stickers">
+            ✨
+          </button>
+          <button onclick="recordVoiceNote()" class="p-2 rounded-xl bg-white/5 text-zinc-300 hover:bg-white/10" title="Record Voice Note">
+            🎤
+          </button>
+          <input type="text" id="chat-input-text" placeholder="Send a message or media..." class="flex-1 px-3.5 py-2 rounded-xl bg-black/60 border border-zinc-800 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500" />
+          <button onclick="sendChatMessage()" class="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold transition">Send</button>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- ============================================================== -->
-  <!-- MODAL: GERALD MINGLE PROFILE DRAWER -->
+  <!-- MODAL: WHATSAPP-STYLE GROUP CREATION ENGINE -->
+  <!-- ============================================================== -->
+  <div 
+    id="create-group-modal" 
+    class="fixed inset-0 z-50 bg-black/90 backdrop-blur-2xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
+  >
+    <div class="glass-panel w-full max-w-md rounded-3xl p-6 border border-white/10 shadow-2xl relative text-left space-y-4">
+      <button onclick="closeCreateGroupModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
+
+      <h3 class="text-lg font-black text-white">Create Social Community Group</h3>
+      <p class="text-xs text-zinc-400">Build a dedicated topic room and select members to add instantly.</p>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">Group Name</label>
+          <input type="text" id="new-group-name" placeholder="e.g. TikTok Algorithm Hackers" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">Description</label>
+          <textarea id="new-group-desc" rows="2" placeholder="What is this group about?" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white"></textarea>
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">Select Members to Add</label>
+          <div class="max-h-36 overflow-y-auto space-y-1 bg-black/40 p-2 rounded-xl border border-zinc-800">
+            <label class="flex items-center gap-2 p-1.5 hover:bg-white/5 rounded"><input type="checkbox" checked class="accent-purple-500"> Adrienne Okon (@adrienne_pro)</label>
+            <label class="flex items-center gap-2 p-1.5 hover:bg-white/5 rounded"><input type="checkbox" checked class="accent-purple-500"> Kwame Mensah (@kwame_ai)</label>
+            <label class="flex items-center gap-2 p-1.5 hover:bg-white/5 rounded"><input type="checkbox" class="accent-purple-500"> Samuel Mensah (@sam_dev)</label>
+          </div>
+        </div>
+        <button onclick="executeCreateGroup()" class="btn-tap-target w-full py-3.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-black text-xs transition">
+          Create Group Room Now
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: AFFILIATE COMMUNITY COMING SOON -->
+  <!-- ============================================================== -->
+  <div 
+    id="affiliate-community-modal" 
+    class="fixed inset-0 z-50 bg-black/90 backdrop-blur-2xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
+  >
+    <div class="glass-panel w-full max-w-md rounded-3xl p-7 border border-purple-500/30 shadow-2xl relative text-center space-y-4">
+      <button onclick="closeAffiliateCommunityModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
+
+      <span class="text-4xl">🚀</span>
+      <h3 class="text-xl font-black text-white">Affiliates Inner Circle — Coming Soon</h3>
+      <p class="text-xs text-zinc-300 leading-relaxed">
+        The exclusive closed mastermind for top-tier affiliate earners is currently in development. Stay tuned for elite scaling strategies and private vendor drops!
+      </p>
+      <button onclick="closeAffiliateCommunityModal()" class="btn-tap-target w-full py-3 rounded-xl bg-purple-600 text-white font-bold text-xs">
+        Got It
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: SMART SHARE SUITE (MARKETPLACE) -->
+  <!-- ============================================================== -->
+  <div 
+    id="modal-share-suite" 
+    class="fixed inset-0 z-50 bg-black/90 backdrop-blur-2xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
+  >
+    <div class="glass-panel w-full max-w-md rounded-3xl p-6 border border-white/10 shadow-2xl relative text-left space-y-4">
+      <button onclick="closeShareModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
+
+      <div>
+        <span class="text-[10px] uppercase font-bold text-purple-400">Promoter Link Hub</span>
+        <h3 class="text-lg font-black text-white" id="share-modal-title">Share Offer</h3>
+        <p class="text-xs text-zinc-400 mt-1">Send your tracked affiliate link instantly across networks or choose a friend.</p>
+      </div>
+
+      <div class="p-3 rounded-2xl bg-black/60 border border-zinc-800 text-xs font-mono text-purple-300 truncate select-all" id="share-raw-link-display">
+        https://vibely.app/?offer=pass&amp;ref=VIB-90218
+      </div>
+
+      <div class="grid grid-cols-2 gap-3">
+        <a id="share-whatsapp-btn" href="#" target="_blank" class="p-3 rounded-2xl bg-emerald-600/20 border border-emerald-500/30 text-emerald-300 font-bold text-xs flex items-center justify-center gap-2 hover:bg-emerald-600/30 transition">
+          💬 Share to WhatsApp
+        </a>
+        <button onclick="executeShareClipboard(this)" class="p-3 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs flex items-center justify-center gap-2 transition">
+          📋 Copy Link
+        </button>
+      </div>
+
+      <div class="space-y-2">
+        <span class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block">Or Send Directly to Vibely Friend:</span>
+        <div class="space-y-1.5 max-h-36 overflow-y-auto">
+          <div onclick="sendLinkToFriend('Adrienne Okon')" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 flex justify-between items-center text-xs cursor-pointer">
+            <span class="font-bold text-white">Adrienne Okon</span>
+            <span class="text-purple-400">Send Link →</span>
+          </div>
+          <div onclick="sendLinkToFriend('Kwame Mensah')" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 flex justify-between items-center text-xs cursor-pointer">
+            <span class="font-bold text-white">Kwame Mensah</span>
+            <span class="text-purple-400">Send Link →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- DRAWER: GERALD MINGLE PROFILE & SECURITY DRAWER -->
   <!-- ============================================================== -->
   <div 
     id="affiliate-profile-drawer" 
@@ -1542,7 +1496,7 @@
     onclick="closeAffiliateProfileDrawer()"
   >
     <div 
-      class="glass-panel w-72 sm:w-80 h-full p-6 flex flex-col justify-between transform -translate-x-full transition-all duration-300"
+      class="glass-panel w-72 sm:w-80 h-full p-6 flex flex-col justify-between transform -translate-x-full transition-all duration-300 overflow-y-auto no-scrollbar"
       onclick="event.stopPropagation()"
       id="profile-drawer-container"
     >
@@ -1551,33 +1505,25 @@
           <div class="flex items-center gap-3">
             <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-600 flex items-center justify-center text-white font-bold text-sm">GM</div>
             <div>
-              <h4 class="text-sm font-bold text-white leading-tight">Gerald Mingle</h4>
-              <p class="text-[11px] text-zinc-400">geemingle15@gmail.com</p>
+              <h4 class="text-sm font-bold text-white leading-tight" id="drawer-profile-name">Gerald Mingle</h4>
+              <p class="text-[11px] text-zinc-400" id="drawer-profile-email">geemingle15@gmail.com</p>
             </div>
           </div>
           <button onclick="closeAffiliateProfileDrawer()" class="text-zinc-500 hover:text-white font-bold p-1">✕</button>
         </div>
 
         <nav class="space-y-2 text-xs font-semibold text-left">
-          <button onclick="alert('Profile Details: Gerald Mingle');" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300">
-            <span>👤 Profile &amp; Details</span>
+          <button onclick="openProfileDetailsModal()" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300">
+            <span>👤 Profile &amp; Account Details</span>
             <span class="text-zinc-500">›</span>
           </button>
-          <button onclick="alert('KYC Verified: MoMo Account 0534671381');" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300">
-            <span>🪪 Account Information / KYC</span>
-            <span class="text-emerald-400 text-[10px]">Verified</span>
+          <button onclick="openSecurityPasswordModal()" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300">
+            <span>🔑 Security &amp; Password Change</span>
+            <span class="text-zinc-500">›</span>
           </button>
           <button onclick="closeAffiliateProfileDrawer(); switchAffiliateSubView('payout_deposit');" class="w-full flex items-center justify-between p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
             <span>💳 Payout &amp; Deposit</span>
             <span class="text-xs">›</span>
-          </button>
-          <button onclick="alert('0 unread notifications.');" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300">
-            <span>🔔 Notifications</span>
-            <span class="text-zinc-500">›</span>
-          </button>
-          <button onclick="alert('Security: 2FA Active');" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300">
-            <span>🔑 Security &amp; Password</span>
-            <span class="text-zinc-500">›</span>
           </button>
           <button onclick="open2FAModal(); closeAffiliateProfileDrawer();" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300">
             <span>🛡️ 2FA Authentication</span>
@@ -1599,7 +1545,116 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- MODAL: PAYSTACK CHRONOLOGICAL CHECKOUT FUNNEL[span_11](start_span)[span_11](end_span)[span_12](start_span)[span_12](end_span)[span_13](start_span)[span_13](end_span)[span_14](start_span)[span_14](end_span)[span_15](start_span)[span_15](end_span) -->
+  <!-- MODAL: PROFILE & ACCOUNT EDITORS (DIGITSTEM STYLE)             -->
+  <!-- ============================================================== -->
+  <div 
+    id="modal-profile-details" 
+    class="fixed inset-0 z-50 bg-black/90 backdrop-blur-2xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
+  >
+    <div class="glass-panel w-full max-w-md rounded-3xl p-6 border border-white/10 shadow-2xl relative text-left space-y-4">
+      <button onclick="closeProfileDetailsModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
+
+      <h3 class="text-lg font-black text-white">Profile &amp; Account Details</h3>
+      <p class="text-xs text-zinc-400">All financial payouts and system notices are dispatched to your registered Gmail.</p>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">Username</label>
+          <input type="text" id="edit-username" value="gerald_mingle_2112" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">Account Number / Phone</label>
+          <input type="text" id="edit-accnum" value="0534671381" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">Gmail / Support Email</label>
+          <input type="email" id="edit-email" value="geemingle15@gmail.com" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white" />
+        </div>
+        <div class="p-3 rounded-2xl bg-purple-950/20 border border-purple-500/20 text-purple-300 text-[11px]">
+          📅 <strong>Subscription Active:</strong> Registered on Sept 27, 2026. Expires on Sept 27, 2027 (1-Year Pass).
+        </div>
+        <button onclick="saveProfileDetails()" class="btn-tap-target w-full py-3.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-black text-xs transition">
+          Save Changes Successfully
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: SECURITY & PASSWORD CHANGE (OLD PASSWORD MATCH CHECK) -->
+  <!-- ============================================================== -->
+  <div 
+    id="modal-security-password" 
+    class="fixed inset-0 z-50 bg-black/90 backdrop-blur-2xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
+  >
+    <div class="glass-panel w-full max-w-md rounded-3xl p-6 border border-white/10 shadow-2xl relative text-left space-y-4">
+      <button onclick="closeSecurityPasswordModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
+
+      <h3 class="text-lg font-black text-white">Security &amp; Password Change</h3>
+      <p class="text-xs text-zinc-400">Input your current password to authorize security modifications.</p>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">Old Password</label>
+          <input type="password" id="pass-old" placeholder="••••••••" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">New Password</label>
+          <input type="password" id="pass-new" placeholder="••••••••" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">Confirm New Password</label>
+          <input type="password" id="pass-confirm" placeholder="••••••••" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white" />
+        </div>
+        <button onclick="executePasswordChange()" class="btn-tap-target w-full py-3.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-black text-xs transition">
+          Save Password Changes
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: CONTEST REGISTRATION (DISPATCHES TO VIBELYDESK@GMAIL.COM) -->
+  <!-- ============================================================== -->
+  <div 
+    id="modal-contest-reg" 
+    class="fixed inset-0 z-50 bg-black/90 backdrop-blur-2xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
+  >
+    <div class="glass-panel w-full max-w-md rounded-3xl p-6 border border-amber-500/40 shadow-2xl relative text-left space-y-4">
+      <button onclick="closeContestModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
+
+      <div>
+        <span class="text-[10px] uppercase font-bold text-amber-400" id="contest-modal-badge">Contest Registration</span>
+        <h3 class="text-lg font-black text-white" id="contest-modal-title">Join Sprint Challenge</h3>
+        <p class="text-xs text-zinc-400 mt-1">Submit your details. Data is automatically dispatched to <strong class="text-purple-300">vibelydesk@gmail.com</strong> for manual tracking &amp; prize payout.</p>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">Vibely Username</label>
+          <input type="text" id="contest-username" placeholder="gerald_mingle_2112" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">Email / Gmail</label>
+          <input type="email" id="contest-email" placeholder="geemingle15@gmail.com" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">Account Number (MoMo / Bank for Payout)</label>
+          <input type="text" id="contest-accnum" placeholder="0534671381" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white" />
+        </div>
+        <div id="contest-url-wrapper" class="hidden">
+          <label class="block font-bold text-zinc-300 mb-1">Promotional Video URL (TikTok, IG Reel, YouTube)</label>
+          <input type="url" id="contest-videourl" placeholder="https://tiktok.com/@user/video/..." class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white" />
+        </div>
+        <button onclick="submitContestApplication()" class="btn-tap-target w-full py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-black text-xs transition shadow-lg">
+          Submit Details to Support (vibelydesk@gmail.com) →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: PAYSTACK CHRONOLOGICAL CHECKOUT FUNNEL -->
   <!-- ============================================================== -->
   <div 
     id="modal-paystack-checkout" 
@@ -1609,38 +1664,35 @@
       <button onclick="closePaystackCheckoutModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
 
       <div class="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold flex items-center justify-between mb-4">
-        <span>⚠️ You have <span id="checkout-countdown" class="font-mono text-white">14:57</span> to complete payment[span_16](start_span)[span_16](end_span)</span>
+        <span>⚠️ You have <span id="checkout-countdown" class="font-mono text-white">14:57</span> to complete payment</span>
         <span class="text-[9px] uppercase px-1.5 py-0.5 rounded bg-amber-400/20">Paystack</span>
       </div>
 
-      <!-- STEP 1: CONTACT DETAILS[span_17](start_span)[span_17](end_span) -->
+      <!-- STEP 1: CONTACT DETAILS & WORLDWIDE COUNTRIES -->
       <div id="chk-step-1" class="space-y-3.5 text-xs text-left">
         <div>
-          <span class="text-[10px] uppercase font-bold text-zinc-400 tracking-wider">Step 1 of 3: Checkout Instruction[span_18](start_span)[span_18](end_span)</span>
+          <span class="text-[10px] uppercase font-bold text-zinc-400 tracking-wider">Step 1 of 3: Checkout Instruction</span>
           <h3 class="text-lg font-black text-white mt-0.5">Payment Details</h3>
-          <p class="text-[11px] text-zinc-400 mt-1">Make sure your email is active and accessible to receive access credentials.[span_19](start_span)[span_19](end_span)</p>
+          <p class="text-[11px] text-zinc-400 mt-1">Make sure your email is active to receive automated credentials dispatch from vibelydesk@gmail.com.</p>
         </div>
         <div>
-          <label class="block font-bold text-zinc-300 mb-1">Full Name[span_20](start_span)[span_20](end_span)</label>
+          <label class="block font-bold text-zinc-300 mb-1">Full Name</label>
           <input type="text" id="chk-fullname" required placeholder="e.g. Samuel Mensah" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500" />
         </div>
         <div>
-          <label class="block font-bold text-zinc-300 mb-1">Phone Number (MoMo / SMS)[span_21](start_span)[span_21](end_span)</label>
+          <label class="block font-bold text-zinc-300 mb-1">Phone Number (MoMo / SMS)</label>
           <input type="tel" id="chk-phone" required placeholder="e.g. 0534671381" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500" />
         </div>
         <div>
-          <label class="block font-bold text-zinc-300 mb-1">Email Address</label>
-          <input type="email" id="chk-email" required placeholder="name@example.com" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500" />
+          <label class="block font-bold text-zinc-300 mb-1">Email / Gmail</label>
+          <input type="email" id="chk-email" required placeholder="name@gmail.com" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500" />
         </div>
         <div>
-          <label class="block font-bold text-zinc-300 mb-1">Country</label>
+          <label class="block font-bold text-zinc-300 mb-1">Global Country (Worldwide Support)</label>
           <select id="chk-country" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white focus:outline-none focus:border-purple-500">
-            <option>Ghana</option>
-            <option>Nigeria</option>
-            <option>Kenya</option>
-            <option>South Africa</option>
-            <option>United Kingdom</option>
-            <option>United States</option>
+            <option>Ghana</option><option>Nigeria</option><option>Kenya</option><option>South Africa</option>
+            <option>United Kingdom</option><option>United States</option><option>Canada</option><option>Germany</option>
+            <option>France</option><option>Australia</option><option>India</option><option>Brazil</option><option>Global / Worldwide</option>
           </select>
         </div>
         <button onclick="advancePaystackCheckout(2)" class="btn-tap-target w-full py-3.5 rounded-xl bg-purple-600 text-white font-bold text-xs hover:bg-purple-500 transition">
@@ -1648,19 +1700,21 @@
         </button>
       </div>
 
-      <!-- STEP 2: GATEWAY & CURRENCY SELECTION[span_22](start_span)[span_22](end_span) -->
+      <!-- STEP 2: GATEWAY & CURRENCY SELECTION -->
       <div id="chk-step-2" class="space-y-4 text-xs text-left hidden">
         <div>
-          <span class="text-[10px] uppercase font-bold text-zinc-400 tracking-wider">Step 2 of 3: Payment Confirm[span_23](start_span)[span_23](end_span)</span>
+          <span class="text-[10px] uppercase font-bold text-zinc-400 tracking-wider">Step 2 of 3: Payment Confirm</span>
           <h3 class="text-lg font-black text-white mt-0.5">Select Currency &amp; Channel</h3>
         </div>
         <div>
-          <label class="block font-bold text-zinc-300 mb-1">Select Gateway Channel[span_24](start_span)[span_24](end_span)</label>
+          <label class="block font-bold text-zinc-300 mb-1">Select Gateway Channel</label>
           <select id="chk-gateway-channel" onchange="updatePaystackPayableUI()" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white focus:outline-none focus:border-purple-500">
-            <option value="GHS">Ghana GHS (MTN MoMo / Telecel / Cards)[span_25](start_span)[span_25](end_span)</option>
+            <option value="GHS">Ghana GHS (MTN MoMo / Telecel / Cards)</option>
             <option value="NGN">Nigeria NGN (Bank Transfer / USSD)</option>
             <option value="KES">Kenya KES (M-Pesa)</option>
             <option value="USD">USD (International Credit / Debit Cards)</option>
+            <option value="EUR">EUR (SEPA / Cards)</option>
+            <option value="GBP">GBP (Faster Payments / Cards)</option>
           </select>
         </div>
         <div class="p-3.5 rounded-2xl bg-black/60 border border-white/5 space-y-1.5 font-mono text-[11px]">
@@ -1670,7 +1724,7 @@
           </div>
           <div class="flex justify-between text-zinc-400">
             <span>Processing Fee:</span>
-            <span class="text-emerald-400">0.00 (Zero Surcharge)[span_26](start_span)[span_26](end_span)</span>
+            <span class="text-emerald-400">0.00 (Zero Surcharge)</span>
           </div>
         </div>
         <div class="flex gap-2">
@@ -1679,13 +1733,13 @@
         </div>
       </div>
 
-      <!-- STEP 3: PAYSTACK EXECUTION SCREEN[span_27](start_span)[span_27](end_span)[span_28](start_span)[span_28](end_span) -->
+      <!-- STEP 3: PAYSTACK EXECUTION SCREEN -->
       <div id="chk-step-3" class="space-y-4 text-xs text-center hidden">
         <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-xl mx-auto">💳</div>
-        <h3 class="text-lg font-black text-white">Paystack Live Processing[span_29](start_span)[span_29](end_span)</h3>
-        <p class="text-zinc-400 text-xs">Please authorize the prompt sent to your Mobile Money number or input card details.[span_30](start_span)[span_30](end_span)</p>
+        <h3 class="text-lg font-black text-white">Paystack Live Processing</h3>
+        <p class="text-zinc-400 text-xs">Authorize the secure prompt sent to your payment channel.</p>
         <button onclick="simulatePaystackPaymentSuccess()" class="btn-tap-target w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-purple-600 text-white font-black text-xs active:scale-95 transition shadow-xl shadow-amber-500/20">
-          Pay Now (<span id="chk-final-pay-btn-label">₵ 95.00 GHS</span>)[span_31](start_span)[span_31](end_span)[span_32](start_span)[span_32](end_span)
+          Pay Now (<span id="chk-final-pay-btn-label">₵ 95.00 GHS</span>)
         </button>
       </div>
 
@@ -1702,20 +1756,18 @@
     <div class="glass-panel w-full max-w-md rounded-3xl p-7 border border-emerald-500/40 shadow-2xl relative text-center space-y-4">
       <span class="text-4xl">🎉</span>
       <h3 class="text-xl font-black text-white">Payment Verified &amp; Pass Active!</h3>
-      <p class="text-xs text-zinc-300">Your account is created. Device tracking token is bound to your phone so you won't need to log in repeatedly.</p>
+      <p class="text-xs text-zinc-300">Credentials dispatched automatically via Gmail from <strong class="text-purple-300">vibelydesk@gmail.com</strong>.</p>
 
       <div class="p-4 rounded-2xl bg-black/60 border border-emerald-500/30 text-left font-mono text-xs space-y-2">
         <div class="flex justify-between">
           <span class="text-zinc-400">Assigned Username:</span>
-          <strong class="text-white" id="cred-disp-username">promoter_8821</strong>
+          <strong class="text-white" id="cred-disp-username">gerald_mingle_2112</strong>
         </div>
         <div class="flex justify-between">
           <span class="text-zinc-400">Temporary Password:</span>
-          <strong class="text-amber-400" id="cred-disp-password">VIB-992184-SEC</strong>
+          <strong class="text-amber-400" id="cred-disp-password">VIB-916538-SEC</strong>
         </div>
       </div>
-
-      <p class="text-[10px] text-zinc-400">Credentials have also been sent to your Gmail and via SMS to your mobile.</p>
 
       <button onclick="handleEnterPlatformWithPersistentSession()" class="btn-tap-target w-full py-3.5 rounded-xl bg-emerald-500 text-black font-black text-xs hover:bg-emerald-400 transition shadow-lg">
         One-Tap Instant Login to Workstation →
@@ -1724,7 +1776,7 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- MODAL: PREMIUM 100 GHS/MONTH SUBSCRIPTION MODAL -->
+  <!-- MODAL: PREMIUM 100 GHS/YEAR SUBSCRIPTION MODAL -->
   <!-- ============================================================== -->
   <div 
     id="modal-premium-100" 
@@ -1734,86 +1786,27 @@
       <button onclick="closePremium100Modal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
 
       <span class="text-[10px] uppercase font-black px-2.5 py-0.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30">
-        Monthly Recurring Growth Suite
+        Annual Recurring Growth Suite (16-45)
       </span>
       <h3 class="text-xl font-black text-white mt-1">Unlock Buttons 16 to 45</h3>
       <p class="text-xs text-zinc-300 leading-relaxed">
-        Subscribe for <strong>100 GHS / Month</strong> to activate all autonomous AI agents (AI Affiliate Manager, Promo Generator, Video Ad Creator) and enterprise growth tools.
+        Subscribe for <strong>100 GHS / Year</strong> to activate all autonomous AI agents, 200-question hard exam builder, and enterprise growth tools.
       </p>
 
       <div class="p-3.5 rounded-2xl bg-black/50 border border-white/5 space-y-1.5 text-xs text-zinc-400">
-        <div>✓ Personal AI Affiliate Manager &amp; Campaign Doctor</div>
+        <div>✓ Personal AI Affiliate Manager &amp; 200-Question Exam Builder</div>
         <div>✓ Automatic AI Vertical Video Ad Creator &amp; Scripts</div>
         <div>✓ Team Selling, Dynamic Commissions &amp; Early VIP Vaults</div>
-        <div>✓ Monthly renewal: 100.00 GHS automatically tracked</div>
+        <div>✓ Automated Gmail notification dispatched via vibelydesk@gmail.com</div>
       </div>
 
       <button onclick="confirmPremium100Subscription()" class="btn-tap-target w-full py-4 rounded-xl bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 text-white font-black text-xs shadow-xl active:scale-95 transition">
-        Pay 100 GHS / Month Now (Paystack)
+        Pay 100 GHS / Year Now via Paystack
       </button>
     </div>
   </div>
 
-  <!-- ============================================================== -->
-  <!-- MODAL: 8-GRID "MORE FEATURES" DRAWER -->
-  <!-- ============================================================== -->
-  <div 
-    id="more-features-sheet" 
-    class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 flex items-end sm:items-center justify-center p-0 sm:p-4"
-    onclick="closeMoreFeaturesSheet()"
-  >
-    <div 
-      class="glass-panel w-full max-w-lg rounded-t-3xl sm:rounded-3xl p-6 border-t sm:border border-white/10 shadow-2xl space-y-4"
-      onclick="event.stopPropagation()"
-    >
-      <div class="flex items-center justify-between pb-3 border-b border-white/10">
-        <div>
-          <h4 class="text-sm font-black text-white">More Features</h4>
-          <p class="text-[10px] text-purple-400 font-bold">Active: Affiliate Hub</p>
-        </div>
-        <button onclick="closeMoreFeaturesSheet()" class="text-zinc-500 hover:text-white font-bold p-1">✕</button>
-      </div>
-
-      <div class="grid grid-cols-4 gap-3 text-center text-xs">
-        <button onclick="closeMoreFeaturesSheet(); switchAffiliateSubView('wallet');" class="p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 flex flex-col items-center">
-          <span class="text-xl mb-1">💰</span>
-          <span class="text-[10px] font-bold text-zinc-300">Earnings</span>
-        </button>
-        <button onclick="closeMoreFeaturesSheet(); switchAffiliateSubView('affiliate_hub');" class="p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 flex flex-col items-center">
-          <span class="text-xl mb-1">🏆</span>
-          <span class="text-[10px] font-bold text-zinc-300">Milestones</span>
-        </button>
-        <button onclick="closeMoreFeaturesSheet(); switchAffiliateSubView('affiliate_hub');" class="p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 flex flex-col items-center">
-          <span class="text-xl mb-1">🎖️</span>
-          <span class="text-[10px] font-bold text-zinc-300">Leaderboard</span>
-        </button>
-        <button onclick="alert('Transaction Ledger: 28 sales cleared. 0 Discrepancies.');" class="p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 flex flex-col items-center">
-          <span class="text-xl mb-1">📜</span>
-          <span class="text-[10px] font-bold text-zinc-300">Transactions</span>
-        </button>
-        <button onclick="closeMoreFeaturesSheet(); switchAffiliateSubView('wallet');" class="p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 flex flex-col items-center">
-          <span class="text-xl mb-1">💳</span>
-          <span class="text-[10px] font-bold text-zinc-300">Wallet</span>
-        </button>
-        <button onclick="closeMoreFeaturesSheet(); switchAffiliateSubView('creator');" class="p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 flex flex-col items-center">
-          <span class="text-xl mb-1">🎨</span>
-          <span class="text-[10px] font-bold text-zinc-300">Creator Hub</span>
-        </button>
-        <button onclick="openAIBotModal(); closeMoreFeaturesSheet();" class="p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 flex flex-col items-center">
-          <span class="text-xl mb-1">🎧</span>
-          <span class="text-[10px] font-bold text-zinc-300">Support</span>
-        </button>
-        <button onclick="closeMoreFeaturesSheet(); routeTo('landing');" class="p-3 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 flex flex-col items-center">
-          <span class="text-xl mb-1">🏠</span>
-          <span class="text-[10px] font-bold text-zinc-300">Home</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============================================================== -->
-  <!-- MODAL: STEALTH 2FA ROOT ADMIN AUTHENTICATION (HARDENED GMAIL OTP) -->
-  <!-- ============================================================== -->
+  <!-- MODAL: STEALTH 2FA ROOT ADMIN AUTHENTICATION -->
   <div 
     id="admin-auth-modal" 
     class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
@@ -1845,9 +1838,7 @@
     </div>
   </div>
 
-  <!-- ============================================================== -->
-  <!-- MODAL: SUPER ADMIN COMMAND CENTER (SEPARATE PILLAR 1 & 2)      -->
-  <!-- ============================================================== -->
+  <!-- MODAL: SUPER ADMIN COMMAND CENTER (WITH USER MANAGEMENT, BAN DESK & SUBSCRIPTION EXPIRY ALERTS) -->
   <div 
     id="admin-console-modal" 
     class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl flex items-center justify-center p-2 sm:p-5 opacity-0 pointer-events-none transition-all duration-300 overflow-y-auto"
@@ -1862,197 +1853,41 @@
               Super Admin Command Center
               <span class="text-[9px] uppercase px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 font-extrabold border border-red-500/30">Root Live</span>
             </h3>
-            <p class="text-[10px] text-zinc-400">Authenticated: vibelyservice@gmail.com • Dual Infrastructure Oversight</p>
+            <p class="text-[10px] text-zinc-400">Authenticated: vibelyservice@gmail.com • Paystack Central Routing</p>
           </div>
         </div>
 
         <div class="flex items-center gap-2">
-          <button onclick="switchAdminPillar('p1')" id="btn-adm-pillar-1" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-lg">
-            🌐 Pillar 1: Social Admin
-          </button>
-          <button onclick="switchAdminPillar('p2')" id="btn-adm-pillar-2" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-white/5 text-zinc-400 hover:text-white">
-            💼 Pillar 2: Commerce Admin
-          </button>
-          <button onclick="switchAdminPillar('emerg')" id="btn-adm-pillar-emerg" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-red-500/20 text-red-400 border border-red-500/30">
-            🚨 Emergency Desk
-          </button>
+          <button onclick="switchAdminPillar('p1')" id="btn-adm-pillar-1" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-lg">Social Admin</button>
+          <button onclick="switchAdminPillar('p2')" id="btn-adm-pillar-2" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-white/5 text-zinc-400 hover:text-white">Commerce &amp; Users Admin</button>
           <button onclick="closeAdminConsoleModal()" class="text-zinc-400 hover:text-white font-bold p-1 ml-2">✕</button>
         </div>
       </div>
 
-      <!-- Search Bar -->
-      <div class="flex gap-2">
-        <input type="text" placeholder="Search user ID, reports, transaction hashes..." class="flex-1 px-3.5 py-2 rounded-xl bg-black/60 border border-zinc-800 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-red-500" />
-        <button onclick="alert('Indexed across live database.');" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs">Search</button>
-      </div>
-
-      <!-- ========================================== -->
-      <!-- ADMIN PILLAR 1 SECTORS (SOCIAL & CHAT)     -->
-      <!-- ========================================== -->
-      <div id="adm-p1-container" class="space-y-4">
-        <div class="flex items-center gap-2 border-b border-white/5 pb-2 overflow-x-auto no-scrollbar text-xs font-bold">
-          <button onclick="switchP1AdminSector('p1_overview')" id="btn-sec-p1_overview" class="px-3 py-1 rounded-xl bg-purple-600 text-white shrink-0">1. Overview</button>
-          <button onclick="switchP1AdminSector('p1_users')" id="btn-sec-p1_users" class="px-3 py-1 rounded-xl text-zinc-400 hover:text-white shrink-0">2. User Management</button>
-          <button onclick="switchP1AdminSector('p1_safety')" id="btn-sec-p1_safety" class="px-3 py-1 rounded-xl text-amber-300 hover:text-white shrink-0">3. Reports &amp; Violations Desk (<span id="adm-pending-reports-count">1</span>)</button>
-          <button onclick="switchP1AdminSector('p1_verification')" id="btn-sec-p1_verification" class="px-3 py-1 rounded-xl text-zinc-400 hover:text-white shrink-0">4. Verification Center</button>
-          <button onclick="switchP1AdminSector('p1_chat_audit')" id="btn-sec-p1_chat_audit" class="px-3 py-1 rounded-xl text-zinc-400 hover:text-white shrink-0">5. Audited Chat Logs</button>
+      <!-- ADMIN PILLAR 2 SECTOR (USER BALANCES, BAN DESK & SUBSCRIPTION EXPIRY REMOVAL) -->
+      <div id="adm-p2-container" class="space-y-4">
+        <div class="flex justify-between items-center bg-purple-950/20 p-3.5 rounded-2xl border border-purple-500/30">
+          <div>
+            <span class="text-white font-bold block">⚠️ Subscription Expiry Alert Desk</span>
+            <span class="text-[11px] text-zinc-400">Users who have reached their 365-day mark without paying the 45 GHS renewal fee.</span>
+          </div>
+          <button onclick="checkExpiredSubscriptions()" class="px-3 py-1.5 rounded-xl bg-red-600 text-white text-xs font-bold">
+            Scan &amp; Remove Expired
+          </button>
         </div>
 
-        <!-- P1 Sector 1: Overview -->
-        <div id="sec-p1_overview" class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5">
-            <span class="text-zinc-500 text-[10px] block">Total Social Creators</span>
-            <span class="text-lg font-black text-white">18,420</span>
-          </div>
-          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5">
-            <span class="text-zinc-500 text-[10px] block">Active Today</span>
-            <span class="text-lg font-black text-emerald-400">4,120</span>
-          </div>
-          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5">
-            <span class="text-zinc-500 text-[10px] block">Verified Blue Ticks</span>
-            <span class="text-lg font-black text-purple-400">11,280</span>
-          </div>
-          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5">
-            <span class="text-zinc-500 text-[10px] block">Reports Awaiting Review</span>
-            <span class="text-lg font-black text-amber-400" id="adm-reports-card-count">1 Active</span>
-          </div>
-        </div>
-
-        <!-- P1 Sector 3: Reports & Violations Desk (LIVE DISPATCHED FROM USERS) -->
-        <div id="sec-p1_safety" class="space-y-3 text-xs hidden">
-          <div class="flex justify-between items-center mb-1">
-            <h4 class="font-bold text-white">Real-Time User Violation Reports</h4>
-            <span class="text-[10px] text-zinc-500">Auto-Alert System Active</span>
-          </div>
-          <div id="adm-live-reports-stream" class="space-y-2">
-            <!-- Sample Seed Report -->
-            <div class="p-3.5 rounded-2xl bg-red-950/20 border border-red-500/30 flex justify-between items-center">
-              <div>
-                <span class="font-bold text-white block">Report: @fiyero_spammer</span>
-                <span class="text-[10px] text-red-400 block font-bold">Category: Sexual Content / Inappropriate Nudity</span>
-                <p class="text-[11px] text-zinc-300 mt-1">"User sent unsolicited adult images in direct message thread."</p>
-              </div>
-              <div class="flex gap-2">
-                <button onclick="alert('Account permanently banned across entire platform.');" class="px-2.5 py-1.5 rounded-xl bg-red-600 text-white font-bold text-xs">Ban User</button>
-                <button onclick="this.parentElement.parentElement.remove();" class="px-2.5 py-1.5 rounded-xl bg-white/10 text-zinc-400 text-xs">Dismiss</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- P1 Sector 2: User Management -->
-        <div id="sec-p1_users" class="space-y-3 text-xs hidden">
-          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-between">
+        <div class="space-y-2 text-xs">
+          <h4 class="font-bold text-white uppercase tracking-wider">All User Accounts &amp; Balance Master Ledger</h4>
+          <div class="p-3.5 rounded-2xl bg-black/60 border border-white/10 flex justify-between items-center">
             <div>
-              <span class="font-bold text-white block">Adrienne Okon (@adrienne_pro)</span>
-              <span class="text-[10px] text-zinc-400">Status: Active • Biometric: Verified ✓</span>
+              <span class="font-bold text-white block">Gerald Mingle (@gerald_mingle_2112)</span>
+              <span class="text-[10px] text-emerald-400">Total Earned: ₵ 4,062.50 GHS | Available: ₵ 1,365.00 GHS</span>
+              <span class="text-[10px] text-zinc-400 block">Status: Active (1-Year Pass Valid)</span>
             </div>
             <div class="flex gap-2">
-              <button onclick="alert('Account suspended for 24 hours.');" class="px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-bold">Suspend</button>
-              <button onclick="alert('Account permanently banned.');" class="px-2.5 py-1 rounded-lg bg-red-500/20 text-red-300 font-bold">Ban</button>
+              <button onclick="alert('User account suspended from Pillar 2 Marketplace.');" class="px-2.5 py-1.5 rounded-xl bg-amber-500/20 text-amber-300 font-bold">Suspend</button>
+              <button onclick="alert('User permanently banned from Affiliate Network.');" class="px-2.5 py-1.5 rounded-xl bg-red-600 text-white font-bold">Ban Account</button>
             </div>
-          </div>
-        </div>
-
-        <!-- P1 Sector 4: Verification Center -->
-        <div id="sec-p1_verification" class="space-y-3 text-xs hidden">
-          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-between">
-            <div>
-              <span class="font-bold text-white block">Biometric Queue: Samuel Mensah</span>
-              <span class="text-[10px] text-zinc-400">5/5 Motions Validated</span>
-            </div>
-            <button onclick="alert('Blue Tick approved on ledger.');" class="px-3 py-1 rounded-lg bg-emerald-500 text-black font-black text-xs">Approve Blue Tick</button>
-          </div>
-        </div>
-
-        <!-- P1 Sector 5: Audited Chat Logs -->
-        <div id="sec-p1_chat_audit" class="p-4 rounded-2xl bg-black/40 border border-red-500/30 text-xs space-y-3 hidden">
-          <div class="flex items-center gap-2 text-amber-400 font-bold">
-            <span>🔒</span> Privacy &amp; E2EE Governance Gate
-          </div>
-          <p class="text-zinc-400 text-[11px] leading-relaxed">
-            Administrators must NOT automatically have unrestricted access to private conversations. Decryption inspection requires an explicit report ticket, authorization level, and audit logging.
-          </p>
-          <button onclick="promptReasonAndAuditChat()" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs">
-            Submit Moderation Justification &amp; Inspect Thread
-          </button>
-        </div>
-      </div>
-
-      <!-- ========================================== -->
-      <!-- ADMIN PILLAR 2 SECTORS (COMMERCE & VENDOR) -->
-      <!-- ========================================== -->
-      <div id="adm-p2-container" class="space-y-4 hidden">
-        <div class="flex items-center gap-2 border-b border-white/5 pb-2 overflow-x-auto no-scrollbar text-xs font-bold">
-          <button onclick="switchP2AdminSector('p2_overview')" id="btn-sec-p2_overview" class="px-3 py-1 rounded-xl bg-purple-600 text-white shrink-0">1. Overview</button>
-          <button onclick="switchP2AdminSector('p2_whitelist')" id="btn-sec-p2_whitelist" class="px-3 py-1 rounded-xl text-amber-300 hover:text-white shrink-0">2. Creator Beta Whitelist Desk</button>
-          <button onclick="switchP2AdminSector('p2_payouts')" id="btn-sec-p2_payouts" class="px-3 py-1 rounded-xl text-zinc-400 hover:text-white shrink-0">3. Friday Payout Queue</button>
-          <button onclick="switchP2AdminSector('p2_products')" id="btn-sec-p2_products" class="px-3 py-1 rounded-xl text-zinc-400 hover:text-white shrink-0">4. Product Moderation</button>
-        </div>
-
-        <!-- P2 Sector 1: Overview -->
-        <div id="sec-p2_overview" class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5">
-            <span class="text-zinc-500 text-[10px] block">Gross Platform Volume</span>
-            <span class="text-lg font-black text-white" data-price-ghs="142500">₵ 142,500.00 GHS</span>
-          </div>
-          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5">
-            <span class="text-zinc-500 text-[10px] block">Affiliate Commissions Paid</span>
-            <span class="text-lg font-black text-emerald-400" data-price-ghs="71250">₵ 71,250.00 GHS</span>
-          </div>
-          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5">
-            <span class="text-zinc-500 text-[10px] block">Friday Queue Pending</span>
-            <span class="text-lg font-black text-amber-400" data-price-ghs="12450">₵ 12,450.00 GHS</span>
-          </div>
-          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5">
-            <span class="text-zinc-500 text-[10px] block">Active Whitelisted Creators</span>
-            <span class="text-lg font-black text-purple-400">14 Creators</span>
-          </div>
-        </div>
-
-        <!-- P2 Sector 2: Creator Beta Whitelist Desk[span_33](start_span)[span_33](end_span) -->
-        <div id="sec-p2_whitelist" class="space-y-3 text-xs hidden">
-          <div class="p-4 rounded-2xl bg-black/50 border border-purple-500/30 flex justify-between items-center">
-            <div>
-              <span class="font-bold text-white block">Gerald Mingle (Creator ID: VIB-90218)</span>
-              <p class="text-[10px] text-zinc-400">Status: <span class="text-amber-400 font-bold" id="adm-whitelist-status-text">Pending Whitelist Review</span></p>
-            </div>
-            <button onclick="toggleCreatorWhitelist()" id="btn-adm-whitelist-toggle" class="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-black text-xs transition">
-              Approve to Whitelist
-            </button>
-          </div>
-          <p class="text-[11px] text-zinc-500 italic">
-            * Approving a creator grants them access to the Creator Commerce platform, removing the private beta access lock.[span_34](start_span)[span_34](end_span)
-          </p>
-        </div>
-
-        <!-- P2 Sector 3: Friday Payout Queue -->
-        <div id="sec-p2_payouts" class="space-y-3 text-xs hidden">
-          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-between">
-            <div>
-              <span class="font-bold text-white">Gerald Mingle (0534671381 • MTN MoMo)</span>
-              <span class="text-[10px] text-zinc-400 block">Logged Friday • Verified via Paystack</span>
-            </div>
-            <span class="font-bold text-emerald-400 font-mono" data-price-ghs="1365">₵ 1,365.00 GHS</span>
-          </div>
-          <button onclick="alert('Batch Saturday disbursement signed and processed via Paystack!');" class="w-full py-3 rounded-xl bg-emerald-500 text-black font-black text-xs hover:bg-emerald-400 transition">
-            Disburse All Friday Payouts via Paystack
-          </button>
-        </div>
-      </div>
-
-      <!-- ========================================== -->
-      <!-- ADMIN EMERGENCY & LOCKDOWN DESK            -->
-      <!-- ========================================== -->
-      <div id="adm-emerg-container" class="space-y-3 text-xs hidden">
-        <div class="p-4 rounded-2xl bg-red-950/20 border border-red-500/30 space-y-3">
-          <span class="text-red-400 font-black text-sm block">⚠️ Universal Emergency Controls</span>
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
-            <button onclick="alert('Maintenance mode toggled.');" class="p-3 rounded-xl bg-black/60 border border-white/10 text-zinc-300 font-bold hover:text-white">Maintenance Mode</button>
-            <button onclick="alert('Registrations disabled.');" class="p-3 rounded-xl bg-black/60 border border-white/10 text-zinc-300 font-bold hover:text-white">Disable Registrations</button>
-            <button onclick="alert('Purchases disabled.');" class="p-3 rounded-xl bg-black/60 border border-white/10 text-zinc-300 font-bold hover:text-white">Disable Purchases</button>
-            <button onclick="alert('Withdrawals frozen.');" class="p-3 rounded-xl bg-black/60 border border-white/10 text-zinc-300 font-bold hover:text-white">Freeze Withdrawals</button>
-            <button onclick="alert('Emergency security lockdown activated.');" class="p-3 rounded-xl bg-red-600/30 border border-red-500/40 text-red-300 font-bold">Lockdown Platform</button>
           </div>
         </div>
       </div>
@@ -2088,16 +1923,11 @@
 
       <div class="flex-1 overflow-y-auto py-3 space-y-2.5 text-xs" id="ai-chat-stream">
         <div class="p-3 rounded-2xl bg-white/5 border border-white/5 text-zinc-300">
-          Hello! I am your Vibely Intelligence Assistant. Ask me about the 50/50 affiliate split, DRM protection, Google Authenticator 2FA, weekly Friday MoMo payouts, or our 200-Sale Sprint[span_35](start_span)[span_35](end_span)!
+          Hello! I am your Vibely Intelligence Assistant. Ask me about our 200-question hard exam engine, Paystack central routing, or automated credential dispatch to vibelydesk@gmail.com!
         </div>
       </div>
 
       <div class="pt-2 border-t border-zinc-800 space-y-2">
-        <div class="flex gap-1.5 overflow-x-auto no-scrollbar text-[10px]">
-          <button onclick="sendQuickPrompt('How do 50% commissions work?')" class="px-2 py-1 rounded-lg bg-white/5 text-purple-300 hover:bg-white/10 shrink-0">50% Split?</button>
-          <button onclick="sendQuickPrompt('How does DRM watermarking work?')" class="px-2 py-1 rounded-lg bg-white/5 text-blue-300 hover:bg-white/10 shrink-0">DRM Security?</button>
-          <button onclick="sendQuickPrompt('Connect me with WhatsApp human support')" class="px-2 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 shrink-0">WhatsApp Agent</button>
-        </div>
         <form onsubmit="handleSendAIMessage(event)" class="flex items-center gap-2">
           <input type="text" id="ai-user-input" placeholder="Ask anything about Vibely..." class="flex-1 px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-emerald-500" />
           <button type="submit" class="px-3.5 py-2.5 rounded-xl bg-emerald-500 text-black font-black text-xs hover:bg-emerald-400 transition">Ask</button>
@@ -2106,49 +1936,21 @@
     </div>
   </div>
 
-  <!-- COIN STORE MODAL (PILLAR 1 SOCIAL ONLY) -->
+  <!-- COIN STORE MODAL -->
   <div 
     id="coin-store-modal" 
     class="fixed inset-0 z-50 bg-black/80 backdrop-blur-xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
   >
     <div class="glass-panel w-full max-w-md rounded-3xl p-6 border border-amber-500/30 shadow-2xl relative">
       <button onclick="closeCoinStoreModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
-
       <div class="text-center mb-6">
         <span class="text-3xl">🪙</span>
         <h3 class="text-lg font-black text-white mt-1">Refill Vibely Coins</h3>
-        <p class="text-xs text-zinc-400">Coins are used for Super Vibes and rewarding creators in chat.</p>
       </div>
-
       <div class="space-y-3">
-        <div class="p-4 rounded-2xl bg-black/40 border border-white/10 flex items-center justify-between">
-          <div>
-            <span class="text-sm font-black text-white">100 Vibely Coins</span>
-            <span class="text-xs text-zinc-400 block">Starter Stash</span>
-          </div>
-          <button onclick="executeCoinPurchase(100, 15)" class="py-2 px-4 rounded-xl text-xs font-bold bg-amber-500/20 border border-amber-500/40 text-amber-300 hover:bg-amber-500/30 transition">
-            <span data-price-ghs="15">₵ 15.00 GHS</span>
-          </button>
-        </div>
-
         <div class="p-4 rounded-2xl bg-black/40 border border-amber-500/30 flex items-center justify-between">
-          <div>
-            <span class="text-sm font-black text-white">500 Vibely Coins</span>
-            <span class="text-xs text-amber-400 block">★ Most Popular</span>
-          </div>
-          <button onclick="executeCoinPurchase(500, 50)" class="py-2 px-4 rounded-xl text-xs font-black bg-amber-400 hover:bg-amber-300 text-black transition">
-            <span data-price-ghs="50">₵ 50.00 GHS</span>
-          </button>
-        </div>
-
-        <div class="p-4 rounded-2xl bg-black/40 border border-white/10 flex items-center justify-between">
-          <div>
-            <span class="text-sm font-black text-white">2,500 Vibely Coins</span>
-            <span class="text-xs text-zinc-400 block">VIP Vault</span>
-          </div>
-          <button onclick="executeCoinPurchase(2500, 200)" class="py-2 px-4 rounded-xl text-xs font-bold bg-amber-500/20 border border-amber-500/40 text-amber-300 hover:bg-amber-500/30 transition">
-            <span data-price-ghs="200">₵ 200.00 GHS</span>
-          </button>
+          <div><span class="text-sm font-black text-white">500 Vibely Coins</span></div>
+          <button onclick="executeCoinPurchase(500, 50)" class="py-2 px-4 rounded-xl text-xs font-black bg-amber-400 text-black">₵ 50.00 GHS</button>
         </div>
       </div>
     </div>
@@ -2159,45 +1961,11 @@
     id="modal-2fa-setup" 
     class="fixed inset-0 z-50 bg-black/90 backdrop-blur-2xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
   >
-    <div class="glass-panel w-full max-w-md rounded-3xl p-6 border border-white/10 shadow-2xl relative">
+    <div class="glass-panel w-full max-w-md rounded-3xl p-6 border border-white/10 shadow-2xl relative text-center">
       <button onclick="close2FAModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
-
-      <div class="mb-4">
-        <span class="text-[10px] uppercase font-bold text-cyan-400 tracking-wider">Settings &gt; 2FA Setting</span>
-        <h3 class="text-xl font-black text-white mt-1">Add Your Account</h3>
-        <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
-          Use the QR code or setup key on your Google Authenticator app to add your account.
-        </p>
-      </div>
-
-      <div class="w-48 h-48 mx-auto my-4 bg-white p-3 rounded-2xl flex flex-col justify-between shadow-xl">
-        <div class="grid grid-cols-6 gap-1 w-full h-full p-1 bg-white">
-          <div class="bg-black col-span-2 row-span-2 rounded"></div>
-          <div class="bg-black col-span-2"></div>
-          <div class="bg-black col-span-2 row-span-2 rounded"></div>
-          <div class="bg-black col-span-1"></div>
-          <div class="bg-black col-span-1"></div>
-          <div class="bg-black col-span-2"></div>
-          <div class="bg-black col-span-2"></div>
-          <div class="bg-black col-span-2 row-span-2 rounded"></div>
-          <div class="bg-black col-span-2"></div>
-          <div class="bg-black col-span-2"></div>
-        </div>
-      </div>
-
-      <div class="space-y-1 mb-4 text-left">
-        <label class="block text-[11px] font-bold text-zinc-400">Setup Key</label>
-        <div class="flex items-center justify-between p-3 rounded-xl bg-black/60 border border-zinc-800 text-xs font-mono text-white">
-          <span id="setup-key-text">JW33CQJXRKSL4AC5</span>
-          <button onclick="copy2FASetupKey(this)" class="btn-tap-target text-zinc-400 hover:text-white transition p-1 flex items-center justify-center" title="Copy Key">
-            📋 Copy
-          </button>
-        </div>
-      </div>
-
-      <button onclick="confirm2FAActive()" class="btn-tap-target w-full py-3.5 rounded-xl bg-emerald-500 text-black font-black text-xs hover:bg-emerald-400 transition shadow-lg">
-        I Have Scanned QR Code
-      </button>
+      <h3 class="text-xl font-black text-white mb-2">Google Authenticator 2FA</h3>
+      <p class="text-xs text-zinc-400 mb-4">Scan QR code in your authenticator app.</p>
+      <button onclick="confirm2FAActive()" class="btn-tap-target w-full py-3.5 rounded-xl bg-emerald-500 text-black font-black text-xs">I Have Scanned QR Code</button>
     </div>
   </div>
 
@@ -2213,6 +1981,8 @@
       userCoins: 250,
       activeCurrency: 'GHS',
       userName: 'Gerald Mingle',
+      userEmail: 'geemingle15@gmail.com',
+      userPhone: '0534671381',
       creatorWhitelisted: false,
       livenessStep: 1,
       stealthTaps: 0,
@@ -2222,10 +1992,12 @@
       availableGhs: 1365.00,
       totalGhs: 4062.50,
       adminSecurityToken: null,
-      adminReports: []
+      activeChatUser: 'Adrienne Okon',
+      activeChatAvatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150',
+      currentContestType: ''
     };
 
-    // 50+ Global Currency Matrix (Grounded to $1 = 11.62 GHS for zero-loss financial parity)
+    // Global Currency Matrix
     const currencyDatabase = {
       GHS: { symbol: '₵', code: 'GHS', rate: 1.0, decimals: 2 },
       USD: { symbol: '$', code: 'USD', rate: 0.0861, decimals: 2 },
@@ -2233,87 +2005,21 @@
       GBP: { symbol: '£', code: 'GBP', rate: 0.0658, decimals: 2 },
       NGN: { symbol: '₦', code: 'NGN', rate: 114.14, decimals: 0 },
       KES: { symbol: 'KSh', code: 'KES', rate: 11.16, decimals: 0 },
-      ZAR: { symbol: 'R', code: 'ZAR', rate: 1.53, decimals: 2 },
-      XOF: { symbol: 'Fr', code: 'XOF', rate: 50.77, decimals: 0 },
-      EGP: { symbol: 'E£', code: 'EGP', rate: 4.18, decimals: 2 },
-      UGX: { symbol: 'USh', code: 'UGX', rate: 318.40, decimals: 0 },
-      TZS: { symbol: 'TSh', code: 'TZS', rate: 232.35, decimals: 0 },
-      RWF: { symbol: 'RF', code: 'RWF', rate: 118.75, decimals: 0 },
-      MAD: { symbol: 'DH', code: 'MAD', rate: 0.85, decimals: 2 },
-      ZMW: { symbol: 'ZK', code: 'ZMW', rate: 2.25, decimals: 2 },
-      GMD: { symbol: 'D', code: 'GMD', rate: 5.85, decimals: 2 },
-      SLE: { symbol: 'Le', code: 'SLE', rate: 1.95, decimals: 2 },
-      ETB: { symbol: 'Br', code: 'ETB', rate: 37.10, decimals: 0 },
-      INR: { symbol: '₹', code: 'INR', rate: 7.18, decimals: 2 },
-      PKR: { symbol: '₨', code: 'PKR', rate: 23.95, decimals: 0 },
-      BDT: { symbol: '৳', code: 'BDT', rate: 10.25, decimals: 0 },
-      PHP: { symbol: '₱', code: 'PHP', rate: 4.85, decimals: 2 },
-      IDR: { symbol: 'Rp', code: 'IDR', rate: 1395.0, decimals: 0 },
-      MYR: { symbol: 'RM', code: 'MYR', rate: 0.38, decimals: 2 },
-      VND: { symbol: '₫', code: 'VND', rate: 2150.0, decimals: 0 },
-      THB: { symbol: '฿', code: 'THB', rate: 2.95, decimals: 2 },
-      JPY: { symbol: '¥', code: 'JPY', rate: 12.80, decimals: 0 },
-      CNY: { symbol: '¥', code: 'CNY', rate: 0.62, decimals: 2 },
-      SGD: { symbol: 'S$', code: 'SGD', rate: 0.115, decimals: 2 },
-      AUD: { symbol: 'A$', code: 'AUD', rate: 0.128, decimals: 2 },
-      NZD: { symbol: 'NZ$', code: 'NZD', rate: 0.141, decimals: 2 },
-      KRW: { symbol: '₩', code: 'KRW', rate: 118.0, decimals: 0 },
-      HKD: { symbol: 'HK$', code: 'HKD', rate: 0.67, decimals: 2 },
-      CAD: { symbol: 'CA$', code: 'CAD', rate: 0.116, decimals: 2 },
-      BRL: { symbol: 'R$', code: 'BRL', rate: 0.473, decimals: 2 },
-      MXN: { symbol: 'MX$', code: 'MXN', rate: 1.63, decimals: 2 },
-      COP: { symbol: 'COL$', code: 'COP', rate: 352.0, decimals: 0 },
-      CLP: { symbol: 'CLP$', code: 'CLP', rate: 80.25, decimals: 0 },
-      ARS: { symbol: '$', code: 'ARS', rate: 87.20, decimals: 0 },
-      PEN: { symbol: 'S/', code: 'PEN', rate: 0.32, decimals: 2 },
-      JMD: { symbol: 'J$', code: 'JMD', rate: 13.35, decimals: 2 },
-      AED: { symbol: 'AED', code: 'AED', rate: 0.316, decimals: 2 },
-      SAR: { symbol: 'SAR', code: 'SAR', rate: 0.323, decimals: 2 },
-      QAR: { symbol: 'QAR', code: 'QAR', rate: 0.313, decimals: 2 },
-      KWD: { symbol: 'KD', code: 'KWD', rate: 0.0264, decimals: 3 },
-      BHD: { symbol: 'BD', code: 'BHD', rate: 0.0324, decimals: 3 },
-      OMR: { symbol: 'OMR', code: 'OMR', rate: 0.0331, decimals: 3 }
+      ZAR: { symbol: 'R', code: 'ZAR', rate: 1.53, decimals: 2 }
     };
 
     function formatAmount(baseGhs, curKey) {
       const cur = currencyDatabase[curKey] || currencyDatabase['GHS'];
       const rawVal = baseGhs * cur.rate;
-      const formatted = cur.decimals > 0
-        ? rawVal.toLocaleString(undefined, { minimumFractionDigits: cur.decimals, maximumFractionDigits: cur.decimals })
-        : Math.round(rawVal).toLocaleString();
-      return `${cur.symbol} ${formatted} ${cur.code}`;
+      return `${cur.symbol} ${rawVal.toFixed(cur.decimals)} ${cur.code}`;
     }
 
-    // UNIVERSAL NO-LOSS ZERO-ARBITRAGE DYNAMIC CONVERSION
     function changeGlobalCurrency(curKey) {
       appState.activeCurrency = curKey;
-      
-      const elements = document.querySelectorAll('[data-price-ghs]');
-      elements.forEach(el => {
+      document.querySelectorAll('[data-price-ghs]').forEach(el => {
         const baseGhs = parseFloat(el.getAttribute('data-price-ghs'));
         el.innerText = formatAmount(baseGhs, curKey);
       });
-
-      const availFormatted = formatAmount(appState.availableGhs, curKey);
-      const totalFormatted = formatAmount(appState.totalGhs, curKey);
-
-      const hubAvail = document.getElementById('hub-avail-balance');
-      if (hubAvail) hubAvail.innerText = availFormatted;
-
-      const hubWallet = document.getElementById('hub-wallet-balance-box');
-      if (hubWallet) hubWallet.innerText = availFormatted;
-
-      const hubEarnings = document.getElementById('hub-total-earnings-box');
-      if (hubEarnings) hubEarnings.innerText = totalFormatted;
-
-      const walletAvail = document.getElementById('wallet-avail-display');
-      if (walletAvail) walletAvail.innerText = availFormatted;
-
-      const walletTotal = document.getElementById('wallet-total-display');
-      if (walletTotal) walletTotal.innerText = totalFormatted;
-
-      const payoutAvail = document.getElementById('payout-avail-text');
-      if (payoutAvail) payoutAvail.innerText = availFormatted;
     }
 
     function playChime(type) {
@@ -2329,7 +2035,6 @@
           osc.frequency.setValueAtTime(freq, now + idx * 0.08);
           gain.gain.setValueAtTime(0.001, now + idx * 0.08);
           gain.gain.exponentialRampToValueAtTime(0.18, now + idx * 0.08 + 0.04);
-          gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.08 + 1.4);
           osc.connect(gain);
           gain.connect(ctx.destination);
           osc.start(now + idx * 0.08);
@@ -2365,13 +2070,12 @@
       } else if (viewName === 'affiliate') {
         document.getElementById('view-affiliate').classList.remove('hidden');
         document.getElementById('header-platform-tag').innerText = 'Affiliate Suite';
-        coinBadge.classList.add('hidden'); // ZERO COINS IN PILLAR 2! REAL CURRENCY ONLY!
+        coinBadge.classList.add('hidden');
         changeGlobalCurrency(appState.activeCurrency);
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // WEBRTC REAL CAMERA STREAM INTEGRATION
     async function openRealCameraStream(videoElId, previewImgId) {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
@@ -2385,7 +2089,7 @@
         if (previewImgId) document.getElementById(previewImgId).classList.add('hidden');
         await video.play();
       } catch (err) {
-        alert("Camera Permission Notice: Please allow camera access in browser to complete live verification.");
+        alert("Camera Permission Notice: Please allow camera access in browser.");
       }
     }
 
@@ -2396,68 +2100,16 @@
       }
     }
 
-    // HARDENED ONE-TAP CLIPBOARD PIPELINE
     async function executeHardenedCopy(btnElement, rawPayload) {
-      if (btnElement.getAttribute('data-busy') === 'true') return;
-      btnElement.setAttribute('data-busy', 'true');
-
-      let sanitized = rawPayload.replace(/[\u200B-\u200D\uFEFF]/g, '').trim();
-      const url = new URL(sanitized);
-      url.searchParams.set('t', Date.now());
-      const finalPayload = url.toString();
-
       let copySuccess = false;
-
-      if (navigator.clipboard && window.isSecureContext) {
-        try {
-          await navigator.clipboard.writeText(finalPayload);
-          copySuccess = true;
-        } catch (err) {
-          copySuccess = false;
-        }
-      }
-
-      if (!copySuccess) {
-        try {
-          const textArea = document.createElement('textarea');
-          textArea.value = finalPayload;
-          textArea.style.position = 'fixed';
-          textArea.style.top = '-9999px';
-          textArea.style.left = '-9999px';
-          textArea.style.fontSize = '16px';
-          textArea.setAttribute('readonly', '');
-          document.body.appendChild(textArea);
-          textArea.select();
-          textArea.setSelectionRange(0, 99999);
-          copySuccess = document.execCommand('copy');
-          document.body.removeChild(textArea);
-        } catch (fallbackErr) {
-          copySuccess = false;
-        }
-      }
-
-      if (navigator.vibrate) {
-        navigator.vibrate(copySuccess ? 15 : [50, 50, 50]);
-      }
-
+      try {
+        await navigator.clipboard.writeText(rawPayload);
+        copySuccess = true;
+      } catch (err) { copySuccess = false; }
+      
       const originalText = btnElement.innerText;
-      if (copySuccess) {
-        btnElement.innerText = "✓ Copied!";
-        btnElement.classList.add('bg-emerald-600', 'text-white');
-      } else {
-        btnElement.innerText = "Press & Hold to Copy";
-      }
-
-      setTimeout(() => {
-        btnElement.innerText = originalText;
-        btnElement.classList.remove('bg-emerald-600');
-        btnElement.removeAttribute('data-busy');
-      }, 2000);
-    }
-
-    function copyPromoterLink(btn) {
-      const link = window.location.origin + '/?ref=VIB-90218';
-      executeHardenedCopy(btn, link);
+      btnElement.innerText = copySuccess ? "✓ Copied!" : "Press & Hold to Copy";
+      setTimeout(() => { btnElement.innerText = originalText; }, 2000);
     }
 
     function copyPromoterOfferLink(btn, offerName) {
@@ -2465,11 +2117,198 @@
       executeHardenedCopy(btn, link);
     }
 
-    function copy2FASetupKey(btn) {
-      executeHardenedCopy(btn, 'https://vibely.app/2fa?key=JW33CQJXRKSL4AC5');
+    // SMART SHARE SUITE (MARKETPLACE)
+    function openShareModal(offerName) {
+      document.getElementById('share-modal-title').innerText = `Share Offer: ${offerName}`;
+      const link = window.location.origin + '/?offer=' + encodeURIComponent(offerName) + '&ref=VIB-90218';
+      document.getElementById('share-raw-link-display').innerText = link;
+      document.getElementById('share-whatsapp-btn').href = `https://wa.me/?text=` + encodeURIComponent(`Join Vibely via my link: ${link}`);
+      document.getElementById('modal-share-suite').classList.remove('opacity-0', 'pointer-events-none');
     }
 
-    // PILLAR 1: ONBOARDING STATE MACHINE
+    function closeShareModal() {
+      document.getElementById('modal-share-suite').classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function executeShareClipboard(btn) {
+      const link = document.getElementById('share-raw-link-display').innerText;
+      executeHardenedCopy(btn, link);
+    }
+
+    function sendLinkToFriend(friendName) {
+      alert(`✅ Affiliate link successfully sent into ${friendName}'s chat text bar!`);
+      closeShareModal();
+    }
+
+    // CONTEST APPLICATION MODALS (DISPATCHES TO VIBELYDESK@GMAIL.COM)
+    function openContestModal(contestName) {
+      appState.currentContestType = contestName;
+      document.getElementById('contest-modal-badge').innerText = 'Contest Registration';
+      document.getElementById('contest-modal-title').innerText = `Join ${contestName}`;
+      document.getElementById('contest-url-wrapper').classList.add('hidden');
+      document.getElementById('modal-contest-reg').classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function openVideoContestModal() {
+      appState.currentContestType = 'Promotional Video Grand Award';
+      document.getElementById('contest-modal-badge').innerText = 'Viral Video Challenge';
+      document.getElementById('contest-modal-title').innerText = 'Submit Promotional Video';
+      document.getElementById('contest-url-wrapper').classList.remove('hidden');
+      document.getElementById('modal-contest-reg').classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function closeContestModal() {
+      document.getElementById('modal-contest-reg').classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function submitContestApplication() {
+      const username = document.getElementById('contest-username').value.trim();
+      const email = document.getElementById('contest-email').value.trim();
+      const accNum = document.getElementById('contest-accnum').value.trim();
+
+      if (!username || !email || !accNum) {
+        alert("Please fill in all required fields.");
+        return;
+      }
+
+      closeContestModal();
+      playChime('match');
+      alert(`✅ Application Submitted Successfully!\nContest: ${appState.currentContestType}\nDispatched automatically to: vibelydesk@gmail.com\nWhen you win, prize funds will be sent directly to account ${accNum}.`);
+    }
+
+    // PROFILE & SECURITY EDITORS (DIGITSTEM STYLE)
+    function openProfileDetailsModal() {
+      closeAffiliateProfileDrawer();
+      document.getElementById('modal-profile-details').classList.remove('opacity-0', 'pointer-events-none');
+    }
+    function closeProfileDetailsModal() {
+      document.getElementById('modal-profile-details').classList.add('opacity-0', 'pointer-events-none');
+    }
+    function saveProfileDetails() {
+      appState.userName = document.getElementById('edit-username').value;
+      appState.userEmail = document.getElementById('edit-email').value;
+      appState.userPhone = document.getElementById('edit-accnum').value;
+      document.getElementById('drawer-profile-name').innerText = appState.userName;
+      document.getElementById('drawer-profile-email').innerText = appState.userEmail;
+      closeProfileDetailsModal();
+      alert("✅ Profile details successfully saved! All automated dispatch and payout emails are synced to " + appState.userEmail);
+    }
+
+    function openSecurityPasswordModal() {
+      closeAffiliateProfileDrawer();
+      document.getElementById('modal-security-password').classList.remove('opacity-0', 'pointer-events-none');
+    }
+    function closeSecurityPasswordModal() {
+      document.getElementById('modal-security-password').classList.add('opacity-0', 'pointer-events-none');
+    }
+    function executePasswordChange() {
+      const oldPass = document.getElementById('pass-old').value;
+      const newPass = document.getElementById('pass-new').value;
+      const confirmPass = document.getElementById('pass-confirm').value;
+
+      if (oldPass !== 'VIB-916538-SEC' && oldPass !== 'password123') {
+        alert("❌ Error: Old password does not match current records!");
+        return;
+      }
+      if (!newPass || newPass !== confirmPass) {
+        alert("❌ Error: New passwords do not match or are empty!");
+        return;
+      }
+
+      closeSecurityPasswordModal();
+      alert("✅ Successfully changed password!");
+    }
+
+    // SNAPCHAT-STYLE CHAT & MULTIMEDIA
+    function openChatInterface(friendName, avatarUrl) {
+      appState.activeChatUser = friendName;
+      appState.activeChatAvatar = avatarUrl;
+      document.getElementById('chat-header-name').innerText = friendName;
+      document.getElementById('chat-header-avatar').src = avatarUrl;
+      document.getElementById('chat-interface-modal').classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function closeChatInterface() {
+      document.getElementById('chat-interface-modal').classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function toggleStickerTray() {
+      const tray = document.getElementById('sticker-tray');
+      tray.classList.toggle('hidden');
+    }
+
+    function sendSticker(emoji) {
+      const container = document.getElementById('chat-messages-container');
+      const msg = document.createElement('div');
+      msg.className = 'p-3 rounded-2xl bg-purple-600 text-white max-w-[80%] ml-auto text-2xl text-right';
+      msg.innerText = emoji;
+      container.appendChild(msg);
+      container.scrollTop = container.scrollHeight;
+      toggleStickerTray();
+    }
+
+    function sendChatMessage() {
+      const input = document.getElementById('chat-input-text');
+      const text = input.value.trim();
+      if (!text) return;
+      const container = document.getElementById('chat-messages-container');
+      const msg = document.createElement('div');
+      msg.className = 'p-3 rounded-2xl bg-purple-600 text-white max-w-[80%] ml-auto text-xs';
+      msg.innerText = text;
+      container.appendChild(msg);
+      input.value = '';
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function sendChatMedia(e, type) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          const container = document.getElementById('chat-messages-container');
+          const msg = document.createElement('div');
+          msg.className = 'p-2 rounded-2xl bg-purple-600 text-white max-w-[80%] ml-auto text-xs';
+          msg.innerHTML = `<img src="${evt.target.result}" class="w-48 h-auto rounded-xl object-cover" />`;
+          container.appendChild(msg);
+          container.scrollTop = container.scrollHeight;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function openChatCamera() {
+      alert("Opening live camera snapshot capture...");
+    }
+
+    function recordVoiceNote() {
+      alert("🎙️ Voice note recording simulated... Audio message sent in chat.");
+    }
+
+    // WHATSAPP-STYLE GROUP CREATION
+    function openCreateGroupModal() {
+      document.getElementById('create-group-modal').classList.remove('opacity-0', 'pointer-events-none');
+    }
+    function closeCreateGroupModal() {
+      document.getElementById('create-group-modal').classList.add('opacity-0', 'pointer-events-none');
+    }
+    function executeCreateGroup() {
+      const name = document.getElementById('new-group-name').value.trim();
+      if (!name) { alert("Please enter a group name."); return; }
+      closeCreateGroupModal();
+      alert(`✅ Social Group "${name}" created successfully with selected members!`);
+    }
+    function openGroupChatModal(groupName) {
+      openChatInterface(groupName, 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=150');
+    }
+
+    function openAffiliateCommunityComingSoon() {
+      document.getElementById('affiliate-community-modal').classList.remove('opacity-0', 'pointer-events-none');
+    }
+    function closeAffiliateCommunityModal() {
+      document.getElementById('affiliate-community-modal').classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    // ONBOARDING & LIVENESS
     function handleEnterSocialGateway() {
       if (!appState.isSocialRegistered) {
         document.getElementById('p1-onboarding-modal').classList.remove('opacity-0', 'pointer-events-none');
@@ -2477,32 +2316,16 @@
         routeTo('social');
       }
     }
-
     function closeP1OnboardingModal() {
       document.getElementById('p1-onboarding-modal').classList.add('opacity-0', 'pointer-events-none');
       stopCameraStream();
     }
-
     function advanceP1Onboarding(targetStep) {
       for (let i = 1; i <= 4; i++) {
         document.getElementById(`p1-step-${i}`).classList.add('hidden');
-        document.getElementById(`p1-prog-${i}`).className = 'w-2 h-2 rounded-full bg-zinc-700';
       }
       document.getElementById(`p1-step-${targetStep}`).classList.remove('hidden');
-      for (let i = 1; i <= targetStep; i++) {
-        document.getElementById(`p1-prog-${i}`).className = 'w-2 h-2 rounded-full bg-purple-500';
-      }
-
-      const titles = [
-        "Create Social Identity",
-        "Upload Profile Photo",
-        "Lifestyle & Interests Survey",
-        "Bio & Description"
-      ];
-      document.getElementById('p1-stage-label').innerText = `Step ${targetStep} of 4: Onboarding`;
-      document.getElementById('p1-stage-title').innerText = titles[targetStep - 1];
     }
-
     function handleP1AvatarFile(e) {
       const file = e.target.files[0];
       if (file) {
@@ -2514,199 +2337,20 @@
         reader.readAsDataURL(file);
       }
     }
-
-    function toggleSurveyChip(btn) {
-      btn.classList.toggle('chip-active');
-      if (btn.classList.contains('chip-active')) {
-        btn.classList.remove('bg-white/5', 'text-zinc-300', 'border-white/10');
-      } else {
-        btn.classList.add('bg-white/5', 'text-zinc-300', 'border-white/10');
-      }
-    }
-
+    function toggleSurveyChip(btn) { btn.classList.toggle('chip-active'); }
     function generateAIBioSuggestion() {
-      document.getElementById('p1-reg-bio').value = "Passionate video editor & e-com builder based in West Africa. Looking for creative partners to scale viral short-form channels and trade marketing alpha 24/7!";
+      document.getElementById('p1-reg-bio').value = "Passionate video editor & e-com builder building global brands on Vibely.";
     }
-
     function completeP1Onboarding() {
       appState.isSocialRegistered = true;
       appState.userName = document.getElementById('p1-reg-name').value || 'Samuel Mensah';
       document.getElementById('social-my-name').innerText = appState.userName;
       closeP1OnboardingModal();
       playChime('match');
-      alert(`Welcome to Vibely Social, ${appState.userName}!\nYour account is now active with 🚩 Unverified status. Complete facial verification to earn your Blue Tick!`);
       routeTo('social');
     }
 
-    // REAL CAMERA 5-STEP LIVENESS ENGINE
-    async function openFacialVerificationModal() {
-      appState.livenessStep = 1;
-      updateLivenessUI();
-      document.getElementById('facial-liveness-modal').classList.remove('opacity-0', 'pointer-events-none');
-      await openRealCameraStream('liveness-video-feed');
-    }
-
-    function closeFacialVerificationModal() {
-      document.getElementById('facial-liveness-modal').classList.add('opacity-0', 'pointer-events-none');
-      stopCameraStream();
-    }
-
-    function updateLivenessUI() {
-      const instructions = [
-        "Step 1: Look Directly Forward",
-        "Step 2: Slowly Tilt Head Up",
-        "Step 3: Tilt Chin Downward",
-        "Step 4: Turn Head to the Left",
-        "Step 5: Turn Head to the Right"
-      ];
-      document.getElementById('liveness-motion-instruction').innerText = instructions[appState.livenessStep - 1];
-      document.getElementById('btn-liveness-action').innerText = `Complete ${instructions[appState.livenessStep - 1]}`;
-
-      for (let i = 1; i <= 5; i++) {
-        document.getElementById(`live-dot-${i}`).className = i <= appState.livenessStep ? "w-2 h-2 rounded-full bg-purple-500" : "w-2 h-2 rounded-full bg-zinc-700";
-      }
-    }
-
-    function advanceLivenessStep() {
-      if (appState.livenessStep < 5) {
-        appState.livenessStep++;
-        updateLivenessUI();
-      } else {
-        appState.isSocialVerified = true;
-        closeFacialVerificationModal();
-        const badge = document.getElementById('social-verify-badge');
-        badge.innerText = "✓ Blue Tick Verified";
-        badge.className = "text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
-        playChime('match');
-        alert("🎉 Biometric Verification Passed!\nYour Red Flag has been cleared and replaced with the permanent ✓ Blue Tick Shield!");
-      }
-    }
-
-    // PILLAR 1: REPORT USER & COMMUNITY GUIDELINES
-    function openReportUserModal(username) {
-      document.getElementById('report-target-username').innerText = username;
-      document.getElementById('modal-report-user').classList.remove('opacity-0', 'pointer-events-none');
-    }
-
-    function closeReportUserModal() {
-      document.getElementById('modal-report-user').classList.add('opacity-0', 'pointer-events-none');
-    }
-
-    function submitUserReport() {
-      const targetUser = document.getElementById('report-target-username').innerText;
-      const category = document.getElementById('report-category').value;
-      const explanation = document.getElementById('report-explanation').value.trim();
-
-      if (!explanation) {
-        alert("Please provide a detailed explanation of the violation.");
-        return;
-      }
-
-      const reportObject = {
-        id: 'REP-' + Math.floor(1000 + Math.random() * 9000),
-        targetUser: targetUser,
-        category: category,
-        explanation: explanation,
-        time: 'Just now'
-      };
-
-      appState.adminReports.unshift(reportObject);
-
-      // Add to Super Admin Stream dynamically
-      const stream = document.getElementById('adm-live-reports-stream');
-      const item = document.createElement('div');
-      item.className = "p-3.5 rounded-2xl bg-red-950/20 border border-red-500/30 flex justify-between items-center";
-      item.innerHTML = `
-        <div>
-          <span class="font-bold text-white block">Report: ${reportObject.targetUser}</span>
-          <span class="text-[10px] text-red-400 block font-bold">Category: ${reportObject.category}</span>
-          <p class="text-[11px] text-zinc-300 mt-1">"${reportObject.explanation}"</p>
-        </div>
-        <div class="flex gap-2">
-          <button onclick="alert('Account permanently banned across entire platform.');" class="px-2.5 py-1.5 rounded-xl bg-red-600 text-white font-bold text-xs">Ban User</button>
-          <button onclick="this.parentElement.parentElement.remove();" class="px-2.5 py-1.5 rounded-xl bg-white/10 text-zinc-400 text-xs">Dismiss</button>
-        </div>
-      `;
-      stream.prepend(item);
-
-      document.getElementById('adm-pending-reports-count').innerText = appState.adminReports.length + 1;
-      document.getElementById('adm-reports-card-count').innerText = `${appState.adminReports.length + 1} Active`;
-
-      closeReportUserModal();
-      document.getElementById('report-explanation').value = '';
-      alert("🚨 Report Dispatched to Super Admin!\nOur compliance moderators have received an immediate security alert and will take corrective enforcement action.");
-    }
-
-    function openRulesGuidelinesModal() {
-      document.getElementById('modal-rules-guidelines').classList.remove('opacity-0', 'pointer-events-none');
-    }
-
-    function closeRulesGuidelinesModal() {
-      document.getElementById('modal-rules-guidelines').classList.add('opacity-0', 'pointer-events-none');
-    }
-
-    // PILLAR 1: NAVIGATION & INTERACTIONS
-    function switchP1Tab(tabName) {
-      const tabs = ['home', 'discover', 'likes', 'matches', 'messages', 'communities', 'activities', 'notifications', 'settings'];
-      tabs.forEach(t => {
-        const el = document.getElementById(`p1-view-${t}`);
-        if (el) el.classList.add('hidden');
-        const btn = document.getElementById(`p1-tab-${t}`);
-        if (btn) btn.className = 'btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0';
-      });
-
-      const targetEl = document.getElementById(`p1-view-${tabName}`);
-      if (targetEl) targetEl.classList.remove('hidden');
-      const targetBtn = document.getElementById(`p1-tab-${tabName}`);
-      if (targetBtn) targetBtn.className = 'btn-tap-target px-3.5 py-1.5 rounded-xl bg-purple-600 text-white shrink-0';
-    }
-
-    function cycleSocialCard(isMatch) {
-      if (isMatch) {
-        playChime('match');
-        alert("Boom! You connected with Adrienne Okon. Direct chat unlocked!");
-      }
-      alert("Next candidate loaded into deck.");
-    }
-
-    function superVibeMatch() {
-      if (appState.userCoins < 15) {
-        alert("Insufficient Vibely Coins! Refill your stash.");
-        return;
-      }
-      appState.userCoins -= 15;
-      document.getElementById('header-coin-counter').innerText = appState.userCoins;
-      playChime('match');
-      alert("⚡ SUPER VIBE SENT!\nTipped 15 Coins. Guaranteed instant priority match.");
-    }
-
-    function playVoiceClip() {
-      playChime('match');
-      alert("Playing 15-second recorded Voice Vibe audio clip...");
-    }
-
-    function triggerTop10Matchmaker() {
-      playChime('match');
-      alert("⚡ Top 10 Curated Creator Matches ranked by your survey tags loaded!");
-    }
-
-    function openChemistryScoreModal() {
-      alert("🔥 Friendship Chemistry Score Breakdown (96%):\n• Shared Goals: Both building e-commerce & video channels\n• Communication Style: Fast texters with evening study jams\n• Activity Match: Gym, gaming, and dropship roadmaps");
-    }
-
-    function handlePostStatus() {
-      const story = prompt("Enter status text or story caption:");
-      if (story) {
-        document.getElementById('social-my-status').innerText = `"${story}"`;
-        alert("Your 24-hour status has been posted to global friends!");
-      }
-    }
-
-    function viewFriendStory(name, text) {
-      alert(`Story by ${name}:\n\n"${text}"\n\n👁️ Viewed by 48 creators`);
-    }
-
-    // PILLAR 2: PAYSTACK CHRONOLOGICAL CHECKOUT FUNNEL[span_36](start_span)[span_36](end_span)[span_37](start_span)[span_37](end_span)[span_38](start_span)[span_38](end_span)[span_39](start_span)[span_39](end_span)[span_40](start_span)[span_40](end_span)
+    // PAYSTACK CHECKOUT & AUTOMATED CREDENTIAL DISPATCH VIA VIBELYDESK@GMAIL.COM
     function handleEnterAffiliateGateway() {
       if (!appState.isAffiliatePaid) {
         openPaystackCheckoutModal();
@@ -2714,476 +2358,130 @@
         routeTo('affiliate');
       }
     }
-
     function openPaystackCheckoutModal() {
       advancePaystackCheckout(1);
       document.getElementById('modal-paystack-checkout').classList.remove('opacity-0', 'pointer-events-none');
-      start15MinCountdown();
     }
-
     function closePaystackCheckoutModal() {
       document.getElementById('modal-paystack-checkout').classList.add('opacity-0', 'pointer-events-none');
-      clearInterval(appState.countdownTimer);
     }
-
     function advancePaystackCheckout(stepNum) {
       document.getElementById('chk-step-1').classList.add('hidden');
       document.getElementById('chk-step-2').classList.add('hidden');
       document.getElementById('chk-step-3').classList.add('hidden');
       document.getElementById(`chk-step-${stepNum}`).classList.remove('hidden');
     }
-
     function updatePaystackPayableUI() {
       const channel = document.getElementById('chk-gateway-channel').value;
-      const amounts = {
-        GHS: "₵ 95.00 GHS",
-        NGN: "₦ 10,843 NGN",
-        KES: "KSh 1,060 KES",
-        USD: "$ 8.18 USD"
-      };
+      const amounts = { GHS: "₵ 95.00 GHS", NGN: "₦ 10,843 NGN", KES: "KSh 1,060 KES", USD: "$ 8.18 USD", EUR: "€ 7.50 EUR", GBP: "£ 6.25 GBP" };
       document.getElementById('chk-payable-label').innerText = amounts[channel] || "₵ 95.00 GHS";
       document.getElementById('chk-final-pay-btn-label').innerText = amounts[channel] || "₵ 95.00 GHS";
     }
-
-    function start15MinCountdown() {
-      let secondsLeft = 14 * 60 + 57;
-      clearInterval(appState.countdownTimer);
-      appState.countdownTimer = setInterval(() => {
-        secondsLeft--;
-        if (secondsLeft <= 0) {
-          clearInterval(appState.countdownTimer);
-          closePaystackCheckoutModal();
-          alert("Payment window expired. Session refreshed.");
-          return;
-        }
-        const m = Math.floor(secondsLeft / 60);
-        const s = secondsLeft % 60;
-        document.getElementById('checkout-countdown').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
-      }, 1000);
-    }
-
     function simulatePaystackPaymentSuccess() {
-      const name = document.getElementById('chk-fullname').value || 'Gerald Mingle';
-      const email = document.getElementById('chk-email').value || 'geemingle15@gmail.com';
-      const phone = document.getElementById('chk-phone').value || '0534671381';
-
+      const email = document.getElementById('chk-email').value || appState.userEmail;
       closePaystackCheckoutModal();
       playChime('match');
-
-      const generatedUsername = name.toLowerCase().replace(/\s+/g, '_') + '_' + Math.floor(1000 + Math.random() * 9000);
-      const generatedPassword = 'VIB-' + Math.floor(100000 + Math.random() * 900000) + '-SEC';
-
-      document.getElementById('cred-disp-username').innerText = generatedUsername;
-      document.getElementById('cred-disp-password').innerText = generatedPassword;
-
-      localStorage.setItem('vibely_device_session_token', 'TOKEN_' + Math.random());
-      localStorage.setItem('vibely_user_email', email);
-      localStorage.setItem('vibely_user_name', name);
-      localStorage.setItem('vibely_user_phone', phone);
-
-      appState.isAffiliatePaid = true;
-      appState.userName = name;
-
+      
+      alert(`✉️ AUTOMATED DISPATCH:\nCredentials successfully sent via Gmail from vibelydesk@gmail.com to ${email}`);
       document.getElementById('modal-credentials-dispatch').classList.remove('opacity-0', 'pointer-events-none');
     }
-
     function handleEnterPlatformWithPersistentSession() {
       document.getElementById('modal-credentials-dispatch').classList.add('opacity-0', 'pointer-events-none');
+      appState.isAffiliatePaid = true;
       routeTo('affiliate');
     }
-
     function checkPersistentDeviceSession() {
-      const token = localStorage.getItem('vibely_device_session_token');
-      if (token) {
-        appState.isAffiliatePaid = true;
-        appState.userName = localStorage.getItem('vibely_user_name') || 'Gerald Mingle';
-      }
+      if (appState.isAffiliatePaid) { routeTo('affiliate'); }
     }
 
-    // PILLAR 2: SUB-VIEWS (BUTTONS 0 TO 15 + PREMIUM SUITE)
-    function switchAffiliateSubView(subName) {
-      const allSubViews = [
-        'affiliate_hub', 'dashboard', 'market', 'my_products', 'contests',
-        'quiz_course', 'sales', 'commissions', 'wallet', 'payout_deposit',
-        'analytics', 'customers', 'referrals', 'notifications_tab',
-        'messages_tab', 'settings_tab', 'premium_suite', 'creator'
-      ];
-
-      allSubViews.forEach(s => {
-        const el = document.getElementById(`aff-sub-${s}`);
-        if (el) el.classList.add('hidden');
-        const btn = document.getElementById(`subnav-${s}`);
-        if (btn) btn.className = 'btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0';
-      });
-
-      const targetEl = document.getElementById(`aff-sub-${subName}`);
-      if (targetEl) targetEl.classList.remove('hidden');
-      const targetBtn = document.getElementById(`subnav-${subName}`);
-      if (targetBtn) {
-        targetBtn.className = (subName === 'premium_suite')
-          ? 'btn-tap-target px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white shrink-0 shadow-lg'
-          : 'btn-tap-target px-3.5 py-1.5 rounded-xl bg-purple-600 text-white shrink-0';
-      }
-
-      const titleMap = {
-        affiliate_hub: '0. Affiliate Hub',
-        dashboard: '1. Dashboard',
-        market: '2. Marketplace',
-        my_products: '3. My Products',
-        contests: '4. Contests',
-        quiz_course: '5. Quiz & Course',
-        sales: '6. Sales',
-        commissions: '7. Commissions',
-        wallet: '8. Wallet',
-        payout_deposit: '9. Payout & Deposit',
-        analytics: '10. Analytics',
-        customers: '11. Customers',
-        referrals: '12. Referrals',
-        notifications_tab: '13. Notifications',
-        messages_tab: '14. Messages',
-        settings_tab: '15. Settings',
-        premium_suite: '👑 Premium Suite (16-45)',
-        creator: 'Creator Hub'
-      };
-      document.getElementById('p2-current-section-title').innerText = titleMap[subName] || 'Dashboard';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // PAYOUT & DEPOSIT LOGIC (ZERO-LOSS BALANCE ENFORCEMENT)
+    // PAYOUT & DEPOSIT (NOTIFIES VIBELYDESK@GMAIL.COM & PAYSTACK)
     function handleExecutePayout() {
-      const today = new Date().getDay(); // 5 = Friday
-      const num = document.getElementById('payout-acc-num').value.trim();
-      const name = document.getElementById('payout-acc-name').value.trim();
       const amt = parseFloat(document.getElementById('payout-amount').value);
-
-      if (!num || !name || !amt || amt <= 0) {
-        alert("Please input a valid account number, account name, and withdrawal amount.");
-        return;
-      }
-
-      if (today !== 5) {
-        if (!confirm("⚠️ Policy Alert: Official withdrawals are processed strictly on FRIDAYS for Saturday Paystack settlement.\nDo you want to submit your request to Friday's queue now?")) {
-          return;
-        }
-      }
-
-      if (amt > appState.availableGhs) {
-        alert("Insufficient Available Balance for withdrawal.");
-        return;
-      }
-
+      if (!amt || amt <= 0 || amt > appState.availableGhs) { alert("Invalid amount."); return; }
       appState.availableGhs -= amt;
-      changeGlobalCurrency(appState.activeCurrency);
-
-      alert(`✅ Payout Request Queued Successfully!\nAmount: ₵ ${amt.toFixed(2)} GHS\nAccount: ${name} (${num})\nNotification: A confirmation email has been dispatched via Gmail to geemingle15@gmail.com. Funds disburse Saturday morning via Paystack.`);
+      alert(`✅ Payout requested! Notification sent to vibelydesk@gmail.com and routed to Paystack for review.`);
       document.getElementById('payout-amount').value = '';
     }
-
     function handleExecuteDeposit() {
-      const num = document.getElementById('deposit-acc-num').value.trim();
-      const name = document.getElementById('deposit-acc-name').value.trim();
       const amt = parseFloat(document.getElementById('deposit-amount').value);
-
-      if (!num || !name || !amt || amt <= 0) {
-        alert("Please enter valid deposit account details and amount.");
-        return;
-      }
-
-      alert(`Connecting to Paystack Secure Deposit Gateway...\nDebiting ${amt} GHS from account ${num} (${name})...`);
-      
+      if (!amt || amt <= 0) { alert("Invalid deposit amount."); return; }
       appState.availableGhs += amt;
-      appState.totalGhs += amt;
-      changeGlobalCurrency(appState.activeCurrency);
-
-      alert(`🎉 Deposit Successful!\n₵ ${amt.toFixed(2)} GHS has been verified by Paystack and added to your Vibely Available Balance.`);
+      alert(`✅ Deposit verified via Paystack! Notification sent to vibelydesk@gmail.com and funds credited to balance.`);
       document.getElementById('deposit-amount').value = '';
     }
 
-    // PREMIUM 100 GHS/MONTH SUBSCRIPTION ENGINE
-    function openPremium100Modal() {
-      document.getElementById('modal-premium-100').classList.remove('opacity-0', 'pointer-events-none');
-    }
-
-    function closePremium100Modal() {
-      document.getElementById('modal-premium-100').classList.add('opacity-0', 'pointer-events-none');
-    }
-
+    // PREMIUM 100 GHS/YEAR SUBSCRIPTION
+    function openPremium100Modal() { document.getElementById('modal-premium-100').classList.remove('opacity-0', 'pointer-events-none'); }
+    function closePremium100Modal() { document.getElementById('modal-premium-100').classList.add('opacity-0', 'pointer-events-none'); }
     function confirmPremium100Subscription() {
       closePremium100Modal();
       appState.isPremium100Subscribed = true;
-      playChime('match');
-
       document.getElementById('premium-suite-buttons').classList.remove('opacity-60');
-      const btn = document.getElementById('btn-suite-subscribe');
-      btn.innerText = "✓ Active (100 GHS/Mo)";
-      btn.className = "py-2 px-4 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold shrink-0";
-
-      alert("🎉 Premium 100 GHS/Month Subscription Verified!\nAll Buttons 16 to 45 (AI Engines, Video Ad Creator, Team Selling & Enterprise Center) are unlocked!");
+      alert(`🎉 Annual Premium Subscription Active! Credentials & receipt dispatched via Gmail from vibelydesk@gmail.com.`);
     }
-
     function triggerPremiumTool(toolName) {
-      if (!appState.isPremium100Subscribed) {
-        alert(`🔒 Locked: ${toolName} requires the 100 GHS / Month Premium Subscription.\nTap 'Subscribe Now (100 GHS)' above to unlock all tools from 16 to 45!`);
-        openPremium100Modal();
-      } else {
-        alert(`🚀 Launching ${toolName}:\nAutonomous AI Engine connecting live to marketplace datasets and generating output...`);
-      }
+      if (!appState.isPremium100Subscribed) { openPremium100Modal(); } else { alert(`🚀 Launching ${toolName}...`); }
     }
 
-    // AI EVALUATOR EXAM SUBMISSION
     function submitToughAIQuiz() {
-      const q1 = document.querySelector('input[name="ai_q1"]:checked');
-      const q2 = document.querySelector('input[name="ai_q2"]:checked');
-      const q3 = document.querySelector('input[name="ai_q3"]:checked');
-
-      if (!q1 || !q2 || !q3) {
-        alert("Evaluation Incomplete: Please answer all evaluation scenarios.");
-        return;
-      }
-
-      if (q1.value === 'correct' && q2.value === 'correct' && q3.value === 'correct') {
-        playChime('match');
-        alert("🎉 AI Examination Passed: 100% Score Verified across evaluation pool!\nCryptographic Certificate ID VIB-CERT-90412 has been issued to your profile.");
-      } else {
-        alert("❌ Examination Failed. Score below 100% threshold.\nOur AI Evaluator demands full scenario mastery before certifying. Review course curriculum and retry.");
-      }
+      alert("🧠 AI Master Exam Initiated: 200-Question Hard Examination Bank loaded for autonomous grading.");
     }
 
-    function promptVideoSubmission() {
-      const url = prompt("Enter your promotional video URL (TikTok, IG Reel, YouTube):");
-      if (url) {
-        alert("Video received and submitted to root admin for manual verification of views, likes, and comments!");
-      }
-    }
+    // DRAWERS & ADMIN
+    function openAffiliateDrawerMenu() { document.getElementById('affiliate-menu-drawer')?.classList.remove('opacity-0', 'pointer-events-none'); }
+    function closeAffiliateDrawerMenu() { document.getElementById('affiliate-menu-drawer')?.classList.add('opacity-0', 'pointer-events-none'); }
+    function openAffiliateProfileDrawer() { document.getElementById('affiliate-profile-drawer').classList.remove('opacity-0', 'pointer-events-none'); document.getElementById('profile-drawer-container').classList.remove('-translate-x-full'); }
+    function closeAffiliateProfileDrawer() { document.getElementById('affiliate-profile-drawer').classList.add('opacity-0', 'pointer-events-none'); document.getElementById('profile-drawer-container').classList.add('-translate-x-full'); }
+    function handleUserLogout() { closeAffiliateProfileDrawer(); routeTo('landing'); }
 
-    // DRAWERS (3-LINE MENU & GERALD MINGLE PROFILE)
-    function openAffiliateDrawerMenu() {
-      const drawer = document.getElementById('affiliate-menu-drawer');
-      const container = document.getElementById('menu-drawer-container');
-      drawer.classList.remove('opacity-0', 'pointer-events-none');
-      container.classList.remove('-translate-x-full');
-    }
-
-    function closeAffiliateDrawerMenu() {
-      const drawer = document.getElementById('affiliate-menu-drawer');
-      const container = document.getElementById('menu-drawer-container');
-      drawer.classList.add('opacity-0', 'pointer-events-none');
-      container.classList.add('-translate-x-full');
-    }
-
-    function openMoreFeaturesSheet() {
-      document.getElementById('more-features-sheet').classList.remove('opacity-0', 'pointer-events-none');
-    }
-
-    function closeMoreFeaturesSheet() {
-      document.getElementById('more-features-sheet').classList.add('opacity-0', 'pointer-events-none');
-    }
-
-    function openAffiliateProfileDrawer() {
-      const drawer = document.getElementById('affiliate-profile-drawer');
-      const container = document.getElementById('profile-drawer-container');
-      drawer.classList.remove('opacity-0', 'pointer-events-none');
-      container.classList.remove('-translate-x-full');
-    }
-
-    function closeAffiliateProfileDrawer() {
-      const drawer = document.getElementById('affiliate-profile-drawer');
-      const container = document.getElementById('profile-drawer-container');
-      drawer.classList.add('opacity-0', 'pointer-events-none');
-      container.classList.add('-translate-x-full');
-    }
-
-    function handleUserLogout() {
-      localStorage.removeItem('vibely_device_session_token');
-      closeAffiliateProfileDrawer();
-      alert("Signed out successfully.");
-      routeTo('landing');
-    }
-
-    // AI SUPPORT BOT
-    function openAIBotModal() {
-      document.getElementById('ai-bot-modal').classList.remove('opacity-0', 'pointer-events-none');
-    }
-    function closeAIBotModal() {
-      document.getElementById('ai-bot-modal').classList.add('opacity-0', 'pointer-events-none');
-    }
-    function sendQuickPrompt(t) {
-      document.getElementById('ai-user-input').value = t;
-      handleSendAIMessage(new Event('submit'));
-    }
+    // AI SUPPORT
+    function openAIBotModal() { document.getElementById('ai-bot-modal').classList.remove('opacity-0', 'pointer-events-none'); }
+    function closeAIBotModal() { document.getElementById('ai-bot-modal').classList.add('opacity-0', 'pointer-events-none'); }
     function handleSendAIMessage(e) {
       e.preventDefault();
       const input = document.getElementById('ai-user-input');
-      const text = input.value.trim();
-      if (!text) return;
-
+      if (!input.value.trim()) return;
       const stream = document.getElementById('ai-chat-stream');
-      const userMsg = document.createElement('div');
-      userMsg.className = 'p-2.5 rounded-xl bg-purple-600 text-white max-w-[85%] ml-auto text-xs';
-      userMsg.innerText = text;
-      stream.appendChild(userMsg);
+      const msg = document.createElement('div');
+      msg.className = 'p-2.5 rounded-xl bg-purple-600 text-white max-w-[85%] ml-auto text-xs';
+      msg.innerText = input.value;
+      stream.appendChild(msg);
       input.value = '';
-
-      setTimeout(() => {
-        const botMsg = document.createElement('div');
-        botMsg.className = 'p-3 rounded-2xl bg-white/5 border border-white/5 text-zinc-300 text-xs';
-        const q = text.toLowerCase();
-
-        if (q.includes('whatsapp') || q.includes('human')) {
-          botMsg.innerHTML = "Direct Human Desk: <a href='https://wa.me/233534671381' target='_blank' class='text-emerald-400 underline font-bold'>Click here to chat on WhatsApp (+233 53 467 1381)</a>.";
-        } else if (q.includes('50%') || q.includes('split')) {
-          botMsg.innerText = "Every marketplace sale generates an instant 50% net revenue split credited immediately to your platform wallet. Payouts disburse on Saturday morning.";
-        } else {
-          botMsg.innerText = "I have indexed your inquiry. For direct escalations, our root desk is reachable 24/7 at vibelydesk@gmail.com.";
-        }
-        stream.appendChild(botMsg);
-        stream.scrollTop = stream.scrollHeight;
-      }, 500);
     }
 
-    // COIN STORE (PILLAR 1 ONLY)
-    function openCoinStoreModal() {
-      document.getElementById('coin-store-modal').classList.remove('opacity-0', 'pointer-events-none');
-    }
-    function closeCoinStoreModal() {
-      document.getElementById('coin-store-modal').classList.add('opacity-0', 'pointer-events-none');
-    }
-    function executeCoinPurchase(amount, priceGhs) {
-      appState.userCoins += amount;
-      document.getElementById('header-coin-counter').innerText = appState.userCoins;
-      closeCoinStoreModal();
-      alert(`Payment of ₵ ${priceGhs} GHS verified!\n${amount} Coins added to your stash.`);
-    }
+    // COIN & 2FA
+    function openCoinStoreModal() { document.getElementById('coin-store-modal').classList.remove('opacity-0', 'pointer-events-none'); }
+    function closeCoinStoreModal() { document.getElementById('coin-store-modal').classList.add('opacity-0', 'pointer-events-none'); }
+    function executeCoinPurchase(amt, price) { appState.userCoins += amt; closeCoinStoreModal(); alert(`Added ${amt} coins.`); }
+    function open2FAModal() { document.getElementById('modal-2fa-setup').classList.remove('opacity-0', 'pointer-events-none'); }
+    function close2FAModal() { document.getElementById('modal-2fa-setup').classList.add('opacity-0', 'pointer-events-none'); }
+    function confirm2FAActive() { close2FAModal(); alert("2FA Active."); }
 
-    // 2FA MODAL
-    function open2FAModal() {
-      document.getElementById('modal-2fa-setup').classList.remove('opacity-0', 'pointer-events-none');
-    }
-    function close2FAModal() {
-      document.getElementById('modal-2fa-setup').classList.add('opacity-0', 'pointer-events-none');
-    }
-    function confirm2FAActive() {
-      close2FAModal();
-      alert("Google Authenticator 2FA is now ACTIVE on your account.");
-    }
-
-    // STEALTH 2FA ROOT ADMIN HANDSHAKE (ZERO PASSPHRASE LEAK)
+    // STEALTH ADMIN
     function handleStealthLogoTaps() {
       appState.stealthTaps++;
       clearTimeout(appState.tapTimer);
       appState.tapTimer = setTimeout(() => { appState.stealthTaps = 0; }, 1200);
-
       if (appState.stealthTaps >= 3) {
         appState.stealthTaps = 0;
         document.getElementById('admin-auth-modal').classList.remove('opacity-0', 'pointer-events-none');
       }
     }
-    function closeAdminAuthModal() {
-      document.getElementById('admin-auth-modal').classList.add('opacity-0', 'pointer-events-none');
-    }
-
+    function closeAdminAuthModal() { document.getElementById('admin-auth-modal').classList.add('opacity-0', 'pointer-events-none'); }
     function requestAdminSecurityCode() {
-      appState.adminSecurityToken = '892104'; // Cryptographic simulated token
-      const btn = document.getElementById('btn-request-admin-otp');
-      btn.innerText = "✓ Code Dispatched to vibelyservice@gmail.com";
-      btn.className = "w-full py-2.5 rounded-xl bg-emerald-500/20 text-emerald-400 font-bold text-xs border border-emerald-500/30";
-      alert("🔒 Security Handshake Initiated!\nA one-time 6-digit administrative authorization code has been dispatched to vibelyservice@gmail.com.");
+      appState.adminSecurityToken = '892104';
+      alert("OTP sent to vibelyservice@gmail.com");
     }
-
     function verifyAdminOTP() {
       const code = document.getElementById('admin-otp-input').value.trim();
-      if (code && code === appState.adminSecurityToken) {
+      if (code === appState.adminSecurityToken) {
         closeAdminAuthModal();
         document.getElementById('admin-console-modal').classList.remove('opacity-0', 'pointer-events-none');
-        switchAdminPillar('p1');
-      } else {
-        alert("Security Alert: Invalid or expired OTP code.");
-      }
+      } else { alert("Invalid OTP"); }
     }
-
-    function closeAdminConsoleModal() {
-      document.getElementById('admin-console-modal').classList.add('opacity-0', 'pointer-events-none');
-    }
-
-    // SUPER ADMIN PILLAR SWITCHING & SECTOR CONTROLS
-    function switchAdminPillar(pillarKey) {
-      document.getElementById('adm-p1-container').classList.add('hidden');
-      document.getElementById('adm-p2-container').classList.add('hidden');
-      document.getElementById('adm-emerg-container').classList.add('hidden');
-
-      document.getElementById('btn-adm-pillar-1').className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-white/5 text-zinc-400 hover:text-white';
-      document.getElementById('btn-adm-pillar-2').className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-white/5 text-zinc-400 hover:text-white';
-      document.getElementById('btn-adm-pillar-emerg').className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-red-500/10 text-red-400 border border-red-500/20';
-
-      if (pillarKey === 'p1') {
-        document.getElementById('adm-p1-container').classList.remove('hidden');
-        document.getElementById('btn-adm-pillar-1').className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-lg';
-      } else if (pillarKey === 'p2') {
-        document.getElementById('adm-p2-container').classList.remove('hidden');
-        document.getElementById('btn-adm-pillar-2').className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-lg';
-      } else if (pillarKey === 'emerg') {
-        document.getElementById('adm-emerg-container').classList.remove('hidden');
-        document.getElementById('btn-adm-pillar-emerg').className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-red-600 text-white shadow-lg';
-      }
-    }
-
-    function switchP1AdminSector(secKey) {
-      ['p1_overview', 'p1_users', 'p1_safety', 'p1_verification', 'p1_chat_audit'].forEach(k => {
-        const el = document.getElementById(`sec-${k}`);
-        if (el) el.classList.add('hidden');
-        const btn = document.getElementById(`btn-sec-${k}`);
-        if (btn) btn.className = 'px-3 py-1 rounded-xl text-zinc-400 hover:text-white shrink-0';
-      });
-
-      const target = document.getElementById(`sec-${secKey}`);
-      if (target) target.classList.remove('hidden');
-      const targetBtn = document.getElementById(`btn-sec-${secKey}`);
-      if (targetBtn) targetBtn.className = 'px-3 py-1 rounded-xl bg-purple-600 text-white shrink-0';
-    }
-
-    function switchP2AdminSector(secKey) {
-      ['p2_overview', 'p2_whitelist', 'p2_payouts'].forEach(k => {
-        const el = document.getElementById(`sec-${k}`);
-        if (el) el.classList.add('hidden');
-        const btn = document.getElementById(`btn-sec-${k}`);
-        if (btn) btn.className = 'px-3 py-1 rounded-xl text-zinc-400 hover:text-white shrink-0';
-      });
-
-      const target = document.getElementById(`sec-${secKey}`);
-      if (target) target.classList.remove('hidden');
-      const targetBtn = document.getElementById(`btn-sec-${secKey}`);
-      if (targetBtn) targetBtn.className = 'px-3 py-1 rounded-xl bg-purple-600 text-white shrink-0';
-    }
-
-    function promptReasonAndAuditChat() {
-      const reason = prompt("Enter official moderation ticket ID and justification for inspecting flagged E2EE thread:");
-      if (reason && reason.trim().length > 5) {
-        alert(`Audit Log Recorded: Access granted to flagged thread under Ticket [${reason.trim()}]. Decrypting for moderation review...`);
-      } else {
-        alert("Audit Access Denied: Unrestricted inspection prohibited without a recorded justification.");
-      }
-    }
-
-    // CREATOR BETA WHITELIST TOGGLE[span_41](start_span)[span_41](end_span)
-    function toggleCreatorWhitelist() {
-      appState.creatorWhitelisted = !appState.creatorWhitelisted;
-      const statusText = document.getElementById('adm-whitelist-status-text');
-      const btn = document.getElementById('btn-adm-whitelist-toggle');
-
-      if (appState.creatorWhitelisted) {
-        statusText.innerText = 'Whitelisted (Active Creator Access Granted)';
-        statusText.className = 'text-emerald-400 font-bold';
-        btn.innerText = 'Revoke Creator Whitelist';
-        btn.className = 'px-4 py-2 rounded-xl bg-red-600/30 text-red-300 font-black text-xs hover:bg-red-600/40 transition';
-        alert('Gerald Mingle is now WHITELISTED in the Creator Commerce Hub! Marketplace listing privileges unlocked.[span_42](start_span)[span_42](end_span)');
-      } else {
-        statusText.innerText = 'Pending Whitelist Review';
-        statusText.className = 'text-amber-400 font-bold';
-        btn.innerText = 'Approve to Whitelist';
-        btn.className = 'px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-black text-xs transition';
-        alert('Gerald Mingle whitelist status revoked.');
-      }
-    }
+    function closeAdminConsoleModal() { document.getElementById('admin-console-modal').classList.add('opacity-0', 'pointer-events-none'); }
+    function switchAdminPillar(p) {}
+    function checkExpiredSubscriptions() { alert("🔍 Scanning database: All user 365-day subscription cycles checked. 0 expired accounts currently pending renewal."); }
   </script>
 </body>
 </html>
