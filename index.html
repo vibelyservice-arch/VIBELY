@@ -2760,10 +2760,40 @@
       }, 1000);
     }
 
-       function simulatePaystackPaymentSuccess() {
+           function simulatePaystackPaymentSuccess() {
       const name = document.getElementById('chk-fullname').value || 'Gerald Mingle';
       const email = document.getElementById('chk-email').value || 'geemingle15@gmail.com';
-      const phone = document.getElementById('chk-phone').value || '0534671381';
+      
+      const amountGhs = 95.00;
+      const amountPesewas = Math.round(amountGhs * 100);
+
+      closePaystackCheckoutModal();
+
+      if (typeof PaystackPop === 'undefined') {
+        alert("Paystack SDK is still loading. Please wait 2 seconds and try again.");
+        return;
+      }
+
+      let handler = PaystackPop.setup({
+        key: 'pk_test_your_actual_key_here',
+        email: email,
+        amount: amountPesewas,
+        currency: 'GHS',
+        ref: 'VIB_' + Math.floor(Math.random() * 1000000000),
+        callback: function(response) {
+          playChime('match');
+          localStorage.setItem('vibely_device_session_token', response.reference);
+          appState.isAffiliatePaid = true;
+          document.getElementById('modal-credentials-dispatch').classList.remove('opacity-0', 'pointer-events-none');
+        },
+        onClose: function() {
+          alert('Transaction window closed.');
+        }
+      });
+
+      handler.openIframe();
+    }
+
       
       const amountGhs = 95.00;
       const amountPesewas = Math.round(amountGhs * 100);
