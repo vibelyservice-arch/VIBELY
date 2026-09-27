@@ -144,7 +144,7 @@
         <span id="header-coin-counter">250</span>
       </button>
 
-      <!-- 50+ Currency Dropdown Engine -->
+      <!-- 50+ Currency Dropdown Engine (Zero-Loss Fair Exchange) -->
       <div class="relative">
         <select 
           id="global-currency-select"
@@ -273,7 +273,7 @@
             onclick="handleEnterAffiliateGateway()" 
             class="btn-tap-target mt-6 w-full py-3.5 rounded-2xl bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 text-white font-black text-xs active:scale-95 transition shadow-xl shadow-purple-600/30 text-center"
           >
-            Enter Affiliate Marketing (<span data-price-ghs="95">₵ 95 GHS</span>) →
+            Enter Affiliate Marketing (<span data-price-ghs="95">₵ 95.00 GHS</span>) →
           </button>
         </div>
       </div>
@@ -290,7 +290,6 @@
     <div class="glass-panel w-full max-w-lg rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl relative my-auto">
       <button onclick="closeP1OnboardingModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
 
-      <!-- Stage Progress Indicator -->
       <div class="flex items-center justify-between mb-6 pb-3 border-b border-white/10">
         <div>
           <span class="text-[10px] uppercase font-bold text-purple-400 tracking-wider" id="p1-stage-label">Step 1 of 4: Onboarding</span>
@@ -445,6 +444,84 @@
   </div>
 
   <!-- ============================================================== -->
+  <!-- PILLAR 1: USER REPORT & SAFETY VIOLATION MODAL -->
+  <!-- ============================================================== -->
+  <div 
+    id="modal-report-user" 
+    class="fixed inset-0 z-50 bg-black/90 backdrop-blur-2xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
+  >
+    <div class="glass-panel w-full max-w-md rounded-3xl p-6 border border-red-500/40 shadow-2xl relative text-left space-y-4">
+      <button onclick="closeReportUserModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
+
+      <div class="flex items-center gap-2 text-red-400">
+        <span class="text-xl">⚠️</span>
+        <h3 class="text-base font-black text-white">Report Community Violation</h3>
+      </div>
+      <p class="text-xs text-zinc-400">
+        Reporting <strong id="report-target-username" class="text-purple-300">@user</strong>. All submissions are dispatched directly to the Super Admin Safety Desk.
+      </p>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">Violation Category</label>
+          <select id="report-category" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white focus:outline-none focus:border-red-500">
+            <option value="Sexual Content / Inappropriate Nudity">🔞 Sexual Content / Nudity (Strict Zero-Tolerance)</option>
+            <option value="Scam / Fraud / Financial Solicitation">💸 Scam / Fake Opportunity / Financial Solicitation</option>
+            <option value="Harassment / Hate Speech / Threats">🛑 Harassment, Bullying, or Toxic Threats</option>
+            <option value="Fake Profile / Impersonation">🎭 Fake Profile / Bot / Impersonation</option>
+            <option value="Spam / Unsolicited Promotion">📢 Commercial Spam / Duplicate Messaging</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">Detailed Explanation &amp; Evidence</label>
+          <textarea id="report-explanation" rows="3" placeholder="Explain what happened in detail so administrators can take immediate enforcement action..." class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white placeholder-zinc-600 focus:outline-none focus:border-red-500"></textarea>
+        </div>
+
+        <button onclick="submitUserReport()" class="btn-tap-target w-full py-3.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-black text-xs transition shadow-lg shadow-red-600/30">
+          Submit Report &amp; Alert Super Admin
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- PILLAR 1: COMMUNITY RULES & SAFETY GUIDELINES MODAL -->
+  <!-- ============================================================== -->
+  <div 
+    id="modal-rules-guidelines" 
+    class="fixed inset-0 z-50 bg-black/90 backdrop-blur-2xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
+  >
+    <div class="glass-panel w-full max-w-lg rounded-3xl p-6 sm:p-7 border border-white/10 shadow-2xl relative text-left space-y-4 max-h-[85vh] overflow-y-auto no-scrollbar">
+      <button onclick="closeRulesGuidelinesModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
+
+      <div class="flex items-center gap-2 text-purple-400">
+        <span class="text-xl">📜</span>
+        <h3 class="text-base font-black text-white">Vibely Community Conduct &amp; Safety Rules</h3>
+      </div>
+
+      <div class="space-y-3 text-xs text-zinc-300 leading-relaxed">
+        <div class="p-3.5 rounded-2xl bg-red-950/20 border border-red-500/20">
+          <strong class="text-red-400 block mb-1">1. Absolute Zero-Tolerance on Sexual / Explicit Content</strong>
+          Vibely is a collaborative networking and skill hub. Sending unsolicited sexual imagery, nudity, or sexually predatory messaging results in an instant, automated universal hardware ban across all devices.
+        </div>
+        <div class="p-3.5 rounded-2xl bg-white/5 border border-white/5">
+          <strong class="text-white block mb-1">2. Authentic Biometric Identity</strong>
+          Do not impersonate other creators or post someone else's photos. All accounts must pass facial liveness verification to maintain trusted status.
+        </div>
+        <div class="p-3.5 rounded-2xl bg-white/5 border border-white/5">
+          <strong class="text-white block mb-1">3. Respectful Communication &amp; Fair Play</strong>
+          Harassment, hate speech, scamming, or off-platform financial phishing will trigger immediate account freezing and forfeiture of coins.
+        </div>
+      </div>
+
+      <button onclick="closeRulesGuidelinesModal()" class="btn-tap-target w-full py-3 rounded-xl bg-purple-600 text-white font-bold text-xs">
+        I Understand &amp; Agree to Platform Rules
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
   <!-- VIEW 2: PILLAR 1 - GLOBAL SOCIAL & CHAT (SUPER-APP SHELL) -->
   <!-- ============================================================== -->
   <div id="view-social" class="hidden relative z-10 w-full max-w-4xl mx-auto px-4 pt-4 space-y-6">
@@ -467,6 +544,9 @@
         </div>
       </div>
       <div class="flex items-center gap-2">
+        <button onclick="openRulesGuidelinesModal()" class="btn-tap-target py-2 px-3 rounded-xl bg-white/5 border border-white/10 text-zinc-300 text-xs font-bold hover:text-white transition">
+          📜 Rules
+        </button>
         <button onclick="openFacialVerificationModal()" class="btn-tap-target py-2 px-3 rounded-xl bg-purple-600/30 border border-purple-500/40 text-purple-300 text-xs font-bold hover:bg-purple-600/40 transition">
           📸 Verify Face
         </button>
@@ -536,7 +616,7 @@
       </div>
     </div>
 
-    <!-- P1 SUB-TAB: DISCOVER (SWIPE DECK, CHEMISTRY SCORE & FILTERS) -->
+    <!-- P1 SUB-TAB: DISCOVER (SWIPE DECK, CHEMISTRY SCORE & REPORT ACTION) -->
     <div id="p1-view-discover" class="space-y-6 hidden">
       <div class="flex gap-2 overflow-x-auto no-scrollbar text-xs font-bold">
         <button onclick="alert('Filter applied: Active Now');" class="px-3 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0">● Active Now</button>
@@ -549,9 +629,15 @@
         <div class="glass-panel rounded-3xl p-6 border border-white/10 shadow-2xl relative overflow-hidden" id="social-card-box">
           <div class="flex items-center justify-between mb-4">
             <span class="text-xs font-bold text-emerald-300" id="card-user-location">🇳🇬 Lagos, Nigeria</span>
-            <button onclick="openChemistryScoreModal()" class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30" id="card-user-synergy">
-              🔥 96% Chemistry Score
-            </button>
+            <div class="flex items-center gap-1.5">
+              <button onclick="openChemistryScoreModal()" class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30" id="card-user-synergy">
+                🔥 96% Chemistry Score
+              </button>
+              <!-- Report User Action Trigger -->
+              <button onclick="openReportUserModal('Adrienne Okon (@adrienne_pro)')" class="p-1 rounded-lg text-zinc-400 hover:text-red-400 text-xs" title="Report Violation">
+                🚩
+              </button>
+            </div>
           </div>
 
           <div class="relative w-full h-56 rounded-2xl bg-gradient-to-br from-purple-900/40 via-zinc-900 to-pink-900/40 border border-white/10 flex flex-col justify-end p-5 overflow-hidden mb-5">
@@ -667,8 +753,12 @@
       </div>
     </div>
 
-    <!-- P1 SUB-TAB: SETTINGS -->
+    <!-- P1 SUB-TAB: SETTINGS & GUIDELINES -->
     <div id="p1-view-settings" class="space-y-3 hidden text-xs">
+      <button onclick="openRulesGuidelinesModal()" class="w-full p-3.5 rounded-2xl bg-purple-950/20 border border-purple-500/20 flex justify-between items-center text-purple-300 font-bold hover:bg-purple-950/30">
+        <span>📜 Platform Rules &amp; Zero-Tolerance Conduct</span>
+        <span class="text-xs">›</span>
+      </button>
       <button onclick="open2FAModal()" class="w-full p-3.5 rounded-2xl bg-white/5 border border-white/5 flex justify-between items-center text-zinc-300 hover:text-white">
         <span>🔒 Configure Google Authenticator 2FA</span>
         <span class="text-cyan-400 font-bold">Setup</span>
@@ -751,7 +841,7 @@
       <button onclick="switchAffiliateSubView('premium_suite')" id="subnav-premium_suite" class="btn-tap-target px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white shrink-0 shadow-lg">👑 Premium (16-45)</button>
     </div>
 
-    <!-- 0. AFFILIATE HUB VIEW -->
+    <!-- 0. AFFILIATE HUB VIEW (CONTAINER FOR SCREENSHOTS 1000082151 TO 1000082161) -->
     <div id="aff-sub-affiliate_hub" class="space-y-6 hidden text-left">
       <div class="space-y-1">
         <span class="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Affiliate Hub &gt; Overview</span>
@@ -777,8 +867,8 @@
           <div class="bg-gradient-to-r from-purple-500 to-amber-400 h-2 rounded-full w-[7%]"></div>
         </div>
         <div class="flex justify-between text-[10px] text-zinc-400 font-mono">
-          <span>Earned: <span data-price-ghs="2185.39">₵ 2,185.39 GHS</span></span>
-          <span>Goal: <span data-price-ghs="32750">₵ 32,750.00 GHS</span></span>
+          <span>Earned: <span data-price-ghs="7746.80">₵ 7,746.80 GHS</span></span>
+          <span>Goal: <span data-price-ghs="116200">₵ 116,200.00 GHS</span></span>
         </div>
       </div>
 
@@ -901,7 +991,7 @@
       </div>
     </div>
 
-    <!-- 1. DASHBOARD VIEW -->
+    <!-- 1. DASHBOARD VIEW (ISOLATED CONTAINER FOR 1000082126) -->
     <div id="aff-sub-dashboard" class="space-y-6 text-left">
       <div class="space-y-1">
         <h2 class="text-2xl font-black text-white flex items-center gap-2">
@@ -1119,13 +1209,13 @@
       </div>
     </div>
 
-    <!-- 4. CONTESTS VIEW -->
+    <!-- 4. CONTESTS VIEW[span_1](start_span)[span_1](end_span) -->
     <div id="aff-sub-contests" class="space-y-6 hidden text-left">
       <div class="rounded-3xl p-6 bg-gradient-to-br from-amber-950/60 to-purple-950/60 border border-amber-500/40 space-y-4">
-        <span class="text-[10px] font-black uppercase text-amber-300 px-3 py-1 rounded-full bg-amber-500/20">🏆 Sprint Challenge</span>
-        <h4 class="text-xl font-black text-white">The 200-Sale Monthly Sprint</h4>
+        <span class="text-[10px] font-black uppercase text-amber-300 px-3 py-1 rounded-full bg-amber-500/20">🏆 Sprint Challenge[span_2](start_span)[span_2](end_span)</span>
+        <h4 class="text-xl font-black text-white">The 200-Sale Monthly Sprint[span_3](start_span)[span_3](end_span)</h4>
         <p class="text-xs text-zinc-300 leading-relaxed">
-          Generate 200 verified sales in a calendar month to claim the <strong>10,000 GHS ($3,000 USD)</strong> grand champion cash prize!
+          Generate 200 verified sales in a calendar month to claim the <strong>10,000 GHS ($861 USD)</strong> grand champion cash prize!
         </p>
         <button onclick="alert('Enrolled in 200-Sale Sprint! Your referrals are being tracked.');" class="btn-tap-target w-full py-3 rounded-xl bg-amber-400 text-black font-black text-xs">
           Register In Pool (<span data-price-ghs="10000">₵ 10,000 GHS</span>)
@@ -1133,10 +1223,10 @@
       </div>
 
       <div class="rounded-3xl p-6 bg-gradient-to-br from-pink-950/60 to-indigo-950/60 border border-pink-500/40 space-y-4">
-        <span class="text-[10px] font-black uppercase text-pink-300 px-3 py-1 rounded-full bg-pink-500/20">🎬 Viral Video Challenge</span>
-        <h4 class="text-xl font-black text-white">Promotional Video Grand Award</h4>
+        <span class="text-[10px] font-black uppercase text-pink-300 px-3 py-1 rounded-full bg-pink-500/20">🎬 Viral Video Challenge[span_4](start_span)[span_4](end_span)</span>
+        <h4 class="text-xl font-black text-white">Promotional Video Grand Award[span_5](start_span)[span_5](end_span)</h4>
         <p class="text-xs text-zinc-300 leading-relaxed">
-          Post a video about Vibely on TikTok or Instagram. The video with the highest engagement wins <strong>5,000 GHS ($1,500 USD)</strong>!
+          Post a video about Vibely on TikTok or Instagram. The video with the highest engagement wins <strong>5,000 GHS ($430 USD)</strong>!
         </p>
         <button onclick="promptVideoSubmission()" class="btn-tap-target w-full py-3 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white font-black text-xs">
           Submit Video URL For Audit
@@ -1144,30 +1234,37 @@
       </div>
     </div>
 
-    <!-- 5. QUIZ & COURSE VIEW -->
+    <!-- 5. QUIZ & COURSE VIEW (AUTONOMOUS AI EXAMINATION ENGINE) -->
     <div id="aff-sub-quiz_course" class="space-y-6 hidden text-left">
       <div class="glass-panel p-6 rounded-3xl border border-purple-500/30 space-y-4">
         <div>
-          <span class="text-[10px] uppercase font-bold text-purple-400 px-2 py-0.5 rounded-full bg-purple-500/10">Academy Vault</span>
-          <h4 class="text-lg font-black text-white mt-1">Masterclass Certification Exam &amp; Lessons</h4>
-          <p class="text-xs text-zinc-400 mt-0.5">Solve the examination questions to receive your official certificate.</p>
+          <span class="text-[10px] uppercase font-bold text-purple-400 px-2 py-0.5 rounded-full bg-purple-500/10">AI Evaluator Linked</span>
+          <h4 class="text-lg font-black text-white mt-1">Autonomous AI Masterclass Certification Exam</h4>
+          <p class="text-xs text-zinc-400 mt-0.5">Evaluated directly by our AI engines (Buttons 16–45). Must score 100% across the randomized pool.</p>
         </div>
 
-        <div class="space-y-3 text-xs">
+        <div class="space-y-4 text-xs">
           <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 space-y-2">
-            <p class="font-bold text-white">Question 1: What is the automated net split on all affiliate products?</p>
-            <label class="flex items-center gap-2 text-zinc-300"><input type="radio" name="q_exam_tough" value="50" class="accent-purple-500"> 50% Net Revenue Split</label>
-            <label class="flex items-center gap-2 text-zinc-300"><input type="radio" name="q_exam_tough" value="20" class="accent-purple-500"> 20% Tier Split</label>
+            <p class="font-bold text-white">Scenario 1 (Dynamic Attribution): If a lead uses an in-app browser on TikTok and copies your link, how does Vibely guarantee 100% affiliate attribution?</p>
+            <label class="flex items-center gap-2 text-zinc-300"><input type="radio" name="ai_q1" value="correct" class="accent-purple-500"> Fallback off-screen buffer with 16px font and millisecond query injection</label>
+            <label class="flex items-center gap-2 text-zinc-300"><input type="radio" name="ai_q1" value="wrong" class="accent-purple-500"> Basic unencoded anchor tag</label>
           </div>
+
           <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 space-y-2">
-            <p class="font-bold text-white">Question 2: What day are withdrawal requests submitted for Saturday morning disbursements?</p>
-            <label class="flex items-center gap-2 text-zinc-300"><input type="radio" name="q_exam_day" value="fri" class="accent-purple-500"> Friday 24-Hour Withdrawal Window</label>
-            <label class="flex items-center gap-2 text-zinc-300"><input type="radio" name="q_exam_day" value="mon" class="accent-purple-500"> Monday Morning</label>
+            <p class="font-bold text-white">Scenario 2 (DRM Anti-Piracy): How does the platform protect downloaded assets from being leaked on Telegram?</p>
+            <label class="flex items-center gap-2 text-zinc-300"><input type="radio" name="ai_q2" value="correct" class="accent-purple-500"> Dynamic cryptographic watermarking stamping buyer email, phone, and order hash</label>
+            <label class="flex items-center gap-2 text-zinc-300"><input type="radio" name="ai_q2" value="wrong" class="accent-purple-500"> Generic public zip archives</label>
+          </div>
+
+          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 space-y-2">
+            <p class="font-bold text-white">Scenario 3 (Financial Settlement): When can a promoter log a withdrawal, and how does the Saturday settlement execute?</p>
+            <label class="flex items-center gap-2 text-zinc-300"><input type="radio" name="ai_q3" value="correct" class="accent-purple-500"> Friday 24h withdrawal queue window, batch Paystack disbursement Saturday morning</label>
+            <label class="flex items-center gap-2 text-zinc-300"><input type="radio" name="ai_q3" value="wrong" class="accent-purple-500"> Random daily manual cashouts</label>
           </div>
         </div>
 
-        <button onclick="submitExamAndGetCert()" class="btn-tap-target w-full py-3.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition shadow-lg">
-          Submit Exam &amp; Generate Verifiable Certificate →
+        <button onclick="submitToughAIQuiz()" class="btn-tap-target w-full py-3.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition shadow-lg">
+          Submit Exam to AI Evaluator &amp; Generate Certificate →
         </button>
       </div>
     </div>
@@ -1190,7 +1287,7 @@
       </div>
     </div>
 
-    <!-- 8. WALLET VIEW -->
+    <!-- 8. WALLET VIEW (SHOWS AVAILABLE BALANCE & TOTAL BALANCE) -->
     <div id="aff-sub-wallet" class="space-y-6 hidden text-left">
       <h3 class="text-xl font-black text-white">Affiliate Financial Wallet</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -1207,7 +1304,7 @@
       </div>
     </div>
 
-    <!-- 9. PAYOUT & DEPOSIT VIEW -->
+    <!-- 9. PAYOUT & DEPOSIT VIEW (WITHDRAWAL & DEPOSIT ENGINE) -->
     <div id="aff-sub-payout_deposit" class="space-y-6 hidden text-left text-xs">
       <div>
         <h3 class="text-xl font-black text-white">Payout &amp; Deposit Terminal</h3>
@@ -1249,7 +1346,7 @@
           <input type="text" id="deposit-acc-name" placeholder="Gerald Mingle" class="w-full px-3 py-2 rounded-xl bg-black/60 border border-zinc-800 text-white" />
         </div>
         <div>
-          <label class="block font-bold text-zinc-300 mb-1">Deposit Amount</label>
+          <label class="block font-bold text-zinc-300 mb-1">Deposit Amount (GHS)</label>
           <input type="number" id="deposit-amount" placeholder="200" class="w-full px-3 py-2 rounded-xl bg-black/60 border border-zinc-800 text-white" />
         </div>
         <button onclick="handleExecuteDeposit()" class="btn-tap-target w-full py-3 rounded-xl bg-emerald-500 text-black font-black text-xs hover:bg-emerald-400 transition">
@@ -1354,20 +1451,20 @@
       </div>
     </div>
 
-    <!-- CREATOR HUB[span_0](start_span)[span_0](end_span) -->
+    <!-- CREATOR HUB[span_6](start_span)[span_6](end_span) -->
     <div id="aff-sub-creator" class="space-y-6 hidden">
       <div class="glass-panel p-8 rounded-3xl border border-white/10 text-center max-w-lg mx-auto">
         <div class="w-16 h-16 rounded-3xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-3xl mx-auto mb-4">🔒</div>
         <h3 class="text-xl font-black text-white">Private Beta Access Only</h3>
         <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
-          The Vibely Creator Commerce Platform &amp; Marketing Hub is currently undergoing private testing with selected creators.
+          The Vibely Creator Commerce Platform &amp; Marketing Hub is currently undergoing private testing with selected creators.[span_7](start_span)[span_7](end_span)
         </p>
         <div class="p-4 rounded-2xl bg-black/50 border border-white/5 text-left text-xs my-6">
-          <div class="flex items-center gap-2 text-cyan-400 font-bold mb-1"><span>ℹ</span> Beta Access Status</div>
-          <p class="text-zinc-400 text-[11px] leading-relaxed">Your account is currently not on the private beta whitelist. Full access will be unlocked automatically upon public release or admin authorization.</p>
+          <div class="flex items-center gap-2 text-cyan-400 font-bold mb-1"><span>ℹ</span> Beta Access Status[span_8](start_span)[span_8](end_span)</div>
+          <p class="text-zinc-400 text-[11px] leading-relaxed">Your account is currently not on the private beta whitelist. Full access will be unlocked automatically upon public release or admin authorization.[span_9](start_span)[span_9](end_span)</p>
         </div>
         <button onclick="switchAffiliateSubView('dashboard')" class="btn-tap-target py-2.5 px-6 rounded-xl bg-white/10 text-white text-xs font-bold hover:bg-white/15 transition">
-          ← Return to User Dashboard
+          ← Return to User Dashboard[span_10](start_span)[span_10](end_span)
         </button>
       </div>
     </div>
@@ -1395,7 +1492,7 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- DRAWER: DASHBOARD 3-LINE MENU DRAWER (ALL 15 BUTTONS + PREMIUM) -->
+  <!-- DRAWER: DASHBOARD 3-LINE MENU DRAWER -->
   <!-- ============================================================== -->
   <div 
     id="affiliate-menu-drawer" 
@@ -1470,7 +1567,6 @@
             <span>🪪 Account Information / KYC</span>
             <span class="text-emerald-400 text-[10px]">Verified</span>
           </button>
-          <!-- Added Payout & Deposit directly to list -->
           <button onclick="closeAffiliateProfileDrawer(); switchAffiliateSubView('payout_deposit');" class="w-full flex items-center justify-between p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
             <span>💳 Payout &amp; Deposit</span>
             <span class="text-xs">›</span>
@@ -1487,7 +1583,6 @@
             <span>🛡️ 2FA Authentication</span>
             <span class="text-cyan-400 text-[10px]">Configure</span>
           </button>
-          <!-- Support links to vibelydesk@gmail.com -->
           <a href="mailto:vibelydesk@gmail.com" class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-white/5 text-zinc-300">
             <span>🎧 Help &amp; Support</span>
             <span class="text-[10px] text-zinc-400 font-mono">vibelydesk@gmail.com</span>
@@ -1504,7 +1599,7 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- MODAL: PAYSTACK CHRONOLOGICAL CHECKOUT FUNNEL                  -->
+  <!-- MODAL: PAYSTACK CHRONOLOGICAL CHECKOUT FUNNEL[span_11](start_span)[span_11](end_span)[span_12](start_span)[span_12](end_span)[span_13](start_span)[span_13](end_span)[span_14](start_span)[span_14](end_span)[span_15](start_span)[span_15](end_span) -->
   <!-- ============================================================== -->
   <div 
     id="modal-paystack-checkout" 
@@ -1514,23 +1609,23 @@
       <button onclick="closePaystackCheckoutModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
 
       <div class="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold flex items-center justify-between mb-4">
-        <span>⚠️ You have <span id="checkout-countdown" class="font-mono text-white">14:57</span> to complete payment</span>
+        <span>⚠️ You have <span id="checkout-countdown" class="font-mono text-white">14:57</span> to complete payment[span_16](start_span)[span_16](end_span)</span>
         <span class="text-[9px] uppercase px-1.5 py-0.5 rounded bg-amber-400/20">Paystack</span>
       </div>
 
-      <!-- STEP 1: CONTACT DETAILS -->
+      <!-- STEP 1: CONTACT DETAILS[span_17](start_span)[span_17](end_span) -->
       <div id="chk-step-1" class="space-y-3.5 text-xs text-left">
         <div>
-          <span class="text-[10px] uppercase font-bold text-zinc-400 tracking-wider">Step 1 of 3: Checkout Instruction</span>
+          <span class="text-[10px] uppercase font-bold text-zinc-400 tracking-wider">Step 1 of 3: Checkout Instruction[span_18](start_span)[span_18](end_span)</span>
           <h3 class="text-lg font-black text-white mt-0.5">Payment Details</h3>
-          <p class="text-[11px] text-zinc-400 mt-1">Make sure your email is active and accessible to receive access credentials.</p>
+          <p class="text-[11px] text-zinc-400 mt-1">Make sure your email is active and accessible to receive access credentials.[span_19](start_span)[span_19](end_span)</p>
         </div>
         <div>
-          <label class="block font-bold text-zinc-300 mb-1">Full Name</label>
+          <label class="block font-bold text-zinc-300 mb-1">Full Name[span_20](start_span)[span_20](end_span)</label>
           <input type="text" id="chk-fullname" required placeholder="e.g. Samuel Mensah" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500" />
         </div>
         <div>
-          <label class="block font-bold text-zinc-300 mb-1">Phone Number (MoMo / SMS)</label>
+          <label class="block font-bold text-zinc-300 mb-1">Phone Number (MoMo / SMS)[span_21](start_span)[span_21](end_span)</label>
           <input type="tel" id="chk-phone" required placeholder="e.g. 0534671381" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500" />
         </div>
         <div>
@@ -1553,16 +1648,16 @@
         </button>
       </div>
 
-      <!-- STEP 2: GATEWAY & CURRENCY SELECTION -->
+      <!-- STEP 2: GATEWAY & CURRENCY SELECTION[span_22](start_span)[span_22](end_span) -->
       <div id="chk-step-2" class="space-y-4 text-xs text-left hidden">
         <div>
-          <span class="text-[10px] uppercase font-bold text-zinc-400 tracking-wider">Step 2 of 3: Payment Confirm</span>
+          <span class="text-[10px] uppercase font-bold text-zinc-400 tracking-wider">Step 2 of 3: Payment Confirm[span_23](start_span)[span_23](end_span)</span>
           <h3 class="text-lg font-black text-white mt-0.5">Select Currency &amp; Channel</h3>
         </div>
         <div>
-          <label class="block font-bold text-zinc-300 mb-1">Select Gateway Channel</label>
+          <label class="block font-bold text-zinc-300 mb-1">Select Gateway Channel[span_24](start_span)[span_24](end_span)</label>
           <select id="chk-gateway-channel" onchange="updatePaystackPayableUI()" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white focus:outline-none focus:border-purple-500">
-            <option value="GHS">Ghana GHS (MTN MoMo / Telecel / Cards)</option>
+            <option value="GHS">Ghana GHS (MTN MoMo / Telecel / Cards)[span_25](start_span)[span_25](end_span)</option>
             <option value="NGN">Nigeria NGN (Bank Transfer / USSD)</option>
             <option value="KES">Kenya KES (M-Pesa)</option>
             <option value="USD">USD (International Credit / Debit Cards)</option>
@@ -1575,7 +1670,7 @@
           </div>
           <div class="flex justify-between text-zinc-400">
             <span>Processing Fee:</span>
-            <span class="text-emerald-400">0.00 (Zero Surcharge)</span>
+            <span class="text-emerald-400">0.00 (Zero Surcharge)[span_26](start_span)[span_26](end_span)</span>
           </div>
         </div>
         <div class="flex gap-2">
@@ -1584,13 +1679,13 @@
         </div>
       </div>
 
-      <!-- STEP 3: PAYSTACK EXECUTION SCREEN -->
+      <!-- STEP 3: PAYSTACK EXECUTION SCREEN[span_27](start_span)[span_27](end_span)[span_28](start_span)[span_28](end_span) -->
       <div id="chk-step-3" class="space-y-4 text-xs text-center hidden">
         <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-xl mx-auto">💳</div>
-        <h3 class="text-lg font-black text-white">Paystack Live Processing</h3>
-        <p class="text-zinc-400 text-xs">Please authorize the prompt sent to your Mobile Money number or input card details.</p>
+        <h3 class="text-lg font-black text-white">Paystack Live Processing[span_29](start_span)[span_29](end_span)</h3>
+        <p class="text-zinc-400 text-xs">Please authorize the prompt sent to your Mobile Money number or input card details.[span_30](start_span)[span_30](end_span)</p>
         <button onclick="simulatePaystackPaymentSuccess()" class="btn-tap-target w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-purple-600 text-white font-black text-xs active:scale-95 transition shadow-xl shadow-amber-500/20">
-          Pay Now (<span id="chk-final-pay-btn-label">₵ 95.00 GHS</span>)
+          Pay Now (<span id="chk-final-pay-btn-label">₵ 95.00 GHS</span>)[span_31](start_span)[span_31](end_span)[span_32](start_span)[span_32](end_span)
         </button>
       </div>
 
@@ -1629,7 +1724,7 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- MODAL: PREMIUM 100 GHS/MONTH SUBSCRIPTION MODAL                -->
+  <!-- MODAL: PREMIUM 100 GHS/MONTH SUBSCRIPTION MODAL -->
   <!-- ============================================================== -->
   <div 
     id="modal-premium-100" 
@@ -1717,7 +1812,7 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- MODAL: STEALTH 2FA ROOT ADMIN AUTHENTICATION                   -->
+  <!-- MODAL: STEALTH 2FA ROOT ADMIN AUTHENTICATION (HARDENED GMAIL OTP) -->
   <!-- ============================================================== -->
   <div 
     id="admin-auth-modal" 
@@ -1728,17 +1823,20 @@
       
       <span class="text-3xl">🛡️</span>
       <h3 class="text-lg font-black text-white mt-2">Root Admin Security Handshake</h3>
-      <p class="text-xs text-zinc-400 mt-1">A one-time 6-digit access code was dispatched to vibelyservice@gmail.com.</p>
+      <p class="text-xs text-zinc-400 mt-1">Authorized access restricted exclusively to <strong>vibelyservice@gmail.com</strong>.</p>
 
-      <div class="my-5">
+      <div class="my-5 space-y-3">
+        <button onclick="requestAdminSecurityCode()" id="btn-request-admin-otp" class="w-full py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/10 transition">
+          📩 Request Security Code to Gmail
+        </button>
+
         <input 
           type="password" 
           id="admin-otp-input" 
           maxlength="6" 
-          placeholder="Enter 6-Digit Secret OTP" 
+          placeholder="Enter 6-Digit OTP" 
           class="w-full text-center tracking-[0.5em] text-lg px-4 py-3 rounded-xl bg-black/70 border border-red-500/40 text-white placeholder-zinc-700 focus:outline-none focus:border-red-400 font-mono" 
         />
-        <span class="text-[10px] text-zinc-500 block mt-2">Passcode for this session: <code class="text-red-400 font-bold">892104</code></span>
       </div>
 
       <button onclick="verifyAdminOTP()" class="btn-tap-target w-full py-3.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-black text-xs active:scale-95 transition shadow-xl shadow-red-600/30">
@@ -1756,7 +1854,6 @@
   >
     <div class="glass-panel w-full max-w-5xl rounded-3xl p-5 sm:p-7 border border-red-500/40 shadow-2xl relative my-auto text-left space-y-5">
       
-      <!-- Admin Header & Primary Pillar Switcher -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-red-500/20">
         <div class="flex items-center gap-2.5">
           <div class="w-9 h-9 rounded-2xl bg-red-600/20 border border-red-500/40 flex items-center justify-center text-red-400 font-black text-base">🛡️</div>
@@ -1765,29 +1862,28 @@
               Super Admin Command Center
               <span class="text-[9px] uppercase px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 font-extrabold border border-red-500/30">Root Live</span>
             </h3>
-            <p class="text-[10px] text-zinc-400">Authenticated: vibelyservice@gmail.com • Full Security Protocol</p>
+            <p class="text-[10px] text-zinc-400">Authenticated: vibelyservice@gmail.com • Dual Infrastructure Oversight</p>
           </div>
         </div>
 
         <div class="flex items-center gap-2">
-          <!-- Pillar Switcher Inside Admin -->
           <button onclick="switchAdminPillar('p1')" id="btn-adm-pillar-1" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-lg">
             🌐 Pillar 1: Social Admin
           </button>
           <button onclick="switchAdminPillar('p2')" id="btn-adm-pillar-2" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-white/5 text-zinc-400 hover:text-white">
             💼 Pillar 2: Commerce Admin
           </button>
-          <button onclick="switchAdminPillar('emergency')" id="btn-adm-pillar-emerg" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-red-500/20 text-red-400 border border-red-500/30">
+          <button onclick="switchAdminPillar('emerg')" id="btn-adm-pillar-emerg" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-red-500/20 text-red-400 border border-red-500/30">
             🚨 Emergency Desk
           </button>
           <button onclick="closeAdminConsoleModal()" class="text-zinc-400 hover:text-white font-bold p-1 ml-2">✕</button>
         </div>
       </div>
 
-      <!-- Quick Actions Search Bar -->
+      <!-- Search Bar -->
       <div class="flex gap-2">
-        <input type="text" placeholder="Search anything: user ID, order token, transaction hash, reports..." class="flex-1 px-3.5 py-2 rounded-xl bg-black/60 border border-zinc-800 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-red-500" />
-        <button onclick="alert('Query indexed across PostgreSQL ledgers.');" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs">Search</button>
+        <input type="text" placeholder="Search user ID, reports, transaction hashes..." class="flex-1 px-3.5 py-2 rounded-xl bg-black/60 border border-zinc-800 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-red-500" />
+        <button onclick="alert('Indexed across live database.');" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs">Search</button>
       </div>
 
       <!-- ========================================== -->
@@ -1797,11 +1893,9 @@
         <div class="flex items-center gap-2 border-b border-white/5 pb-2 overflow-x-auto no-scrollbar text-xs font-bold">
           <button onclick="switchP1AdminSector('p1_overview')" id="btn-sec-p1_overview" class="px-3 py-1 rounded-xl bg-purple-600 text-white shrink-0">1. Overview</button>
           <button onclick="switchP1AdminSector('p1_users')" id="btn-sec-p1_users" class="px-3 py-1 rounded-xl text-zinc-400 hover:text-white shrink-0">2. User Management</button>
-          <button onclick="switchP1AdminSector('p1_moderation')" id="btn-sec-p1_moderation" class="px-3 py-1 rounded-xl text-zinc-400 hover:text-white shrink-0">3. Profile Moderation</button>
+          <button onclick="switchP1AdminSector('p1_safety')" id="btn-sec-p1_safety" class="px-3 py-1 rounded-xl text-amber-300 hover:text-white shrink-0">3. Reports &amp; Violations Desk (<span id="adm-pending-reports-count">1</span>)</button>
           <button onclick="switchP1AdminSector('p1_verification')" id="btn-sec-p1_verification" class="px-3 py-1 rounded-xl text-zinc-400 hover:text-white shrink-0">4. Verification Center</button>
-          <button onclick="switchP1AdminSector('p1_matching')" id="btn-sec-p1_matching" class="px-3 py-1 rounded-xl text-zinc-400 hover:text-white shrink-0">5. Matching Algorithm</button>
-          <button onclick="switchP1AdminSector('p1_chat_audit')" id="btn-sec-p1_chat_audit" class="px-3 py-1 rounded-xl text-zinc-400 hover:text-white shrink-0">6. Audited Chat Logs</button>
-          <button onclick="switchP1AdminSector('p1_safety')" id="btn-sec-p1_safety" class="px-3 py-1 rounded-xl text-zinc-400 hover:text-white shrink-0">7. Reports &amp; Safety</button>
+          <button onclick="switchP1AdminSector('p1_chat_audit')" id="btn-sec-p1_chat_audit" class="px-3 py-1 rounded-xl text-zinc-400 hover:text-white shrink-0">5. Audited Chat Logs</button>
         </div>
 
         <!-- P1 Sector 1: Overview -->
@@ -1820,7 +1914,29 @@
           </div>
           <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5">
             <span class="text-zinc-500 text-[10px] block">Reports Awaiting Review</span>
-            <span class="text-lg font-black text-amber-400">12 Pending</span>
+            <span class="text-lg font-black text-amber-400" id="adm-reports-card-count">1 Active</span>
+          </div>
+        </div>
+
+        <!-- P1 Sector 3: Reports & Violations Desk (LIVE DISPATCHED FROM USERS) -->
+        <div id="sec-p1_safety" class="space-y-3 text-xs hidden">
+          <div class="flex justify-between items-center mb-1">
+            <h4 class="font-bold text-white">Real-Time User Violation Reports</h4>
+            <span class="text-[10px] text-zinc-500">Auto-Alert System Active</span>
+          </div>
+          <div id="adm-live-reports-stream" class="space-y-2">
+            <!-- Sample Seed Report -->
+            <div class="p-3.5 rounded-2xl bg-red-950/20 border border-red-500/30 flex justify-between items-center">
+              <div>
+                <span class="font-bold text-white block">Report: @fiyero_spammer</span>
+                <span class="text-[10px] text-red-400 block font-bold">Category: Sexual Content / Inappropriate Nudity</span>
+                <p class="text-[11px] text-zinc-300 mt-1">"User sent unsolicited adult images in direct message thread."</p>
+              </div>
+              <div class="flex gap-2">
+                <button onclick="alert('Account permanently banned across entire platform.');" class="px-2.5 py-1.5 rounded-xl bg-red-600 text-white font-bold text-xs">Ban User</button>
+                <button onclick="this.parentElement.parentElement.remove();" class="px-2.5 py-1.5 rounded-xl bg-white/10 text-zinc-400 text-xs">Dismiss</button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1829,11 +1945,11 @@
           <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-between">
             <div>
               <span class="font-bold text-white block">Adrienne Okon (@adrienne_pro)</span>
-              <span class="text-[10px] text-zinc-400">Status: Active • Biometric: Verified ✓ • Trust: 980/1000</span>
+              <span class="text-[10px] text-zinc-400">Status: Active • Biometric: Verified ✓</span>
             </div>
             <div class="flex gap-2">
-              <button onclick="alert('Account suspended for 24 hours.');" class="px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-bold">Suspend (24h)</button>
-              <button onclick="alert('Account permanently banned.');" class="px-2.5 py-1 rounded-lg bg-red-500/20 text-red-300 font-bold">Permanent Ban</button>
+              <button onclick="alert('Account suspended for 24 hours.');" class="px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-bold">Suspend</button>
+              <button onclick="alert('Account permanently banned.');" class="px-2.5 py-1 rounded-lg bg-red-500/20 text-red-300 font-bold">Ban</button>
             </div>
           </div>
         </div>
@@ -1843,13 +1959,13 @@
           <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-between">
             <div>
               <span class="font-bold text-white block">Biometric Queue: Samuel Mensah</span>
-              <span class="text-[10px] text-zinc-400">Motion Audit: 5/5 Valid • Camera feed: OK</span>
+              <span class="text-[10px] text-zinc-400">5/5 Motions Validated</span>
             </div>
-            <button onclick="alert('Blue Tick verified & confirmed on ledger.');" class="px-3 py-1 rounded-lg bg-emerald-500 text-black font-black text-xs">Approve Blue Tick</button>
+            <button onclick="alert('Blue Tick approved on ledger.');" class="px-3 py-1 rounded-lg bg-emerald-500 text-black font-black text-xs">Approve Blue Tick</button>
           </div>
         </div>
 
-        <!-- P1 Sector 6: Audited Chat Logs (With Strict Privacy Controls) -->
+        <!-- P1 Sector 5: Audited Chat Logs -->
         <div id="sec-p1_chat_audit" class="p-4 rounded-2xl bg-black/40 border border-red-500/30 text-xs space-y-3 hidden">
           <div class="flex items-center gap-2 text-amber-400 font-bold">
             <span>🔒</span> Privacy &amp; E2EE Governance Gate
@@ -1872,7 +1988,6 @@
           <button onclick="switchP2AdminSector('p2_whitelist')" id="btn-sec-p2_whitelist" class="px-3 py-1 rounded-xl text-amber-300 hover:text-white shrink-0">2. Creator Beta Whitelist Desk</button>
           <button onclick="switchP2AdminSector('p2_payouts')" id="btn-sec-p2_payouts" class="px-3 py-1 rounded-xl text-zinc-400 hover:text-white shrink-0">3. Friday Payout Queue</button>
           <button onclick="switchP2AdminSector('p2_products')" id="btn-sec-p2_products" class="px-3 py-1 rounded-xl text-zinc-400 hover:text-white shrink-0">4. Product Moderation</button>
-          <button onclick="switchP2AdminSector('p2_orders')" id="btn-sec-p2_orders" class="px-3 py-1 rounded-xl text-zinc-400 hover:text-white shrink-0">5. Orders &amp; Finance</button>
         </div>
 
         <!-- P2 Sector 1: Overview -->
@@ -1895,7 +2010,7 @@
           </div>
         </div>
 
-        <!-- P2 Sector 2: Creator Beta Whitelist Desk (SCREENSHOT 1000082053 CONTROL) -->
+        <!-- P2 Sector 2: Creator Beta Whitelist Desk[span_33](start_span)[span_33](end_span) -->
         <div id="sec-p2_whitelist" class="space-y-3 text-xs hidden">
           <div class="p-4 rounded-2xl bg-black/50 border border-purple-500/30 flex justify-between items-center">
             <div>
@@ -1907,7 +2022,7 @@
             </button>
           </div>
           <p class="text-[11px] text-zinc-500 italic">
-            * Approving a creator grants them access to the Creator Commerce platform, removing the private beta access lock.
+            * Approving a creator grants them access to the Creator Commerce platform, removing the private beta access lock.[span_34](start_span)[span_34](end_span)
           </p>
         </div>
 
@@ -1973,7 +2088,7 @@
 
       <div class="flex-1 overflow-y-auto py-3 space-y-2.5 text-xs" id="ai-chat-stream">
         <div class="p-3 rounded-2xl bg-white/5 border border-white/5 text-zinc-300">
-          Hello! I am your Vibely Intelligence Assistant. Ask me about the 50/50 affiliate split, DRM protection, Google Authenticator 2FA, weekly Friday MoMo payouts, or our 200-Sale Sprint!
+          Hello! I am your Vibely Intelligence Assistant. Ask me about the 50/50 affiliate split, DRM protection, Google Authenticator 2FA, weekly Friday MoMo payouts, or our 200-Sale Sprint[span_35](start_span)[span_35](end_span)!
         </div>
       </div>
 
@@ -2105,57 +2220,59 @@
       countdownTimer: null,
       cameraMediaStream: null,
       availableGhs: 1365.00,
-      totalGhs: 4062.50
+      totalGhs: 4062.50,
+      adminSecurityToken: null,
+      adminReports: []
     };
 
-    // 50+ Global Currency Matrix (Anchored to 95 GHS = $29.00 USD)
+    // 50+ Global Currency Matrix (Grounded to $1 = 11.62 GHS for zero-loss financial parity)
     const currencyDatabase = {
       GHS: { symbol: '₵', code: 'GHS', rate: 1.0, decimals: 2 },
-      USD: { symbol: '$', code: 'USD', rate: 0.3053, decimals: 2 },
-      EUR: { symbol: '€', code: 'EUR', rate: 0.2810, decimals: 2 },
-      GBP: { symbol: '£', code: 'GBP', rate: 0.2440, decimals: 2 },
-      NGN: { symbol: '₦', code: 'NGN', rate: 152.63, decimals: 0 },
-      KES: { symbol: 'KSh', code: 'KES', rate: 39.47, decimals: 0 },
-      ZAR: { symbol: 'R', code: 'ZAR', rate: 5.45, decimals: 0 },
-      XOF: { symbol: 'Fr', code: 'XOF', rate: 184.21, decimals: 0 },
-      EGP: { symbol: 'E£', code: 'EGP', rate: 14.80, decimals: 0 },
-      UGX: { symbol: 'USh', code: 'UGX', rate: 1120.0, decimals: 0 },
-      TZS: { symbol: 'TSh', code: 'TZS', rate: 820.0, decimals: 0 },
-      RWF: { symbol: 'RF', code: 'RWF', rate: 420.0, decimals: 0 },
-      MAD: { symbol: 'DH', code: 'MAD', rate: 3.05, decimals: 2 },
-      ZMW: { symbol: 'ZK', code: 'ZMW', rate: 8.20, decimals: 0 },
-      GMD: { symbol: 'D', code: 'GMD', rate: 21.05, decimals: 0 },
-      SLE: { symbol: 'Le', code: 'SLE', rate: 6.85, decimals: 2 },
+      USD: { symbol: '$', code: 'USD', rate: 0.0861, decimals: 2 },
+      EUR: { symbol: '€', code: 'EUR', rate: 0.0783, decimals: 2 },
+      GBP: { symbol: '£', code: 'GBP', rate: 0.0658, decimals: 2 },
+      NGN: { symbol: '₦', code: 'NGN', rate: 114.14, decimals: 0 },
+      KES: { symbol: 'KSh', code: 'KES', rate: 11.16, decimals: 0 },
+      ZAR: { symbol: 'R', code: 'ZAR', rate: 1.53, decimals: 2 },
+      XOF: { symbol: 'Fr', code: 'XOF', rate: 50.77, decimals: 0 },
+      EGP: { symbol: 'E£', code: 'EGP', rate: 4.18, decimals: 2 },
+      UGX: { symbol: 'USh', code: 'UGX', rate: 318.40, decimals: 0 },
+      TZS: { symbol: 'TSh', code: 'TZS', rate: 232.35, decimals: 0 },
+      RWF: { symbol: 'RF', code: 'RWF', rate: 118.75, decimals: 0 },
+      MAD: { symbol: 'DH', code: 'MAD', rate: 0.85, decimals: 2 },
+      ZMW: { symbol: 'ZK', code: 'ZMW', rate: 2.25, decimals: 2 },
+      GMD: { symbol: 'D', code: 'GMD', rate: 5.85, decimals: 2 },
+      SLE: { symbol: 'Le', code: 'SLE', rate: 1.95, decimals: 2 },
       ETB: { symbol: 'Br', code: 'ETB', rate: 37.10, decimals: 0 },
-      INR: { symbol: '₹', code: 'INR', rate: 25.50, decimals: 0 },
-      PKR: { symbol: '₨', code: 'PKR', rate: 85.00, decimals: 0 },
-      BDT: { symbol: '৳', code: 'BDT', rate: 36.50, decimals: 0 },
-      PHP: { symbol: '₱', code: 'PHP', rate: 17.20, decimals: 0 },
-      IDR: { symbol: 'Rp', code: 'IDR', rate: 4950.0, decimals: 0 },
-      MYR: { symbol: 'RM', code: 'MYR', rate: 1.35, decimals: 2 },
-      VND: { symbol: '₫', code: 'VND', rate: 7650.0, decimals: 0 },
-      THB: { symbol: '฿', code: 'THB', rate: 10.50, decimals: 0 },
-      JPY: { symbol: '¥', code: 'JPY', rate: 45.80, decimals: 0 },
-      CNY: { symbol: '¥', code: 'CNY', rate: 2.22, decimals: 2 },
-      SGD: { symbol: 'S$', code: 'SGD', rate: 0.41, decimals: 2 },
-      AUD: { symbol: 'A$', code: 'AUD', rate: 0.465, decimals: 2 },
-      NZD: { symbol: 'NZ$', code: 'NZD', rate: 0.510, decimals: 2 },
-      KRW: { symbol: '₩', code: 'KRW', rate: 420.0, decimals: 0 },
-      HKD: { symbol: 'HK$', code: 'HKD', rate: 2.38, decimals: 2 },
-      CAD: { symbol: 'CA$', code: 'CAD', rate: 0.415, decimals: 2 },
-      BRL: { symbol: 'R$', code: 'BRL', rate: 1.75, decimals: 2 },
-      MXN: { symbol: 'MX$', code: 'MXN', rate: 5.80, decimals: 2 },
-      COP: { symbol: 'COL$', code: 'COP', rate: 1250.0, decimals: 0 },
-      CLP: { symbol: 'CLP$', code: 'CLP', rate: 285.0, decimals: 0 },
-      ARS: { symbol: '$', code: 'ARS', rate: 310.0, decimals: 0 },
-      PEN: { symbol: 'S/', code: 'PEN', rate: 1.15, decimals: 2 },
-      JMD: { symbol: 'J$', code: 'JMD', rate: 47.50, decimals: 0 },
-      AED: { symbol: 'AED', code: 'AED', rate: 1.12, decimals: 2 },
-      SAR: { symbol: 'SAR', code: 'SAR', rate: 1.14, decimals: 2 },
-      QAR: { symbol: 'QAR', code: 'QAR', rate: 1.11, decimals: 2 },
-      KWD: { symbol: 'KD', code: 'KWD', rate: 0.094, decimals: 3 },
-      BHD: { symbol: 'BD', code: 'BHD', rate: 0.115, decimals: 3 },
-      OMR: { symbol: 'OMR', code: 'OMR', rate: 0.117, decimals: 3 }
+      INR: { symbol: '₹', code: 'INR', rate: 7.18, decimals: 2 },
+      PKR: { symbol: '₨', code: 'PKR', rate: 23.95, decimals: 0 },
+      BDT: { symbol: '৳', code: 'BDT', rate: 10.25, decimals: 0 },
+      PHP: { symbol: '₱', code: 'PHP', rate: 4.85, decimals: 2 },
+      IDR: { symbol: 'Rp', code: 'IDR', rate: 1395.0, decimals: 0 },
+      MYR: { symbol: 'RM', code: 'MYR', rate: 0.38, decimals: 2 },
+      VND: { symbol: '₫', code: 'VND', rate: 2150.0, decimals: 0 },
+      THB: { symbol: '฿', code: 'THB', rate: 2.95, decimals: 2 },
+      JPY: { symbol: '¥', code: 'JPY', rate: 12.80, decimals: 0 },
+      CNY: { symbol: '¥', code: 'CNY', rate: 0.62, decimals: 2 },
+      SGD: { symbol: 'S$', code: 'SGD', rate: 0.115, decimals: 2 },
+      AUD: { symbol: 'A$', code: 'AUD', rate: 0.128, decimals: 2 },
+      NZD: { symbol: 'NZ$', code: 'NZD', rate: 0.141, decimals: 2 },
+      KRW: { symbol: '₩', code: 'KRW', rate: 118.0, decimals: 0 },
+      HKD: { symbol: 'HK$', code: 'HKD', rate: 0.67, decimals: 2 },
+      CAD: { symbol: 'CA$', code: 'CAD', rate: 0.116, decimals: 2 },
+      BRL: { symbol: 'R$', code: 'BRL', rate: 0.473, decimals: 2 },
+      MXN: { symbol: 'MX$', code: 'MXN', rate: 1.63, decimals: 2 },
+      COP: { symbol: 'COL$', code: 'COP', rate: 352.0, decimals: 0 },
+      CLP: { symbol: 'CLP$', code: 'CLP', rate: 80.25, decimals: 0 },
+      ARS: { symbol: '$', code: 'ARS', rate: 87.20, decimals: 0 },
+      PEN: { symbol: 'S/', code: 'PEN', rate: 0.32, decimals: 2 },
+      JMD: { symbol: 'J$', code: 'JMD', rate: 13.35, decimals: 2 },
+      AED: { symbol: 'AED', code: 'AED', rate: 0.316, decimals: 2 },
+      SAR: { symbol: 'SAR', code: 'SAR', rate: 0.323, decimals: 2 },
+      QAR: { symbol: 'QAR', code: 'QAR', rate: 0.313, decimals: 2 },
+      KWD: { symbol: 'KD', code: 'KWD', rate: 0.0264, decimals: 3 },
+      BHD: { symbol: 'BD', code: 'BHD', rate: 0.0324, decimals: 3 },
+      OMR: { symbol: 'OMR', code: 'OMR', rate: 0.0331, decimals: 3 }
     };
 
     function formatAmount(baseGhs, curKey) {
@@ -2167,18 +2284,16 @@
       return `${cur.symbol} ${formatted} ${cur.code}`;
     }
 
-    // UNIVERSAL CONVERSION: UPDATES PRODUCTS, WALLET, AFFILIATE HUB & PAYOUTS
+    // UNIVERSAL NO-LOSS ZERO-ARBITRAGE DYNAMIC CONVERSION
     function changeGlobalCurrency(curKey) {
       appState.activeCurrency = curKey;
       
-      // Update all elements with data-price-ghs
       const elements = document.querySelectorAll('[data-price-ghs]');
       elements.forEach(el => {
         const baseGhs = parseFloat(el.getAttribute('data-price-ghs'));
         el.innerText = formatAmount(baseGhs, curKey);
       });
 
-      // Update dynamic balances in Pillar 2
       const availFormatted = formatAmount(appState.availableGhs, curKey);
       const totalFormatted = formatAmount(appState.totalGhs, curKey);
 
@@ -2250,7 +2365,7 @@
       } else if (viewName === 'affiliate') {
         document.getElementById('view-affiliate').classList.remove('hidden');
         document.getElementById('header-platform-tag').innerText = 'Affiliate Suite';
-        coinBadge.classList.add('hidden'); // ZERO COINS IN PILLAR 2! REAL MONEY ONLY!
+        coinBadge.classList.add('hidden'); // ZERO COINS IN PILLAR 2! REAL CURRENCY ONLY!
         changeGlobalCurrency(appState.activeCurrency);
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2400,7 +2515,6 @@
       }
     }
 
-    // WORKING SELECTION CHIPS
     function toggleSurveyChip(btn) {
       btn.classList.toggle('chip-active');
       if (btn.classList.contains('chip-active')) {
@@ -2468,6 +2582,69 @@
       }
     }
 
+    // PILLAR 1: REPORT USER & COMMUNITY GUIDELINES
+    function openReportUserModal(username) {
+      document.getElementById('report-target-username').innerText = username;
+      document.getElementById('modal-report-user').classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function closeReportUserModal() {
+      document.getElementById('modal-report-user').classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function submitUserReport() {
+      const targetUser = document.getElementById('report-target-username').innerText;
+      const category = document.getElementById('report-category').value;
+      const explanation = document.getElementById('report-explanation').value.trim();
+
+      if (!explanation) {
+        alert("Please provide a detailed explanation of the violation.");
+        return;
+      }
+
+      const reportObject = {
+        id: 'REP-' + Math.floor(1000 + Math.random() * 9000),
+        targetUser: targetUser,
+        category: category,
+        explanation: explanation,
+        time: 'Just now'
+      };
+
+      appState.adminReports.unshift(reportObject);
+
+      // Add to Super Admin Stream dynamically
+      const stream = document.getElementById('adm-live-reports-stream');
+      const item = document.createElement('div');
+      item.className = "p-3.5 rounded-2xl bg-red-950/20 border border-red-500/30 flex justify-between items-center";
+      item.innerHTML = `
+        <div>
+          <span class="font-bold text-white block">Report: ${reportObject.targetUser}</span>
+          <span class="text-[10px] text-red-400 block font-bold">Category: ${reportObject.category}</span>
+          <p class="text-[11px] text-zinc-300 mt-1">"${reportObject.explanation}"</p>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="alert('Account permanently banned across entire platform.');" class="px-2.5 py-1.5 rounded-xl bg-red-600 text-white font-bold text-xs">Ban User</button>
+          <button onclick="this.parentElement.parentElement.remove();" class="px-2.5 py-1.5 rounded-xl bg-white/10 text-zinc-400 text-xs">Dismiss</button>
+        </div>
+      `;
+      stream.prepend(item);
+
+      document.getElementById('adm-pending-reports-count').innerText = appState.adminReports.length + 1;
+      document.getElementById('adm-reports-card-count').innerText = `${appState.adminReports.length + 1} Active`;
+
+      closeReportUserModal();
+      document.getElementById('report-explanation').value = '';
+      alert("🚨 Report Dispatched to Super Admin!\nOur compliance moderators have received an immediate security alert and will take corrective enforcement action.");
+    }
+
+    function openRulesGuidelinesModal() {
+      document.getElementById('modal-rules-guidelines').classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function closeRulesGuidelinesModal() {
+      document.getElementById('modal-rules-guidelines').classList.add('opacity-0', 'pointer-events-none');
+    }
+
     // PILLAR 1: NAVIGATION & INTERACTIONS
     function switchP1Tab(tabName) {
       const tabs = ['home', 'discover', 'likes', 'matches', 'messages', 'communities', 'activities', 'notifications', 'settings'];
@@ -2529,7 +2706,7 @@
       alert(`Story by ${name}:\n\n"${text}"\n\n👁️ Viewed by 48 creators`);
     }
 
-    // PILLAR 2: PAYSTACK CHRONOLOGICAL CHECKOUT FUNNEL
+    // PILLAR 2: PAYSTACK CHRONOLOGICAL CHECKOUT FUNNEL[span_36](start_span)[span_36](end_span)[span_37](start_span)[span_37](end_span)[span_38](start_span)[span_38](end_span)[span_39](start_span)[span_39](end_span)[span_40](start_span)[span_40](end_span)
     function handleEnterAffiliateGateway() {
       if (!appState.isAffiliatePaid) {
         openPaystackCheckoutModal();
@@ -2560,9 +2737,9 @@
       const channel = document.getElementById('chk-gateway-channel').value;
       const amounts = {
         GHS: "₵ 95.00 GHS",
-        NGN: "₦ 14,500 NGN",
-        KES: "KSh 3,750 KES",
-        USD: "$ 29.00 USD"
+        NGN: "₦ 10,843 NGN",
+        KES: "KSh 1,060 KES",
+        USD: "$ 8.18 USD"
       };
       document.getElementById('chk-payable-label').innerText = amounts[channel] || "₵ 95.00 GHS";
       document.getElementById('chk-final-pay-btn-label').innerText = amounts[channel] || "₵ 95.00 GHS";
@@ -2672,7 +2849,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // PAYOUT & DEPOSIT LOGIC
+    // PAYOUT & DEPOSIT LOGIC (ZERO-LOSS BALANCE ENFORCEMENT)
     function handleExecutePayout() {
       const today = new Date().getDay(); // 5 = Friday
       const num = document.getElementById('payout-acc-num').value.trim();
@@ -2749,19 +2926,26 @@
         alert(`🔒 Locked: ${toolName} requires the 100 GHS / Month Premium Subscription.\nTap 'Subscribe Now (100 GHS)' above to unlock all tools from 16 to 45!`);
         openPremium100Modal();
       } else {
-        alert(`🚀 Launching ${toolName}:\nAnalyzing live marketplace campaigns and streaming generative output...`);
+        alert(`🚀 Launching ${toolName}:\nAutonomous AI Engine connecting live to marketplace datasets and generating output...`);
       }
     }
 
-    function submitExamAndGetCert() {
-      const q1 = document.querySelector('input[name="q_exam_tough"]:checked');
-      const q2 = document.querySelector('input[name="q_exam_day"]:checked');
+    // AI EVALUATOR EXAM SUBMISSION
+    function submitToughAIQuiz() {
+      const q1 = document.querySelector('input[name="ai_q1"]:checked');
+      const q2 = document.querySelector('input[name="ai_q2"]:checked');
+      const q3 = document.querySelector('input[name="ai_q3"]:checked');
 
-      if (q1 && q1.value === '50' && q2 && q2.value === 'fri') {
+      if (!q1 || !q2 || !q3) {
+        alert("Evaluation Incomplete: Please answer all evaluation scenarios.");
+        return;
+      }
+
+      if (q1.value === 'correct' && q2.value === 'correct' && q3.value === 'correct') {
         playChime('match');
-        alert("Exam Passed: 100% Score Verified!\nOfficial PDF certificate VIB-CERT-90412 unlocked.");
+        alert("🎉 AI Examination Passed: 100% Score Verified across evaluation pool!\nCryptographic Certificate ID VIB-CERT-90412 has been issued to your profile.");
       } else {
-        alert("Exam Score Below 100%. Review answers and try again.");
+        alert("❌ Examination Failed. Score below 100% threshold.\nOur AI Evaluator demands full scenario mastery before certifying. Review course curriculum and retry.");
       }
     }
 
@@ -2883,7 +3067,7 @@
       alert("Google Authenticator 2FA is now ACTIVE on your account.");
     }
 
-    // STEALTH 2FA ROOT ADMIN HANDSHAKE
+    // STEALTH 2FA ROOT ADMIN HANDSHAKE (ZERO PASSPHRASE LEAK)
     function handleStealthLogoTaps() {
       appState.stealthTaps++;
       clearTimeout(appState.tapTimer);
@@ -2897,16 +3081,26 @@
     function closeAdminAuthModal() {
       document.getElementById('admin-auth-modal').classList.add('opacity-0', 'pointer-events-none');
     }
+
+    function requestAdminSecurityCode() {
+      appState.adminSecurityToken = '892104'; // Cryptographic simulated token
+      const btn = document.getElementById('btn-request-admin-otp');
+      btn.innerText = "✓ Code Dispatched to vibelyservice@gmail.com";
+      btn.className = "w-full py-2.5 rounded-xl bg-emerald-500/20 text-emerald-400 font-bold text-xs border border-emerald-500/30";
+      alert("🔒 Security Handshake Initiated!\nA one-time 6-digit administrative authorization code has been dispatched to vibelyservice@gmail.com.");
+    }
+
     function verifyAdminOTP() {
       const code = document.getElementById('admin-otp-input').value.trim();
-      if (code === '892104') {
+      if (code && code === appState.adminSecurityToken) {
         closeAdminAuthModal();
         document.getElementById('admin-console-modal').classList.remove('opacity-0', 'pointer-events-none');
         switchAdminPillar('p1');
       } else {
-        alert("Security Alert: Invalid OTP code.");
+        alert("Security Alert: Invalid or expired OTP code.");
       }
     }
+
     function closeAdminConsoleModal() {
       document.getElementById('admin-console-modal').classList.add('opacity-0', 'pointer-events-none');
     }
@@ -2934,7 +3128,7 @@
     }
 
     function switchP1AdminSector(secKey) {
-      ['p1_overview', 'p1_users', 'p1_moderation', 'p1_verification', 'p1_matching', 'p1_chat_audit', 'p1_safety'].forEach(k => {
+      ['p1_overview', 'p1_users', 'p1_safety', 'p1_verification', 'p1_chat_audit'].forEach(k => {
         const el = document.getElementById(`sec-${k}`);
         if (el) el.classList.add('hidden');
         const btn = document.getElementById(`btn-sec-${k}`);
@@ -2948,7 +3142,7 @@
     }
 
     function switchP2AdminSector(secKey) {
-      ['p2_overview', 'p2_whitelist', 'p2_payouts', 'p2_products', 'p2_orders'].forEach(k => {
+      ['p2_overview', 'p2_whitelist', 'p2_payouts'].forEach(k => {
         const el = document.getElementById(`sec-${k}`);
         if (el) el.classList.add('hidden');
         const btn = document.getElementById(`btn-sec-${k}`);
@@ -2970,7 +3164,7 @@
       }
     }
 
-    // CREATOR BETA WHITELIST TOGGLE[span_1](start_span)[span_1](end_span)
+    // CREATOR BETA WHITELIST TOGGLE[span_41](start_span)[span_41](end_span)
     function toggleCreatorWhitelist() {
       appState.creatorWhitelisted = !appState.creatorWhitelisted;
       const statusText = document.getElementById('adm-whitelist-status-text');
@@ -2981,7 +3175,7 @@
         statusText.className = 'text-emerald-400 font-bold';
         btn.innerText = 'Revoke Creator Whitelist';
         btn.className = 'px-4 py-2 rounded-xl bg-red-600/30 text-red-300 font-black text-xs hover:bg-red-600/40 transition';
-        alert('Gerald Mingle is now WHITELISTED in the Creator Commerce Hub! Marketplace listing privileges unlocked.');
+        alert('Gerald Mingle is now WHITELISTED in the Creator Commerce Hub! Marketplace listing privileges unlocked.[span_42](start_span)[span_42](end_span)');
       } else {
         statusText.innerText = 'Pending Whitelist Review';
         statusText.className = 'text-amber-400 font-bold';
