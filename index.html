@@ -2405,6 +2405,184 @@
       
       window.open(shareUrl, '_blank');
     }
+        // 17. PILLAR 1: ENTERPRISE MULTIMEDIA CHAT ENGINE (SNAPCHAT/WHATSAPP HYBRID)
+    const chatDatabase = {
+      activeThreads: {
+        'Adrienne Okon': [
+          { sender: 'Adrienne Okon', type: 'text', content: 'Hey! Are you exploring the new dropshipping strategies?', time: '12:35 PM' },
+          { sender: 'Adrienne Okon', type: 'voice', content: '0:15 sec audio', time: '12:38 PM' }
+        ]
+      }
+    };
+
+    let currentActiveChatUser = '';
+
+    function openChatThread(userName) {
+      currentActiveChatUser = userName;
+      playChime('notification');
+      
+      // In a full production environment, this triggers a UI slide-in or routes to a dynamic chat view
+      // For the master file architecture, we simulate the E2EE decryption initialization
+      console.log(`[E2EE CHAT ENGINE] Initializing secure end-to-end encrypted thread with ${userName}...`);
+      
+      alert(`Opening Secure E2EE Chat Thread with ${userName}...\n\n(Dynamic chat view initialized. In production, this slides open the full chat window with message history.)`);
+    }
+
+    function openChatMultimediaDrawer() {
+      document.getElementById('modal-chat-multimedia-drawer').classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function closeChatMultimediaDrawer() {
+      document.getElementById('modal-chat-multimedia-drawer').classList.add('opacity-0', 'pointer-events-none');
+      document.getElementById('chat-sticker-tray').classList.add('hidden');
+    }
+
+    function openStickerSelector() {
+      playChime('notification');
+      document.getElementById('chat-sticker-tray').classList.remove('hidden');
+    }
+
+    function sendStickerItem(sticker) {
+      playChime('match');
+      console.log(`[CHAT ENGINE] E2EE Sticker dispatched: ${sticker}`);
+      closeChatMultimediaDrawer();
+      alert(`Sticker sent securely: ${sticker}\n\nAnimated sticker successfully dispatched to the active chat thread.`);
+    }
+
+    function triggerVoiceNoteRecording() {
+      playChime('notification');
+      // Simulated WebRTC MediaRecorder logic
+      console.log("[CHAT ENGINE] Requesting microphone access for Voice Vibe...");
+      let isRecording = confirm("Microphone Access Granted.\n\nSimulating Voice Recording...\nPress 'OK' to stop and send, or 'Cancel' to delete the recording.");
+      
+      closeChatMultimediaDrawer();
+      
+      if (isRecording) {
+        playChime('match');
+        console.log("[CHAT ENGINE] Voice Vibe encrypted and dispatched.");
+        alert("Voice Vibe sent successfully!");
+      } else {
+        console.log("[CHAT ENGINE] Voice Vibe recording discarded by user.");
+      }
+    }
+
+    function sendChatAttachment(event, mediaType) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      closeChatMultimediaDrawer();
+      playChime('notification');
+      
+      console.log(`[CHAT ENGINE] Processing ${mediaType} upload... Size: ${file.size} bytes`);
+      
+      // Simulating progress upload
+      alert(`Uploading high-quality ${mediaType} securely...\n\nProcessing encryption... Upload complete! File dispatched to chat.`);
+      event.target.value = ''; // Reset input
+    }
+
+    // 18. PILLAR 1: WHATSAPP-STYLE COMMUNITY GROUP CREATION
+    function openPillar1CommunityCreator() {
+      playChime('notification');
+      const groupName = prompt("Create a new Vibely Social Group (WhatsApp Style)\n\nEnter Group Subject/Name:");
+      
+      if (!groupName || groupName.trim().length === 0) {
+        return; // Cancelled
+      }
+
+      const description = prompt(`Group: ${groupName}\n\nEnter a short description for this community:`);
+      
+      playChime('match');
+      console.log(`[SOCIAL ENGINE] New P2P Group Created: ${groupName} | Desc: ${description}`);
+      alert(`✅ Group "${groupName}" Created Successfully!\n\nYou can now tap on your global friends list to add participants to this community. Group chat supports 500+ members, voice notes, and media sharing.`);
+    }
+
+    // 19. PILLAR 2: AFFILIATE INNER CIRCLE (COMING SOON GATE)
+    function openPillar2CommunityMastermind() {
+      playChime('notification');
+      document.getElementById('modal-community-coming-soon').classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function closeCommunityComingSoonModal() {
+      document.getElementById('modal-community-coming-soon').classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    // 20. 24-HOUR EPHEMERAL STATUS & STORY PUBLISHER
+    function handlePostStatus() {
+      document.getElementById('modal-status-publisher').classList.remove('opacity-0', 'pointer-events-none');
+      document.getElementById('status-pub-caption').value = '';
+      document.getElementById('status-pub-file').value = '';
+    }
+
+    function closeStatusPublisherModal() {
+      document.getElementById('modal-status-publisher').classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function publishGlobalStatus() {
+      const caption = document.getElementById('status-pub-caption').value.trim();
+      const fileInput = document.getElementById('status-pub-file');
+      
+      if (!caption && fileInput.files.length === 0) {
+        playChime('error');
+        alert("Validation Error: Please add text or select an image/video to publish your status.");
+        return;
+      }
+
+      closeStatusPublisherModal();
+      
+      // Simulate backend processing and CDN upload
+      console.log("[STATUS ENGINE] Transcoding media and encrypting ephemeral payload...");
+      
+      setTimeout(() => {
+        playChime('match');
+        
+        // Update local user UI state
+        const statusText = caption ? `"${caption}"` : `"New Media Story Posted"`;
+        const myStatusEl = document.getElementById('social-my-status');
+        if (myStatusEl) {
+          myStatusEl.innerText = statusText;
+          myStatusEl.classList.add('text-purple-400');
+        }
+
+        console.log(`[STATUS ENGINE] 24-hour global story published. Scheduled for auto-deletion in 86400 seconds.`);
+        alert("📸 Status Published to Global Feed!\n\nYour story is now live for all your connections and will automatically disappear in 24 hours.");
+      }, 800);
+    }
+
+    function viewFriendStory(name, text) {
+      playChime('notification');
+      console.log(`[STATUS ENGINE] Fetching ephemeral payload for user: ${name}`);
+      
+      // In production, this opens a full-screen immersive story viewer similar to Snapchat/IG
+      alert(`[ 24H STORY VIEWER ]\n\nStory by ${name}:\n\n"${text}"\n\n👁️ Viewed by 48 creators\n⏱️ Expiring in 4 hours\n\n(Swipe down to close)`);
+    }
+
+    // 21. UNIVERSAL UTILITIES & AI QUIZ VERIFICATION
+    function submitToughAIQuiz() {
+      const q1 = document.querySelector('input[name="ai_q1"]:checked');
+      const q2 = document.querySelector('input[name="ai_q2"]:checked');
+      const q3 = document.querySelector('input[name="ai_q3"]:checked');
+
+      if (!q1 || !q2 || !q3) {
+        playChime('error');
+        alert("Evaluation Incomplete: Our AI Evaluator requires all scenario questions to be answered before submitting.");
+        return;
+      }
+
+      // Check strict 100% policy
+      if (q1.value === 'correct' && q2.value === 'correct' && q3.value === 'correct') {
+        playChime('match');
+        
+        console.log(`[AI EVALUATOR] User ${appState.userName} passed 100% exam threshold. Generating cryptographic certificate.`);
+        console.log(`[SMTP DISPATCH] To: ${appState.userEmail} | Subject: Vibely Masterclass Certificate Generated`);
+        
+        alert("🎉 AI Examination Passed: 100% Score Verified!\n\nCryptographic Certificate ID: VIB-CERT-90412 has been issued to your profile and emailed to your inbox. You have officially mastered the system!");
+      } else {
+        playChime('error');
+        console.log(`[AI EVALUATOR] User failed exam. Correct inputs were not met.`);
+        alert("❌ Examination Failed. Score is below the 100% threshold.\n\nOur AI Evaluator demands full scenario mastery before certifying. Please review the course curriculum, study the dynamic attribution and DRM workflows, and retry the exam.");
+      }
+    }
+
 
 
 
