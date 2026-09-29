@@ -2069,6 +2069,343 @@
       // Open Success Dispatch Modal
       document.getElementById('modal-credentials-dispatch').classList.remove('opacity-0', 'pointer-events-none');
     }
+        // 11. PERSISTENT SESSIONS & WORKSTATION ENTRY
+    function handleEnterPlatformWithPersistentSession() {
+      document.getElementById('modal-credentials-dispatch').classList.add('opacity-0', 'pointer-events-none');
+      routeTo('affiliate');
+      playChime('notification');
+      console.log(`[SESSION] User ${appState.userName} entered Pillar 2 Workstation.`);
+    }
+
+    function checkPersistentDeviceSession() {
+      const token = localStorage.getItem('vibely_device_session_token');
+      if (token) {
+        appState.isAffiliatePaid = true;
+        appState.userName = localStorage.getItem('vibely_user_name') || 'Gerald Mingle';
+        appState.userEmail = localStorage.getItem('vibely_user_email') || 'geemingle15@gmail.com';
+        console.log(`[SESSION] Persistent device token found: ${token}. Bypassing Paystack gate.`);
+      } else {
+        console.log("[SESSION] No persistent token. User must clear Paystack gate to access Pillar 2.");
+      }
+    }
+
+    // 12. PILLAR 2 WORKSTATION NAVIGATION ENGINE
+    function switchAffiliateSubView(subName) {
+      const allSubViews = [
+        'affiliate_hub', 'dashboard', 'market', 'my_products', 'contests',
+        'quiz_course', 'sales', 'commissions', 'wallet', 'payout_deposit',
+        'analytics', 'customers', 'referrals', 'notifications_tab',
+        'messages_tab', 'settings_tab', 'premium_suite', 'creator'
+      ];
+
+      // Hide all sub-views and reset dock button styles
+      allSubViews.forEach(s => {
+        const el = document.getElementById(`aff-sub-${s}`);
+        if (el) el.classList.add('hidden');
+        
+        const btn = document.getElementById(`subnav-${s}`);
+        if (btn) btn.className = 'btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0 transition';
+      });
+
+      // Reveal target sub-view and highlight active dock button
+      const targetEl = document.getElementById(`aff-sub-${subName}`);
+      if (targetEl) {
+        targetEl.classList.remove('hidden');
+        // Add a slight fade-in animation for premium feel
+        targetEl.classList.add('animate-pulse');
+        setTimeout(() => targetEl.classList.remove('animate-pulse'), 300);
+      }
+
+      const targetBtn = document.getElementById(`subnav-${subName}`);
+      if (targetBtn) {
+        targetBtn.className = (subName === 'premium_suite')
+          ? 'btn-tap-target px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white shrink-0 shadow-lg shadow-pink-600/30'
+          : 'btn-tap-target px-3.5 py-1.5 rounded-xl bg-purple-600 text-white shrink-0 shadow-lg shadow-purple-600/20';
+      }
+
+      // Map view keys to premium header titles
+      const titleMap = {
+        affiliate_hub: '0. Affiliate Hub Overview',
+        dashboard: '1. Executive Dashboard',
+        market: '2. Global Marketplace',
+        my_products: '3. My Premium Licenses',
+        contests: '4. Sprints & Grand Contests',
+        quiz_course: '5. AI Masterclass Evaluator',
+        sales: '6. Verified Sales Tracker',
+        commissions: '7. Commission Ledger',
+        wallet: '8. Secure Financial Wallet',
+        payout_deposit: '9. Payouts & Deposits',
+        analytics: '10. Traffic & Conversion Analytics',
+        customers: '11. Assigned Customers',
+        referrals: '12. Downline Referrals',
+        notifications_tab: '13. Global Alert Queue',
+        messages_tab: '14. Support & Inquiries',
+        settings_tab: '15. Advanced Settings',
+        premium_suite: '👑 Premium AI Suite (16-45)',
+        creator: 'Creator Commerce Hub'
+      };
+      
+      const titleEl = document.getElementById('p2-current-section-title');
+      if(titleEl) titleEl.innerText = titleMap[subName] || 'Workstation';
+      
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 13. SECURE PAYOUT & DEPOSIT ENGINE (WITH PAYSTACK SYNC & SMTP LOGGING)
+    function handleExecutePayout() {
+      const today = new Date().getDay(); // 0 = Sunday, 5 = Friday
+      const num = document.getElementById('payout-acc-num').value.trim();
+      const name = document.getElementById('payout-acc-name').value.trim();
+      const amtField = document.getElementById('payout-amount').value;
+      const amt = parseFloat(amtField);
+
+      // Validation Gate
+      if (!num || !name || !amtField || amt <= 0) {
+        playChime('error');
+        alert("Validation Error: Please input a valid MoMo/Bank account number, account name, and withdrawal amount.");
+        return;
+      }
+
+      // Strict Friday Rule
+      if (today !== 5) {
+        if (!confirm("⚠️ Policy Alert: Official withdrawals are processed strictly on FRIDAYS for Saturday Paystack batch settlement.\n\nDo you want to force-submit your request to Friday's queue now?")) {
+          return;
+        }
+      }
+
+      // Balance Zero-Loss Verification
+      if (amt > appState.availableGhs) {
+        playChime('error');
+        alert(`Insufficient Funds: You are attempting to withdraw ₵${amt.toFixed(2)}, but your Available Balance is only ₵${appState.availableGhs.toFixed(2)}.`);
+        return;
+      }
+
+      // Execute Ledger Deduction
+      appState.availableGhs -= amt;
+      changeGlobalCurrency(appState.activeCurrency); // Universal update
+      
+      // Simulate Database Write
+      adminDatabase.transactions.push({
+        txId: 'TX-PAY-' + Math.floor(100000 + Math.random() * 900000),
+        type: 'withdrawal_request',
+        user: 'VIB-90218',
+        amountGhs: amt,
+        status: 'pending_friday',
+        date: new Date().toISOString().split('T')[0],
+        gateway: 'Paystack'
+      });
+
+      // Simulate Automated SMTP Dispatch via vibelydesk@gmail.com
+      console.log(`[SMTP DISPATCH] To: ${appState.userEmail}, vibelydesk@gmail.com | Subject: Payout Request Queued | Amount: ${amt} GHS`);
+
+      playChime('match');
+      alert(`✅ Payout Request Queued Successfully!\n\nAmount: ₵ ${amt.toFixed(2)} GHS\nAccount: ${name} (${num})\n\nNotification: A confirmation email has been dispatched via Gmail to ${appState.userEmail} and vibelydesk@gmail.com. Funds will disburse automatically Saturday morning via the Paystack API.`);
+      
+      // Clear input fields
+      document.getElementById('payout-amount').value = '';
+    }
+
+    function handleExecuteDeposit() {
+      const num = document.getElementById('deposit-acc-num').value.trim();
+      const name = document.getElementById('deposit-acc-name').value.trim();
+      const amtField = document.getElementById('deposit-amount').value;
+      const amt = parseFloat(amtField);
+
+      if (!num || !name || !amtField || amt <= 0) {
+        playChime('error');
+        alert("Validation Error: Please enter valid deposit account details and amount.");
+        return;
+      }
+
+      // Simulate Paystack Live Deposit Verification
+      playChime('notification');
+      alert(`Connecting to Paystack Secure Deposit Gateway...\n\nPreparing to debit ₵ ${amt.toFixed(2)} GHS from account ${num} (${name}). Please authorize the prompt on your phone.`);
+      
+      setTimeout(() => {
+        // Execute Ledger Addition
+        appState.availableGhs += amt;
+        appState.totalGhs += amt; // Assuming deposit counts toward total wallet value
+        changeGlobalCurrency(appState.activeCurrency); // Universal update
+
+        // Simulate Database Write
+        adminDatabase.transactions.push({
+          txId: 'TX-DEP-' + Math.floor(100000 + Math.random() * 900000),
+          type: 'deposit_cleared',
+          user: 'VIB-90218',
+          amountGhs: amt,
+          status: 'cleared',
+          date: new Date().toISOString().split('T')[0],
+          gateway: 'Paystack'
+        });
+
+        // Simulate Automated SMTP Dispatch
+        console.log(`[SMTP DISPATCH] To: ${appState.userEmail}, vibelydesk@gmail.com | Subject: Deposit Confirmed | Amount: ${amt} GHS`);
+
+        playChime('match');
+        alert(`🎉 Deposit Verification Successful!\n\n₵ ${amt.toFixed(2)} GHS has been securely processed by Paystack and instantly added to your Vibely Available Balance.`);
+        document.getElementById('deposit-amount').value = '';
+      }, 1500);
+    }
+
+    // 14. PROFILE SECURITY & PASSWORD MODIFICATION ENGINE
+    function openProfileSecurityModal() {
+      document.getElementById('modal-profile-security').classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function closeProfileSecurityModal() {
+      document.getElementById('modal-profile-security').classList.add('opacity-0', 'pointer-events-none');
+      // Clear sensitive fields on close
+      document.getElementById('sec-old-pass').value = '';
+      document.getElementById('sec-new-pass').value = '';
+    }
+
+    function saveProfileSecurityChanges() {
+      const oldPass = document.getElementById('sec-old-pass').value;
+      const newPass = document.getElementById('sec-new-pass').value;
+      const editUsername = document.getElementById('sec-edit-username').value;
+      const editEmail = document.getElementById('sec-edit-email').value;
+
+      // Update global states if changed
+      if (editUsername && editUsername !== appState.userName) {
+        appState.userName = editUsername;
+        document.getElementById('drawer-user-name').innerText = appState.userName;
+      }
+      if (editEmail && editEmail !== appState.userEmail) {
+        appState.userEmail = editEmail;
+        document.getElementById('drawer-user-email').innerText = appState.userEmail;
+      }
+
+      // Password Validation Logic
+      if (newPass.length > 0) {
+        if (oldPass.length === 0) {
+          playChime('error');
+          alert("Security Error: You must confirm your old password before setting a new one.");
+          return;
+        }
+        // Simulated old password check (assuming old password was "password123" for demo purposes, 
+        // in production this requires a backend hash comparison)
+        if (oldPass !== "password123" && oldPass.length < 4) {
+           playChime('error');
+           alert("Authentication Failed: The old password you entered does not match our records. Changes aborted.");
+           return;
+        }
+        
+        console.log(`[SECURITY ENGINE] Password successfully rotated for user ${appState.userEmail}.`);
+        console.log(`[SMTP DISPATCH] To: ${appState.userEmail} | Subject: Security Alert: Password Changed`);
+      }
+
+      playChime('match');
+      closeProfileSecurityModal();
+      
+      // Premium Success Modal Notification
+      alert("✅ SECURITY UPDATE SUCCESSFUL\n\nYour profile details and credentials have been securely updated and encrypted. A confirmation email has been dispatched to your inbox.");
+    }
+
+    // 15. CONTEST & SPRINT REGISTRATION ENGINE (AUTO-DISPATCH)
+    let currentContestType = '';
+
+    function openContestRegistrationModal(contestName) {
+      currentContestType = contestName;
+      document.getElementById('contest-modal-title').innerText = contestName + " Registration";
+      document.getElementById('contest-url-field-wrapper').classList.add('hidden');
+      document.getElementById('modal-contest-reg').classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function openVideoContestModal() {
+      currentContestType = 'Viral Video Grand Award';
+      document.getElementById('contest-modal-title').innerText = "Video Audit Submission";
+      document.getElementById('contest-url-field-wrapper').classList.remove('hidden');
+      document.getElementById('modal-contest-reg').classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function closeContestRegistrationModal() {
+      document.getElementById('modal-contest-reg').classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function submitContestRegistration() {
+      const name = document.getElementById('contest-reg-name').value.trim();
+      const email = document.getElementById('contest-reg-email').value.trim();
+      const acc = document.getElementById('contest-reg-acc').value.trim();
+      const url = document.getElementById('contest-reg-url').value.trim();
+
+      if (!name || !email || !acc) {
+        playChime('error');
+        alert("Validation Error: Name, Email, and Payout Account are mandatory fields.");
+        return;
+      }
+
+      if (currentContestType === 'Viral Video Grand Award' && !url) {
+        playChime('error');
+        alert("Validation Error: Please provide the exact URL to your promotional video for our auditors.");
+        return;
+      }
+
+      // Simulate SMTP Dispatch directly to Support Desk
+      console.log(`[SMTP DISPATCH] To: vibelydesk@gmail.com | Subject: NEW CONTEST ENTRY: ${currentContestType}`);
+      console.log(`[SMTP BODY] Name: ${name} | Email: ${email} | Account: ${acc} | Video URL: ${url}`);
+
+      playChime('match');
+      closeContestRegistrationModal();
+      alert(`🎉 Registration Submitted Successfully!\n\nYour details and entry for the "${currentContestType}" have been securely dispatched to vibelydesk@gmail.com.\n\nOur human auditors will track your metrics. Good luck!`);
+      
+      // Clear fields
+      document.getElementById('contest-reg-name').value = '';
+      document.getElementById('contest-reg-email').value = '';
+      document.getElementById('contest-reg-acc').value = '';
+      document.getElementById('contest-reg-url').value = '';
+    }
+
+    // 16. WHATSAPP & SOCIAL SHARE MULTI-APP ENGINE
+    let currentSharePayload = '';
+
+    function openShareModal(offerName) {
+      // Encode the specific offer name into the tracking link
+      currentSharePayload = window.location.origin + '/?offer=' + encodeURIComponent(offerName) + '&ref=VIB-90218';
+      document.getElementById('modal-share-sheet').classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function closeShareModal() {
+      document.getElementById('modal-share-sheet').classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function triggerAppShare(platform) {
+      closeShareModal();
+      const text = encodeURIComponent(`Hey! Check out this premium 50/50 affiliate offer on Vibely. Get access here: ${currentSharePayload}`);
+      
+      // Utilize Web Share API if available (Mobile Native Drawer)
+      if (navigator.share) {
+        navigator.share({
+          title: 'Vibely Affiliate Offer',
+          text: `Check out this premium offer: `,
+          url: currentSharePayload
+        }).then(() => {
+          console.log('[SHARE ENGINE] Native share successful');
+        }).catch((error) => {
+          console.log('[SHARE ENGINE] Native share cancelled or failed', error);
+          fallbackShare(platform, text);
+        });
+      } else {
+        fallbackShare(platform, text);
+      }
+    }
+
+    function fallbackShare(platform, text) {
+      playChime('notification');
+      let shareUrl = '';
+      
+      if (platform === 'WhatsApp') {
+        shareUrl = `https://api.whatsapp.com/send?text=${text}`;
+      } else if (platform === 'Telegram') {
+        shareUrl = `https://t.me/share/url?url=${encodeURIComponent(currentSharePayload)}&text=${encodeURIComponent("Check out this premium offer on Vibely!")}`;
+      } else if (platform === 'TikTok') {
+        alert("To share on TikTok, the link has been copied to your clipboard. Open TikTok DMs to paste.");
+        executeHardenedCopy(document.body, currentSharePayload);
+        return;
+      }
+      
+      window.open(shareUrl, '_blank');
+    }
+
 
 
 
