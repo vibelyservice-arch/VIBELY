@@ -413,4 +413,245 @@
       <button onclick="handleUserLogout()" class="w-full p-3.5 rounded-2xl bg-red-500/10 text-red-400 font-bold">Sign Out / Exit</button>
     </div>
   </div>
+    <!-- ============================================================== -->
+  <!-- VIEW 3: PILLAR 2 - AFFILIATE WORKSTATION (DIGITSTEM PARITY) -->
+  <!-- ============================================================== -->
+  <div id="view-affiliate" class="hidden relative z-10 w-full max-w-5xl mx-auto px-4 pt-4 space-y-6">
+
+    <!-- TOP WORKSTATION BAR -->
+    <div class="glass-panel p-4 rounded-3xl flex items-center justify-between border border-white/10">
+      <div class="flex items-center gap-2">
+        <button onclick="openAffiliateDrawerMenu()" class="p-2 rounded-xl bg-white/5 border border-white/10 text-zinc-300">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <span class="text-xs font-bold text-white uppercase tracking-wider" id="p2-current-section-title">Dashboard</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button onclick="alert('Theme toggled');" class="text-zinc-400 hover:text-white text-sm">🌙</button>
+        <button onclick="alert('45 unread notifications');" class="relative text-zinc-400 hover:text-white text-sm">
+          🔔
+          <span class="absolute -top-1 -right-1.5 w-3.5 h-3.5 bg-red-500 text-white rounded-full text-[8px] font-bold flex items-center justify-center">45</span>
+        </button>
+        <div onclick="openAffiliateProfileDrawer()" class="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-600 to-pink-600 flex items-center justify-center text-white text-[10px] font-black cursor-pointer">
+          GM
+        </div>
+      </div>
+    </div>
+
+    <!-- HORIZONTAL BUTTONS DOCK (BUTTONS 0 TO 15 + PREMIUM SUITE) -->
+    <div class="glass-panel p-2 rounded-2xl flex items-center gap-1 overflow-x-auto no-scrollbar border border-white/10 text-xs font-bold">
+      <button onclick="switchAffiliateSubView('affiliate_hub')" id="subnav-affiliate_hub" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">0. Affiliate Hub</button>
+      <button onclick="switchAffiliateSubView('dashboard')" id="subnav-dashboard" class="btn-tap-target px-3.5 py-1.5 rounded-xl bg-purple-600 text-white shrink-0">1. Dashboard</button>
+      <button onclick="switchAffiliateSubView('market')" id="subnav-market" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">2. Marketplace</button>
+      <button onclick="switchAffiliateSubView('my_products')" id="subnav-my_products" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">3. My Products</button>
+      <button onclick="switchAffiliateSubView('contests')" id="subnav-contests" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-amber-400 hover:text-white shrink-0">4. Contests</button>
+      <button onclick="switchAffiliateSubView('quiz_course')" id="subnav-quiz_course" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">5. Quiz &amp; Course</button>
+      <button onclick="switchAffiliateSubView('sales')" id="subnav-sales" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">6. Sales</button>
+      <button onclick="switchAffiliateSubView('commissions')" id="subnav-commissions" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">7. Commissions</button>
+      <button onclick="switchAffiliateSubView('wallet')" id="subnav-wallet" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">8. Wallet</button>
+      <button onclick="switchAffiliateSubView('payout_deposit')" id="subnav-payout_deposit" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-emerald-400 hover:text-white shrink-0">9. Payout &amp; Deposit</button>
+      <button onclick="switchAffiliateSubView('analytics')" id="subnav-analytics" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">10. Analytics</button>
+      <button onclick="switchAffiliateSubView('customers')" id="subnav-customers" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">11. Customers</button>
+      <button onclick="switchAffiliateSubView('referrals')" id="subnav-referrals" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">12. Referrals</button>
+      <button onclick="switchAffiliateSubView('notifications_tab')" id="subnav-notifications_tab" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">13. Notifications</button>
+      <button onclick="switchAffiliateSubView('messages_tab')" id="subnav-messages_tab" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">14. Messages</button>
+      <button onclick="switchAffiliateSubView('settings_tab')" id="subnav-settings_tab" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">15. Settings</button>
+      <button onclick="switchAffiliateSubView('premium_suite')" id="subnav-premium_suite" class="btn-tap-target px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white shrink-0 shadow-lg">👑 Premium (16-45)</button>
+    </div>
+
+    <!-- 0. AFFILIATE HUB VIEW -->
+    <div id="aff-sub-affiliate_hub" class="space-y-6 hidden text-left">
+      <div class="space-y-1">
+        <span class="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Affiliate Hub &gt; Overview</span>
+        <h2 class="text-2xl font-black text-white flex items-center gap-2">Good Afternoon, Gerald! 👋</h2>
+        <p class="text-xs text-zinc-400">Keep up the good work. Your current status is active.</p>
+      </div>
+
+      <!-- Milestone Progress -->
+      <div class="glass-card p-5 rounded-3xl border border-white/10 space-y-3">
+        <div class="flex justify-between items-center text-xs">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">🚀</span>
+            <div>
+              <span class="font-black text-white block">Starter Rank</span>
+              <span class="text-[10px] text-zinc-400">Next: Bronze Excellence Award</span>
+            </div>
+          </div>
+          <span class="text-amber-400 font-bold">7%</span>
+        </div>
+        <div class="w-full bg-black/60 rounded-full h-2 border border-white/5 overflow-hidden">
+          <div class="bg-gradient-to-r from-purple-500 to-amber-400 h-2 rounded-full w-[7%]"></div>
+        </div>
+        <div class="flex justify-between text-[10px] text-zinc-400 font-mono">
+          <span>Earned: <span data-price-ghs="7746.80">₵ 7,746.80 GHS</span></span>
+          <span>Goal: <span data-price-ghs="116200">₵ 116,200.00 GHS</span></span>
+        </div>
+      </div>
+
+      <!-- Available Balance Card with Universal Currency Binding -->
+      <div class="rounded-3xl p-6 bg-gradient-to-br from-indigo-950 via-purple-950 to-zinc-950 border border-purple-500/30 space-y-4">
+        <div>
+          <span class="text-[10px] uppercase font-bold text-purple-300 block">AVAILABLE BALANCE</span>
+          <div class="text-3xl font-black text-white font-mono" id="hub-avail-balance">₵ 1,365.00 GHS</div>
+          <span class="text-[10px] text-emerald-400 font-semibold block mt-0.5">● Payout ready for Saturday Paystack batch</span>
+        </div>
+        <div class="grid grid-cols-2 gap-3 pt-2">
+          <button onclick="switchAffiliateSubView('payout_deposit')" class="py-2.5 rounded-xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 font-bold text-xs hover:bg-emerald-500/30 transition">
+            + Add Fund
+          </button>
+          <button onclick="switchAffiliateSubView('payout_deposit')" class="py-2.5 rounded-xl bg-white text-black font-black text-xs hover:bg-zinc-200 transition shadow-lg">
+            Pay Out Now
+          </button>
+        </div>
+      </div>
+
+      <!-- Platform Wallet & Total Earnings -->
+      <div class="grid grid-cols-2 gap-3">
+        <div class="glass-card p-4 rounded-2xl">
+          <span class="text-[10px] uppercase font-bold text-zinc-400 block mb-1">Platform Wallet</span>
+          <span class="text-lg font-black text-white font-mono" id="hub-wallet-balance-box">₵ 1,365.00 GHS</span>
+          <span class="text-[10px] text-zinc-500 block mt-0.5">Escrow Cleared</span>
+        </div>
+        <div class="glass-card p-4 rounded-2xl">
+          <span class="text-[10px] uppercase font-bold text-zinc-400 block mb-1">Total Earnings</span>
+          <span class="text-lg font-black text-emerald-400 font-mono" id="hub-total-earnings-box">₵ 4,062.50 GHS</span>
+          <span class="text-[10px] text-emerald-400 block mt-0.5">↑ +0% From last week</span>
+        </div>
+      </div>
+
+      <!-- Metrics Grid -->
+      <div class="grid grid-cols-3 gap-2.5">
+        <div class="glass-card p-3 rounded-2xl">
+          <span class="text-[10px] text-zinc-400 block">Total Sales</span>
+          <span class="text-base font-black text-white">46</span>
+          <span class="text-[9px] text-zinc-500 block">Checkout sales</span>
+        </div>
+        <div class="glass-card p-3 rounded-2xl">
+          <span class="text-[10px] text-zinc-400 block">Total Clicks</span>
+          <span class="text-base font-black text-white">2300</span>
+          <span class="text-[9px] text-zinc-500 block">Traffic generated</span>
+        </div>
+        <div class="glass-card p-3 rounded-2xl">
+          <span class="text-[10px] text-zinc-400 block">Conversion</span>
+          <span class="text-base font-black text-purple-400">2%</span>
+          <span class="text-[9px] text-zinc-500 block">Click to Sale</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1. DASHBOARD VIEW -->
+    <div id="aff-sub-dashboard" class="space-y-6 text-left hidden">
+      <div class="space-y-1">
+        <h2 class="text-2xl font-black text-white flex items-center gap-2">Welcome back, Gerald 👋</h2>
+        <p class="text-xs text-zinc-400 italic">"Consistency is the secret currency of top creators. ✨"</p>
+      </div>
+
+      <div class="p-5 rounded-3xl bg-card border border-white/10 space-y-4">
+        <div class="flex justify-between items-start">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">🤝</span>
+            <div>
+              <h5 class="text-sm font-bold text-white">Affiliate Hub</h5>
+              <p class="text-[11px] text-zinc-400">Promote products and earn 50% commissions.</p>
+            </div>
+          </div>
+          <span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-[10px] font-bold border border-emerald-500/20">● Live</span>
+        </div>
+        <button onclick="switchAffiliateSubView('affiliate_hub')" class="btn-tap-target w-full py-3 rounded-2xl bg-emerald-400 text-black font-black text-xs transition shadow-lg">
+          Open Affiliate Hub →
+        </button>
+      </div>
+    </div>
+
+    <!-- 2. MARKETPLACE VIEW (WITH MULTI-APP SHARE DOCK) -->
+    <div id="aff-sub-market" class="space-y-6 hidden text-left">
+      <div>
+        <h3 class="text-xl font-black text-white">Affiliate Marketplace</h3>
+        <p class="text-xs text-zinc-400 mt-0.5">Discover high-converting offers, promote instantly, and earn 50% commissions.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="glass-panel p-5 rounded-3xl border border-purple-500/30 sm:col-span-2">
+          <div class="w-full h-28 rounded-2xl bg-gradient-to-r from-purple-900 to-indigo-900 p-4 flex flex-col justify-between mb-4">
+            <span class="text-[9px] uppercase font-black px-2 py-0.5 rounded-full bg-amber-400 text-black w-max">★ TOP PICK</span>
+            <h4 class="text-base font-black text-white">1-Year Vibely Membership Pass</h4>
+          </div>
+          <div class="flex justify-between items-center text-xs mb-3">
+            <span class="font-bold text-emerald-400">50% Split: <span data-price-ghs="47.5">₵ 47.50 GHS</span></span>
+            <span class="font-bold text-white" data-price-ghs="95">₵ 95.00 GHS</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="copyPromoterOfferLink(this, '1-Year Membership Pass')" class="btn-tap-target py-2.5 rounded-xl bg-purple-600 text-white font-bold text-xs">Copy Link</button>
+            <button onclick="openShareModal('1-Year Membership Pass')" class="btn-tap-target py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-xs">Share to WhatsApp ↗</button>
+          </div>
+        </div>
+
+        <div class="glass-card p-5 rounded-2xl flex flex-col justify-between">
+          <div>
+            <h5 class="text-sm font-black text-white">The Ultimate Money Machine (U.M.M)</h5>
+            <div class="flex items-center justify-between my-2 text-xs">
+              <span class="text-emerald-400">50%: <span data-price-ghs="47.5">₵ 47.50 GHS</span></span>
+              <span class="text-white font-bold" data-price-ghs="95">₵ 95.00 GHS</span>
+            </div>
+          </div>
+          <button onclick="copyPromoterOfferLink(this, 'The Ultimate Money Machine')" class="btn-tap-target w-full py-2 rounded-xl bg-white/10 text-white font-bold text-xs mt-3">Promote Link</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. CONTESTS VIEW (PREMIUM CLASSY MODAL DISPATCH TO SUPPORT) -->
+    <div id="aff-sub-contests" class="space-y-6 hidden text-left">
+      <div class="rounded-3xl p-6 bg-gradient-to-br from-amber-950/60 to-purple-950/60 border border-amber-500/40 space-y-4">
+        <span class="text-[10px] font-black uppercase text-amber-300 px-3 py-1 rounded-full bg-amber-500/20">🏆 Sprint Challenge</span>
+        <h4 class="text-xl font-black text-white">The 200-Sale Monthly Sprint</h4>
+        <p class="text-xs text-zinc-300 leading-relaxed">Generate 200 verified sales in a calendar month to claim the <strong>10,000 GHS ($861 USD)</strong> grand champion cash prize!</p>
+        <button onclick="openContestRegistrationModal('200-Sale Sprint Challenge')" class="btn-tap-target w-full py-3.5 rounded-xl bg-amber-400 text-black font-black text-xs shadow-lg">
+          Register in Pool (<span data-price-ghs="10000">₵ 10,000 GHS Prize</span>) →
+        </button>
+      </div>
+
+      <div class="rounded-3xl p-6 bg-gradient-to-br from-pink-950/60 to-indigo-950/60 border border-pink-500/40 space-y-4">
+        <span class="text-[10px] font-black uppercase text-pink-300 px-3 py-1 rounded-full bg-pink-500/20">🎬 Viral Video Challenge</span>
+        <h4 class="text-xl font-black text-white">Promotional Video Grand Award</h4>
+        <p class="text-xs text-zinc-300 leading-relaxed">Post a video about Vibely on TikTok or Instagram. The video with the highest engagement wins <strong>5,000 GHS ($430 USD)</strong>!</p>
+        <button onclick="openVideoContestModal()" class="btn-tap-target w-full py-3.5 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white font-black text-xs shadow-lg">
+          Submit Video URL for Audit →
+        </button>
+      </div>
+    </div>
+
+    <!-- 5. QUIZ & COURSE VIEW (AI EVALUATOR) -->
+    <div id="aff-sub-quiz_course" class="space-y-6 hidden text-left">
+      <div class="glass-panel p-6 rounded-3xl border border-purple-500/30 space-y-4">
+        <h4 class="text-lg font-black text-white">Autonomous AI Masterclass Certification Exam</h4>
+        <p class="text-xs text-zinc-400">Evaluated directly by our AI engines. Must score 100% across the randomized pool.</p>
+        <button onclick="submitToughAIQuiz()" class="btn-tap-target w-full py-3.5 rounded-xl bg-purple-600 text-white font-bold text-xs">
+          Submit Exam to AI Evaluator →
+        </button>
+      </div>
+    </div>
+
+    <!-- 8. WALLET VIEW -->
+    <div id="aff-sub-wallet" class="space-y-6 hidden text-left">
+      <h3 class="text-xl font-black text-white">Affiliate Financial Wallet</h3>
+      <div class="p-6 rounded-3xl bg-gradient-to-br from-indigo-950 to-purple-950 border border-purple-500/30">
+        <span class="text-[10px] uppercase font-bold text-zinc-400 block">CURRENT AVAILABLE BALANCE</span>
+        <span class="text-3xl font-black text-white font-mono" id="wallet-avail-display">₵ 1,365.00 GHS</span>
+      </div>
+    </div>
+
+    <!-- 9. PAYOUT & DEPOSIT VIEW -->
+    <div id="aff-sub-payout_deposit" class="space-y-6 hidden text-left text-xs">
+      <h3 class="text-xl font-black text-white">Payout &amp; Deposit Terminal</h3>
+      <div class="glass-panel p-5 rounded-3xl border border-white/10 space-y-3">
+        <h4 class="text-sm font-bold text-white">Request Payout</h4>
+        <input type="text" id="payout-acc-num" placeholder="MoMo / Bank Number" class="w-full px-3 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white" />
+        <input type="text" id="payout-acc-name" placeholder="Account Holder Name" class="w-full px-3 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white" />
+        <input type="number" id="payout-amount" placeholder="Amount (GHS)" class="w-full px-3 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white" />
+        <button onclick="handleExecutePayout()" class="btn-tap-target w-full py-3.5 rounded-xl bg-white text-black font-black text-xs">Submit Payout Request</button>
+      </div>
+    </div>
+  </div>
+
 
