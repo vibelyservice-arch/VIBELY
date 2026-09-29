@@ -885,6 +885,232 @@
       </div>
     </div>
   </div>
+    <!-- ============================================================== -->
+  <!-- MODAL: DUAL-PILLAR SUPER ADMIN COMMAND CENTER (SEPARATE P1 & P2) -->
+  <!-- ============================================================== -->
+  <div 
+    id="admin-console-modal" 
+    class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl flex items-center justify-center p-2 sm:p-5 opacity-0 pointer-events-none transition-all duration-300 overflow-y-auto"
+  >
+    <div class="glass-panel w-full max-w-6xl rounded-3xl p-5 sm:p-7 border border-red-500/40 shadow-2xl relative my-auto text-left space-y-5">
+      
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-red-500/20">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-2xl bg-red-600/20 border border-red-500/40 flex items-center justify-center text-red-400 font-black text-base">🛡️</div>
+          <div>
+            <h3 class="text-base sm:text-lg font-black text-white flex items-center gap-2">
+              Super Admin Enterprise Command Center
+              <span class="text-[9px] uppercase px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 font-extrabold border border-red-500/30">Master Root Live</span>
+            </h3>
+            <p class="text-[10px] text-zinc-400">Authenticated: vibelyservice@gmail.com • Dual Infrastructure Oversight &amp; Paystack Master Sync</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="switchAdminPillar('p1')" id="btn-adm-pillar-1" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-purple-600 text-white shadow-lg">
+            🌐 Pillar 1: Social Admin
+          </button>
+          <button onclick="switchAdminPillar('p2')" id="btn-adm-pillar-2" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-white/5 text-zinc-400 hover:text-white">
+            💼 Pillar 2: Commerce Admin
+          </button>
+          <button onclick="switchAdminPillar('emerg')" id="btn-adm-pillar-emerg" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-red-500/20 text-red-400 border border-red-500/30">
+            🚨 Emergency Desk
+          </button>
+          <button onclick="closeAdminConsoleModal()" class="text-zinc-400 hover:text-white font-bold p-1 ml-2">✕</button>
+        </div>
+      </div>
+
+      <!-- Universal Search & Quick Action Bar -->
+      <div class="flex gap-2">
+        <input type="text" placeholder="Search user ID, affiliate code, order transaction hash..." class="flex-1 px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-red-500 font-mono" />
+        <button onclick="alert('Query indexed across live database and Paystack gateway logs.');" class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs">Search Database</button>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- PILLAR 1 ADMIN CONTAINER (SOCIAL & MATCHING) -->
+      <!-- ========================================== -->
+      <div id="adm-p1-container" class="space-y-4">
+        <div class="flex items-center gap-2 border-b border-white/5 pb-2 overflow-x-auto no-scrollbar text-xs font-bold">
+          <button onclick="switchP1AdminSector('p1_overview')" id="btn-sec-p1_overview" class="px-3 py-1 rounded-xl bg-purple-600 text-white shrink-0">1. Overview</button>
+          <button onclick="switchP1AdminSector('p1_users')" id="btn-sec-p1_users" class="px-3 py-1 rounded-xl text-zinc-400 hover:text-white shrink-0">2. User Management</button>
+          <button onclick="switchP1AdminSector('p1_safety')" id="btn-sec-p1_safety" class="px-3 py-1 rounded-xl text-amber-300 hover:text-white shrink-0">3. Reports &amp; Violations Desk (<span id="adm-pending-reports-count">1</span>)</button>
+          <button onclick="switchP1AdminSector('p1_verification')" id="btn-sec-p1_verification" class="px-3 py-1 rounded-xl text-zinc-400 hover:text-white shrink-0">4. Verification Center</button>
+          <button onclick="switchP1AdminSector('p1_chat_audit')" id="btn-sec-p1_chat_audit" class="px-3 py-1 rounded-xl text-zinc-400 hover:text-white shrink-0">5. E2EE Chat Audit</button>
+        </div>
+
+        <div id="sec-p1_overview" class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5">
+            <span class="text-zinc-500 text-[10px] block">Total Social Creators</span>
+            <span class="text-lg font-black text-white">18,420</span>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5">
+            <span class="text-zinc-500 text-[10px] block">Active Today</span>
+            <span class="text-lg font-black text-emerald-400">4,120</span>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5">
+            <span class="text-zinc-500 text-[10px] block">Verified Blue Ticks</span>
+            <span class="text-lg font-black text-purple-400">11,280</span>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5">
+            <span class="text-zinc-500 text-[10px] block">Reports Awaiting Review</span>
+            <span class="text-lg font-black text-amber-400" id="adm-reports-card-count">1 Active</span>
+          </div>
+        </div>
+
+        <!-- Pillar 1 Reports Desk -->
+        <div id="sec-p1_safety" class="space-y-3 text-xs hidden">
+          <div class="flex justify-between items-center mb-1">
+            <h4 class="font-bold text-white">Real-Time User Violation Reports</h4>
+            <span class="text-[10px] text-zinc-500">Auto-Alert System Active</span>
+          </div>
+          <div id="adm-live-reports-stream" class="space-y-2">
+            <div class="p-3.5 rounded-2xl bg-red-950/20 border border-red-500/30 flex justify-between items-center">
+              <div>
+                <span class="font-bold text-white block">Report: @fiyero_spammer</span>
+                <span class="text-[10px] text-red-400 block font-bold">Category: Sexual Content / Inappropriate Nudity</span>
+                <p class="text-[11px] text-zinc-300 mt-1">"User sent unsolicited adult images in direct message thread."</p>
+              </div>
+              <div class="flex gap-2">
+                <button onclick="alert('Account permanently banned across entire platform.');" class="px-2.5 py-1.5 rounded-xl bg-red-600 text-white font-bold">Ban User</button>
+                <button onclick="this.parentElement.parentElement.remove();" class="px-2.5 py-1.5 rounded-xl bg-white/10 text-zinc-400">Dismiss</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="sec-p1_users" class="space-y-3 text-xs hidden">
+          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-between">
+            <div>
+              <span class="font-bold text-white block">Adrienne Okon (@adrienne_pro)</span>
+              <span class="text-[10px] text-zinc-400">Status: Active • Biometric: Verified ✓</span>
+            </div>
+            <div class="flex gap-2">
+              <button onclick="alert('Account suspended for 24 hours.');" class="px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-bold">Suspend</button>
+              <button onclick="alert('Account permanently banned.');" class="px-2.5 py-1 rounded-lg bg-red-500/20 text-red-300 font-bold">Ban</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="sec-p1_verification" class="space-y-3 text-xs hidden">
+          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-between">
+            <div>
+              <span class="font-bold text-white block">Biometric Queue: Samuel Mensah</span>
+              <span class="text-[10px] text-zinc-400">5/5 Motions Validated</span>
+            </div>
+            <button onclick="alert('Blue Tick approved on ledger.');" class="px-3 py-1 rounded-lg bg-emerald-500 text-black font-black text-xs">Approve Blue Tick</button>
+          </div>
+        </div>
+
+        <div id="sec-p1_chat_audit" class="p-4 rounded-2xl bg-black/40 border border-red-500/30 text-xs space-y-3 hidden">
+          <div class="flex items-center gap-2 text-amber-400 font-bold"><span>🔒</span> Privacy &amp; E2EE Governance Gate</div>
+          <p class="text-zinc-400 text-[11px] leading-relaxed">Administrators must NOT automatically have unrestricted access to private conversations without explicit ticket audit logging.</p>
+          <button onclick="promptReasonAndAuditChat()" class="px-3.5 py-2 rounded-xl bg-white/10 text-white font-bold text-xs">Submit Moderation Justification &amp; Inspect Thread</button>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- PILLAR 2 ADMIN CONTAINER (COMMERCE & AFFILIATE) -->
+      <!-- ========================================== -->
+      <div id="adm-p2-container" class="space-y-4 hidden">
+        <div class="flex items-center gap-2 border-b border-white/5 pb-2 overflow-x-auto no-scrollbar text-xs font-bold">
+          <button onclick="switchP2AdminSector('p2_overview')" id="btn-sec-p2_overview" class="px-3 py-1 rounded-xl bg-purple-600 text-white shrink-0">1. Overview</button>
+          <button onclick="switchP2AdminSector('p2_users_finances')" id="btn-sec-p2_users_finances" class="px-3 py-1 rounded-xl text-zinc-400 hover:text-white shrink-0">2. User Balances &amp; Bans</button>
+          <button onclick="switchP2AdminSector('p2_whitelist')" id="btn-sec-p2_whitelist" class="px-3 py-1 rounded-xl text-amber-300 hover:text-white shrink-0">3. Creator Whitelist Desk</button>
+          <button onclick="switchP2AdminSector('p2_renewals')" id="btn-sec-p2_renewals" class="px-3 py-1 rounded-xl text-red-400 hover:text-white shrink-0">4. 1-Year Expiry &amp; Renewals (<span id="adm-expired-count">1</span>)</button>
+          <button onclick="switchP2AdminSector('p2_payouts')" id="btn-sec-p2_payouts" class="px-3 py-1 rounded-xl text-zinc-400 hover:text-white shrink-0">5. Friday Payout Queue</button>
+        </div>
+
+        <div id="sec-p2_overview" class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5">
+            <span class="text-zinc-500 text-[10px] block">Gross Platform Volume</span>
+            <span class="text-lg font-black text-white" data-price-ghs="142500">₵ 142,500.00 GHS</span>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5">
+            <span class="text-zinc-500 text-[10px] block">Affiliate Commissions Paid</span>
+            <span class="text-lg font-black text-emerald-400" data-price-ghs="71250">₵ 71,250.00 GHS</span>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5">
+            <span class="text-zinc-500 text-[10px] block">Friday Queue Pending</span>
+            <span class="text-lg font-black text-amber-400" data-price-ghs="12450">₵ 12,450.00 GHS</span>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5">
+            <span class="text-zinc-500 text-[10px] block">Active Whitelisted Creators</span>
+            <span class="text-lg font-black text-purple-400">14 Creators</span>
+          </div>
+        </div>
+
+        <!-- Pillar 2 User Balances & Financial Ledger View -->
+        <div id="sec-p2_users_finances" class="space-y-3 text-xs hidden">
+          <div class="flex justify-between items-center">
+            <h4 class="font-bold text-white">Registered User Balances &amp; Account Control</h4>
+            <span class="text-[10px] text-zinc-400">Master Paystack Gateway Synced</span>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-black/50 border border-white/10 flex justify-between items-center">
+            <div>
+              <span class="font-bold text-white block">Gerald Mingle (geemingle15@gmail.com)</span>
+              <span class="text-[10px] text-emerald-400 font-mono">Available: ₵ 1,365.00 GHS | Total Earned: ₵ 4,062.50 GHS</span>
+            </div>
+            <div class="flex gap-2">
+              <button onclick="alert('User account permanently banned from Pillar 2 commerce.');" class="px-3 py-1.5 rounded-xl bg-red-600 text-white font-bold">Ban Account</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Creator Whitelist Desk -->
+        <div id="sec-p2_whitelist" class="space-y-3 text-xs hidden">
+          <div class="p-4 rounded-2xl bg-black/50 border border-purple-500/30 flex justify-between items-center">
+            <div>
+              <span class="font-bold text-white block">Gerald Mingle (Creator ID: VIB-90218)</span>
+              <p class="text-[10px] text-zinc-400">Status: <span class="text-amber-400 font-bold" id="adm-whitelist-status-text">Pending Whitelist Review</span></p>
+            </div>
+            <button onclick="toggleCreatorWhitelist()" id="btn-adm-whitelist-toggle" class="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-black text-xs transition">
+              Approve to Whitelist
+            </button>
+          </div>
+        </div>
+
+        <!-- 1-Year Subscription Expiry & Renewal Alert Queue -->
+        <div id="sec-p2_renewals" class="space-y-3 text-xs hidden">
+          <div class="p-3.5 rounded-2xl bg-red-950/20 border border-red-500/30 flex justify-between items-center">
+            <div>
+              <span class="font-bold text-white block">User: Samuel Mensah (samuel@gmail.com)</span>
+              <span class="text-[10px] text-red-400 font-mono block">1-Year Term Expired: September 28, 2026 (Pending 45 GHS Renewal)</span>
+            </div>
+            <button onclick="adminRemoveExpiredUser(this)" class="px-3 py-1.5 rounded-xl bg-red-600 text-white font-bold">Remove Until Renewal</button>
+          </div>
+        </div>
+
+        <div id="sec-p2_payouts" class="space-y-3 text-xs hidden">
+          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-between">
+            <div>
+              <span class="font-bold text-white">Gerald Mingle (0534671381 • MTN MoMo)</span>
+              <span class="text-[10px] text-zinc-400 block">Logged Friday • Verified via Paystack</span>
+            </div>
+            <span class="font-bold text-emerald-400 font-mono" data-price-ghs="1365">₵ 1,365.00 GHS</span>
+          </div>
+          <button onclick="alert('Batch Saturday disbursement signed and processed via Paystack!');" class="w-full py-3 rounded-xl bg-emerald-500 text-black font-black text-xs hover:bg-emerald-400 transition">
+            Disburse All Friday Payouts via Paystack
+          </button>
+        </div>
+      </div>
+
+      <!-- Emergency Desk -->
+      <div id="adm-emerg-container" class="space-y-3 text-xs hidden">
+        <div class="p-4 rounded-2xl bg-red-950/20 border border-red-500/30 space-y-3">
+          <span class="text-red-400 font-black text-sm block">⚠️ Universal Emergency Controls</span>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            <button onclick="alert('Maintenance mode toggled.');" class="p-3 rounded-xl bg-black/60 border border-white/10 text-zinc-300 font-bold">Maintenance Mode</button>
+            <button onclick="alert('Registrations disabled.');" class="p-3 rounded-xl bg-black/60 border border-white/10 text-zinc-300 font-bold">Disable Registrations</button>
+            <button onclick="alert('Purchases disabled.');" class="p-3 rounded-xl bg-black/60 border border-white/10 text-zinc-300 font-bold">Disable Purchases</button>
+            <button onclick="alert('Withdrawals frozen.');" class="p-3 rounded-xl bg-black/60 border border-white/10 text-zinc-300 font-bold">Freeze Withdrawals</button>
+            <button onclick="alert('Emergency security lockdown activated.');" class="p-3 rounded-xl bg-red-600/30 border border-red-500/40 text-red-300 font-bold">Lockdown Platform</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 
 
 
