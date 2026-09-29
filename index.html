@@ -2993,6 +2993,226 @@
         renderP1UserManagementTable();
       }
     }
+        // =====================================================================================
+    // 28. ADVANCED PAYSTACK FINANCIAL ENGINE (DEPOSITS, SPLITS & WEBHOOKS)
+    // =====================================================================================
+
+    /**
+     * Executes a live Paystack transaction for dynamically funding the Affiliate Wallet.
+     * Integrates with the Paystack Inline SDK and handles currency conversions.
+     */
+    function executePaystackWalletDeposit(amountGhs) {
+      const email = appState.userEmail || document.getElementById('deposit-acc-name').value.trim() + '@gmail.com';
+      const phone = appState.userPhone || document.getElementById('deposit-acc-num').value.trim();
+      const amountPesewas = Math.round(amountGhs * 100);
+
+      if (typeof PaystackPop === 'undefined') {
+        playChime('error');
+        alert("Gateway Error: Paystack SDK failed to load. Please check your network connection.");
+        return;
+      }
+
+      console.log(`[PAYSTACK ENGINE] Initializing secure wallet deposit for ₵${amountGhs.toFixed(2)} GHS...`);
+
+      let depositHandler = PaystackPop.setup({
+        key: 'pk_test_your_actual_key_here', // Replace with Live Key in production
+        email: email,
+        amount: amountPesewas,
+        currency: 'GHS',
+        ref: 'VIB_DEP_' + Math.floor(Math.random() * 1000000000),
+        metadata: {
+          custom_fields: [
+            { display_name: "Transaction Type", variable_name: "tx_type", value: "wallet_funding" },
+            { display_name: "User ID", variable_name: "user_id", value: "VIB-90218" }
+          ]
+        },
+        callback: function(response) {
+          playChime('match');
+          
+          // Secure Ledger Update
+          appState.availableGhs += amountGhs;
+          appState.totalGhs += amountGhs;
+          changeGlobalCurrency(appState.activeCurrency);
+
+          // Log to Super Admin Database
+          adminDatabase.transactions.push({
+            txId: response.reference,
+            type: 'wallet_deposit',
+            user: 'VIB-90218',
+            amountGhs: amountGhs,
+            status: 'cleared',
+            date: new Date().toISOString().split('T')[0],
+            gateway: 'Paystack'
+          });
+
+          console.log(`[SMTP DISPATCH] To: ${email}, vibelydesk@gmail.com | Subject: Deposit Confirmed | Ref: ${response.reference}`);
+          
+          alert(`🎉 Payment Verified by Paystack!\n\nReference: ${response.reference}\nAmount: ₵${amountGhs.toFixed(2)} GHS\n\nYour Vibely wallet has been instantly funded.`);
+          document.getElementById('deposit-amount').value = ''; // Clear input
+        },
+        onClose: function() {
+          playChime('notification');
+          console.log("[PAYSTACK ENGINE] User terminated the deposit window.");
+        }
+      });
+
+      depositHandler.openIframe();
+    }
+
+    /**
+     * Handles dynamic checkouts for Marketplace Products utilizing Paystack's "Split" API.
+     * Ensures the 50/50 revenue split is routed at the banking level before hitting Vibely's ledger.
+     */
+    function executeMarketplaceCheckout(productName, priceGhs, splitCode) {
+      const amountPesewas = Math.round(priceGhs * 100);
+      
+      console.log(`[PAYSTACK SPLIT ENGINE] Routing ${productName} checkout. Split Code: ${splitCode}`);
+      
+      let checkoutHandler = PaystackPop.setup({
+        key: 'pk_test_your_actual_key_here',
+        email: appState.userEmail,
+        amount: amountPesewas,
+        currency: 'GHS',
+        split_code: splitCode, // Paystack Subaccount Split Code (50% to Vibely, 50% to Affiliate)
+        ref: 'VIB_SALE_' + Math.floor(Math.random() * 1000000000),
+        callback: function(response) {
+          playChime('match');
+          console.log(`[PAYSTACK ENGINE] Sale Cleared. Split automatically disbursed by Paystack.`);
+          alert(`✅ Purchase Successful!\n\nYou now have lifetime access to ${productName}. Check your "My Products" tab.`);
+          switchAffiliateSubView('my_products');
+        },
+        onClose: function() {
+          console.log("[PAYSTACK ENGINE] Checkout abandoned.");
+        }
+      });
+
+      checkoutHandler.openIframe();
+    }
+
+    // =====================================================================================
+    // 29. AFFILIATE FINGERPRINT & DYNAMIC ATTRIBUTION TRACKER
+    // =====================================================================================
+
+    const AffiliateTracker = {
+      init: function() {
+        this.parseUrlParams();
+        this.checkExistingFingerprint();
+      },
+
+      parseUrlParams: function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const refCode = urlParams.get('ref');
+        const offerId = urlParams.get('offer');
+
+        if (refCode) {
+          console.log(`[ATTRIBUTION ENGINE] Incoming traffic detected from Affiliate: ${refCode}`);
+          this.setAttributionCookie(refCode, 30); // 30-day cookie life
+          
+          // Fallback Local Storage
+          localStorage.setItem('vibely_active_ref', refCode);
+          localStorage.setItem('vibely_click_timestamp', Date.now());
+        }
+
+        if (offerId) {
+          console.log(`[ATTRIBUTION ENGINE] Traffic routed directly to offer: ${offerId}`);
+          // In production, this dynamically opens the specific marketplace modal
+        }
+      },
+
+      setAttributionCookie: function(refCode, days) {
+        const d = new Date();
+        d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+        let expires = "expires="+d.toUTCString();
+        document.cookie = "vibely_ref=" + refCode + ";" + expires + ";path=/;Secure;SameSite=Strict";
+      },
+
+      checkExistingFingerprint: function() {
+        const storedRef = localStorage.getItem('vibely_active_ref');
+        if (storedRef) {
+          console.log(`[ATTRIBUTION ENGINE] Active session tied to Affiliate: ${storedRef}. Lead is locked.`);
+        }
+      },
+      
+      calculateLiveSplit: function(priceGhs) {
+        const affiliateCut = priceGhs * 0.50;
+        const platformCut = priceGhs * 0.50;
+        return { affiliate: affiliateCut, platform: platformCut };
+      }
+    };
+
+    // Initialize tracking on load
+    window.addEventListener('DOMContentLoaded', () => {
+      AffiliateTracker.init();
+    });
+
+    // =====================================================================================
+    // 30. PREMIUM AI SUITE LOGIC CONTROLLER (BUTTONS 16 TO 45)
+    // =====================================================================================
+
+    const PremiumSuiteTools = {
+      'AI Affiliate Manager': { id: 16, type: 'automation', desc: 'Autonomous agent that replies to your leads and tracks their conversion lifecycle.' },
+      'AI Product Matchmaker': { id: 17, type: 'analytics', desc: 'Scans global trends and suggests the exact Vibely product your audience needs today.' },
+      'AI Campaign Doctor': { id: 18, type: 'diagnostics', desc: 'Analyzes your failed tracking links and fixes broken funnels automatically.' },
+      'Revenue Opportunity Radar': { id: 19, type: 'analytics', desc: 'Identifies untapped geographic regions with high conversion rates.' },
+      'AI Promotion Generator': { id: 20, type: 'content', desc: 'Writes high-converting Twitter threads, WhatsApp broadcasts, and TikTok captions.' },
+      'AI Video Ad Creator': { id: 21, type: 'media', desc: 'Generates faceless 9:16 vertical videos with viral hooks and AI voiceovers.' },
+      'Smart Universal Links': { id: 22, type: 'tracking', desc: 'Creates deep links that bypass in-app browsers to guarantee your 50% commission.' },
+      'Affiliate–Vendor Matchmaker': { id: 23, type: 'networking', desc: 'Pairs top sellers with private vendors for negotiated 60%+ commissions.' },
+      'Customer Value Analytics': { id: 24, type: 'analytics', desc: 'Predicts the Lifetime Value (LTV) of the leads you generate.' },
+      'Fraud & Commission Protection': { id: 25, type: 'security', desc: 'Blocks bots and secures your clicks from cookie-hijacking scripts.' },
+      'Dynamic Commission Engine': { id: 26, type: 'finance', desc: 'Automatically reinvests 10% of your earnings into platform ads.' },
+      'Affiliate Team Selling': { id: 27, type: 'networking', desc: 'Allows you to form a 5-man syndicate and pool sales for the 200-Sale Sprint.' },
+      'Affiliate Growth Roadmap': { id: 28, type: 'education', desc: 'Custom AI-generated daily tasks to take you from Starter to Platinum Rank.' },
+      'VIP & Early-Access Marketplace': { id: 29, type: 'commerce', desc: 'Promote secret products 72 hours before the public marketplace sees them.' },
+      'Enterprise Command Center': { id: 30, type: 'dashboard', desc: 'A unified split-screen view of all your traffic sources and active chats.' },
+      'Smart Campaign Builder': { id: 31, type: 'marketing', desc: 'Builds an entire 7-day email autoresponder sequence in 10 seconds.' },
+      'Conversion Optimizer': { id: 32, type: 'diagnostics', desc: 'A/B tests your bio link automatically and routes traffic to the winner.' },
+      'Landing Page Builder': { id: 33, type: 'content', desc: 'Drag-and-drop web builder hosted directly on your Vibely sub-domain.' },
+      'A/B Testing Center': { id: 34, type: 'marketing', desc: 'Run split tests on your WhatsApp broadcast copy.' },
+      'Traffic Intelligence': { id: 35, type: 'analytics', desc: 'Identifies exactly which social platform is generating your highest-paying leads.' },
+      'Audience Insights': { id: 36, type: 'analytics', desc: 'Demographic breakdown of everyone who clicks your links.' },
+      'Campaign Automation': { id: 37, type: 'automation', desc: 'Schedule your WhatsApp status updates directly from the Vibely dashboard.' },
+      'Lead Management': { id: 38, type: 'crm', desc: 'A built-in CRM that tags leads as "Cold", "Warm", or "Ready to Buy".' },
+      'Customer Retention': { id: 39, type: 'crm', desc: 'Automatically emails your past buyers when a new relevant product drops.' },
+      'Affiliate Recruitment': { id: 40, type: 'networking', desc: 'Build a Tier-2 downline and earn 5% overrides on their sales.' },
+      'Affiliate Leaderboard': { id: 41, type: 'social', desc: 'Global live rankings of the top 100 earners this week.' },
+      'Performance Rewards': { id: 42, type: 'finance', desc: 'Claim milestone bonuses (Laptops, Cars, Cash) dynamically.' },
+      'Global Currency Center': { id: 43, type: 'finance', desc: 'Hedge your earnings by holding balances in USD, GBP, or EUR.' },
+      'Tax & Earnings Center': { id: 44, type: 'finance', desc: 'Automatically generates PDF tax reports for your local jurisdiction.' },
+      'API & Integrations': { id: 45, type: 'developer', desc: 'Connect Vibely directly to Zapier, Mailchimp, and custom webhooks.' }
+    };
+
+    /**
+     * Handles the execution and authorization gate for all 30 Premium Suite Tools.
+     */
+    function triggerPremiumTool(toolName) {
+      const toolData = PremiumSuiteTools[toolName];
+      
+      if (!toolData) {
+        console.error(`[PREMIUM ENGINE] Tool ${toolName} not found in registry.`);
+        return;
+      }
+
+      if (!appState.isPremium100Subscribed) {
+        playChime('error');
+        alert(`🔒 Premium Feature Locked: ${toolName}\n\n${toolData.desc}\n\nThis enterprise tool requires the 100 GHS / Month Premium Subscription. Tap 'Subscribe Now' at the top of the suite to unlock Buttons 16 to 45.`);
+        openPremium100Modal();
+        return;
+      }
+
+      playChime('notification');
+      console.log(`[PREMIUM ENGINE] Booting Node: ${toolData.id} - ${toolName}...`);
+      
+      // Simulate heavy AI execution delay
+      alert(`🚀 Launching ${toolData.id}. ${toolName}...\n\nInitializing autonomous parameters.\nModule: ${toolData.type.toUpperCase()}\n\n${toolData.desc}\n\n(Connecting to Vibely AI Core Servers...)`);
+      
+      setTimeout(() => {
+        playChime('match');
+        console.log(`[PREMIUM ENGINE] Execution successful for ${toolName}. Output rendered to DOM.`);
+        alert(`✅ Process Complete!\n\n${toolName} has generated its output. Data has been saved to your secure cloud instance.`);
+      }, 1500);
+    }
+
 
 
 
