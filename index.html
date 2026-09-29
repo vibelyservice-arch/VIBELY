@@ -1110,6 +1110,421 @@
 
     </div>
   </div>
+    <!-- ============================================================== -->
+  <!-- FLOATING VIBEBOT AI WIDGET & MODAL                             -->
+  <!-- ============================================================== -->
+  <button 
+    onclick="openAIBotModal()"
+    class="btn-tap-target fixed bottom-20 left-6 z-40 w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 text-white flex items-center justify-center text-xl shadow-xl shadow-emerald-500/30 active:scale-90 transition"
+    title="Ask Vibely AI"
+  >
+    🤖
+  </button>
+
+  <div 
+    id="ai-bot-modal" 
+    class="fixed inset-0 z-50 bg-black/80 backdrop-blur-xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
+  >
+    <div class="glass-panel w-full max-w-md h-[490px] rounded-3xl p-5 border border-emerald-500/30 flex flex-col justify-between shadow-2xl relative">
+      <div class="flex items-center justify-between pb-3 border-b border-zinc-800">
+        <div class="flex items-center gap-2">
+          <span class="text-lg">🤖</span>
+          <div>
+            <h4 class="text-xs font-bold text-white">Vibely AI Enterprise Agent</h4>
+            <p class="text-[10px] text-emerald-400">● 24/7 Platform Intelligence</p>
+          </div>
+        </div>
+        <button onclick="closeAIBotModal()" class="text-zinc-400 hover:text-white font-bold p-1">✕</button>
+      </div>
+
+      <div class="flex-1 overflow-y-auto py-3 space-y-3 text-xs pr-2 no-scrollbar" id="ai-chat-stream">
+        <div class="p-3.5 rounded-2xl bg-emerald-950/20 border border-emerald-500/20 text-zinc-300 leading-relaxed">
+          Hello Gerald! I am your Vibely Intelligence Assistant. Ask me about the 50/50 affiliate split, DRM protection, Google Authenticator 2FA, weekly Friday MoMo payouts, or how to navigate the 200-Sale Sprint!
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-zinc-800 space-y-2.5">
+        <div class="flex gap-1.5 overflow-x-auto no-scrollbar text-[10px] pb-1">
+          <button onclick="sendQuickPrompt('How do 50% commissions work?')" class="px-2.5 py-1.5 rounded-lg bg-white/5 text-purple-300 hover:bg-white/10 shrink-0 border border-white/5">50% Split?</button>
+          <button onclick="sendQuickPrompt('How does DRM watermarking work?')" class="px-2.5 py-1.5 rounded-lg bg-white/5 text-blue-300 hover:bg-white/10 shrink-0 border border-white/5">DRM Security?</button>
+          <button onclick="sendQuickPrompt('Connect me with WhatsApp human support')" class="px-2.5 py-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 shrink-0 border border-emerald-500/20">WhatsApp Agent</button>
+        </div>
+        <form onsubmit="handleSendAIMessage(event)" class="flex items-center gap-2">
+          <input type="text" id="ai-user-input" placeholder="Ask anything about Vibely..." class="flex-1 px-3.5 py-3 rounded-xl bg-black/60 border border-zinc-800 text-xs text-white placeholder-zinc-600 focus:outline-none focus:border-emerald-500 transition" />
+          <button type="submit" class="btn-tap-target px-4 py-3 rounded-xl bg-emerald-500 text-black font-black text-xs hover:bg-emerald-400 transition shadow-lg shadow-emerald-500/20">Ask</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: COIN STORE (PILLAR 1 SOCIAL HUB ONLY)                   -->
+  <!-- ============================================================== -->
+  <div 
+    id="coin-store-modal" 
+    class="fixed inset-0 z-50 bg-black/80 backdrop-blur-xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300"
+  >
+    <div class="glass-panel w-full max-w-md rounded-3xl p-6 border border-amber-500/30 shadow-2xl relative">
+      <button onclick="closeCoinStoreModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
+
+      <div class="text-center mb-6">
+        <span class="text-4xl block mb-2">🪙</span>
+        <h3 class="text-xl font-black text-white">Refill Vibely Coins</h3>
+        <p class="text-xs text-zinc-400 mt-1">Coins are used for Super Vibes, profile boosting, and rewarding creators.</p>
+      </div>
+
+      <div class="space-y-3">
+        <div class="p-4 rounded-2xl bg-black/40 border border-white/10 flex items-center justify-between hover:border-amber-500/30 transition">
+          <div>
+            <span class="text-sm font-black text-white block">100 Vibely Coins</span>
+            <span class="text-[10px] text-zinc-400 block mt-0.5">Starter Stash</span>
+          </div>
+          <button onclick="executeCoinPurchase(100, 15)" class="btn-tap-target py-2 px-4 rounded-xl text-xs font-bold bg-amber-500/20 border border-amber-500/40 text-amber-300 hover:bg-amber-500/30 transition">
+            <span data-price-ghs="15">₵ 15.00 GHS</span>
+          </button>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-gradient-to-r from-amber-950/40 to-orange-950/40 border border-amber-500/50 flex items-center justify-between shadow-lg shadow-amber-500/10">
+          <div>
+            <span class="text-sm font-black text-white block">500 Vibely Coins</span>
+            <span class="text-[10px] font-black text-amber-400 block mt-0.5 uppercase tracking-wider">★ Most Popular</span>
+          </div>
+          <button onclick="executeCoinPurchase(500, 50)" class="btn-tap-target py-2 px-4 rounded-xl text-xs font-black bg-amber-400 hover:bg-amber-300 text-black transition shadow-lg">
+            <span data-price-ghs="50">₵ 50.00 GHS</span>
+          </button>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-black/40 border border-white/10 flex items-center justify-between hover:border-purple-500/30 transition">
+          <div>
+            <span class="text-sm font-black text-white block">2,500 Vibely Coins</span>
+            <span class="text-[10px] text-purple-400 block mt-0.5">VIP Whale Vault</span>
+          </div>
+          <button onclick="executeCoinPurchase(2500, 200)" class="btn-tap-target py-2 px-4 rounded-xl text-xs font-bold bg-purple-500/20 border border-purple-500/40 text-purple-300 hover:bg-purple-500/30 transition">
+            <span data-price-ghs="200">₵ 200.00 GHS</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: GOOGLE AUTHENTICATOR 2FA SETUP                          -->
+  <!-- ============================================================== -->
+  <div 
+    id="modal-2fa-setup" 
+    class="fixed inset-0 z-50 bg-black/90 backdrop-blur-2xl flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300 overflow-y-auto"
+  >
+    <div class="glass-panel w-full max-w-md rounded-3xl p-6 sm:p-7 border border-white/10 shadow-2xl relative my-auto">
+      <button onclick="close2FAModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
+
+      <div class="mb-5">
+        <span class="text-[10px] uppercase font-bold text-cyan-400 tracking-wider">Settings &gt; 2FA Security</span>
+        <h3 class="text-xl font-black text-white mt-1">Bind Authenticator App</h3>
+        <p class="text-xs text-zinc-400 mt-1.5 leading-relaxed">
+          Enhance your account security. Scan this QR code with Google Authenticator or Authy to bind your device.
+        </p>
+      </div>
+
+      <!-- QR Code Skeleton -->
+      <div class="w-48 h-48 mx-auto my-6 bg-white p-3 rounded-2xl flex flex-col justify-between shadow-2xl">
+        <div class="grid grid-cols-6 gap-1.5 w-full h-full p-1 bg-white">
+          <div class="bg-black col-span-2 row-span-2 rounded-md"></div>
+          <div class="bg-black col-span-2"></div>
+          <div class="bg-black col-span-2 row-span-2 rounded-md"></div>
+          <div class="bg-black col-span-1"></div>
+          <div class="bg-black col-span-1 rounded-sm"></div>
+          <div class="bg-black col-span-2"></div>
+          <div class="bg-black col-span-2 rounded-sm"></div>
+          <div class="bg-black col-span-2 row-span-2 rounded-md"></div>
+          <div class="bg-black col-span-2"></div>
+          <div class="bg-black col-span-2"></div>
+        </div>
+      </div>
+
+      <div class="space-y-1.5 mb-6 text-left">
+        <label class="block text-[11px] font-bold text-zinc-400">Manual Setup Key</label>
+        <div class="flex items-center justify-between p-3.5 rounded-xl bg-black/60 border border-zinc-800 text-xs font-mono text-white">
+          <span id="setup-key-text" class="tracking-wider">JW33-CQJX-RKSL-4AC5</span>
+          <button onclick="copy2FASetupKey(this)" class="btn-tap-target text-zinc-400 hover:text-white transition p-1 flex items-center justify-center font-sans text-[10px] uppercase font-bold bg-white/10 px-2 rounded-lg" title="Copy Key">
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <button onclick="confirm2FAActive()" class="btn-tap-target w-full py-4 rounded-xl bg-cyan-500 text-black font-black text-xs hover:bg-cyan-400 transition shadow-lg shadow-cyan-500/20">
+        I Have Scanned QR Code &amp; Bound App →
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- DRAWER: AFFILIATE 3-LINE MENU (WORKSTATION NAVIGATION)         -->
+  <!-- ============================================================== -->
+  <div 
+    id="affiliate-menu-drawer" 
+    class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300"
+    onclick="closeAffiliateDrawerMenu()"
+  >
+    <div 
+      class="glass-panel w-72 sm:w-80 h-full p-6 flex flex-col justify-between transform -translate-x-full transition-all duration-300 overflow-y-auto no-scrollbar border-r border-white/10"
+      onclick="event.stopPropagation()"
+      id="menu-drawer-container"
+    >
+      <div class="space-y-5">
+        <div class="flex items-center justify-between pb-4 border-b border-white/10">
+          <span class="text-xs font-black uppercase text-white tracking-widest">Vibely Navigation</span>
+          <button onclick="closeAffiliateDrawerMenu()" class="text-zinc-500 hover:text-white font-bold p-1 text-lg">✕</button>
+        </div>
+
+        <nav class="space-y-1 text-xs font-bold text-left">
+          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('affiliate_hub');" class="w-full p-3 rounded-xl hover:bg-white/5 text-zinc-300 text-left transition">0. Affiliate Hub</button>
+          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('dashboard');" class="w-full p-3 rounded-xl hover:bg-white/5 text-zinc-300 text-left transition">1. Dashboard Overview</button>
+          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('market');" class="w-full p-3 rounded-xl hover:bg-white/5 text-zinc-300 text-left transition">2. Product Marketplace</button>
+          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('my_products');" class="w-full p-3 rounded-xl hover:bg-white/5 text-zinc-300 text-left transition">3. My Access Licenses</button>
+          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('contests');" class="w-full p-3 rounded-xl hover:bg-amber-500/10 text-amber-400 text-left transition">4. Prize Contests &amp; Sprints</button>
+          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('quiz_course');" class="w-full p-3 rounded-xl hover:bg-white/5 text-zinc-300 text-left transition">5. AI Evaluator Quiz</button>
+          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('sales');" class="w-full p-3 rounded-xl hover:bg-white/5 text-zinc-300 text-left transition">6. Sales Tracker</button>
+          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('commissions');" class="w-full p-3 rounded-xl hover:bg-white/5 text-zinc-300 text-left transition">7. Commission Ledger</button>
+          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('wallet');" class="w-full p-3 rounded-xl hover:bg-white/5 text-zinc-300 text-left transition">8. Financial Wallet</button>
+          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('payout_deposit');" class="w-full p-3 rounded-xl hover:bg-emerald-500/10 text-emerald-400 text-left transition">9. Payouts &amp; Deposits</button>
+          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('analytics');" class="w-full p-3 rounded-xl hover:bg-white/5 text-zinc-300 text-left transition">10. Traffic Analytics</button>
+          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('customers');" class="w-full p-3 rounded-xl hover:bg-white/5 text-zinc-300 text-left transition">11. Assigned Customers</button>
+          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('referrals');" class="w-full p-3 rounded-xl hover:bg-white/5 text-zinc-300 text-left transition">12. Sub-Affiliate Referrals</button>
+          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('notifications_tab');" class="w-full p-3 rounded-xl hover:bg-white/5 text-zinc-300 text-left transition">13. Global Notifications</button>
+          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('messages_tab');" class="w-full p-3 rounded-xl hover:bg-white/5 text-zinc-300 text-left transition">14. Support Messages</button>
+          <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('settings_tab');" class="w-full p-3 rounded-xl hover:bg-white/5 text-zinc-300 text-left transition">15. Workstation Settings</button>
+          
+          <div class="pt-3 mt-3 border-t border-white/10">
+            <button onclick="closeAffiliateDrawerMenu(); switchAffiliateSubView('premium_suite');" class="w-full p-3.5 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white text-left font-black shadow-lg shadow-pink-600/20 transition hover:scale-[1.02]">
+              👑 Premium Suite (16-45)
+            </button>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- DRAWER: USER PROFILE (DETAILS, KYC, EXPIRY)                    -->
+  <!-- ============================================================== -->
+  <div 
+    id="affiliate-profile-drawer" 
+    class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300"
+    onclick="closeAffiliateProfileDrawer()"
+  >
+    <div 
+      class="glass-panel w-72 sm:w-80 h-full p-6 flex flex-col justify-between transform translate-x-full absolute right-0 transition-all duration-300 border-l border-white/10"
+      onclick="event.stopPropagation()"
+      id="profile-drawer-container"
+    >
+      <div class="space-y-5">
+        <div class="flex items-center justify-between pb-4 border-b border-white/10">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-600 flex items-center justify-center text-white font-black text-sm shadow-lg shadow-purple-600/30">GM</div>
+            <div>
+              <h4 class="text-sm font-black text-white leading-tight truncate w-32" id="drawer-user-name">Gerald Mingle</h4>
+              <p class="text-[10px] text-zinc-400 truncate w-32" id="drawer-user-email">geemingle15@gmail.com</p>
+            </div>
+          </div>
+          <button onclick="closeAffiliateProfileDrawer()" class="text-zinc-500 hover:text-white font-bold p-1 text-lg">✕</button>
+        </div>
+
+        <nav class="space-y-2 text-xs font-semibold text-left">
+          <button onclick="closeAffiliateProfileDrawer(); openProfileSecurityModal();" class="w-full flex items-center justify-between p-3.5 rounded-xl hover:bg-white/5 text-zinc-300 transition">
+            <span class="flex items-center gap-2"><span>👤</span> Profile &amp; Details</span>
+            <span class="text-zinc-500">›</span>
+          </button>
+          <button onclick="alert('KYC Status: Verified ✅\nLinked Number: 0534671381');" class="w-full flex items-center justify-between p-3.5 rounded-xl hover:bg-white/5 text-zinc-300 transition">
+            <span class="flex items-center gap-2"><span>🪪</span> Account Info / KYC</span>
+            <span class="text-emerald-400 text-[10px] font-black uppercase">Verified</span>
+          </button>
+          <button onclick="closeAffiliateProfileDrawer(); switchAffiliateSubView('payout_deposit');" class="w-full flex items-center justify-between p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 transition hover:bg-emerald-500/20">
+            <span class="flex items-center gap-2"><span>💳</span> Payout &amp; Deposit</span>
+            <span class="text-xs">›</span>
+          </button>
+          <button onclick="closeAffiliateProfileDrawer(); switchAffiliateSubView('notifications_tab');" class="w-full flex items-center justify-between p-3.5 rounded-xl hover:bg-white/5 text-zinc-300 transition">
+            <span class="flex items-center gap-2"><span>🔔</span> Notifications</span>
+            <span class="px-1.5 py-0.5 rounded-md bg-red-500 text-white text-[9px] font-black">45</span>
+          </button>
+          <button onclick="closeAffiliateProfileDrawer(); openProfileSecurityModal();" class="w-full flex items-center justify-between p-3.5 rounded-xl hover:bg-white/5 text-zinc-300 transition">
+            <span class="flex items-center gap-2"><span>🔑</span> Password Settings</span>
+            <span class="text-zinc-500">›</span>
+          </button>
+          <button onclick="closeAffiliateProfileDrawer(); open2FAModal();" class="w-full flex items-center justify-between p-3.5 rounded-xl hover:bg-white/5 text-zinc-300 transition">
+            <span class="flex items-center gap-2"><span>🛡️</span> 2FA Authentication</span>
+            <span class="text-cyan-400 text-[10px] font-black uppercase">Configure</span>
+          </button>
+          <a href="mailto:vibelydesk@gmail.com" class="w-full flex items-center justify-between p-3.5 rounded-xl hover:bg-white/5 text-zinc-300 transition">
+            <span class="flex items-center gap-2"><span>🎧</span> Help &amp; Support</span>
+            <span class="text-[9px] text-zinc-500 font-mono">vibelydesk@gmail.com</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="pt-5 border-t border-white/10 mt-auto">
+        <button onclick="handleUserLogout()" class="w-full py-3.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 font-black text-xs hover:bg-red-500/20 transition">
+          Sign Out of Workstation
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: 8-GRID "MORE FEATURES" DRAWER                           -->
+  <!-- ============================================================== -->
+  <div 
+    id="more-features-sheet" 
+    class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 flex items-end sm:items-center justify-center p-0 sm:p-4"
+    onclick="closeMoreFeaturesSheet()"
+  >
+    <div 
+      class="glass-panel w-full max-w-lg rounded-t-3xl sm:rounded-3xl p-6 border-t sm:border border-white/10 shadow-2xl space-y-5"
+      onclick="event.stopPropagation()"
+    >
+      <div class="flex items-center justify-between pb-3 border-b border-white/10">
+        <div>
+          <h4 class="text-sm font-black text-white">More Workstation Features</h4>
+          <p class="text-[10px] text-purple-400 font-bold uppercase tracking-wider">Quick Navigation</p>
+        </div>
+        <button onclick="closeMoreFeaturesSheet()" class="text-zinc-500 hover:text-white font-bold p-1 text-lg">✕</button>
+      </div>
+
+      <div class="grid grid-cols-4 gap-3 text-center text-xs">
+        <button onclick="closeMoreFeaturesSheet(); switchAffiliateSubView('wallet');" class="p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/40 hover:bg-purple-950/20 transition flex flex-col items-center">
+          <span class="text-2xl mb-1.5">💰</span>
+          <span class="text-[10px] font-bold text-zinc-300">Earnings</span>
+        </button>
+        <button onclick="closeMoreFeaturesSheet(); switchAffiliateSubView('affiliate_hub');" class="p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/40 hover:bg-purple-950/20 transition flex flex-col items-center">
+          <span class="text-2xl mb-1.5">🏆</span>
+          <span class="text-[10px] font-bold text-zinc-300">Milestones</span>
+        </button>
+        <button onclick="closeMoreFeaturesSheet(); alert('Leaderboard Loading... You are ranked #42 this week!');" class="p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/40 hover:bg-purple-950/20 transition flex flex-col items-center">
+          <span class="text-2xl mb-1.5">🎖️</span>
+          <span class="text-[10px] font-bold text-zinc-300">Leaderboard</span>
+        </button>
+        <button onclick="closeMoreFeaturesSheet(); alert('Transaction Ledger: 28 sales cleared. 0 Escrow Discrepancies.');" class="p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/40 hover:bg-purple-950/20 transition flex flex-col items-center">
+          <span class="text-2xl mb-1.5">📜</span>
+          <span class="text-[10px] font-bold text-zinc-300">Ledger</span>
+        </button>
+        <button onclick="closeMoreFeaturesSheet(); switchAffiliateSubView('wallet');" class="p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/40 hover:bg-purple-950/20 transition flex flex-col items-center">
+          <span class="text-2xl mb-1.5">💳</span>
+          <span class="text-[10px] font-bold text-zinc-300">Wallet Hub</span>
+        </button>
+        <button onclick="closeMoreFeaturesSheet(); switchAffiliateSubView('creator');" class="p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/40 hover:bg-purple-950/20 transition flex flex-col items-center">
+          <span class="text-2xl mb-1.5">🎨</span>
+          <span class="text-[10px] font-bold text-zinc-300">Creator Hub</span>
+        </button>
+        <button onclick="closeMoreFeaturesSheet(); openAIBotModal();" class="p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-emerald-500/40 hover:bg-emerald-950/20 transition flex flex-col items-center">
+          <span class="text-2xl mb-1.5">🎧</span>
+          <span class="text-[10px] font-bold text-zinc-300">AI Support</span>
+        </button>
+        <button onclick="closeMoreFeaturesSheet(); routeTo('landing');" class="p-3.5 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/40 hover:bg-purple-950/20 transition flex flex-col items-center">
+          <span class="text-2xl mb-1.5">🏠</span>
+          <span class="text-[10px] font-bold text-zinc-300">HQ Home</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- JAVASCRIPT MASTER SYSTEM ARCHITECTURE & DATABASE ENGINE        -->
+  <!-- ============================================================== -->
+  <script>
+    // 1. GLOBAL APPLICATION STATE & SESSION TRACKING
+    const appState = {
+      isSocialRegistered: false,
+      isSocialVerified: false,
+      isAffiliatePaid: false,
+      isPremium100Subscribed: false,
+      userCoins: 250,
+      activeCurrency: 'GHS',
+      userName: 'Gerald Mingle',
+      userEmail: 'geemingle15@gmail.com',
+      userPhone: '0534671381',
+      creatorWhitelisted: false,
+      livenessStep: 1,
+      stealthTaps: 0,
+      tapTimer: null,
+      countdownTimer: null,
+      cameraMediaStream: null,
+      availableGhs: 1365.00,
+      totalGhs: 4062.50,
+      adminSecurityToken: null,
+      adminReports: []
+    };
+
+    // 2. UNIVERSAL 50+ GLOBAL CURRENCY EXCHANGE MATRIX (ZERO-LOSS PARITY)
+    // Rate tied dynamically. Base unit is GHS.
+    const currencyDatabase = {
+      GHS: { symbol: '₵', code: 'GHS', rate: 1.0, decimals: 2, flag: '🇬🇭' },
+      USD: { symbol: '$', code: 'USD', rate: 0.0861, decimals: 2, flag: '🇺🇸' },
+      EUR: { symbol: '€', code: 'EUR', rate: 0.0783, decimals: 2, flag: '🇪🇺' },
+      GBP: { symbol: '£', code: 'GBP', rate: 0.0658, decimals: 2, flag: '🇬🇧' },
+      NGN: { symbol: '₦', code: 'NGN', rate: 114.14, decimals: 0, flag: '🇳🇬' },
+      KES: { symbol: 'KSh', code: 'KES', rate: 11.16, decimals: 0, flag: '🇰🇪' },
+      ZAR: { symbol: 'R', code: 'ZAR', rate: 1.53, decimals: 2, flag: '🇿🇦' },
+      XOF: { symbol: 'Fr', code: 'XOF', rate: 50.77, decimals: 0, flag: '🇨🇮' },
+      EGP: { symbol: 'E£', code: 'EGP', rate: 4.18, decimals: 2, flag: '🇪🇬' },
+      UGX: { symbol: 'USh', code: 'UGX', rate: 318.40, decimals: 0, flag: '🇺🇬' },
+      TZS: { symbol: 'TSh', code: 'TZS', rate: 232.35, decimals: 0, flag: '🇹🇿' },
+      RWF: { symbol: 'RF', code: 'RWF', rate: 118.75, decimals: 0, flag: '🇷🇼' },
+      MAD: { symbol: 'DH', code: 'MAD', rate: 0.85, decimals: 2, flag: '🇲🇦' },
+      ZMW: { symbol: 'ZK', code: 'ZMW', rate: 2.25, decimals: 2, flag: '🇿🇲' },
+      GMD: { symbol: 'D', code: 'GMD', rate: 5.85, decimals: 2, flag: '🇬🇲' },
+      SLE: { symbol: 'Le', code: 'SLE', rate: 1.95, decimals: 2, flag: '🇸🇱' },
+      ETB: { symbol: 'Br', code: 'ETB', rate: 37.10, decimals: 0, flag: '🇪🇹' },
+      INR: { symbol: '₹', code: 'INR', rate: 7.18, decimals: 2, flag: '🇮🇳' },
+      PKR: { symbol: '₨', code: 'PKR', rate: 23.95, decimals: 0, flag: '🇵🇰' },
+      BDT: { symbol: '৳', code: 'BDT', rate: 10.25, decimals: 0, flag: '🇧🇩' },
+      PHP: { symbol: '₱', code: 'PHP', rate: 4.85, decimals: 2, flag: '🇵🇭' },
+      IDR: { symbol: 'Rp', code: 'IDR', rate: 1395.0, decimals: 0, flag: '🇮🇩' },
+      MYR: { symbol: 'RM', code: 'MYR', rate: 0.38, decimals: 2, flag: '🇲🇾' },
+      VND: { symbol: '₫', code: 'VND', rate: 2150.0, decimals: 0, flag: '🇻🇳' },
+      THB: { symbol: '฿', code: 'THB', rate: 2.95, decimals: 2, flag: '🇹🇭' },
+      JPY: { symbol: '¥', code: 'JPY', rate: 12.80, decimals: 0, flag: '🇯🇵' },
+      CNY: { symbol: '¥', code: 'CNY', rate: 0.62, decimals: 2, flag: '🇨🇳' },
+      SGD: { symbol: 'S$', code: 'SGD', rate: 0.115, decimals: 2, flag: '🇸🇬' },
+      AUD: { symbol: 'A$', code: 'AUD', rate: 0.128, decimals: 2, flag: '🇦🇺' },
+      NZD: { symbol: 'NZ$', code: 'NZD', rate: 0.141, decimals: 2, flag: '🇳🇿' },
+      KRW: { symbol: '₩', code: 'KRW', rate: 118.0, decimals: 0, flag: '🇰🇷' },
+      HKD: { symbol: 'HK$', code: 'HKD', rate: 0.67, decimals: 2, flag: '🇭🇰' },
+      CAD: { symbol: 'CA$', code: 'CAD', rate: 0.116, decimals: 2, flag: '🇨🇦' },
+      BRL: { symbol: 'R$', code: 'BRL', rate: 0.473, decimals: 2, flag: '🇧🇷' },
+      MXN: { symbol: 'MX$', code: 'MXN', rate: 1.63, decimals: 2, flag: '🇲🇽' },
+      COP: { symbol: 'COL$', code: 'COP', rate: 352.0, decimals: 0, flag: '🇨🇴' },
+      CLP: { symbol: 'CLP$', code: 'CLP', rate: 80.25, decimals: 0, flag: '🇨🇱' },
+      ARS: { symbol: '$', code: 'ARS', rate: 87.20, decimals: 0, flag: '🇦🇷' },
+      PEN: { symbol: 'S/', code: 'PEN', rate: 0.32, decimals: 2, flag: '🇵🇪' },
+      JMD: { symbol: 'J$', code: 'JMD', rate: 13.35, decimals: 2, flag: '🇯🇲' },
+      AED: { symbol: 'AED', code: 'AED', rate: 0.316, decimals: 2, flag: '🇦🇪' },
+      SAR: { symbol: 'SAR', code: 'SAR', rate: 0.323, decimals: 2, flag: '🇸🇦' },
+      QAR: { symbol: 'QAR', code: 'QAR', rate: 0.313, decimals: 2, flag: '🇶🇦' },
+      KWD: { symbol: 'KD', code: 'KWD', rate: 0.0264, decimals: 3, flag: '🇰🇼' },
+      BHD: { symbol: 'BD', code: 'BHD', rate: 0.0324, decimals: 3, flag: '🇧🇭' },
+      OMR: { symbol: 'OMR', code: 'OMR', rate: 0.0331, decimals: 3, flag: '🇴🇲' }
+    };
+
+    // 3. ADMIN LOCAL DATABASE SIMULATOR (USER PROFILES, LICENSES, EXPIRATIONS)
+    // Used to populate the Super Admin Command Center search and expiry tables.
+    const adminDatabase = {
+      users: [
+        { id: 'VIB-90218', name: 'Gerald Mingle', email: 'geemingle15@gmail.com', phone: '0534671381', role: 'creator', status: 'active', whitelist: true, balanceGhs: 1365.00, totalEarnedGhs: 4062.50, joinDate: '2025-09-18', expiryDate: '2026-09-18', paymentGateway: 'Paystack' },
+        { id: 'VIB-11045', name: 'Samuel Mensah', email: 'samuel@gmail.com', phone: '0241112222', role: 'affiliate', status: 'expired', whitelist: false, balanceGhs: 450.00, totalEarnedGhs: 1200.00, joinDate: '2025-08-01', expiryDate: '2026-08-01', paymentGateway: 'Paystack' },
+        { id: 'VIB-33921', name: 'Adrienne Okon', email: 'adrienne_pro@yahoo.com', phone: '+2348012345678', role: 'social', status: 'active', whitelist: false, balanceGhs: 0, totalEarnedGhs: 0, joinDate: '2026-01-15', expiryDate: 'N/A', paymentGateway: 'None' },
+        { id: 'VIB-88432', name: 'Kwame Danquah', email: 'k.danquah@gmail.com', phone: '0205556666', role: 'customer', status: 'active', whitelist: false, balanceGhs: 0, totalEarnedGhs: 0, joinDate: '2026-05-20', expiryDate: '2027-05-20', paymentGateway: 'Paystack' },
+        { id: 'VIB-55319', name: 'Fiyero Galaxy', email: 'fiyero_spammer@gmail.com', phone: '0559998888', role: 'social', status: 'reported', whitelist: false, balanceGhs: 0, totalEarnedGhs: 0, joinDate: '2026-07-10', expiryDate: 'N/A', paymentGateway: 'None' },
+        { id: 'VIB-77210', name: 'Linda Osei', email: 'lindao@outlook.com', phone: '0274443333', role: 'affiliate', status: 'active', whitelist: true, balanceGhs: 890.50, totalEarnedGhs: 5400.00, joinDate: '2026-02-14', expiryDate: '2027-02-14', paymentGateway: 'Paystack' },
+        { id: 'VIB-22194', name: 'John Doe', email: 'johndoe@test.com', phone: '+14155552671', role: 'affiliate', status: 'active', whitelist: false, balanceGhs: 210.00, totalEarnedGhs: 210.00, joinDate: '2026-08-05', expiryDate: '2027-08-05', paymentGateway: 'Stripe_Bridge' }
+      ],
+      transactions: [
+        { txId: 'TX-PAY-991823', type: 'registration_95', user: 'VIB-88432', amountGhs: 95.00, status: 'cleared', date: '2026-05-20', gateway: 'Paystack' },
+        { txId: 'TX-PAY-110293', type: 'commission_credit', user: 'VIB-90218', amountGhs: 47.50, status: 'cleared', date: '2026-05-20', gateway: 'Internal' },
+        { txId: 'TX-PAY-882310', type: 'withdrawal_batch', user: 'VIB-90218', amountGhs: 500.00, status: 'processed', date: '2026-06-12', gateway: 'Paystack' },
+        { txId: 'TX-PAY-441029', type: 'premium_ai_sub_100', user: 'VIB-77210', amountGhs: 100.00, status: 'cleared', date: '2026-07-01', gateway: 'Paystack' },
+        { txId: 'TX-PAY-330192', type: 'coin_purchase_50', user: 'VIB-33921', amountGhs: 50.00, status: 'cleared', date: '2026-08-15', gateway: 'Paystack' }
+      ]
+    };
+
 
 
 
