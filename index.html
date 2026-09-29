@@ -3212,6 +3212,398 @@
         alert(`✅ Process Complete!\n\n${toolName} has generated its output. Data has been saved to your secure cloud instance.`);
       }, 1500);
     }
+        // =====================================================================================
+    // 31. ENTERPRISE NOTIFICATION & WEBSOCKET SIMULATOR (DUAL-PILLAR ROUTING)
+    // =====================================================================================
+
+    const VibelyNotificationEngine = {
+      queue: [],
+      isProcessing: false,
+
+      /**
+       * Simulates an incoming WebSocket payload from the Vibely Core Servers.
+       */
+      receiveLiveEvent: function(eventPayload) {
+        console.log(`[WEBSOCKET ENGINE] Packet received: ${eventPayload.type} | Priority: ${eventPayload.priority}`);
+        this.queue.push(eventPayload);
+        
+        // Update unread counters dynamically
+        this.updateGlobalBadges(eventPayload.pillar);
+        
+        if (!this.isProcessing) {
+          this.processQueue();
+        }
+      },
+
+      updateGlobalBadges: function(pillar) {
+        if (pillar === 'p2_affiliate') {
+          const badge = document.querySelector('button .bg-red-500.text-white.rounded-full');
+          if (badge) {
+            let count = parseInt(badge.innerText) || 0;
+            count++;
+            badge.innerText = count > 99 ? '99+' : count;
+            badge.classList.add('animate-bounce');
+            setTimeout(() => badge.classList.remove('animate-bounce'), 1000);
+          }
+        }
+      },
+
+      processQueue: function() {
+        if (this.queue.length === 0) {
+          this.isProcessing = false;
+          return;
+        }
+
+        this.isProcessing = true;
+        const currentEvent = this.queue.shift();
+        
+        this.renderToast(currentEvent);
+
+        // Process next event after a safe DOM rendering delay
+        setTimeout(() => {
+          this.processQueue();
+        }, currentEvent.duration || 3500);
+      },
+
+      renderToast: function(event) {
+        playChime(event.chimeType || 'notification');
+
+        // Create elegant floating toast notification
+        const toast = document.createElement('div');
+        toast.className = `fixed top-20 right-4 sm:right-8 z-50 p-4 rounded-2xl backdrop-blur-xl border shadow-2xl transform transition-all duration-500 translate-x-full flex items-start gap-3 w-[300px] sm:w-[380px]`;
+        
+        // Style routing based on Pillar
+        if (event.pillar === 'p1_social') {
+          toast.classList.add('bg-purple-950/80', 'border-purple-500/40');
+          toast.innerHTML = `
+            <div class="text-2xl mt-0.5">${event.icon || '💬'}</div>
+            <div class="flex-1">
+              <h4 class="text-sm font-black text-white">${event.title}</h4>
+              <p class="text-[11px] text-purple-200 mt-0.5 leading-relaxed">${event.message}</p>
+            </div>
+            <button class="text-purple-400 hover:text-white" onclick="this.parentElement.remove()">✕</button>
+          `;
+        } else if (event.pillar === 'p2_affiliate') {
+          toast.classList.add('bg-emerald-950/80', 'border-emerald-500/40');
+          toast.innerHTML = `
+            <div class="text-2xl mt-0.5">${event.icon || '💰'}</div>
+            <div class="flex-1">
+              <h4 class="text-sm font-black text-white">${event.title}</h4>
+              <p class="text-[11px] text-emerald-200 mt-0.5 leading-relaxed">${event.message}</p>
+            </div>
+            <button class="text-emerald-400 hover:text-white" onclick="this.parentElement.remove()">✕</button>
+          `;
+        } else {
+          // System / Admin
+          toast.classList.add('bg-red-950/80', 'border-red-500/40');
+          toast.innerHTML = `
+            <div class="text-2xl mt-0.5">🚨</div>
+            <div class="flex-1">
+              <h4 class="text-sm font-black text-white">${event.title}</h4>
+              <p class="text-[11px] text-red-200 mt-0.5 leading-relaxed">${event.message}</p>
+            </div>
+          `;
+        }
+
+        document.body.appendChild(toast);
+
+        // Slide in
+        requestAnimationFrame(() => {
+          toast.classList.remove('translate-x-full');
+        });
+
+        // Auto slide out and remove
+        setTimeout(() => {
+          toast.classList.add('translate-x-full');
+          setTimeout(() => toast.remove(), 500);
+        }, event.duration || 3500);
+      }
+    };
+
+    // =====================================================================================
+    // 32. PILLAR 1: DISCOVERY & CHEMISTRY ALGORITHM ENGINE
+    // =====================================================================================
+
+    const DiscoveryAlgorithm = {
+      /**
+       * Haversine formula to calculate exact distance between two geographic coordinates.
+       * Used to filter "Nearby Friends" in Pillar 1.
+       */
+      calculateDistance: function(lat1, lon1, lat2, lon2) {
+        const R = 6371; // Earth's radius in km
+        const dLat = this.deg2rad(lat2 - lat1);
+        const dLon = this.deg2rad(lon2 - lon1);
+        const a = 
+          Math.sin(dLat/2) * Math.sin(dLat/2) +
+          Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * 
+          Math.sin(dLon/2) * Math.sin(dLon/2); 
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+        return R * c;
+      },
+
+      deg2rad: function(deg) {
+        return deg * (Math.PI/180);
+      },
+
+      /**
+       * Calculates the proprietary 96% "Chemistry Score".
+       * Weighs overlapping arrays of hobbies, business interests, and platform activity.
+       */
+      computeChemistryScore: function(userA_tags, userB_tags) {
+        console.log(`[DISCOVERY ALGORITHM] Computing Chemistry Matrix...`);
+        if (!userA_tags || !userB_tags || userA_tags.length === 0) return 50; // Base score
+
+        let matches = 0;
+        userA_tags.forEach(tag => {
+          if (userB_tags.includes(tag)) matches++;
+        });
+
+        const overlapPercentage = (matches / Math.max(userA_tags.length, userB_tags.length)) * 100;
+        
+        // Add random variance based on hidden behavioral metrics (simulated)
+        const behavioralBoost = Math.floor(Math.random() * 15);
+        let finalScore = Math.floor(overlapPercentage) + behavioralBoost;
+        
+        // Cap at 99%
+        if (finalScore > 99) finalScore = 99;
+        if (finalScore < 40) finalScore = 40;
+
+        return finalScore;
+      },
+
+      triggerMatchmakerEvent: function() {
+        console.log("[DISCOVERY ALGORITHM] Booting Matchmaker neural sub-routines...");
+        
+        // Simulate a heavy computational load
+        const loaderToast = {
+          pillar: 'p1_social',
+          icon: '⚙️',
+          title: 'Algorithm Active',
+          message: 'Scanning global database of 18,420 verified creators for optimal synergy...',
+          duration: 2000
+        };
+        VibelyNotificationEngine.receiveLiveEvent(loaderToast);
+
+        setTimeout(() => {
+          const successToast = {
+            pillar: 'p1_social',
+            icon: '⚡',
+            title: 'Top 10 Matches Found',
+            message: 'We found 10 creators with a Chemistry Score above 90%. Check your Discover feed!',
+            duration: 4000
+          };
+          VibelyNotificationEngine.receiveLiveEvent(successToast);
+          
+          // Re-render the discover card to show a high-chemistry match
+          const synergyBadge = document.getElementById('card-user-synergy');
+          if(synergyBadge) synergyBadge.innerText = '🔥 98% Chemistry Score';
+        }, 2500);
+      }
+    };
+
+    // Replace the old placeholder function with the new algorithmic one
+    function triggerTop10Matchmaker() {
+      DiscoveryAlgorithm.triggerMatchmakerEvent();
+    }
+
+    // =====================================================================================
+    // 33. PILLAR 2: ADVANCED SVG ANALYTICS & CHARTING ENGINE
+    // =====================================================================================
+
+    const VibelyAnalyticsEngine = {
+      /**
+       * Generates a fully dynamic SVG line chart without relying on external libraries (Chart.js etc).
+       * Ensures the platform remains blazing fast and entirely self-contained.
+       */
+      drawDynamicChart: function(containerId, dataPoints, options) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+
+        console.log(`[ANALYTICS ENGINE] Rendering SVG Graph for ${containerId}`);
+
+        const width = options.width || 400;
+        const height = options.height || 150;
+        const padding = options.padding || 20;
+        const strokeColor = options.color || '#9333ea'; // Brand Purple
+
+        // Find min and max for scaling
+        const maxVal = Math.max(...dataPoints);
+        const minVal = 0; // Baseline
+
+        const scaleX = (width - padding * 2) / (dataPoints.length - 1);
+        const scaleY = (height - padding * 2) / (maxVal - minVal);
+
+        // Build SVG Path string
+        let pathD = `M ${padding} ${height - padding - (dataPoints[0] - minVal) * scaleY}`;
+        
+        let polygonD = `M ${padding} ${height - padding} L ${padding} ${height - padding - (dataPoints[0] - minVal) * scaleY}`;
+
+        const pointsHTML = dataPoints.map((val, index) => {
+          const x = padding + index * scaleX;
+          const y = height - padding - (val - minVal) * scaleY;
+          
+          if (index > 0) {
+            pathD += ` L ${x} ${y}`;
+          }
+          polygonD += ` L ${x} ${y}`;
+
+          // Add interactive hover points
+          return `<circle cx="${x}" cy="${y}" r="4" fill="${strokeColor}" class="cursor-pointer hover:r-6 transition-all" opacity="0.8">
+                    <title>Value: ${val}</title>
+                  </circle>`;
+        }).join('');
+
+        polygonD += ` L ${padding + (dataPoints.length - 1) * scaleX} ${height - padding} Z`;
+
+        const svgHTML = `
+          <svg viewBox="0 0 ${width} ${height}" class="w-full h-full drop-shadow-xl overflow-visible">
+            <!-- Gradient Fill -->
+            <defs>
+              <linearGradient id="grad-${containerId}" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="${strokeColor}" stop-opacity="0.3" />
+                <stop offset="100%" stop-color="${strokeColor}" stop-opacity="0.0" />
+              </linearGradient>
+            </defs>
+            
+            <!-- Grid Lines -->
+            <line x1="${padding}" y1="${height - padding}" x2="${width - padding}" y2="${height - padding}" stroke="#333" stroke-width="1" />
+            <line x1="${padding}" y1="${padding}" x2="${padding}" y2="${height - padding}" stroke="#333" stroke-width="1" />
+
+            <!-- Area Fill -->
+            <path d="${polygonD}" fill="url(#grad-${containerId})" />
+            
+            <!-- Line Stroke -->
+            <path d="${pathD}" fill="none" stroke="${strokeColor}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="animate-[dash_2s_ease-out_forwards]" stroke-dasharray="1000" stroke-dashoffset="1000" />
+            
+            <!-- Data Points -->
+            ${pointsHTML}
+          </svg>
+          <style>
+            @keyframes dash { to { stroke-dashoffset: 0; } }
+          </style>
+        `;
+
+        container.innerHTML = svgHTML;
+      },
+
+      initDashboardCharts: function() {
+        // Only run if user has access to affiliate dashboard
+        if (!appState.isAffiliatePaid) return;
+
+        // Mock 7-day revenue data
+        const weekData = [120, 340, 210, 560, 400, 890, 1365];
+        
+        // Find the placeholder chart container and replace it with real SVG data
+        const chartContainer = document.querySelector('.h-32.w-full.bg-black\\/40.rounded-2xl');
+        if (chartContainer) {
+          chartContainer.id = "dynamic-revenue-chart";
+          chartContainer.className = "w-full h-36 mt-4 relative";
+          this.drawDynamicChart("dynamic-revenue-chart", weekData, {
+            width: 500,
+            height: 150,
+            color: '#10b981' // Emerald for money
+          });
+        }
+      }
+    };
+
+    // Hook chart init to affiliate routing
+    const originalRouteTo = routeTo;
+    routeTo = function(viewName) {
+      originalRouteTo(viewName);
+      if (viewName === 'affiliate') {
+        setTimeout(() => VibelyAnalyticsEngine.initDashboardCharts(), 500);
+      }
+    };
+
+    // =====================================================================================
+    // 34. SECURE MEDIA PROCESSING & DRM WATERMARKING ENGINE
+    // =====================================================================================
+
+    const DRMProcessingEngine = {
+      /**
+       * Simulates client-side stamping of user identifying data onto downloaded/viewed assets.
+       * Prevents piracy of courses and templates on Telegram/WhatsApp.
+       */
+      applyCryptographicWatermark: function(assetName) {
+        console.log(`[DRM ENGINE] Initializing secure asset delivery pipeline for: ${assetName}`);
+        
+        const timestamp = new Date().getTime();
+        const userHash = btoa(appState.userEmail + ':' + appState.userName + ':' + timestamp).substring(0, 15);
+        
+        console.log(`[DRM ENGINE] Generated unique forensic identifier: ${userHash}`);
+        console.log(`[DRM ENGINE] Stamping asset with invisible metadata and visible 16px fallback buffer...`);
+
+        playChime('notification');
+        VibelyNotificationEngine.receiveLiveEvent({
+          pillar: 'p2_affiliate',
+          icon: '🛡️',
+          title: 'DRM Active',
+          message: `Asset secured. Your unique ID (${userHash}) is embedded in this file. Do not distribute.`,
+          duration: 5000
+        });
+
+        // Simulating the delay of a heavy Canvas rendering operation
+        setTimeout(() => {
+          alert(`⬇️ Secure Download Ready\n\nAsset: ${assetName}\n\nWarning: This file contains an encrypted forensic watermark tracking back to ${appState.userEmail}. Unauthorized distribution will result in an immediate account ban and forfeiture of wallet funds.`);
+        }, 1200);
+      }
+    };
+
+    // Hook DRM into the Quiz/Course section buttons
+    document.addEventListener('DOMContentLoaded', () => {
+      // Find course access buttons and bind DRM
+      const courseBtns = document.querySelectorAll('button:contains("Access Course Curriculum")');
+      courseBtns.forEach(btn => {
+        btn.onclick = (e) => {
+          e.preventDefault();
+          DRMProcessingEngine.applyCryptographicWatermark('U.M.M_Masterclass_Module_1.mp4');
+        };
+      });
+    });
+
+    // =====================================================================================
+    // 35. BACKGROUND SERVICE WORKER & PWA SYNC SIMULATOR
+    // =====================================================================================
+
+    const PWAServiceWorker = {
+      init: function() {
+        if ('serviceWorker' in navigator) {
+          console.log("[PWA ENGINE] Service Worker registration initiated.");
+          // In production: navigator.serviceWorker.register('/sw.js');
+          this.simulateOfflineSync();
+        }
+      },
+
+      simulateOfflineSync: function() {
+        console.log("[PWA ENGINE] Background sync ready. Offline state management active.");
+        
+        window.addEventListener('offline', () => {
+          console.warn("[PWA ENGINE] Network disconnected. Entering offline cache mode.");
+          VibelyNotificationEngine.receiveLiveEvent({
+            pillar: 'p1_social', // Applies globally
+            icon: '📡',
+            title: 'Connection Lost',
+            message: 'You are offline. Chat messages and actions will sync automatically when connection is restored.',
+            duration: 5000
+          });
+        });
+
+        window.addEventListener('online', () => {
+          console.log("[PWA ENGINE] Network restored. Syncing ledger and chat queues to Vibely Servers...");
+          VibelyNotificationEngine.receiveLiveEvent({
+            pillar: 'p1_social',
+            icon: '✅',
+            title: 'Back Online',
+            message: 'Connection restored. Data successfully synced with main servers.',
+            duration: 4000
+          });
+        });
+      }
+    };
+
+    PWAServiceWorker.init();
+
 
 
 
