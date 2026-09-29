@@ -125,3 +125,292 @@
     <h2 class="text-3xl font-black tracking-[0.25em] uppercase bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">VIBELY</h2>
     <p class="text-[10px] uppercase tracking-[0.3em] text-purple-400 mt-2 font-bold px-3 py-1 rounded-full border border-purple-500/20 bg-purple-500/10">Tap Screen To Enter Universe Experience</p>
   </div>
+    <!-- TOP APP NAVIGATION BAR -->
+  <header class="sticky top-0 z-40 w-full glass-nav px-3 py-2.5 sm:px-8 flex items-center justify-between">
+    <div class="flex items-center gap-2.5">
+      <div class="flex items-center gap-2 cursor-pointer select-none" onclick="handleStealthLogoTaps()">
+        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-purple-600 via-pink-500 to-indigo-500 p-[1px] flex items-center justify-center shadow-lg shadow-purple-600/20">
+          <div class="w-full h-full bg-[#0a0a0f] rounded-xl flex items-center justify-center">
+            <span class="text-xs font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">V</span>
+          </div>
+        </div>
+        <div>
+          <span class="text-sm sm:text-base font-black tracking-wider text-white block leading-tight">VIBELY</span>
+          <span id="header-platform-tag" class="text-[7px] sm:text-[8px] uppercase tracking-widest text-emerald-400 font-bold block">HQ Portal</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNIVERSAL CURRENCY & COINS BAR -->
+    <div class="flex items-center gap-2">
+      <button 
+        id="header-coin-wrapper"
+        onclick="openCoinStoreModal()"
+        class="btn-tap-target flex items-center gap-1.5 px-3 py-1 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold text-xs hover:bg-amber-500/20 active:scale-95 transition"
+      >
+        <span>🪙</span>
+        <span id="header-coin-counter">250</span>
+      </button>
+
+      <!-- UNIVERSE-WIDE 50+ CURRENCY MATRIX -->
+      <div class="relative">
+        <select 
+          id="global-currency-select"
+          onchange="changeGlobalCurrency(this.value)"
+          class="appearance-none bg-black/80 border border-purple-500/40 text-purple-300 font-black text-[11px] sm:text-xs py-2 pl-3 pr-7 rounded-xl focus:outline-none focus:border-purple-400 cursor-pointer shadow-inner"
+        >
+          <optgroup label="⭐ Flagship Anchors">
+            <option value="GHS" selected>🇬🇭 GHS (₵)</option>
+            <option value="USD">🌐 USD ($)</option>
+            <option value="EUR">🇪🇺 EUR (€)</option>
+            <option value="GBP">🇬🇧 GBP (£)</option>
+          </optgroup>
+          <optgroup label="🌍 Africa">
+            <option value="NGN">🇳🇬 NGN (₦)</option>
+            <option value="KES">🇰🇪 KES (KSh)</option>
+            <option value="ZAR">🇿🇦 ZAR (R)</option>
+            <option value="XOF">🇨🇮 XOF / CFA (Fr)</option>
+            <option value="EGP">🇪🇬 EGP (E£)</option>
+            <option value="UGX">🇺🇬 UGX (USh)</option>
+            <option value="TZS">🇹🇿 TZS (TSh)</option>
+            <option value="RWF">🇷🇼 RWF (RF)</option>
+            <option value="MAD">🇲🇦 MAD (DH)</option>
+            <option value="ZMW">🇿🇲 ZMW (ZK)</option>
+            <option value="GMD">🇬🇲 GMD (D)</option>
+            <option value="SLE">🇸🇱 SLE (Le)</option>
+            <option value="ETB">🇪🇹 ETB (Br)</option>
+          </optgroup>
+          <optgroup label="🌏 Asia &amp; Oceania">
+            <option value="INR">🇮🇳 INR (₹)</option>
+            <option value="PKR">🇵🇰 PKR (₨)</option>
+            <option value="BDT">🇧🇩 BDT (৳)</option>
+            <option value="PHP">🇵🇭 PHP (₱)</option>
+            <option value="IDR">🇮🇩 IDR (Rp)</option>
+            <option value="MYR">🇲🇾 MYR (RM)</option>
+            <option value="VND">🇻🇳 VND (₫)</option>
+            <option value="THB">🇹🇭 THB (฿)</option>
+            <option value="JPY">🇯🇵 JPY (¥)</option>
+            <option value="CNY">🇨🇳 CNY (¥)</option>
+            <option value="SGD">🇸🇬 SGD (S$)</option>
+            <option value="AUD">🇦🇺 AUD (A$)</option>
+            <option value="NZD">🇳🇿 NZD (NZ$)</option>
+            <option value="KRW">🇰🇷 KRW (₩)</option>
+            <option value="HKD">🇭🇰 HKD (HK$)</option>
+          </optgroup>
+          <optgroup label="🌎 Americas">
+            <option value="CAD">🇨🇦 CAD (CA$)</option>
+            <option value="BRL">🇧🇷 BRL (R$)</option>
+            <option value="MXN">🇲🇽 MXN (MX$)</option>
+            <option value="COP">🇨🇴 COL (COL$)</option>
+            <option value="CLP">🇨🇱 CLP (CLP$)</option>
+            <option value="ARS">🇦🇷 ARS ($)</option>
+            <option value="PEN">🇵🇪 PEN (S/)</option>
+            <option value="JMD">🇯🇲 JMD (J$)</option>
+          </optgroup>
+          <optgroup label="🕌 Middle East">
+            <option value="AED">🇦🇪 AED (AED)</option>
+            <option value="SAR">🇸🇦 SAR (SAR)</option>
+            <option value="QAR">🇶🇦 QAR (QAR)</option>
+            <option value="KWD">🇰🇼 KWD (KD)</option>
+            <option value="BHD">🇧🇭 BHD (BD)</option>
+            <option value="OMR">🇴🇲 OMR (OMR)</option>
+          </optgroup>
+        </select>
+        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-1.5 text-purple-400 text-[10px]">▼</div>
+      </div>
+
+      <button onclick="routeTo('landing')" class="btn-tap-target p-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white transition flex items-center justify-center" title="Home Gateway">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- VIEW 1: CLEAN PUBLIC FRONT DOOR -->
+  <div id="view-landing" class="relative z-10 w-full max-w-5xl mx-auto px-4 pt-10 space-y-16">
+    <div class="text-center max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-[11px] font-semibold text-zinc-300 mb-6 border border-white/10">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>The Two-Sided Universe Platform: Free Social Connection + 50/50 Global Commerce</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight leading-[1.1] mb-5 text-glow">
+        Connect With People Globally. <br />
+        <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-300 bg-clip-text text-transparent">
+          Monetize Skills on Autopilot.
+        </span>
+      </h1>
+
+      <p class="max-w-xl mx-auto text-sm sm:text-base text-zinc-400 mb-8 leading-relaxed">
+        Make vetted creator friends worldwide across 195+ nations in our free social hub. When ready to scale income, unlock our high-income masterclasses and automated 50% weekly revenue share.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto text-left">
+        <div class="glass-card p-6 rounded-3xl border border-emerald-500/20 flex flex-col justify-between hover:border-emerald-500/40 transition shadow-2xl">
+          <div>
+            <span class="text-[10px] uppercase font-black px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              Pillar 1 • 100% Free
+            </span>
+            <h3 class="text-xl font-black text-white mt-2">Global Social &amp; Chat Hub</h3>
+            <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
+              Match with creators, explore skill synergies, listen to voice vibes, and send Vibely Coins.
+            </p>
+          </div>
+          <button 
+            onclick="handleEnterSocialGateway()" 
+            class="btn-tap-target mt-6 w-full py-3.5 rounded-2xl bg-white text-black font-black text-xs hover:bg-zinc-200 active:scale-95 transition shadow-lg text-center"
+          >
+            Enter Free Social Hub →
+          </button>
+        </div>
+
+        <div class="glass-card p-6 rounded-3xl border border-purple-500/30 flex flex-col justify-between hover:border-purple-500/50 transition shadow-2xl">
+          <div>
+            <span class="text-[10px] uppercase font-black px-2.5 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">
+              Pillar 2 • 50/50 Split
+            </span>
+            <h3 class="text-xl font-black text-white mt-2">Affiliate Marketing Desk</h3>
+            <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
+              Unlock the 4-core Academy, 50% weekly payouts, milestone certificates, and closed mastermind.
+            </p>
+          </div>
+          <button 
+            onclick="handleEnterAffiliateGateway()" 
+            class="btn-tap-target mt-6 w-full py-3.5 rounded-2xl bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 text-white font-black text-xs active:scale-95 transition shadow-xl shadow-purple-600/30 text-center"
+          >
+            Enter Affiliate Marketing (<span data-price-ghs="95">₵ 95.00 GHS</span>) →
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PILLAR 1: ONBOARDING WIZARD MODAL (UNIVERSAL COUNTRY SUPPORT) -->
+  <div 
+    id="p1-onboarding-modal" 
+    class="fixed inset-0 z-50 bg-black/90 backdrop-blur-2xl flex items-center justify-center p-3 sm:p-5 opacity-0 pointer-events-none transition-all duration-300 overflow-y-auto"
+  >
+    <div class="glass-panel w-full max-w-lg rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl relative my-auto">
+      <button onclick="closeP1OnboardingModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white font-bold p-1">✕</button>
+
+      <div class="flex items-center justify-between mb-6 pb-3 border-b border-white/10">
+        <div>
+          <span class="text-[10px] uppercase font-bold text-purple-400 tracking-wider" id="p1-stage-label">Step 1 of 4: Onboarding</span>
+          <h3 class="text-lg font-black text-white" id="p1-stage-title">Create Social Identity</h3>
+        </div>
+        <div class="flex gap-1">
+          <span class="w-2 h-2 rounded-full bg-purple-500" id="p1-prog-1"></span>
+          <span class="w-2 h-2 rounded-full bg-zinc-700" id="p1-prog-2"></span>
+          <span class="w-2 h-2 rounded-full bg-zinc-700" id="p1-prog-3"></span>
+          <span class="w-2 h-2 rounded-full bg-zinc-700" id="p1-prog-4"></span>
+        </div>
+      </div>
+
+      <div id="p1-step-1" class="space-y-3.5 text-xs text-left">
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">Full Name</label>
+          <input type="text" id="p1-reg-name" required placeholder="e.g. Samuel Mensah" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">Mobile Phone / WhatsApp Number</label>
+          <input type="tel" id="p1-reg-phone" required placeholder="+233 53 467 1381" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">Email Address (Gmail)</label>
+          <input type="email" id="p1-reg-email" required placeholder="name@gmail.com" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">Global Country of Residence</label>
+          <select id="p1-reg-country" class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white focus:outline-none focus:border-purple-500">
+            <option value="Ghana">🇬🇭 Ghana</option>
+            <option value="Nigeria">🇳🇬 Nigeria</option>
+            <option value="Kenya">🇰🇪 Kenya</option>
+            <option value="South Africa">🇿🇦 South Africa</option>
+            <option value="United Kingdom">🇬🇧 United Kingdom</option>
+            <option value="United States">🇺🇸 United States</option>
+            <option value="Canada">🇨🇦 Canada</option>
+            <option value="Germany">🇩🇪 Germany</option>
+            <option value="France">🇫🇷 France</option>
+            <option value="UAE">🇦🇪 United Arab Emirates</option>
+            <option value="India">🇮🇳 India</option>
+            <option value="Australia">🇦🇺 Australia</option>
+            <option value="Other">🌍 Other Global Nation (195+ Supported)</option>
+          </select>
+        </div>
+        <button onclick="advanceP1Onboarding(2)" class="btn-tap-target w-full py-3.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition shadow-lg mt-2">
+          Continue to Camera Verification →
+        </button>
+      </div>
+
+      <div id="p1-step-2" class="space-y-4 text-xs text-center hidden">
+        <div class="relative w-32 h-32 mx-auto rounded-full border-2 border-purple-500 overflow-hidden shadow-xl bg-black flex items-center justify-center">
+          <video id="p1-selfie-cam" autoplay playsinline class="w-full h-full object-cover hidden"></video>
+          <img id="p1-avatar-preview" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=250" class="w-full h-full object-cover" />
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <button onclick="openRealCameraStream('p1-selfie-cam', 'p1-avatar-preview')" class="btn-tap-target py-3 rounded-xl bg-white/10 text-white font-bold">📷 Open Camera</button>
+          <label class="btn-tap-target py-3 rounded-xl bg-white/10 text-white font-bold cursor-pointer">🖼️ Gallery<input type="file" accept="image/*" onchange="handleP1AvatarFile(event)" class="hidden" /></label>
+        </div>
+        <button onclick="advanceP1Onboarding(3)" class="btn-tap-target w-full py-3.5 rounded-xl bg-purple-600 text-white font-bold text-xs">Confirm &amp; Proceed →</button>
+      </div>
+
+      <div id="p1-step-3" class="space-y-4 text-xs text-left hidden">
+        <label class="block font-bold text-white">Select Your Creator Interests &amp; Hobbies</label>
+        <div class="flex flex-wrap gap-2">
+          <button type="button" onclick="toggleSurveyChip(this)" class="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-300 font-semibold text-xs border border-white/10">Gaming</button>
+          <button type="button" onclick="toggleSurveyChip(this)" class="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-300 font-semibold text-xs border border-white/10 border-white/10">Video Editing</button>
+          <button type="button" onclick="toggleSurveyChip(this)" class="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-300 font-semibold text-xs border border-white/10">AI Coding</button>
+          <button type="button" onclick="toggleSurveyChip(this)" class="px-3 py-1.5 rounded-xl bg-white/5 text-zinc-300 font-semibold text-xs border border-white/10">Dropshipping</button>
+        </div>
+        <button onclick="advanceP1Onboarding(4)" class="btn-tap-target w-full py-3.5 rounded-xl bg-purple-600 text-white font-bold text-xs">Save &amp; Continue →</button>
+      </div>
+
+      <div id="p1-step-4" class="space-y-4 text-xs text-left hidden">
+        <textarea id="p1-reg-bio" rows="3" placeholder="Write a short description about yourself..." class="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-zinc-800 text-white"></textarea>
+        <button onclick="completeP1Onboarding()" class="btn-tap-target w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-black text-xs">Enter Social Hub (Unverified) →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW 2: PILLAR 1 SOCIAL HUB -->
+  <div id="view-social" class="hidden relative z-10 w-full max-w-4xl mx-auto px-4 pt-4 space-y-6">
+    <div class="glass-panel p-4 rounded-3xl flex items-center justify-between border border-white/10">
+      <div class="flex items-center gap-3">
+        <img id="social-my-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="w-12 h-12 rounded-2xl object-cover border border-purple-500/40" />
+        <div>
+          <h3 class="text-sm font-black text-white" id="social-my-name">Samuel Mensah</h3>
+          <span id="social-verify-badge" class="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-red-500/20 text-red-400 border border-red-500/30 cursor-pointer" onclick="openFacialVerificationModal()">🚩 Unverified</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="openRulesGuidelinesModal()" class="btn-tap-target py-2 px-3 rounded-xl bg-white/5 text-zinc-300 text-xs font-bold">📜 Rules</button>
+        <button onclick="openFacialVerificationModal()" class="btn-tap-target py-2 px-3 rounded-xl bg-purple-600/30 text-purple-300 text-xs font-bold">📸 Verify</button>
+      </div>
+    </div>
+
+    <!-- P1 NAVIGATION TABS -->
+    <div class="glass-card p-1.5 rounded-2xl flex items-center gap-1 overflow-x-auto no-scrollbar border border-white/10 text-xs font-bold">
+      <button onclick="switchP1Tab('home')" id="p1-tab-home" class="btn-tap-target px-3.5 py-1.5 rounded-xl bg-purple-600 text-white shrink-0">🏠 Home</button>
+      <button onclick="switchP1Tab('discover')" id="p1-tab-discover" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">❤️ Discover</button>
+      <button onclick="switchP1Tab('matches')" id="p1-tab-matches" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">🤝 Matches</button>
+      <button onclick="switchP1Tab('messages')" id="p1-tab-messages" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">💬 Chat</button>
+      <button onclick="switchP1Tab('settings')" id="p1-tab-settings" class="btn-tap-target px-3.5 py-1.5 rounded-xl text-zinc-400 hover:text-white shrink-0">⚙️ Settings</button>
+    </div>
+
+    <div id="p1-view-home" class="space-y-6">
+      <div class="glass-card p-4 rounded-3xl text-zinc-300 text-xs">Stories &amp; Ephemeral Pods Feed Active</div>
+    </div>
+    <div id="p1-view-discover" class="space-y-6 hidden">
+      <div class="glass-panel p-6 rounded-3xl shadow-2xl">
+        <h3 class="text-xl font-black text-white">Adrienne Okon, 23</h3>
+        <p class="text-xs text-zinc-300 mt-2">"Looking for content creators to team up on global stores!"</p>
+        <button onclick="openReportUserModal('Adrienne Okon')" class="mt-4 py-2 px-3 bg-red-600/20 text-red-400 text-xs font-bold rounded-xl">Report User 🚩</button>
+      </div>
+    </div>
+    <div id="p1-view-matches" class="space-y-6 hidden"><div class="glass-panel p-5 rounded-3xl text-xs text-zinc-400">Active Connections &amp; Anti-Ghost Clock</div></div>
+    <div id="p1-view-messages" class="space-y-4 hidden"><div class="glass-panel p-5 rounded-3xl text-xs text-zinc-400">Secure E2EE Chat with Stickers &amp; Media Support</div></div>
+    <div id="p1-view-settings" class="space-y-3 hidden text-xs">
+      <button onclick="openRulesGuidelinesModal()" class="w-full p-3.5 rounded-2xl bg-purple-950/20 text-purple-300 font-bold">Platform Rules &amp; Conduct</button>
+      <button onclick="handleUserLogout()" class="w-full p-3.5 rounded-2xl bg-red-500/10 text-red-400 font-bold">Sign Out / Exit</button>
+    </div>
+  </div>
+
